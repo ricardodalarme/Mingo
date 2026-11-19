@@ -1,11 +1,10 @@
 import 'package:app/features/dates/data/models/important_date_kind.dart';
-import 'package:app/features/gifts/data/models/gift_idea_status.dart';
 import 'package:equatable/equatable.dart';
 
 /// The days before a date that a reminder is sent, offered as choices.
 const List<int> remindDayOptions = [30, 7, 1, 0];
 
-/// The longest title the server accepts for a date or a gift idea.
+/// The longest title the server accepts for a date.
 const int dateTitleMaxLength = 120;
 
 /// An important date; [year] is unknown when null, and the date then repeats without an age.
@@ -29,22 +28,6 @@ final class const ImportantDate({
 
   @override
   List<Object?> get props => [id, title, kind, month, day, year, isYearly];
-}
-
-/// A gift idea, private to the person.
-final class const GiftIdea({
-  required final String id,
-  required final String title,
-  required final GiftIdeaStatus status,
-}) with Equatable {
-  /// A skeleton placeholder, never shown as a real record.
-  factory fake() =>
-      const GiftIdea(id: 'fake', title: 'Livro de poemas', status: GiftIdeaStatus.idea);
-
-  bool get isGiven => status == GiftIdeaStatus.given;
-
-  @override
-  List<Object?> get props => [id, title, status];
 }
 
 /// A holiday from the editorial calendar that the person can add to their dates.

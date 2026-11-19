@@ -4,7 +4,6 @@ import 'package:equatable/equatable.dart';
 enum ShareCardKind() {
   counter,
   moon,
-  timeline,
   quote,
 }
 
@@ -30,26 +29,6 @@ final class const ShareMoonCard({required final DateTime date}) extends ShareCar
 
   @override
   List<Object?> get props => [date];
-}
-
-/// One moment on a [ShareTimelineCard].
-final class const ShareTimelineEntry({
-  required final String title,
-  required final DateTime date,
-  final String? place,
-}) with Equatable {
-  @override
-  List<Object?> get props => [title, date, place];
-}
-
-/// A handful of real moments, newest first.
-final class const ShareTimelineCard({required final List<ShareTimelineEntry> entries})
-    extends ShareCard {
-  @override
-  ShareCardKind get kind => ShareCardKind.timeline;
-
-  @override
-  List<Object?> get props => [entries];
 }
 
 /// A line from a card the person already received.

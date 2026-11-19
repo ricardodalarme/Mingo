@@ -1,9 +1,0 @@
-table:
-  name: lesson_status
-  schema: public
-is_enum: true
-configuration:
-  column_config: {}
-  custom_column_names: {}
-  custom_name: LessonStatus
-  custom_root_fields: {}

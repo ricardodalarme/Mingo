@@ -1,5 +1,0 @@
-mutation DeleteGiftIdea($id: uuid!) {
-  deleteGiftIdeas(where: { id: { _eq: $id } }) {
-    affected_rows
-  }
-}

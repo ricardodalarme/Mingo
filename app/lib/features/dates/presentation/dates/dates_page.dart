@@ -9,7 +9,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// Important dates, private gift ideas and the holiday calendar.
+/// Important dates and the holiday calendar.
 @RoutePage()
 class const DatesPage({super.key}) extends StatelessWidget implements AutoRouteWrapper {
   @override
@@ -39,14 +39,13 @@ class const DatesPage({super.key}) extends StatelessWidget implements AutoRouteW
               Semantics(header: true, child: Text(l10n.title, style: context.text.titleXl)),
               const SizedBox(height: AppSpace.s16),
               BaseSegmented(
-                segments: [l10n.segmentDates, l10n.segmentGifts, l10n.segmentHolidays],
+                segments: [l10n.segmentDates, l10n.segmentHolidays],
                 selectedIndex: view.index,
                 onSelectionChanged: (index) => cubit.onViewChanged(DatesView.values[index]),
               ),
               const SizedBox(height: AppSpace.s16),
               switch (view) {
                 DatesView.dates => const _DatesView(),
-                DatesView.gifts => const _GiftsView(),
                 DatesView.holidays => const _HolidaysView(),
               },
             ],
@@ -175,73 +174,6 @@ class const _DatesList() extends StatelessWidget {
                       kind: l10n.kinds.selectOrFallback(date.kind.name),
                     ),
                     trailing: BaseTextLink(text: l10n.delete, onPressed: () => confirmDelete(date)),
-                  ),
-              ],
-            ),
-      failureBuilder: (_) => BaseErrorState(
-        title: l10n.errorTitle,
-        text: l10n.errorText,
-        actionText: context.l10n.common.retry,
-        onAction: cubit.load,
-      ),
-    );
-  }
-}
-
-class const _GiftsView() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.dates;
-    final giftTitle = context.select((DatesCubit cubit) => cubit.state.giftTitle);
-    final cubit = context.read<DatesCubit>();
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        BaseNote(text: l10n.giftsPrivate),
-        const SizedBox(height: AppSpace.s12),
-        BaseTextField(
-          text: giftTitle.value,
-          hint: l10n.giftHint,
-          errorText: l10n.giftErrors.selectOrNull(giftTitle.errorName),
-          onChanged: cubit.onGiftTitleChanged,
-          onSubmitted: (_) => cubit.addGift(),
-          trailingAction: BaseTextLink(text: l10n.add, onPressed: cubit.addGift),
-        ),
-        const SizedBox(height: AppSpace.s16),
-        const _GiftsList(),
-      ],
-    );
-  }
-}
-
-class const _GiftsList() extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n.dates;
-    final gifts = context.select((DatesCubit cubit) => cubit.state.gifts);
-    final cubit = context.read<DatesCubit>();
-
-    return SkeletonizerResourceWidget<List<GiftIdea>>(
-      gifts,
-      fakeValue: [GiftIdea.fake()],
-      successBuilder: (gifts) => gifts.isEmpty
-          ? BaseEmptyState(title: l10n.emptyGiftsTitle, text: l10n.emptyGiftsText)
-          : BaseListGroup(
-              children: [
-                for (final gift in gifts)
-                  BaseListTile(
-                    title: gift.title,
-                    subtitle: gift.isGiven ? l10n.given : null,
-                    leading: BaseCheckbox(
-                      value: gift.isGiven,
-                      semanticLabel: gift.title,
-                      onChanged: (_) => cubit.toggleGift(gift),
-                    ),
-                    trailing: BaseTextLink(
-                      text: l10n.delete,
-                      onPressed: () => cubit.deleteGift(gift),
-                    ),
                   ),
               ],
             ),

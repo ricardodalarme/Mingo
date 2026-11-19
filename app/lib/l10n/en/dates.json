@@ -1,7 +1,6 @@
 {
   "title": "Dates",
   "segmentDates": "Dates",
-  "segmentGifts": "Gifts",
   "segmentHolidays": "Holidays",
   "titleLabel": "Name",
   "titleHint": "E.g. their birthday",
@@ -27,8 +26,34 @@
   "yearErrors(map)": {
     "invalid": "Use a year between 1900 and 2200"
   },
-  "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-  "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "months": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ],
+  "monthsShort": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ],
   "dayLine": "{month} {day} · {kind}",
   "dayOnly": "{month} {day}",
   "saveDate": "Save date",
@@ -39,15 +64,6 @@
   "add": "Add",
   "emptyDatesTitle": "No dates yet",
   "emptyDatesText": "Keep birthdays and dates that matter. We remind you ahead.",
-  "giftsPrivate": "Gift ideas only you see.",
-  "giftHint": "E.g. book of poems",
-  "giftErrors(map)": {
-    "empty": "Write the gift idea",
-    "tooLong": "The gift idea is too long"
-  },
-  "given": "Given",
-  "emptyGiftsTitle": "No ideas yet",
-  "emptyGiftsText": "Jot down gifts when you think of them.",
   "emptyHolidaysTitle": "No holidays here",
   "emptyHolidaysText": "The calendar has no holidays for you yet.",
   "errorTitle": "Couldn't load",

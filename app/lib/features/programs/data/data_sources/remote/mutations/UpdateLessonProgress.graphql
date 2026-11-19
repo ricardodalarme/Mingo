@@ -1,8 +1,0 @@
-mutation UpdateLessonProgress($programSlug: String!, $lessonDay: smallint!, $status: LessonStatus_enum!) {
-  updateLessonProgress(
-    where: { programSlug: { _eq: $programSlug }, lessonDay: { _eq: $lessonDay } }
-    _set: { status: $status }
-  ) {
-    affected_rows
-  }
-}

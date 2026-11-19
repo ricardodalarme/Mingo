@@ -51,7 +51,7 @@ class const SosPage({super.key}) extends StatelessWidget {
                   title: l10n.talkTitle,
                   subtitle: l10n.talkText,
                   showsChevron: true,
-                  onTap: () => context.router.replace(const HardConversationRoute()),
+                  onTap: () => context.router.replace(ChatRoute()),
                 ),
               ],
             ),

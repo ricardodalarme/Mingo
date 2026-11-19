@@ -1,8 +1,0 @@
-mutation RestartProgramEnrollment($programSlug: String!) {
-  updateProgramEnrollments(
-    where: { programSlug: { _eq: $programSlug } }
-    _set: { currentDay: 1, completedAt: null }
-  ) {
-    affected_rows
-  }
-}

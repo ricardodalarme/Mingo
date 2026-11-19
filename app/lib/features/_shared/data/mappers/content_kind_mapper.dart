@@ -4,8 +4,6 @@ import 'package:app/features/_shared/data/models/content_kind.dart';
 extension ContentKindMapper on ContentKind {
   EnumContentKind_enum toRemote() => switch (this) {
     ContentKind.question => EnumContentKind_enum.question,
-    ContentKind.touchCard => EnumContentKind_enum.touch_card,
-    ContentKind.moodTip => EnumContentKind_enum.mood_tip,
     ContentKind.meOrYou => EnumContentKind_enum.me_or_you,
     ContentKind.howWell => EnumContentKind_enum.how_well,
     ContentKind.neverHaveWe => EnumContentKind_enum.never_have_we,

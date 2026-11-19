@@ -14,7 +14,6 @@ import 'package:app/features/together/data/repositories/together_repository.dart
 import 'package:app/features/together/data/services/ritual_reminder_service.dart';
 import 'package:app/features/together/presentation/date_night/cubit/date_night_cubit.dart';
 import 'package:app/features/together/presentation/day/cubit/day_cubit.dart';
-import 'package:app/features/together/presentation/help/cubit/help_cubit.dart';
 import 'package:app/features/together/presentation/logistics/cubit/logistics_cubit.dart';
 import 'package:app/features/together/presentation/ritual_edit/cubit/ritual_edit_cubit.dart';
 import 'package:app/features/together/presentation/rituals/cubit/rituals_cubit.dart';
@@ -63,12 +62,6 @@ class TogetherInjectionModule() implements InjectionModule {
         reminderService: injector.get<RitualReminderService>(),
         profileRepository: injector.get<ProfileRepository>(),
         pairingRepository: injector.get<PairingRepository>(),
-      ),
-    )
-    ..registerFactory<HelpCubit>(
-      () => HelpCubit(
-        togetherRepository: injector.get<TogetherRepository>(),
-        profileRepository: injector.get<ProfileRepository>(),
       ),
     )
     ..registerFactory<DayCubit>(

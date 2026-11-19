@@ -59,8 +59,10 @@ class const TogetherPage({final bool isEmbedded = false, super.key})
             sharedGiftCount: sharedGiftCount,
           ),
           const SizedBox(height: AppSpace.s24),
-          _TogetherMoreSection(hasPartner: hasPartner, phase: phase),
-          const SizedBox(height: AppSpace.s24),
+          if (hasPartner || phase == RelationshipPhase.longDistance) ...[
+            _TogetherMoreSection(hasPartner: hasPartner, phase: phase),
+            const SizedBox(height: AppSpace.s24),
+          ],
           const _PrivateSection(),
           const SizedBox(height: AppSpace.s24),
           const _PrivateMoreSection(),
@@ -105,12 +107,6 @@ class const _ForYouSection({required final bool hasPartner}) extends StatelessWi
           title: l10n.dateNightTitle,
           subtitle: l10n.dateNightMeta,
           onTap: () => context.pushRoute(const DateNightRoute()),
-        ),
-        _row(
-          icon: AppIcons.plant,
-          title: context.l10n.programs.title,
-          subtitle: l10n.programsMeta,
-          onTap: () => context.pushRoute(const ProgramsRoute()),
         ),
       ],
     );
@@ -185,18 +181,6 @@ class const _ToolsSection({
           onTap: () => context.pushRoute(const GiftsRoute()),
         ),
         _row(
-          icon: AppIcons.book,
-          title: l10n.guidesTitle,
-          subtitle: l10n.guidesMeta,
-          onTap: () => context.pushRoute(const GuidesRoute()),
-        ),
-        _row(
-          icon: AppIcons.sparkle,
-          title: l10n.starterTitle,
-          subtitle: l10n.starterMeta,
-          onTap: () => context.pushRoute(const StarterRoute()),
-        ),
-        _row(
           icon: AppIcons.sun,
           title: l10n.dayTitle,
           subtitle: l10n.dayMeta,
@@ -248,25 +232,12 @@ class const _TogetherMoreSection({
             subtitle: l10n.distanceMeta,
             onTap: () => context.pushRoute(const DistanceRoute()),
           ),
-        _row(
-          icon: AppIcons.cloud,
-          title: l10n.badDayTitle,
-          subtitle: l10n.badDayMeta,
-          onTap: () => context.pushRoute(const BadDayRoute()),
-        ),
         if (hasPartner)
           _row(
             icon: AppIcons.heart,
             title: l10n.usTitle,
             subtitle: l10n.usMeta,
             onTap: () => context.pushRoute(const UsRoute()),
-          ),
-        if (hasPartner)
-          _row(
-            icon: AppIcons.twinkle,
-            title: l10n.touchTitle,
-            subtitle: l10n.touchMeta,
-            onTap: () => context.pushRoute(const TouchRoute()),
           ),
       ],
     );
@@ -289,21 +260,9 @@ class const _PrivateSection() extends StatelessWidget {
         ),
         _row(
           icon: AppIcons.lock,
-          title: context.l10n.programs.diaryTitle,
+          title: l10n.diaryTitle,
           subtitle: l10n.diaryMeta,
           onTap: () => context.pushRoute(const DiaryRoute()),
-        ),
-        _row(
-          icon: AppIcons.plant,
-          title: context.l10n.programs.title,
-          subtitle: l10n.programsMeta,
-          onTap: () => context.pushRoute(const ProgramsRoute()),
-        ),
-        _row(
-          icon: AppIcons.heart,
-          title: l10n.hardTalkTitle,
-          subtitle: l10n.hardTalkMeta,
-          onTap: () => context.pushRoute(const HardConversationRoute()),
         ),
       ],
     );

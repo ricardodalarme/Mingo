@@ -13,15 +13,12 @@ configuration:
       custom_name: startDate
     start_date_set_by:
       custom_name: startDateSetBy
-    touch_topics_enabled:
-      custom_name: touchTopicsEnabled
   custom_column_names:
     created_at: createdAt
     ended_at: endedAt
     id: id
     start_date: startDate
     start_date_set_by: startDateSetBy
-    touch_topics_enabled: touchTopicsEnabled
   custom_name: couples
   custom_root_fields:
     delete: deleteCouples
@@ -60,18 +57,7 @@ select_permissions:
         - id
         - start_date
         - start_date_set_by
-        - touch_topics_enabled
       filter:
         members:
           user_id:
             _eq: X-Hasura-User-Id
-update_permissions:
-  - role: user
-    permission:
-      columns:
-        - touch_topics_enabled
-      filter:
-        members:
-          user_id:
-            _eq: X-Hasura-User-Id
-      check: null

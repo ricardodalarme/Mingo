@@ -49,11 +49,7 @@ export const tables = {
     object: { photo: { table: 'couple_photos', column: 'couple_id' } },
     array: { members: { table: 'couple_members', column: 'couple_id' } },
     roles: {
-      user: {
-        select: { columns: '*', filter: { members: { user_id: { _eq: ME } } } },
-        // Either person can switch touch topics off for both.
-        update: { columns: ['touch_topics_enabled'], filter: { members: { user_id: { _eq: ME } } } },
-      },
+      user: { select: { columns: '*', filter: { members: { user_id: { _eq: ME } } } } },
     },
   },
   couple_members: {

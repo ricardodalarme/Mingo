@@ -1,7 +1,6 @@
 {
   "entryTitle": "Share image",
   "entrySubtitleToday": "Your time together and the moon from the day it began.",
-  "entrySubtitleMemories": "A timeline of the moments you kept.",
   "entrySubtitleCard": "A line from the card that reached you.",
   "sheetTitle": "Share image",
   "sheetSubtitle": "The image is made on your device and only leaves when you share it.",
@@ -9,7 +8,6 @@
   "cardLabels(map)": {
     "counter": "Our time",
     "moon": "The moon of our day",
-    "timeline": "Our timeline",
     "quote": "From a card",
     "other": ""
   },
@@ -21,8 +19,6 @@
   "counterSince": "Since {date}",
   "moonEyebrow": "THE MOON OF OUR DAY",
   "moonSupport": "This is how the sky looked when it all began.",
-  "timelineEyebrow": "OUR TIMELINE",
-  "timelineTitle": "Moments we kept",
   "quoteEyebrow": "FROM A CARD",
   "quoteText": "“{quote}”",
   "quoteFromName": "— {name}",

@@ -1,7 +1,6 @@
 {
   "entryTitle": "Compartilhar imagem",
   "entrySubtitleToday": "O tempo de vocês e a lua do dia em que tudo começou.",
-  "entrySubtitleMemories": "Uma linha do tempo com os momentos que vocês guardaram.",
   "entrySubtitleCard": "Uma frase do cartão que chegou para você.",
   "sheetTitle": "Compartilhar imagem",
   "sheetSubtitle": "A imagem é feita no seu aparelho e só sai daqui quando você compartilhar.",
@@ -9,7 +8,6 @@
   "cardLabels(map)": {
     "counter": "Nosso tempo",
     "moon": "A lua do nosso dia",
-    "timeline": "Nossa linha do tempo",
     "quote": "De um cartão",
     "other": ""
   },
@@ -21,8 +19,6 @@
   "counterSince": "Desde {date}",
   "moonEyebrow": "A LUA DO NOSSO DIA",
   "moonSupport": "Foi assim que o céu estava quando tudo começou.",
-  "timelineEyebrow": "NOSSA LINHA DO TEMPO",
-  "timelineTitle": "Momentos que a gente guardou",
   "quoteEyebrow": "DE UM CARTÃO",
   "quoteText": "“{quote}”",
   "quoteFromName": "— {name}",

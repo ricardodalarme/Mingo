@@ -1,5 +1,0 @@
-mutation DeleteLessonProgress($programSlug: String!) {
-  deleteLessonProgress(where: { programSlug: { _eq: $programSlug } }) {
-    affected_rows
-  }
-}

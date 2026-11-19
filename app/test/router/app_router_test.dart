@@ -78,7 +78,7 @@ void main() {
 
   group('prefix matching', () {
     test('puts Home under a page that has no link of its own', () {
-      expect(names('/guides'), [HomeRoute.name, GuidesRoute.name]);
+      expect(names('/distance'), [HomeRoute.name, DistanceRoute.name]);
     });
 
     test('keeps a page with deeper siblings out of their stack', () {

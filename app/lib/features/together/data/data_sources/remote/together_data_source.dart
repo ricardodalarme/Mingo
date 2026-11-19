@@ -16,7 +16,6 @@ import 'package:app/features/together/data/data_sources/remote/mutations/generat
 import 'package:app/features/together/data/data_sources/remote/mutations/generated/UpdateRitual.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/queries/generated/DateIdeaSuggestions.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/queries/generated/DateIdeas.graphql.dart';
-import 'package:app/features/together/data/data_sources/remote/queries/generated/HelpContent.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/queries/generated/LogisticItems.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/queries/generated/Rituals.graphql.dart';
 import 'package:app/features/together/data/data_sources/remote/subscriptions/generated/WatchLogisticItems.graphql.dart';
@@ -279,20 +278,6 @@ class TogetherDataSource({required final GQLClient _client}) {
     );
 
     validateResponse(response);
-  }
-
-  Future<List<QueryHelpContentcontentItems>> getHelpContent({
-    required EnumContentKind_enum kind,
-    required String locale,
-  }) async {
-    final response = await _client.query(
-      OptionsQueryHelpContent(
-        fetchPolicy: FetchPolicy.cacheFirst,
-        variables: VariablesQueryHelpContent(kind: kind, locale: locale),
-      ),
-    );
-
-    return validateResponseData(response, getData: (data) => data.contentItems);
   }
 
   Future<void> deleteLogisticItem(String id) async {

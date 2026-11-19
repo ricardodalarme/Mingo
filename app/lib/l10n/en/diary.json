@@ -1,0 +1,34 @@
+{
+  "title": "Diary",
+  "privacy": "Just me. Never shared.",
+  "prompt": "Today I felt...",
+  "hint": "Write without hurry. Only you can see this.",
+  "bodyErrors(map)": {
+    "empty": "Write a little before saving",
+    "tooLong": "The entry is too long"
+  },
+  "save": "Save",
+  "newEntry": "New entry",
+  "edit": "Edit",
+  "delete": "Delete",
+  "deleteTitle": "Delete this entry?",
+  "deleteText": "This can't be undone.",
+  "deleteConfirm": "Delete",
+  "capHint": "Showing your last 100 entries.",
+  "emptyTitle": "Nothing written yet",
+  "emptyText": "When you want, write how you are. Only you can see it.",
+  "errorTitle": "Couldn't load",
+  "errorText": "Your entries are still saved. Try again.",
+  "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "dateLine": "{month} {day}, {year}",
+  "moods(map)": {
+    "calm": "At peace",
+    "tender": "Held",
+    "tired": "Tired",
+    "heavy": "Heavy",
+    "other": "How I am"
+  },
+  "errors(map)": {
+    "other": "Couldn't save right now. Your text is still here."
+  }
+}

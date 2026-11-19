@@ -12,16 +12,6 @@ void main() {
 
   CoupleCubit build() => CoupleCubit(historyRepository: history);
 
-  test('opens on Juntos', () {
-    expect(build().state.section, CoupleSection.together);
-  });
-
-  test('select opens the other part and keeps the rest', () {
-    final cubit = build()..select(CoupleSection.memories);
-
-    expect(cubit.state.section, CoupleSection.memories);
-  });
-
   test('a failed read leaves the chip plain', () async {
     when(history.getOverview).thenThrow(Exception('offline'));
     final cubit = build();

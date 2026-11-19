@@ -1,9 +1,0 @@
-table:
-  name: conversation_guide
-  schema: public
-is_enum: true
-configuration:
-  column_config: {}
-  custom_column_names: {}
-  custom_name: ConversationGuide
-  custom_root_fields: {}

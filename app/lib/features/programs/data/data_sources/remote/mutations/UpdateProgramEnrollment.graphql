@@ -1,5 +1,0 @@
-mutation UpdateProgramEnrollment($programSlug: String!, $currentDay: smallint!) {
-  updateProgramEnrollments(where: { programSlug: { _eq: $programSlug } }, _set: { currentDay: $currentDay }) {
-    affected_rows
-  }
-}

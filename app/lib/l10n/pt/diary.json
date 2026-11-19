@@ -1,0 +1,34 @@
+{
+  "title": "Diário",
+  "privacy": "Só eu. Nunca é compartilhado.",
+  "prompt": "Hoje eu me senti...",
+  "hint": "Escreva sem pressa. Só você vê isto.",
+  "bodyErrors(map)": {
+    "empty": "Escreva um pouco antes de salvar",
+    "tooLong": "A entrada está muito longa"
+  },
+  "save": "Salvar",
+  "newEntry": "Nova entrada",
+  "edit": "Editar",
+  "delete": "Apagar",
+  "deleteTitle": "Apagar esta entrada?",
+  "deleteText": "Isto não pode ser desfeito.",
+  "deleteConfirm": "Apagar",
+  "capHint": "Mostrando suas últimas 100 entradas.",
+  "emptyTitle": "Nada escrito ainda",
+  "emptyText": "Quando quiser, escreva como você está. Só você vê.",
+  "errorTitle": "Não deu para carregar",
+  "errorText": "Suas entradas continuam guardadas. Tente de novo.",
+  "monthsShort": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+  "dateLine": "{day} {month} {year}",
+  "moods(map)": {
+    "calm": "Em paz",
+    "tender": "Acolhido(a)",
+    "tired": "Cansado(a)",
+    "heavy": "Pesado",
+    "other": "Como estou"
+  },
+  "errors(map)": {
+    "other": "Não deu para salvar agora. Seu texto continua aqui."
+  }
+}

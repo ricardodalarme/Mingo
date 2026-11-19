@@ -12,10 +12,9 @@ part 'dates_state.dart';
 
 final RegExp _yearPattern = RegExp(r'^\s*$|^\s*(?:19\d{2}|20\d{2}|21\d{2}|2200)\s*$');
 
-/// The three views of the dates screen.
+/// The two views of the dates screen.
 enum DatesView() {
   dates,
-  gifts,
   holidays,
 }
 
@@ -29,11 +28,10 @@ class DatesCubit({
 
   void onViewChanged(DatesView view) => emit(state.copyWith(view: view));
 
-  /// Reads the dates and gift ideas; holidays are read once.
+  /// Reads the dates; holidays are read once.
   Future<void> load() async {
     if (state.dates is! Success) emit(state.copyWith(dates: const Loading()));
-    if (state.gifts is! Success) emit(state.copyWith(gifts: const Loading()));
-    await (_loadDates(), _loadGifts(), _loadHolidays()).wait;
+    await (_loadDates(), _loadHolidays()).wait;
   }
 
   Future<void> _loadDates() async {
@@ -46,16 +44,6 @@ class DatesCubit({
     }
   }
 
-  Future<void> _loadGifts() async {
-    try {
-      final gifts = await _datesRepository.getGiftIdeas();
-      emit(state.copyWith(gifts: Success(gifts)));
-    } catch (exception, stack) {
-      addError(exception, stack);
-      if (state.gifts is! Success) emit(state.copyWith(gifts: Failure.fromObject(exception)));
-    }
-  }
-
   void onTitleChanged(String title) => emit(state.copyWith(title: FormInput(title)));
 
   void onKindChosen(ImportantDateKind kind) => emit(state.copyWith(kind: kind));
@@ -65,8 +53,6 @@ class DatesCubit({
   void onDayChosen(int day) => emit(state.copyWith(day: day));
 
   void onYearChanged(String year) => emit(state.copyWith(year: FormInput(year)));
-
-  void onGiftTitleChanged(String title) => emit(state.copyWith(giftTitle: FormInput(title)));
 
   /// Saves the date being typed; an unknown year still repeats every year.
   ///
@@ -131,25 +117,6 @@ class DatesCubit({
 
   Future<void> deleteDate(ImportantDate date) =>
       _change(() => _datesRepository.deleteDate(date.id));
-
-  Future<void> addGift() async {
-    final validatedGiftTitle = state.giftTitle.validate(
-      CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(dateTitleMaxLength)]),
-    );
-
-    emit(state.copyWith(giftTitle: validatedGiftTitle));
-    if (!validatedGiftTitle.isValid) return;
-
-    await _change(
-      () => _datesRepository.addGiftIdea(id: _uuid.v4(), title: validatedGiftTitle.value),
-    );
-    emit(state.copyWith(giftTitle: const FormInput('')));
-  }
-
-  Future<void> toggleGift(GiftIdea gift) =>
-      _change(() => _datesRepository.setGiftGiven(id: gift.id, isGiven: !gift.isGiven));
-
-  Future<void> deleteGift(GiftIdea gift) => _change(() => _datesRepository.deleteGiftIdea(gift.id));
 
   Future<void> _loadHolidays() async {
     if (state.holidays is Success) return;

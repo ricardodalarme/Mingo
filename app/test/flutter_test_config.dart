@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:app/features/_shared/data/data_sources/remote/generated/schema.graphql.dart';
-import 'package:app/features/chat/data/models/hard_conversation_draft.dart';
 import 'package:app/features/chat/data/models/learned_item.dart';
 import 'package:app/features/dates/data/models/important_date_kind.dart';
 import 'package:app/features/devices/data/models/device_platform.dart';
@@ -25,7 +24,6 @@ import 'package:app/features/notifications/data/repositories/notifications_repos
 import 'package:app/features/partner/data/models/partner_fact_category.dart';
 import 'package:app/features/plus/data/models/plus_state.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
-import 'package:app/features/programs/data/models/program.dart';
 import 'package:app/features/reminders/data/models/reminder_preferences.dart';
 import 'package:app/features/repair/data/models/guided_session.dart';
 import 'package:app/features/repair/data/models/received_signal.dart';
@@ -46,7 +44,6 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(EnumCardChannel_enum.link);
   registerFallbackValue(EnumCardKind_enum.weekly);
   registerFallbackValue(EnumCardStatus_enum.draft);
-  registerFallbackValue(EnumConversationGuide_enum.free);
   registerFallbackValue(EnumDateIdeaStatus_enum.saved);
   registerFallbackValue(EnumDatePrecision_enum.day);
   registerFallbackValue(EnumDevicePlatform_enum.ios);
@@ -61,7 +58,6 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(EnumImportantDateOrigin_enum.manual);
   registerFallbackValue(EnumLearnedItemStatus_enum.pending);
   registerFallbackValue(EnumLearnedItemTarget_enum.partner_fact);
-  registerFallbackValue(EnumLessonStatus_enum.done);
   registerFallbackValue(EnumListItemStatus_enum.dream);
   registerFallbackValue(EnumListKind_enum.travel);
   registerFallbackValue(EnumMemberRole_enum.inviter);
@@ -92,8 +88,6 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(EnumWorkArea_enum.planning);
   registerFallbackValue(Enum__TypeKind.SCALAR);
   registerFallbackValue(Enum__DirectiveLocation.QUERY);
-  registerFallbackValue(HardConversationStep.whatHappened);
-  registerFallbackValue(HardConversationTone.neutral);
   registerFallbackValue(LearnedTarget.partnerFact);
   registerFallbackValue(LearnedStatus.pending);
   registerFallbackValue(ImportantDateKind.relationship);
@@ -123,7 +117,6 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(PurchaseOutcome.unlocked);
   registerFallbackValue(RestoreOutcome.unlocked);
   registerFallbackValue(AvatarKind.photo);
-  registerFallbackValue(LessonStatus.done);
   registerFallbackValue(ReminderKind.dailyIdea);
   registerFallbackValue(RepairLearningKind.trigger);
   registerFallbackValue(RepairFeeling.calmer);

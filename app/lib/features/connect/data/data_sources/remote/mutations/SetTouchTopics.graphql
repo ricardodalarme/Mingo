@@ -1,5 +1,0 @@
-mutation SetTouchTopics($coupleId: uuid!, $enabled: Boolean!) {
-  updateCouplesByPk(pk_columns: { id: $coupleId }, _set: { touchTopicsEnabled: $enabled }) {
-    id
-  }
-}

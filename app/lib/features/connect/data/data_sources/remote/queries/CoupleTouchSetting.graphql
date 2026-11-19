@@ -1,6 +1,0 @@
-query CoupleTouchSetting($userId: uuid!) {
-  couples(where: { members: { userId: { _eq: $userId } } }, limit: 1) {
-    id
-    touchTopicsEnabled
-  }
-}

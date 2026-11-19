@@ -8,8 +8,6 @@ void main() {
 
     expect(stored, {
       ContentKind.question: 'question',
-      ContentKind.touchCard: 'touch_card',
-      ContentKind.moodTip: 'mood_tip',
       ContentKind.meOrYou: 'me_or_you',
       ContentKind.howWell: 'how_well',
       ContentKind.neverHaveWe: 'never_have_we',

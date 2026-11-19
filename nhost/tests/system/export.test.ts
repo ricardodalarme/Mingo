@@ -24,7 +24,7 @@ test('the export holds the person data only, never the partner rows, replies or 
   for (const theirs of ['nota-do-parceiro-b', 'incomodo-b', 'viagem-b', 'bilhete-de-b', 'will_do']) assert.ok(!text.includes(theirs), `the export leaks ${theirs}`);
   assert.equal(data.profile.id, a.id);
   for (const section of ['profile', 'settings', 'consents', 'notification_settings', 'slips', 'annoyances', 'gentle_requests_sent', 'cards_authored', 'card_items',
-    'card_reactions_made', 'moods', 'temperature_checks', 'repair_sessions', 'repair_learnings', 'journal_entries', 'conversation_preps', 'partner_facts',
+    'card_reactions_made', 'moods', 'temperature_checks', 'repair_sessions', 'repair_learnings', 'journal_entries', 'partner_facts',
     'manual_entries', 'learned_items', 'quiz_results', 'memories_authored', 'story_events_authored', 'important_dates_authored', 'rituals_authored',
     'ritual_logs', 'logistic_items_authored', 'saved_date_ideas', 'lists_authored', 'list_items', 'gift_ideas_authored', 'capsules_authored',
     'question_answers', 'checkins', 'game_answers', 'signals_sent', 'partner_messages_sent', 'spice_desire_answers', 'agreements_authored', 'files']) {

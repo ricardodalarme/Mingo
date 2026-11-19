@@ -23,7 +23,6 @@ void main() {
     repository = _MockDatesRepository();
     profile = _MockProfileRepository();
     when(() => repository.getDates()).thenAnswer((_) async => const []);
-    when(() => repository.getGiftIdeas()).thenAnswer((_) async => const []);
     when(() => repository.getHolidays(any())).thenAnswer((_) async => [holiday]);
     when(() => profile.getMySettings())
         .thenAnswer((_) async => const AccountSettings(theme: .rose));
@@ -37,14 +36,6 @@ void main() {
         year: any(named: 'year'),
         isYearly: any(named: 'isYearly'),
         holidayKey: any(named: 'holidayKey'),
-      ),
-    ).thenAnswer((_) async {
-      return;
-    });
-    when(
-      () => repository.addGiftIdea(
-        id: any(named: 'id'),
-        title: any(named: 'title'),
       ),
     ).thenAnswer((_) async {
       return;
@@ -184,14 +175,13 @@ void main() {
     ).called(1);
   });
 
-  test('load reads dates, gift ideas and the holiday calendar', () async {
+  test('load reads dates and the holiday calendar', () async {
     final cubit = build();
 
     await cubit.load();
 
     expect((cubit.state.holidays as Success<List<Holiday>>).value, [holiday]);
     expect(cubit.state.dates, isA<Success<List<ImportantDate>>>());
-    expect(cubit.state.gifts, isA<Success<List<GiftIdea>>>());
   });
 
   test('adding a holiday keeps its key', () async {
@@ -211,34 +201,6 @@ void main() {
         holidayKey: 'valentines',
       ),
     ).called(1);
-  });
-
-  test('an empty gift idea is not added', () async {
-    final cubit = build()..onGiftTitleChanged('  ');
-
-    await cubit.addGift();
-
-    expect(cubit.state.giftTitle.error, NonEmptyValidationError.empty);
-    verifyNever(
-      () => repository.addGiftIdea(
-        id: any(named: 'id'),
-        title: any(named: 'title'),
-      ),
-    );
-  });
-
-  test('a gift idea over the limit is reported instead of ignored', () async {
-    final cubit = build()..onGiftTitleChanged('a' * (dateTitleMaxLength + 1));
-
-    await cubit.addGift();
-
-    expect(cubit.state.giftTitle.error, MaxLengthValidationError.tooLong);
-    verifyNever(
-      () => repository.addGiftIdea(
-        id: any(named: 'id'),
-        title: any(named: 'title'),
-      ),
-    );
   });
 
   test('a failed save keeps the typed date', () async {

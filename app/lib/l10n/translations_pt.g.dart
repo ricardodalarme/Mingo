@@ -71,9 +71,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$chat$pt chat = Translations$chat$pt.internal(_root);
   late final Translations$checkin$pt checkin = Translations$checkin$pt.internal(_root);
   late final Translations$common$pt common = Translations$common$pt.internal(_root);
-  late final Translations$connectTouch$pt connectTouch = Translations$connectTouch$pt.internal(
-    _root,
-  );
   late final Translations$connectUs$pt connectUs = Translations$connectUs$pt.internal(_root);
   late final Translations$createAccount$pt createAccount = Translations$createAccount$pt.internal(
     _root,
@@ -83,6 +80,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$day$pt day = Translations$day$pt.internal(_root);
   late final Translations$debugSignIn$pt debugSignIn = Translations$debugSignIn$pt.internal(_root);
   late final Translations$devices$pt devices = Translations$devices$pt.internal(_root);
+  late final Translations$diary$pt diary = Translations$diary$pt.internal(_root);
   late final Translations$distance$pt distance = Translations$distance$pt.internal(_root);
   late final Translations$fightStyle$pt fightStyle = Translations$fightStyle$pt.internal(_root);
   late final Translations$firstSlip$pt firstSlip = Translations$firstSlip$pt.internal(_root);
@@ -99,10 +97,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$griefSupport$pt griefSupport = Translations$griefSupport$pt.internal(
     _root,
   );
-  late final Translations$guides$pt guides = Translations$guides$pt.internal(_root);
-  late final Translations$hardConversation$pt hardConversation =
-      Translations$hardConversation$pt.internal(_root);
-  late final Translations$help$pt help = Translations$help$pt.internal(_root);
   late final Translations$helpSupport$pt helpSupport = Translations$helpSupport$pt.internal(_root);
   late final Translations$history$pt history = Translations$history$pt.internal(_root);
   late final Translations$homeWidgets$pt homeWidgets = Translations$homeWidgets$pt.internal(_root);
@@ -115,7 +109,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$lists$pt lists = Translations$lists$pt.internal(_root);
   late final Translations$logistics$pt logistics = Translations$logistics$pt.internal(_root);
   late final Translations$loveStyle$pt loveStyle = Translations$loveStyle$pt.internal(_root);
-  late final Translations$memories$pt memories = Translations$memories$pt.internal(_root);
   late final Translations$mood$pt mood = Translations$mood$pt.internal(_root);
   late final Translations$moodHelp$pt moodHelp = Translations$moodHelp$pt.internal(_root);
   late final Translations$need$pt need = Translations$need$pt.internal(_root);
@@ -135,7 +128,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$profileSetup$pt profileSetup = Translations$profileSetup$pt.internal(
     _root,
   );
-  late final Translations$programs$pt programs = Translations$programs$pt.internal(_root);
   late final Translations$pronouns$pt pronouns = Translations$pronouns$pt.internal(_root);
   late final Translations$questions$pt questions = Translations$questions$pt.internal(_root);
   late final Translations$questionsEntry$pt questionsEntry =
@@ -1303,56 +1295,6 @@ class Translations$common$pt {
   String get keepWriting => 'Continuar escrevendo';
 }
 
-// Path: connectTouch
-class Translations$connectTouch$pt {
-  Translations$connectTouch$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Toque'
-  String get title => 'Toque';
-
-  /// pt: 'Cartas neutras, sem tempero. Fazer ou pular, sem pressão.'
-  String get text => 'Cartas neutras, sem tempero. Fazer ou pular, sem pressão.';
-
-  /// pt: 'Temas de toque'
-  String get switchTitle => 'Temas de toque';
-
-  /// pt: 'Vale para vocês dois: se um desligar, some para os dois.'
-  String get switchText => 'Vale para vocês dois: se um desligar, some para os dois.';
-
-  /// pt: 'Temas de toque desligados'
-  String get offTitle => 'Temas de toque desligados';
-
-  /// pt: 'Você ou seu par desligou. Podem religar aqui quando quiserem.'
-  String get offText => 'Você ou seu par desligou. Podem religar aqui quando quiserem.';
-
-  /// pt: 'Nenhuma carta agora'
-  String get emptyTitle => 'Nenhuma carta agora';
-
-  /// pt: 'Volte mais tarde.'
-  String get emptyText => 'Volte mais tarde.';
-
-  /// pt: 'Pronto'
-  String get done => 'Pronto';
-
-  /// pt: 'Pular'
-  String get skip => 'Pular';
-
-  /// pt: 'Não deu para carregar'
-  String get errorTitle => 'Não deu para carregar';
-
-  /// pt: 'Tente de novo em instantes.'
-  String get errorText => 'Tente de novo em instantes.';
-
-  Map<String, String> get errors => {
-    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para mudar agora. Tente de novo.',
-  };
-}
-
 // Path: connectUs
 class Translations$connectUs$pt {
   Translations$connectUs$pt.internal(this._root);
@@ -1512,9 +1454,6 @@ class Translations$dates$pt {
   /// pt: 'Datas'
   String get segmentDates => 'Datas';
 
-  /// pt: 'Presentes'
-  String get segmentGifts => 'Presentes';
-
   /// pt: 'Feriados'
   String get segmentHolidays => 'Feriados';
 
@@ -1614,26 +1553,6 @@ class Translations$dates$pt {
 
   /// pt: 'Guarde aniversários e datas que importam. Avisamos antes.'
   String get emptyDatesText => 'Guarde aniversários e datas que importam. Avisamos antes.';
-
-  /// pt: 'Ideias de presente só você vê.'
-  String get giftsPrivate => 'Ideias de presente só você vê.';
-
-  /// pt: 'Ex.: livro de poemas'
-  String get giftHint => 'Ex.: livro de poemas';
-
-  Map<String, String> get giftErrors => {
-    'empty': 'Escreva a ideia de presente',
-    'tooLong': 'A ideia de presente está muito longa',
-  };
-
-  /// pt: 'Já dei'
-  String get given => 'Já dei';
-
-  /// pt: 'Nenhuma ideia ainda'
-  String get emptyGiftsTitle => 'Nenhuma ideia ainda';
-
-  /// pt: 'Anote presentes quando pensar neles.'
-  String get emptyGiftsText => 'Anote presentes quando pensar neles.';
 
   /// pt: 'Sem feriados por aqui'
   String get emptyHolidaysTitle => 'Sem feriados por aqui';
@@ -1780,6 +1699,98 @@ class Translations$devices$pt {
     'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
     'DEVICE_REVOKE_FAILED': 'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
     'other': 'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
+  };
+}
+
+// Path: diary
+class Translations$diary$pt {
+  Translations$diary$pt.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// pt: 'Diário'
+  String get title => 'Diário';
+
+  /// pt: 'Só eu. Nunca é compartilhado.'
+  String get privacy => 'Só eu. Nunca é compartilhado.';
+
+  /// pt: 'Hoje eu me senti...'
+  String get prompt => 'Hoje eu me senti...';
+
+  /// pt: 'Escreva sem pressa. Só você vê isto.'
+  String get hint => 'Escreva sem pressa. Só você vê isto.';
+
+  Map<String, String> get bodyErrors => {
+    'empty': 'Escreva um pouco antes de salvar',
+    'tooLong': 'A entrada está muito longa',
+  };
+
+  /// pt: 'Salvar'
+  String get save => 'Salvar';
+
+  /// pt: 'Nova entrada'
+  String get newEntry => 'Nova entrada';
+
+  /// pt: 'Editar'
+  String get edit => 'Editar';
+
+  /// pt: 'Apagar'
+  String get delete => 'Apagar';
+
+  /// pt: 'Apagar esta entrada?'
+  String get deleteTitle => 'Apagar esta entrada?';
+
+  /// pt: 'Isto não pode ser desfeito.'
+  String get deleteText => 'Isto não pode ser desfeito.';
+
+  /// pt: 'Apagar'
+  String get deleteConfirm => 'Apagar';
+
+  /// pt: 'Mostrando suas últimas 100 entradas.'
+  String get capHint => 'Mostrando suas últimas 100 entradas.';
+
+  /// pt: 'Nada escrito ainda'
+  String get emptyTitle => 'Nada escrito ainda';
+
+  /// pt: 'Quando quiser, escreva como você está. Só você vê.'
+  String get emptyText => 'Quando quiser, escreva como você está. Só você vê.';
+
+  /// pt: 'Não deu para carregar'
+  String get errorTitle => 'Não deu para carregar';
+
+  /// pt: 'Suas entradas continuam guardadas. Tente de novo.'
+  String get errorText => 'Suas entradas continuam guardadas. Tente de novo.';
+
+  List<String> get monthsShort => [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez',
+  ];
+
+  /// pt: '{day} {month} {year}'
+  String dateLine({required Object day, required Object month, required Object year}) =>
+      '${day} ${month} ${year}';
+
+  Map<String, String> get moods => {
+    'calm': 'Em paz',
+    'tender': 'Acolhido(a)',
+    'tired': 'Cansado(a)',
+    'heavy': 'Pesado',
+    'other': 'Como estou',
+  };
+  Map<String, String> get errors => {
+    'other': 'Não deu para salvar agora. Seu texto continua aqui.',
   };
 }
 
@@ -2405,190 +2416,6 @@ class Translations$griefSupport$pt {
 
   /// pt: 'Voltar ao início'
   String get backHome => 'Voltar ao início';
-}
-
-// Path: guides
-class Translations$guides$pt {
-  Translations$guides$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-  late final Translations$guides$hub$pt hub = Translations$guides$hub$pt.internal(_root);
-  late final Translations$guides$viewer$pt viewer = Translations$guides$viewer$pt.internal(_root);
-  late final Translations$guides$gate$pt gate = Translations$guides$gate$pt.internal(_root);
-  late final Translations$guides$finish$pt finish = Translations$guides$finish$pt.internal(_root);
-}
-
-// Path: hardConversation
-class Translations$hardConversation$pt {
-  Translations$hardConversation$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Preparar uma conversa difícil'
-  String get title => 'Preparar uma conversa difícil';
-
-  /// pt: 'Passo {current} de {total}'
-  String stepOf({required Object current, required Object total}) => 'Passo ${current} de ${total}';
-
-  /// pt: 'O que aconteceu?'
-  String get whatTitle => 'O que aconteceu?';
-
-  /// pt: 'Se quiser, conte do seu jeito'
-  String get whatHint => 'Se quiser, conte do seu jeito';
-
-  /// pt: 'Ela se sentiu ignorada'
-  String get whatIgnored => 'Ela se sentiu ignorada';
-
-  /// pt: 'Brigamos por dinheiro'
-  String get whatMoney => 'Brigamos por dinheiro';
-
-  /// pt: 'Foi um mal-entendido'
-  String get whatMisunderstanding => 'Foi um mal-entendido';
-
-  /// pt: 'Outro: escrever'
-  String get whatOther => 'Outro: escrever';
-
-  /// pt: 'Do que eu preciso?'
-  String get needTitle => 'Do que eu preciso?';
-
-  /// pt: 'Se quiser, acrescente algo'
-  String get needHint => 'Se quiser, acrescente algo';
-
-  /// pt: 'Ser ouvido'
-  String get needHeard => 'Ser ouvido';
-
-  /// pt: 'Pedir desculpa'
-  String get needApology => 'Pedir desculpa';
-
-  /// pt: 'Combinar algo'
-  String get needAgree => 'Combinar algo';
-
-  /// pt: 'Como dizer'
-  String get sayTitle => 'Como dizer';
-
-  /// pt: 'Um ponto de partida para você editar antes de enviar.'
-  String get sayIntro => 'Um ponto de partida para você editar antes de enviar.';
-
-  /// pt: 'Sua frase de abertura'
-  String get sayHint => 'Sua frase de abertura';
-
-  Map<String, String> get messageErrors => {
-    'empty': 'Escreva a frase primeiro',
-    'tooLong': 'Esta frase está muito longa',
-  };
-
-  /// pt: 'Escrevendo uma abertura gentil…'
-  String get generating => 'Escrevendo uma abertura gentil…';
-
-  /// pt: 'Mais gentil'
-  String get gentler => 'Mais gentil';
-
-  /// pt: 'Mais direto'
-  String get moreDirect => 'Mais direto';
-
-  /// pt: 'Copiar'
-  String get copy => 'Copiar';
-
-  /// pt: 'Copiado'
-  String get copied => 'Copiado';
-
-  /// pt: 'Enviar como recado'
-  String get sendAsNote => 'Enviar como recado';
-
-  /// pt: 'Recado enviado'
-  String get sent => 'Recado enviado';
-
-  /// pt: 'Sair'
-  String get exit => 'Sair';
-
-  /// pt: 'Próximo'
-  String get next => 'Próximo';
-
-  /// pt: 'Voltar'
-  String get back => 'Voltar';
-
-  /// pt: 'Tentar de novo'
-  String get retry => 'Tentar de novo';
-
-  /// pt: 'Não deu para escrever uma frase agora.'
-  String get generationFailed => 'Não deu para escrever uma frase agora.';
-
-  /// pt: 'A mascote só vê o que você escreve aqui. Os dados do seu par nunca são enviados.'
-  String get privateNote =>
-      'A mascote só vê o que você escreve aqui. Os dados do seu par nunca são enviados.';
-
-  /// pt: 'Sem conexão. A frase de abertura precisa de internet.'
-  String get offline => 'Sem conexão. A frase de abertura precisa de internet.';
-
-  /// pt: 'Não deu para carregar'
-  String get emptyTitle => 'Não deu para carregar';
-
-  /// pt: 'Tente de novo em instantes.'
-  String get emptyText => 'Tente de novo em instantes.';
-
-  /// pt: 'Preparar uma conversa faz parte do Plus'
-  String get plusTitle => 'Preparar uma conversa faz parte do Plus';
-
-  /// pt: 'As três etapas e a sugestão de abertura estão no Plus.'
-  String get plusText => 'As três etapas e a sugestão de abertura estão no Plus.';
-
-  /// pt: 'Ver planos'
-  String get plusCta => 'Ver planos';
-
-  /// pt: 'As mensagens de hoje acabaram'
-  String get limitTitle => 'As mensagens de hoje acabaram';
-
-  /// pt: 'Volte amanhã, ou veja o Plus para preparar mais conversas.'
-  String get limitText => 'Volte amanhã, ou veja o Plus para preparar mais conversas.';
-
-  Map<String, String> get errors => {
-    'CHAT_LIMIT': 'As mensagens de hoje acabaram.',
-    'CHAT_DISABLED': 'A conversa está desligada. Ligue para usar a mascote.',
-    'CHAT_UNAVAILABLE': 'A conversa não está disponível agora.',
-    'UPSTREAM': 'Não deu para escrever uma frase agora. Tente de novo.',
-    'NOT_PAIRED': 'Para enviar, você precisa estar conectado com seu par no app.',
-    'other': 'Não deu para fazer isso agora. Tente de novo.',
-  };
-}
-
-// Path: help
-class Translations$help$pt {
-  Translations$help$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Um dia difícil'
-  String get badDayTitle => 'Um dia difícil';
-
-  /// pt: 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.'
-  String get badDayText => 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.';
-
-  /// pt: 'Começar uma conversa'
-  String get starterTitle => 'Começar uma conversa';
-
-  /// pt: 'Uma pergunta para abrir, sem pressa.'
-  String get starterText => 'Uma pergunta para abrir, sem pressa.';
-
-  /// pt: 'Outra'
-  String get another => 'Outra';
-
-  /// pt: 'Nada por aqui ainda'
-  String get emptyTitle => 'Nada por aqui ainda';
-
-  /// pt: 'Estamos preparando mais sugestões.'
-  String get emptyText => 'Estamos preparando mais sugestões.';
-
-  /// pt: 'Não deu para carregar'
-  String get errorTitle => 'Não deu para carregar';
-
-  /// pt: 'Tente de novo daqui a pouco.'
-  String get errorText => 'Tente de novo daqui a pouco.';
 }
 
 // Path: helpSupport
@@ -4448,124 +4275,6 @@ class Translations$loveStyle$pt {
   };
 }
 
-// Path: memories
-class Translations$memories$pt {
-  Translations$memories$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Memórias'
-  String get title => 'Memórias';
-
-  /// pt: 'NOSSA HISTÓRIA'
-  String get historyLabel => 'NOSSA HISTÓRIA';
-
-  /// pt: 'Nossa história'
-  String get historyTitle => 'Nossa história';
-
-  /// pt: 'Marcos, datas, lugares e a nossa história em números.'
-  String get historyText => 'Marcos, datas, lugares e a nossa história em números.';
-
-  /// pt: 'LUGARES'
-  String get placesLabel => 'LUGARES';
-
-  /// pt: 'Só o nome do lugar, nunca a localização.'
-  String get placesText => 'Só o nome do lugar, nunca a localização.';
-
-  /// pt: 'Lugar (opcional)'
-  String get placeLabel => 'Lugar (opcional)';
-
-  /// pt: 'Ex.: Paraty'
-  String get placeHint => 'Ex.: Paraty';
-
-  /// pt: 'Prefira só o nome do lugar, sem endereço ou número.'
-  String get placeAddressNote => 'Prefira só o nome do lugar, sem endereço ou número.';
-
-  /// pt: 'Linha do tempo'
-  String get segmentTimeline => 'Linha do tempo';
-
-  /// pt: 'Uma memória'
-  String get titleLabel => 'Uma memória';
-
-  /// pt: 'Ex.: nosso primeiro jantar'
-  String get titleHint => 'Ex.: nosso primeiro jantar';
-
-  Map<String, String> get titleErrors => {
-    'empty': 'Dê um título a esta memória',
-    'tooLong': 'O título está muito longo',
-  };
-  Map<String, String> get placeErrors => {'tooLong': 'O lugar está muito longo'};
-  Map<String, String> get bodyErrors => {'tooLong': 'A nota está muito longa'};
-
-  /// pt: 'Conte como foi (opcional)'
-  String get bodyHint => 'Conte como foi (opcional)';
-
-  /// pt: 'Adicionar memória'
-  String get add => 'Adicionar memória';
-
-  /// pt: 'Guardar memória'
-  String get save => 'Guardar memória';
-
-  /// pt: 'Apagar'
-  String get delete => 'Apagar';
-
-  /// pt: 'Apagar esta memória?'
-  String get deleteTitle => 'Apagar esta memória?';
-
-  /// pt: 'Ela some da linha do tempo para vocês dois.'
-  String get deleteText => 'Ela some da linha do tempo para vocês dois.';
-
-  /// pt: 'Apagar'
-  String get deleteConfirm => 'Apagar';
-
-  /// pt: 'Lugar'
-  String get detailPlace => 'Lugar';
-
-  /// pt: 'Como foi'
-  String get detailBody => 'Como foi';
-
-  List<String> get monthsShort => [
-    'jan',
-    'fev',
-    'mar',
-    'abr',
-    'mai',
-    'jun',
-    'jul',
-    'ago',
-    'set',
-    'out',
-    'nov',
-    'dez',
-  ];
-
-  /// pt: '{day} {month} {year}'
-  String dateLine({required Object day, required Object month, required Object year}) =>
-      '${day} ${month} ${year}';
-
-  /// pt: 'Nenhuma memória ainda'
-  String get emptyTitle => 'Nenhuma memória ainda';
-
-  /// pt: 'Guarde momentos que vocês querem rever.'
-  String get emptyText => 'Guarde momentos que vocês querem rever.';
-
-  /// pt: 'Não deu para carregar'
-  String get errorTitle => 'Não deu para carregar';
-
-  /// pt: 'Suas memórias continuam salvas. Tente de novo.'
-  String get errorText => 'Suas memórias continuam salvas. Tente de novo.';
-
-  Map<String, String> get errors => {
-    'RATE_LIMITED': 'Muitas tentativas seguidas. Espere um instante.',
-    'other': 'Não deu para fazer isso agora. Seu texto continua aqui.',
-  };
-  late final Translations$memories$menu$pt menu = Translations$memories$menu$pt.internal(_root);
-  late final Translations$memories$onThisDay$pt onThisDay =
-      Translations$memories$onThisDay$pt.internal(_root);
-}
-
 // Path: mood
 class Translations$mood$pt {
   Translations$mood$pt.internal(this._root);
@@ -5846,229 +5555,6 @@ class Translations$profileSetup$pt {
   String get themeNeutral => 'Neutro';
 }
 
-// Path: programs
-class Translations$programs$pt {
-  Translations$programs$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'PROGRAMAS'
-  String get label => 'PROGRAMAS';
-
-  /// pt: 'Programas'
-  String get title => 'Programas';
-
-  /// pt: 'Programas curtos e guiados, no seu ritmo.'
-  String get entryText => 'Programas curtos e guiados, no seu ritmo.';
-
-  /// pt: 'Uma ideia por dia. Sem pressa, sem cobrança.'
-  String get hubSubtitle => 'Uma ideia por dia. Sem pressa, sem cobrança.';
-
-  /// pt: 'GRÁTIS'
-  String get free => 'GRÁTIS';
-
-  /// pt: 'PLUS'
-  String get plus => 'PLUS';
-
-  /// pt: '(one) {1 lição} (other) {{count} lições}'
-  String lessonCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '1 lição',
-        other: '${count} lições',
-      );
-
-  /// pt: 'Lições chegando'
-  String get noLessons => 'Lições chegando';
-
-  /// pt: 'Nenhum programa por aqui ainda'
-  String get emptyTitle => 'Nenhum programa por aqui ainda';
-
-  /// pt: 'Novos programas chegam em breve. Volte quando quiser.'
-  String get emptyText => 'Novos programas chegam em breve. Volte quando quiser.';
-
-  /// pt: 'Não deu para carregar'
-  String get errorTitle => 'Não deu para carregar';
-
-  /// pt: 'Os programas continuam aqui. Tente de novo.'
-  String get errorText => 'Os programas continuam aqui. Tente de novo.';
-
-  /// pt: 'SÓ EU'
-  String get diaryLabel => 'SÓ EU';
-
-  /// pt: 'Diário'
-  String get diaryTitle => 'Diário';
-
-  /// pt: 'Um lugar privado para escrever como você está.'
-  String get diaryText => 'Um lugar privado para escrever como você está.';
-
-  /// pt: 'Começar'
-  String get start => 'Começar';
-
-  /// pt: 'Continuar'
-  String get kContinue => 'Continuar';
-
-  /// pt: 'Começar de novo'
-  String get restart => 'Começar de novo';
-
-  /// pt: 'Começar de novo?'
-  String get restartConfirmTitle => 'Começar de novo?';
-
-  /// pt: 'Isto limpa suas marcações e volta à primeira lição.'
-  String get restartConfirmText => 'Isto limpa suas marcações e volta à primeira lição.';
-
-  /// pt: 'Começar de novo'
-  String get restartConfirm => 'Começar de novo';
-
-  /// pt: 'Concluído'
-  String get completed => 'Concluído';
-
-  /// pt: 'Lições'
-  String get lessonsTitle => 'Lições';
-
-  /// pt: 'Lições chegando'
-  String get lessonsComingTitle => 'Lições chegando';
-
-  /// pt: 'Este programa ainda está sendo preparado. Volte em breve.'
-  String get lessonsComingText => 'Este programa ainda está sendo preparado. Volte em breve.';
-
-  /// pt: 'Lição indisponível'
-  String get lessonGoneTitle => 'Lição indisponível';
-
-  /// pt: 'Este dia não faz mais parte do programa. Escolha outra lição.'
-  String get lessonGoneText => 'Este dia não faz mais parte do programa. Escolha outra lição.';
-
-  /// pt: 'A primeira lição é sempre aberta neste programa.'
-  String get dayOneHint => 'A primeira lição é sempre aberta neste programa.';
-
-  /// pt: 'Dia {day}'
-  String dayLabel({required Object day}) => 'Dia ${day}';
-
-  /// pt: 'Uma ideia curta para hoje.'
-  String get shortRead => 'Uma ideia curta para hoje.';
-
-  /// pt: 'Pronto'
-  String get ready => 'Pronto';
-
-  /// pt: 'Salvar para depois'
-  String get saveForLater => 'Salvar para depois';
-
-  /// pt: 'Guardado para depois.'
-  String get saved => 'Guardado para depois.';
-
-  /// pt: 'Guardado'
-  String get savedTag => 'Guardado';
-
-  /// pt: 'Lição do Plus'
-  String get lockedTitle => 'Lição do Plus';
-
-  /// pt: 'Esta lição faz parte do Plus.'
-  String get lockedLessonText => 'Esta lição faz parte do Plus.';
-
-  /// pt: 'Este programa faz parte do Plus.'
-  String get lockedProgramText => 'Este programa faz parte do Plus.';
-
-  /// pt: 'Muito bem'
-  String get completeTitle => 'Muito bem';
-
-  /// pt: 'Você concluiu {title}.'
-  String completeText({required Object title}) => 'Você concluiu ${title}.';
-
-  /// pt: 'Escolha outro quando quiser.'
-  String get completeHint => 'Escolha outro quando quiser.';
-
-  /// pt: 'Ver programas'
-  String get seePrograms => 'Ver programas';
-
-  /// pt: 'Só eu. Nunca é compartilhado.'
-  String get diaryPrivacy => 'Só eu. Nunca é compartilhado.';
-
-  /// pt: 'Hoje eu me senti...'
-  String get diaryPrompt => 'Hoje eu me senti...';
-
-  /// pt: 'Escreva sem pressa. Só você vê isto.'
-  String get diaryHint => 'Escreva sem pressa. Só você vê isto.';
-
-  Map<String, String> get diaryBodyErrors => {
-    'empty': 'Escreva um pouco antes de salvar',
-    'tooLong': 'A entrada está muito longa',
-  };
-
-  /// pt: 'Salvar'
-  String get diarySave => 'Salvar';
-
-  /// pt: 'Nova entrada'
-  String get diaryNew => 'Nova entrada';
-
-  /// pt: 'Editar'
-  String get diaryEdit => 'Editar';
-
-  /// pt: 'Apagar'
-  String get diaryDelete => 'Apagar';
-
-  /// pt: 'Apagar esta entrada?'
-  String get diaryDeleteTitle => 'Apagar esta entrada?';
-
-  /// pt: 'Isto não pode ser desfeito.'
-  String get diaryDeleteText => 'Isto não pode ser desfeito.';
-
-  /// pt: 'Apagar'
-  String get diaryDeleteConfirm => 'Apagar';
-
-  /// pt: 'Mostrando suas últimas 100 entradas.'
-  String get diaryCapHint => 'Mostrando suas últimas 100 entradas.';
-
-  /// pt: 'Nada escrito ainda'
-  String get diaryEmptyTitle => 'Nada escrito ainda';
-
-  /// pt: 'Quando quiser, escreva como você está. Só você vê.'
-  String get diaryEmptyText => 'Quando quiser, escreva como você está. Só você vê.';
-
-  /// pt: 'Não deu para carregar'
-  String get diaryErrorTitle => 'Não deu para carregar';
-
-  /// pt: 'Suas entradas continuam guardadas. Tente de novo.'
-  String get diaryErrorText => 'Suas entradas continuam guardadas. Tente de novo.';
-
-  List<String> get monthsShort => [
-    'jan',
-    'fev',
-    'mar',
-    'abr',
-    'mai',
-    'jun',
-    'jul',
-    'ago',
-    'set',
-    'out',
-    'nov',
-    'dez',
-  ];
-
-  /// pt: '{day} {month} {year}'
-  String dateLine({required Object day, required Object month, required Object year}) =>
-      '${day} ${month} ${year}';
-
-  Map<String, String> get moods => {
-    'calm': 'Em paz',
-    'tender': 'Acolhido(a)',
-    'tired': 'Cansado(a)',
-    'heavy': 'Pesado',
-    'other': 'Como estou',
-  };
-  Map<String, String> get lessonErrors => {
-    'other': 'Não deu para fazer isso agora. Tente de novo.',
-  };
-  Map<String, String> get diaryErrors => {
-    'other': 'Não deu para salvar agora. Seu texto continua aqui.',
-  };
-
-  /// pt: 'No grátis aparece só a primeira lição.'
-  String get freeNote => 'No grátis aparece só a primeira lição.';
-}
-
 // Path: pronouns
 class Translations$pronouns$pt {
   Translations$pronouns$pt.internal(this._root);
@@ -6922,9 +6408,6 @@ class Translations$share$pt {
   /// pt: 'O tempo de vocês e a lua do dia em que tudo começou.'
   String get entrySubtitleToday => 'O tempo de vocês e a lua do dia em que tudo começou.';
 
-  /// pt: 'Uma linha do tempo com os momentos que vocês guardaram.'
-  String get entrySubtitleMemories => 'Uma linha do tempo com os momentos que vocês guardaram.';
-
   /// pt: 'Uma frase do cartão que chegou para você.'
   String get entrySubtitleCard => 'Uma frase do cartão que chegou para você.';
 
@@ -6941,7 +6424,6 @@ class Translations$share$pt {
   Map<String, String> get cardLabels => {
     'counter': 'Nosso tempo',
     'moon': 'A lua do nosso dia',
-    'timeline': 'Nossa linha do tempo',
     'quote': 'De um cartão',
     'other': '',
   };
@@ -6965,12 +6447,6 @@ class Translations$share$pt {
 
   /// pt: 'Foi assim que o céu estava quando tudo começou.'
   String get moonSupport => 'Foi assim que o céu estava quando tudo começou.';
-
-  /// pt: 'NOSSA LINHA DO TEMPO'
-  String get timelineEyebrow => 'NOSSA LINHA DO TEMPO';
-
-  /// pt: 'Momentos que a gente guardou'
-  String get timelineTitle => 'Momentos que a gente guardou';
 
   /// pt: 'DE UM CARTÃO'
   String get quoteEyebrow => 'DE UM CARTÃO';
@@ -7636,9 +7112,6 @@ class Translations$tabs$pt {
   /// pt: 'Juntos'
   String get together => 'Juntos';
 
-  /// pt: 'Memórias'
-  String get memories => 'Memórias';
-
   /// pt: 'Novo slip'
   String get capture => 'Novo slip';
 
@@ -7742,15 +7215,6 @@ class Translations$tabs$pt {
   /// pt: 'Uma conversa calma, que não fica guardada.'
   String get chatText => 'Uma conversa calma, que não fica guardada.';
 
-  /// pt: 'CONVERSA DIFÍCIL'
-  String get hardTalkLabel => 'CONVERSA DIFÍCIL';
-
-  /// pt: 'Preparar uma conversa difícil'
-  String get hardTalkTitle => 'Preparar uma conversa difícil';
-
-  /// pt: 'A mascote ajuda você a organizar o que dizer.'
-  String get hardTalkText => 'A mascote ajuda você a organizar o que dizer.';
-
   /// pt: 'PARA SEU PAR'
   String get notesLabel => 'PARA SEU PAR';
 
@@ -7768,15 +7232,6 @@ class Translations$tabs$pt {
 
   /// pt: 'Um toque leve para o seu par, sem cobrança.'
   String get usText => 'Um toque leve para o seu par, sem cobrança.';
-
-  /// pt: 'TOQUE'
-  String get touchLabel => 'TOQUE';
-
-  /// pt: 'Cartas de toque'
-  String get touchTitle => 'Cartas de toque';
-
-  /// pt: 'Neutras, para fazer ou pular.'
-  String get touchText => 'Neutras, para fazer ou pular.';
 
   /// pt: 'DISTÂNCIA'
   String get distanceLabel => 'DISTÂNCIA';
@@ -7810,24 +7265,6 @@ class Translations$tabs$pt {
 
   /// pt: 'Aniversários, presentes e feriados, com aviso antes.'
   String get datesText => 'Aniversários, presentes e feriados, com aviso antes.';
-
-  /// pt: 'AJUDA'
-  String get badDayLabel => 'AJUDA';
-
-  /// pt: 'Um dia difícil'
-  String get badDayTitle => 'Um dia difícil';
-
-  /// pt: 'Três coisas pequenas para fazer agora.'
-  String get badDayText => 'Três coisas pequenas para fazer agora.';
-
-  /// pt: 'CONVERSA'
-  String get starterLabel => 'CONVERSA';
-
-  /// pt: 'Começar uma conversa'
-  String get starterTitle => 'Começar uma conversa';
-
-  /// pt: 'Uma pergunta para abrir, sem pressa.'
-  String get starterText => 'Uma pergunta para abrir, sem pressa.';
 
   /// pt: 'DIA'
   String get dayLabel => 'DIA';
@@ -7868,15 +7305,6 @@ class Translations$tabs$pt {
   /// pt: 'SÓ PARA VOCÊ'
   String get fightStyleLabel => 'SÓ PARA VOCÊ';
 
-  /// pt: 'CONVERSAS'
-  String get guidesLabel => 'CONVERSAS';
-
-  /// pt: 'Conversas difíceis'
-  String get guidesTitle => 'Conversas difíceis';
-
-  /// pt: 'Um passo de cada vez, só para você.'
-  String get guidesText => 'Um passo de cada vez, só para você.';
-
   /// pt: 'JOGOS'
   String get gamesLabel => 'JOGOS';
 
@@ -7910,9 +7338,6 @@ class Translations$tabs$pt {
   /// pt: 'Para vocês dois'
   String get dateNightMeta => 'Para vocês dois';
 
-  /// pt: 'Microlições'
-  String get programsMeta => 'Microlições';
-
   /// pt: 'Uma vez por semana'
   String get checkinMeta => 'Uma vez por semana';
 
@@ -7936,12 +7361,6 @@ class Translations$tabs$pt {
         other: '${count} desejos',
       );
 
-  /// pt: 'Um passo de cada vez'
-  String get guidesMeta => 'Um passo de cada vez';
-
-  /// pt: 'Uma pergunta'
-  String get starterMeta => 'Uma pergunta';
-
   /// pt: 'Um dia de cada vez'
   String get dayMeta => 'Um dia de cada vez';
 
@@ -7957,14 +7376,11 @@ class Translations$tabs$pt {
   /// pt: 'Um toque'
   String get usMeta => 'Um toque';
 
-  /// pt: 'Cartas neutras'
-  String get touchMeta => 'Cartas neutras';
-
-  /// pt: 'Três coisas pequenas'
-  String get badDayMeta => 'Três coisas pequenas';
-
   /// pt: 'Fusos e reencontro'
   String get distanceMeta => 'Fusos e reencontro';
+
+  /// pt: 'Diário'
+  String get diaryTitle => 'Diário';
 
   /// pt: 'Só seu'
   String get diaryMeta => 'Só seu';
@@ -7974,9 +7390,6 @@ class Translations$tabs$pt {
 
   /// pt: 'Seu mês, só você vê'
   String get moodCalendarMeta => 'Seu mês, só você vê';
-
-  /// pt: 'Notas antes de falar'
-  String get hardTalkMeta => 'Notas antes de falar';
 
   /// pt: 'Quando quiser'
   String get notesMeta => 'Quando quiser';
@@ -9205,131 +8618,6 @@ class Translations$games$common$pt {
   String get back => 'Voltar';
 }
 
-// Path: guides.hub
-class Translations$guides$hub$pt {
-  Translations$guides$hub$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Conversas difíceis'
-  String get title => 'Conversas difíceis';
-
-  /// pt: 'difíceis'
-  String get titleHighlight => 'difíceis';
-
-  /// pt: 'Um passo de cada vez, só para você.'
-  String get subtitle => 'Um passo de cada vez, só para você.';
-
-  /// pt: 'Suas anotações ficam só com você. Nada é enviado ao seu par.'
-  String get privateNote => 'Suas anotações ficam só com você. Nada é enviado ao seu par.';
-
-  /// pt: '(one) {1 passo} (other) {{count} passos}'
-  String stepCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: '1 passo',
-        other: '${count} passos',
-      );
-
-  /// pt: 'Não deu para abrir os temas'
-  String get loadErrorTitle => 'Não deu para abrir os temas';
-
-  /// pt: 'Nada foi perdido. Tente de novo.'
-  String get loadErrorText => 'Nada foi perdido. Tente de novo.';
-}
-
-// Path: guides.viewer
-class Translations$guides$viewer$pt {
-  Translations$guides$viewer$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Passo {current} de {total}'
-  String stepOf({required Object current, required Object total}) => 'Passo ${current} de ${total}';
-
-  /// pt: 'Escreva o que fizer sentido. Pode ficar em branco.'
-  String get answerHint => 'Escreva o que fizer sentido. Pode ficar em branco.';
-
-  /// pt: 'Guardado aos poucos. Só você vê.'
-  String get stepNote => 'Guardado aos poucos. Só você vê.';
-
-  /// pt: 'Próximo'
-  String get next => 'Próximo';
-
-  /// pt: 'Concluir'
-  String get finish => 'Concluir';
-
-  /// pt: 'Voltar'
-  String get back => 'Voltar';
-
-  /// pt: 'Não deu para abrir esta conversa'
-  String get loadErrorTitle => 'Não deu para abrir esta conversa';
-
-  /// pt: 'Nada foi perdido. Tente de novo.'
-  String get loadErrorText => 'Nada foi perdido. Tente de novo.';
-
-  Map<String, String> get errors => {
-    'other': 'Não deu para salvar agora. Suas respostas continuam aqui.',
-  };
-}
-
-// Path: guides.gate
-class Translations$guides$gate$pt {
-  Translations$guides$gate$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Um tema sensível'
-  String get title => 'Um tema sensível';
-
-  /// pt: 'Este tema fala sobre intimidade e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.'
-  String get text =>
-      'Este tema fala sobre intimidade e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.';
-
-  /// pt: 'Este tema fala sobre o corpo e o humor ao longo do mês e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.'
-  String get cycleText =>
-      'Este tema fala sobre o corpo e o humor ao longo do mês e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.';
-
-  /// pt: 'Continuar'
-  String get continueAction => 'Continuar';
-
-  /// pt: 'Ver outros temas'
-  String get otherAction => 'Ver outros temas';
-}
-
-// Path: guides.finish
-class Translations$guides$finish$pt {
-  Translations$guides$finish$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Sua conversa está preparada'
-  String get title => 'Sua conversa está preparada';
-
-  /// pt: 'preparada'
-  String get titleHighlight => 'preparada';
-
-  /// pt: 'Suas anotações ficam guardadas na sua conta, só para você.'
-  String get text => 'Suas anotações ficam guardadas na sua conta, só para você.';
-
-  /// pt: 'Salvo só para você.'
-  String get finishSaved => 'Salvo só para você.';
-
-  /// pt: 'Começar uma conversa'
-  String get start => 'Começar uma conversa';
-
-  /// pt: 'Voltar aos temas'
-  String get other => 'Voltar aos temas';
-}
-
 // Path: intro.phase
 class Translations$intro$phase$pt {
   Translations$intro$phase$pt.internal(this._root);
@@ -9423,62 +8711,6 @@ class Translations$intro$theme$pt {
 
   /// pt: 'Dá para trocar depois em Configurações, Aparência.'
   String get footnote => 'Dá para trocar depois em Configurações, Aparência.';
-}
-
-// Path: memories.menu
-class Translations$memories$menu$pt {
-  Translations$memories$menu$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'Linha do tempo'
-  String get timeline => 'Linha do tempo';
-
-  /// pt: 'Memórias que vocês guardaram'
-  String get timelineText => 'Memórias que vocês guardaram';
-
-  /// pt: 'Marcos, lugares e números'
-  String get storyText => 'Marcos, lugares e números';
-
-  /// pt: 'Datas e números'
-  String get dates => 'Datas e números';
-
-  /// pt: 'Aniversários, feriados e contagens'
-  String get datesText => 'Aniversários, feriados e contagens';
-
-  /// pt: 'Diário'
-  String get diary => 'Diário';
-
-  /// pt: 'Só seu, nunca vai para a outra pessoa'
-  String get diaryText => 'Só seu, nunca vai para a outra pessoa';
-
-  /// pt: 'Ideias de presente'
-  String get gifts => 'Ideias de presente';
-
-  /// pt: 'Desejos de cada um e ideias para o outro'
-  String get giftsText => 'Desejos de cada um e ideias para o outro';
-}
-
-// Path: memories.onThisDay
-class Translations$memories$onThisDay$pt {
-  Translations$memories$onThisDay$pt.internal(this._root);
-
-  final Translations _root; // ignore: unused_field
-
-  // Translations
-
-  /// pt: 'NESTE DIA'
-  String get label => 'NESTE DIA';
-
-  /// pt: '(one) {Há 1 ano} (other) {Há {count} anos}'
-  String yearsAgo({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-        count,
-        one: 'Há 1 ano',
-        other: 'Há ${count} anos',
-      );
 }
 
 // Path: need.sent
@@ -11369,20 +10601,6 @@ extension on Translations {
           'common.discardText' => 'O que você escreveu não será salvo.',
           'common.discard' => 'Descartar',
           'common.keepWriting' => 'Continuar escrevendo',
-          'connectTouch.title' => 'Toque',
-          'connectTouch.text' => 'Cartas neutras, sem tempero. Fazer ou pular, sem pressão.',
-          'connectTouch.switchTitle' => 'Temas de toque',
-          'connectTouch.switchText' => 'Vale para vocês dois: se um desligar, some para os dois.',
-          'connectTouch.offTitle' => 'Temas de toque desligados',
-          'connectTouch.offText' => 'Você ou seu par desligou. Podem religar aqui quando quiserem.',
-          'connectTouch.emptyTitle' => 'Nenhuma carta agora',
-          'connectTouch.emptyText' => 'Volte mais tarde.',
-          'connectTouch.done' => 'Pronto',
-          'connectTouch.skip' => 'Pular',
-          'connectTouch.errorTitle' => 'Não deu para carregar',
-          'connectTouch.errorText' => 'Tente de novo em instantes.',
-          'connectTouch.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          'connectTouch.errors.other' => 'Não deu para mudar agora. Tente de novo.',
           'connectUs.title' => 'Saudade de nós',
           'connectUs.text' => 'Envie “sinto saudade de nós” com um toque. Leve, sem culpa. Seu par não precisa responder.',
           'connectUs.send' => 'Enviar com carinho',
@@ -11414,9 +10632,6 @@ extension on Translations {
           'dateNight.monthsShort.1' => 'fev',
           'dateNight.monthsShort.2' => 'mar',
           'dateNight.monthsShort.3' => 'abr',
-          _ => null,
-        } ??
-        switch (path) {
           'dateNight.monthsShort.4' => 'mai',
           'dateNight.monthsShort.5' => 'jun',
           'dateNight.monthsShort.6' => 'jul',
@@ -11431,6 +10646,9 @@ extension on Translations {
           'dateNight.planChoices.sunday' => 'Planejar para domingo',
           'dateNight.planChoices.other' => '',
           'dateNight.markDone' => 'Já fizemos',
+          _ => null,
+        } ??
+        switch (path) {
           'dateNight.reopen' => 'Voltar para as ideias',
           'dateNight.done' => 'Feito',
           'dateNight.delete' => 'Apagar',
@@ -11442,7 +10660,6 @@ extension on Translations {
           'dateNight.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
           'dates.title' => 'Datas',
           'dates.segmentDates' => 'Datas',
-          'dates.segmentGifts' => 'Presentes',
           'dates.segmentHolidays' => 'Feriados',
           'dates.titleLabel' => 'Nome',
           'dates.titleHint' => 'Ex.: aniversário dele',
@@ -11500,13 +10717,6 @@ extension on Translations {
           'dates.add' => 'Adicionar',
           'dates.emptyDatesTitle' => 'Nenhuma data ainda',
           'dates.emptyDatesText' => 'Guarde aniversários e datas que importam. Avisamos antes.',
-          'dates.giftsPrivate' => 'Ideias de presente só você vê.',
-          'dates.giftHint' => 'Ex.: livro de poemas',
-          'dates.giftErrors.empty' => 'Escreva a ideia de presente',
-          'dates.giftErrors.tooLong' => 'A ideia de presente está muito longa',
-          'dates.given' => 'Já dei',
-          'dates.emptyGiftsTitle' => 'Nenhuma ideia ainda',
-          'dates.emptyGiftsText' => 'Anote presentes quando pensar neles.',
           'dates.emptyHolidaysTitle' => 'Sem feriados por aqui',
           'dates.emptyHolidaysText' => 'O calendário ainda não tem feriados para você.',
           'dates.errorTitle' => 'Não deu para carregar',
@@ -11568,6 +10778,47 @@ extension on Translations {
             'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
           'devices.errors.other' =>
             'Não deu para parar as notificações nesse dispositivo. Tente de novo.',
+          'diary.title' => 'Diário',
+          'diary.privacy' => 'Só eu. Nunca é compartilhado.',
+          'diary.prompt' => 'Hoje eu me senti...',
+          'diary.hint' => 'Escreva sem pressa. Só você vê isto.',
+          'diary.bodyErrors.empty' => 'Escreva um pouco antes de salvar',
+          'diary.bodyErrors.tooLong' => 'A entrada está muito longa',
+          'diary.save' => 'Salvar',
+          'diary.newEntry' => 'Nova entrada',
+          'diary.edit' => 'Editar',
+          'diary.delete' => 'Apagar',
+          'diary.deleteTitle' => 'Apagar esta entrada?',
+          'diary.deleteText' => 'Isto não pode ser desfeito.',
+          'diary.deleteConfirm' => 'Apagar',
+          'diary.capHint' => 'Mostrando suas últimas 100 entradas.',
+          'diary.emptyTitle' => 'Nada escrito ainda',
+          'diary.emptyText' => 'Quando quiser, escreva como você está. Só você vê.',
+          'diary.errorTitle' => 'Não deu para carregar',
+          'diary.errorText' => 'Suas entradas continuam guardadas. Tente de novo.',
+          'diary.monthsShort.0' => 'jan',
+          'diary.monthsShort.1' => 'fev',
+          'diary.monthsShort.2' => 'mar',
+          'diary.monthsShort.3' => 'abr',
+          'diary.monthsShort.4' => 'mai',
+          'diary.monthsShort.5' => 'jun',
+          'diary.monthsShort.6' => 'jul',
+          'diary.monthsShort.7' => 'ago',
+          'diary.monthsShort.8' => 'set',
+          'diary.monthsShort.9' => 'out',
+          'diary.monthsShort.10' => 'nov',
+          'diary.monthsShort.11' => 'dez',
+          'diary.dateLine' => ({
+            required Object day,
+            required Object month,
+            required Object year,
+          }) => '${day} ${month} ${year}',
+          'diary.moods.calm' => 'Em paz',
+          'diary.moods.tender' => 'Acolhido(a)',
+          'diary.moods.tired' => 'Cansado(a)',
+          'diary.moods.heavy' => 'Pesado',
+          'diary.moods.other' => 'Como estou',
+          'diary.errors.other' => 'Não deu para salvar agora. Seu texto continua aqui.',
           'distance.title' => 'Distância',
           'distance.text' => 'Dois relógios, cada um no seu fuso, sem confusão.',
           'distance.you' => 'Você',
@@ -12012,109 +11263,6 @@ extension on Translations {
           'griefSupport.text' => 'Suas lembranças continuam aqui, no seu ritmo.',
           'griefSupport.seeSupport' => 'Ver apoio',
           'griefSupport.backHome' => 'Voltar ao início',
-          'guides.hub.title' => 'Conversas difíceis',
-          'guides.hub.titleHighlight' => 'difíceis',
-          'guides.hub.subtitle' => 'Um passo de cada vez, só para você.',
-          'guides.hub.privateNote' =>
-            'Suas anotações ficam só com você. Nada é enviado ao seu par.',
-          'guides.hub.stepCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '1 passo',
-                  other: '${count} passos',
-                ),
-          'guides.hub.loadErrorTitle' => 'Não deu para abrir os temas',
-          'guides.hub.loadErrorText' => 'Nada foi perdido. Tente de novo.',
-          'guides.viewer.stepOf' => ({
-            required Object current,
-            required Object total,
-          }) => 'Passo ${current} de ${total}',
-          'guides.viewer.answerHint' => 'Escreva o que fizer sentido. Pode ficar em branco.',
-          'guides.viewer.stepNote' => 'Guardado aos poucos. Só você vê.',
-          'guides.viewer.next' => 'Próximo',
-          'guides.viewer.finish' => 'Concluir',
-          'guides.viewer.back' => 'Voltar',
-          'guides.viewer.loadErrorTitle' => 'Não deu para abrir esta conversa',
-          'guides.viewer.loadErrorText' => 'Nada foi perdido. Tente de novo.',
-          'guides.viewer.errors.other' =>
-            'Não deu para salvar agora. Suas respostas continuam aqui.',
-          'guides.gate.title' => 'Um tema sensível',
-          'guides.gate.text' => 'Este tema fala sobre intimidade e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.',
-          'guides.gate.cycleText' => 'Este tema fala sobre o corpo e o humor ao longo do mês e foi pensado para pessoas adultas. Você pode ir com calma ou escolher outro tema quando quiser.',
-          'guides.gate.continueAction' => 'Continuar',
-          'guides.gate.otherAction' => 'Ver outros temas',
-          'guides.finish.title' => 'Sua conversa está preparada',
-          'guides.finish.titleHighlight' => 'preparada',
-          'guides.finish.text' => 'Suas anotações ficam guardadas na sua conta, só para você.',
-          'guides.finish.finishSaved' => 'Salvo só para você.',
-          'guides.finish.start' => 'Começar uma conversa',
-          'guides.finish.other' => 'Voltar aos temas',
-          'hardConversation.title' => 'Preparar uma conversa difícil',
-          'hardConversation.stepOf' => ({
-            required Object current,
-            required Object total,
-          }) => 'Passo ${current} de ${total}',
-          'hardConversation.whatTitle' => 'O que aconteceu?',
-          'hardConversation.whatHint' => 'Se quiser, conte do seu jeito',
-          'hardConversation.whatIgnored' => 'Ela se sentiu ignorada',
-          'hardConversation.whatMoney' => 'Brigamos por dinheiro',
-          'hardConversation.whatMisunderstanding' => 'Foi um mal-entendido',
-          'hardConversation.whatOther' => 'Outro: escrever',
-          'hardConversation.needTitle' => 'Do que eu preciso?',
-          'hardConversation.needHint' => 'Se quiser, acrescente algo',
-          _ => null,
-        } ??
-        switch (path) {
-          'hardConversation.needHeard' => 'Ser ouvido',
-          'hardConversation.needApology' => 'Pedir desculpa',
-          'hardConversation.needAgree' => 'Combinar algo',
-          'hardConversation.sayTitle' => 'Como dizer',
-          'hardConversation.sayIntro' => 'Um ponto de partida para você editar antes de enviar.',
-          'hardConversation.sayHint' => 'Sua frase de abertura',
-          'hardConversation.messageErrors.empty' => 'Escreva a frase primeiro',
-          'hardConversation.messageErrors.tooLong' => 'Esta frase está muito longa',
-          'hardConversation.generating' => 'Escrevendo uma abertura gentil…',
-          'hardConversation.gentler' => 'Mais gentil',
-          'hardConversation.moreDirect' => 'Mais direto',
-          'hardConversation.copy' => 'Copiar',
-          'hardConversation.copied' => 'Copiado',
-          'hardConversation.sendAsNote' => 'Enviar como recado',
-          'hardConversation.sent' => 'Recado enviado',
-          'hardConversation.exit' => 'Sair',
-          'hardConversation.next' => 'Próximo',
-          'hardConversation.back' => 'Voltar',
-          'hardConversation.retry' => 'Tentar de novo',
-          'hardConversation.generationFailed' => 'Não deu para escrever uma frase agora.',
-          'hardConversation.privateNote' =>
-            'A mascote só vê o que você escreve aqui. Os dados do seu par nunca são enviados.',
-          'hardConversation.offline' => 'Sem conexão. A frase de abertura precisa de internet.',
-          'hardConversation.emptyTitle' => 'Não deu para carregar',
-          'hardConversation.emptyText' => 'Tente de novo em instantes.',
-          'hardConversation.plusTitle' => 'Preparar uma conversa faz parte do Plus',
-          'hardConversation.plusText' => 'As três etapas e a sugestão de abertura estão no Plus.',
-          'hardConversation.plusCta' => 'Ver planos',
-          'hardConversation.limitTitle' => 'As mensagens de hoje acabaram',
-          'hardConversation.limitText' =>
-            'Volte amanhã, ou veja o Plus para preparar mais conversas.',
-          'hardConversation.errors.CHAT_LIMIT' => 'As mensagens de hoje acabaram.',
-          'hardConversation.errors.CHAT_DISABLED' =>
-            'A conversa está desligada. Ligue para usar a mascote.',
-          'hardConversation.errors.CHAT_UNAVAILABLE' => 'A conversa não está disponível agora.',
-          'hardConversation.errors.UPSTREAM' =>
-            'Não deu para escrever uma frase agora. Tente de novo.',
-          'hardConversation.errors.NOT_PAIRED' =>
-            'Para enviar, você precisa estar conectado com seu par no app.',
-          'hardConversation.errors.other' => 'Não deu para fazer isso agora. Tente de novo.',
-          'help.badDayTitle' => 'Um dia difícil',
-          'help.badDayText' => 'Três coisas pequenas que podem ajudar agora. Nada obrigatório.',
-          'help.starterTitle' => 'Começar uma conversa',
-          'help.starterText' => 'Uma pergunta para abrir, sem pressa.',
-          'help.another' => 'Outra',
-          'help.emptyTitle' => 'Nada por aqui ainda',
-          'help.emptyText' => 'Estamos preparando mais sugestões.',
-          'help.errorTitle' => 'Não deu para carregar',
-          'help.errorText' => 'Tente de novo daqui a pouco.',
           'helpSupport.title' => 'Ajuda',
           'helpSupport.contactTitle' => 'Falar com o suporte',
           'helpSupport.reportBug' => 'Relatar um erro',
@@ -12141,6 +11289,9 @@ extension on Translations {
           'helpSupport.topics.bug' => 'Erro',
           'helpSupport.topics.other' => 'Outro',
           'helpSupport.messageLabel' => 'Mensagem',
+          _ => null,
+        } ??
+        switch (path) {
           'helpSupport.messageHint' =>
             'Conte o que aconteceu, com o máximo de detalhes que quiser.',
           'helpSupport.messageErrors.empty' => 'Escreva sua mensagem primeiro',
@@ -12809,9 +11960,6 @@ extension on Translations {
           'lists.private' => 'Privada',
           'lists.emptyTitle' => 'Nenhuma lista ainda',
           'lists.emptyTextShared' => 'Comece uma lista de coisas que vocês querem fazer juntos.',
-          _ => null,
-        } ??
-        switch (path) {
           'lists.emptyTextPrivate' => 'Comece uma lista de coisas para você guardar.',
           'lists.create' => 'Criar lista',
           'lists.rename' => 'Renomear',
@@ -12881,6 +12029,9 @@ extension on Translations {
           'loveStyle.questionHighlights.0' => 'amado',
           'loveStyle.questionHighlights.1' => 'conforta',
           'loveStyle.questionHighlights.2' => 'carinho',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.questionHighlights.3' => 'coração',
           'loveStyle.questionHighlights.4' => 'importante',
           'loveStyle.questionHighlights.5' => 'gesto',
@@ -12998,71 +12149,6 @@ extension on Translations {
           'loveStyle.revokeErrors.RATE_LIMITED' =>
             'Muitas tentativas seguidas. Espere um instante.',
           'loveStyle.revokeErrors.other' => 'Não deu para deixar de mostrar agora. Tente de novo.',
-          'memories.title' => 'Memórias',
-          'memories.historyLabel' => 'NOSSA HISTÓRIA',
-          'memories.historyTitle' => 'Nossa história',
-          'memories.historyText' => 'Marcos, datas, lugares e a nossa história em números.',
-          'memories.placesLabel' => 'LUGARES',
-          'memories.placesText' => 'Só o nome do lugar, nunca a localização.',
-          'memories.placeLabel' => 'Lugar (opcional)',
-          'memories.placeHint' => 'Ex.: Paraty',
-          'memories.placeAddressNote' => 'Prefira só o nome do lugar, sem endereço ou número.',
-          'memories.segmentTimeline' => 'Linha do tempo',
-          'memories.titleLabel' => 'Uma memória',
-          'memories.titleHint' => 'Ex.: nosso primeiro jantar',
-          'memories.titleErrors.empty' => 'Dê um título a esta memória',
-          'memories.titleErrors.tooLong' => 'O título está muito longo',
-          'memories.placeErrors.tooLong' => 'O lugar está muito longo',
-          'memories.bodyErrors.tooLong' => 'A nota está muito longa',
-          'memories.bodyHint' => 'Conte como foi (opcional)',
-          'memories.add' => 'Adicionar memória',
-          'memories.save' => 'Guardar memória',
-          'memories.delete' => 'Apagar',
-          'memories.deleteTitle' => 'Apagar esta memória?',
-          'memories.deleteText' => 'Ela some da linha do tempo para vocês dois.',
-          'memories.deleteConfirm' => 'Apagar',
-          'memories.detailPlace' => 'Lugar',
-          'memories.detailBody' => 'Como foi',
-          'memories.monthsShort.0' => 'jan',
-          'memories.monthsShort.1' => 'fev',
-          'memories.monthsShort.2' => 'mar',
-          'memories.monthsShort.3' => 'abr',
-          'memories.monthsShort.4' => 'mai',
-          'memories.monthsShort.5' => 'jun',
-          'memories.monthsShort.6' => 'jul',
-          'memories.monthsShort.7' => 'ago',
-          'memories.monthsShort.8' => 'set',
-          'memories.monthsShort.9' => 'out',
-          'memories.monthsShort.10' => 'nov',
-          'memories.monthsShort.11' => 'dez',
-          'memories.dateLine' => ({
-            required Object day,
-            required Object month,
-            required Object year,
-          }) => '${day} ${month} ${year}',
-          'memories.emptyTitle' => 'Nenhuma memória ainda',
-          'memories.emptyText' => 'Guarde momentos que vocês querem rever.',
-          'memories.errorTitle' => 'Não deu para carregar',
-          'memories.errorText' => 'Suas memórias continuam salvas. Tente de novo.',
-          'memories.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
-          'memories.errors.other' => 'Não deu para fazer isso agora. Seu texto continua aqui.',
-          'memories.menu.timeline' => 'Linha do tempo',
-          'memories.menu.timelineText' => 'Memórias que vocês guardaram',
-          'memories.menu.storyText' => 'Marcos, lugares e números',
-          'memories.menu.dates' => 'Datas e números',
-          'memories.menu.datesText' => 'Aniversários, feriados e contagens',
-          'memories.menu.diary' => 'Diário',
-          'memories.menu.diaryText' => 'Só seu, nunca vai para a outra pessoa',
-          'memories.menu.gifts' => 'Ideias de presente',
-          'memories.menu.giftsText' => 'Desejos de cada um e ideias para o outro',
-          'memories.onThisDay.label' => 'NESTE DIA',
-          'memories.onThisDay.yearsAgo' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: 'Há 1 ano',
-                  other: 'Há ${count} anos',
-                ),
           'mood.title' => 'Como você está hoje?',
           'mood.titleHighlight' => 'hoje',
           'mood.subtitle' => 'Um toque. A etiqueta “Preciso de...” é opcional.',
@@ -13397,9 +12483,6 @@ extension on Translations {
           'partnerProfile.errors.RATE_LIMITED' => 'Muitas tentativas seguidas. Espere um instante.',
           'partnerProfile.errors.other' =>
             'Não deu para fazer isso agora. Seu texto continua aqui.',
-          _ => null,
-        } ??
-        switch (path) {
           'partnerStep.title' => 'Quer trazer seu parceiro?',
           'partnerStep.titleHighlight' => 'parceiro',
           'partnerStep.subtitle' => 'O app funciona sozinho. Você convida quando quiser.',
@@ -13545,6 +12628,9 @@ extension on Translations {
           'profileDetails.saved' => 'Salvo',
           'profileDetails.loadErrorTitle' => 'Não deu para carregar seu perfil',
           'profileDetails.loadErrorText' => 'Confira a conexão e tente de novo.',
+          _ => null,
+        } ??
+        switch (path) {
           'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
           'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           'profileDetails.timeZones.America/Bogota' => 'Bogotá',
@@ -13602,97 +12688,6 @@ extension on Translations {
           'profileSetup.themeRose' => 'Rosa',
           'profileSetup.themeBlue' => 'Azul',
           'profileSetup.themeNeutral' => 'Neutro',
-          'programs.label' => 'PROGRAMAS',
-          'programs.title' => 'Programas',
-          'programs.entryText' => 'Programas curtos e guiados, no seu ritmo.',
-          'programs.hubSubtitle' => 'Uma ideia por dia. Sem pressa, sem cobrança.',
-          'programs.free' => 'GRÁTIS',
-          'programs.plus' => 'PLUS',
-          'programs.lessonCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
-                  count,
-                  one: '1 lição',
-                  other: '${count} lições',
-                ),
-          'programs.noLessons' => 'Lições chegando',
-          'programs.emptyTitle' => 'Nenhum programa por aqui ainda',
-          'programs.emptyText' => 'Novos programas chegam em breve. Volte quando quiser.',
-          'programs.errorTitle' => 'Não deu para carregar',
-          'programs.errorText' => 'Os programas continuam aqui. Tente de novo.',
-          'programs.diaryLabel' => 'SÓ EU',
-          'programs.diaryTitle' => 'Diário',
-          'programs.diaryText' => 'Um lugar privado para escrever como você está.',
-          'programs.start' => 'Começar',
-          'programs.kContinue' => 'Continuar',
-          'programs.restart' => 'Começar de novo',
-          'programs.restartConfirmTitle' => 'Começar de novo?',
-          'programs.restartConfirmText' => 'Isto limpa suas marcações e volta à primeira lição.',
-          'programs.restartConfirm' => 'Começar de novo',
-          'programs.completed' => 'Concluído',
-          'programs.lessonsTitle' => 'Lições',
-          'programs.lessonsComingTitle' => 'Lições chegando',
-          'programs.lessonsComingText' =>
-            'Este programa ainda está sendo preparado. Volte em breve.',
-          'programs.lessonGoneTitle' => 'Lição indisponível',
-          'programs.lessonGoneText' =>
-            'Este dia não faz mais parte do programa. Escolha outra lição.',
-          'programs.dayOneHint' => 'A primeira lição é sempre aberta neste programa.',
-          'programs.dayLabel' => ({required Object day}) => 'Dia ${day}',
-          'programs.shortRead' => 'Uma ideia curta para hoje.',
-          'programs.ready' => 'Pronto',
-          'programs.saveForLater' => 'Salvar para depois',
-          'programs.saved' => 'Guardado para depois.',
-          'programs.savedTag' => 'Guardado',
-          'programs.lockedTitle' => 'Lição do Plus',
-          'programs.lockedLessonText' => 'Esta lição faz parte do Plus.',
-          'programs.lockedProgramText' => 'Este programa faz parte do Plus.',
-          'programs.completeTitle' => 'Muito bem',
-          'programs.completeText' => ({required Object title}) => 'Você concluiu ${title}.',
-          'programs.completeHint' => 'Escolha outro quando quiser.',
-          'programs.seePrograms' => 'Ver programas',
-          'programs.diaryPrivacy' => 'Só eu. Nunca é compartilhado.',
-          'programs.diaryPrompt' => 'Hoje eu me senti...',
-          'programs.diaryHint' => 'Escreva sem pressa. Só você vê isto.',
-          'programs.diaryBodyErrors.empty' => 'Escreva um pouco antes de salvar',
-          'programs.diaryBodyErrors.tooLong' => 'A entrada está muito longa',
-          'programs.diarySave' => 'Salvar',
-          'programs.diaryNew' => 'Nova entrada',
-          'programs.diaryEdit' => 'Editar',
-          'programs.diaryDelete' => 'Apagar',
-          'programs.diaryDeleteTitle' => 'Apagar esta entrada?',
-          'programs.diaryDeleteText' => 'Isto não pode ser desfeito.',
-          'programs.diaryDeleteConfirm' => 'Apagar',
-          'programs.diaryCapHint' => 'Mostrando suas últimas 100 entradas.',
-          'programs.diaryEmptyTitle' => 'Nada escrito ainda',
-          'programs.diaryEmptyText' => 'Quando quiser, escreva como você está. Só você vê.',
-          'programs.diaryErrorTitle' => 'Não deu para carregar',
-          'programs.diaryErrorText' => 'Suas entradas continuam guardadas. Tente de novo.',
-          'programs.monthsShort.0' => 'jan',
-          'programs.monthsShort.1' => 'fev',
-          'programs.monthsShort.2' => 'mar',
-          'programs.monthsShort.3' => 'abr',
-          'programs.monthsShort.4' => 'mai',
-          'programs.monthsShort.5' => 'jun',
-          'programs.monthsShort.6' => 'jul',
-          'programs.monthsShort.7' => 'ago',
-          'programs.monthsShort.8' => 'set',
-          'programs.monthsShort.9' => 'out',
-          'programs.monthsShort.10' => 'nov',
-          'programs.monthsShort.11' => 'dez',
-          'programs.dateLine' => ({
-            required Object day,
-            required Object month,
-            required Object year,
-          }) => '${day} ${month} ${year}',
-          'programs.moods.calm' => 'Em paz',
-          'programs.moods.tender' => 'Acolhido(a)',
-          'programs.moods.tired' => 'Cansado(a)',
-          'programs.moods.heavy' => 'Pesado',
-          'programs.moods.other' => 'Como estou',
-          'programs.lessonErrors.other' => 'Não deu para fazer isso agora. Tente de novo.',
-          'programs.diaryErrors.other' => 'Não deu para salvar agora. Seu texto continua aqui.',
-          'programs.freeNote' => 'No grátis aparece só a primeira lição.',
           'pronouns.options.she' => 'Ela',
           'pronouns.options.he' => 'Ele',
           'pronouns.options.nameOnly' => 'Só o nome',
@@ -13989,9 +12984,6 @@ extension on Translations {
           'repair.guided.stepHints.0' => 'Do seu jeito, sem culpar ninguém.',
           'repair.guided.stepHints.1' => 'Uma coisa que ajudaria agora.',
           'repair.guided.stepHints.2' => 'Algo pequeno e sincero.',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.guided.private' => 'Só você vê isto. Nada é enviado ao seu par.',
           'repair.guided.next' => 'Continuar',
           'repair.guided.back' => 'Voltar',
@@ -14149,8 +13141,6 @@ extension on Translations {
           'settingsHome.connectedWith' => ({required Object name}) => 'Conectado com ${name}',
           'share.entryTitle' => 'Compartilhar imagem',
           'share.entrySubtitleToday' => 'O tempo de vocês e a lua do dia em que tudo começou.',
-          'share.entrySubtitleMemories' =>
-            'Uma linha do tempo com os momentos que vocês guardaram.',
           'share.entrySubtitleCard' => 'Uma frase do cartão que chegou para você.',
           'share.sheetTitle' => 'Compartilhar imagem',
           'share.sheetSubtitle' =>
@@ -14158,7 +13148,6 @@ extension on Translations {
           'share.shareAction' => 'Compartilhar',
           'share.cardLabels.counter' => 'Nosso tempo',
           'share.cardLabels.moon' => 'A lua do nosso dia',
-          'share.cardLabels.timeline' => 'Nossa linha do tempo',
           'share.cardLabels.quote' => 'De um cartão',
           'share.cardLabels.other' => '',
           'share.counterEyebrow' => 'NOSSO TEMPO',
@@ -14172,8 +13161,6 @@ extension on Translations {
           'share.counterSince' => ({required Object date}) => 'Desde ${date}',
           'share.moonEyebrow' => 'A LUA DO NOSSO DIA',
           'share.moonSupport' => 'Foi assim que o céu estava quando tudo começou.',
-          'share.timelineEyebrow' => 'NOSSA LINHA DO TEMPO',
-          'share.timelineTitle' => 'Momentos que a gente guardou',
           'share.quoteEyebrow' => 'DE UM CARTÃO',
           'share.quoteText' => ({required Object quote}) => '“${quote}”',
           'share.quoteFromName' => ({required Object name}) => '— ${name}',
@@ -14227,6 +13214,9 @@ extension on Translations {
           'slipDetail.monthsShort.2' => 'mar',
           'slipDetail.monthsShort.3' => 'abr',
           'slipDetail.monthsShort.4' => 'mai',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.monthsShort.5' => 'jun',
           'slipDetail.monthsShort.6' => 'jul',
           'slipDetail.monthsShort.7' => 'ago',
@@ -14591,9 +13581,6 @@ extension on Translations {
             'Defina desde quando vocês estão juntos em Nossa história para gerar a imagem.',
           'story.errorTitle' => 'Não deu para carregar',
           'story.errorText' => 'Tente de novo em instantes.',
-          _ => null,
-        } ??
-        switch (path) {
           'story.errors.other' => 'Não deu para compartilhar agora. Tente de novo.',
           'sundayCard.title' => 'Seu cartão',
           'sundayCard.edit' => 'Editar',
@@ -14658,7 +13645,6 @@ extension on Translations {
           'tabs.today' => 'Hoje',
           'tabs.slips' => 'Slips',
           'tabs.together' => 'Juntos',
-          'tabs.memories' => 'Memórias',
           'tabs.capture' => 'Novo slip',
           'tabs.soonTitle' => 'Em construção',
           'tabs.soonText' => 'Esta parte do app ainda está sendo preparada.',
@@ -14702,18 +13688,12 @@ extension on Translations {
           'tabs.chatLabel' => 'CONVERSAR',
           'tabs.chatTitle' => 'Mascote',
           'tabs.chatText' => 'Uma conversa calma, que não fica guardada.',
-          'tabs.hardTalkLabel' => 'CONVERSA DIFÍCIL',
-          'tabs.hardTalkTitle' => 'Preparar uma conversa difícil',
-          'tabs.hardTalkText' => 'A mascote ajuda você a organizar o que dizer.',
           'tabs.notesLabel' => 'PARA SEU PAR',
           'tabs.notesTitle' => 'Bilhete ou desenho',
           'tabs.notesText' => 'Mande algo curto e carinhoso, quando quiser.',
           'tabs.usLabel' => 'NÓS',
           'tabs.usTitle' => 'Sinto saudade de nós',
           'tabs.usText' => 'Um toque leve para o seu par, sem cobrança.',
-          'tabs.touchLabel' => 'TOQUE',
-          'tabs.touchTitle' => 'Cartas de toque',
-          'tabs.touchText' => 'Neutras, para fazer ou pular.',
           'tabs.distanceLabel' => 'DISTÂNCIA',
           'tabs.distanceTitle' => 'Nossos dois relógios',
           'tabs.distanceText' => 'Fusos e a contagem até o reencontro.',
@@ -14725,12 +13705,6 @@ extension on Translations {
           'tabs.datesLabel' => 'DATAS',
           'tabs.datesTitle' => 'Datas importantes',
           'tabs.datesText' => 'Aniversários, presentes e feriados, com aviso antes.',
-          'tabs.badDayLabel' => 'AJUDA',
-          'tabs.badDayTitle' => 'Um dia difícil',
-          'tabs.badDayText' => 'Três coisas pequenas para fazer agora.',
-          'tabs.starterLabel' => 'CONVERSA',
-          'tabs.starterTitle' => 'Começar uma conversa',
-          'tabs.starterText' => 'Uma pergunta para abrir, sem pressa.',
           'tabs.dayLabel' => 'DIA',
           'tabs.dayTitle' => 'Dia a dia',
           'tabs.dayText' => 'O que importa em cada dia.',
@@ -14744,9 +13718,6 @@ extension on Translations {
           'tabs.learningTitle' => 'O que você aprendeu',
           'tabs.learningText' => 'Anotações privadas que você pode apagar.',
           'tabs.fightStyleLabel' => 'SÓ PARA VOCÊ',
-          'tabs.guidesLabel' => 'CONVERSAS',
-          'tabs.guidesTitle' => 'Conversas difíceis',
-          'tabs.guidesText' => 'Um passo de cada vez, só para você.',
           'tabs.gamesLabel' => 'JOGOS',
           'tabs.gamesTitle' => 'Jogar juntos',
           'tabs.gamesText' => 'Jogos curtos, sem placar e sem vencedor.',
@@ -14758,7 +13729,6 @@ extension on Translations {
           'tabs.logisticsMeta' => '15 min · semanal',
           'tabs.ritualsMeta' => 'Pequenos hábitos',
           'tabs.dateNightMeta' => 'Para vocês dois',
-          'tabs.programsMeta' => 'Microlições',
           'tabs.checkinMeta' => 'Uma vez por semana',
           'tabs.questionMeta' => 'Uma para os dois',
           'tabs.gamesMeta' => 'Sem placar',
@@ -14771,20 +13741,16 @@ extension on Translations {
                   one: '1 desejo',
                   other: '${count} desejos',
                 ),
-          'tabs.guidesMeta' => 'Um passo de cada vez',
-          'tabs.starterMeta' => 'Uma pergunta',
           'tabs.dayMeta' => 'Um dia de cada vez',
           'tabs.capsulesMeta' => 'Para o futuro',
           'tabs.temperatureMeta' => 'Privado, sem nota',
           'tabs.homeWidgetsMeta' => 'Na tela inicial',
           'tabs.usMeta' => 'Um toque',
-          'tabs.touchMeta' => 'Cartas neutras',
-          'tabs.badDayMeta' => 'Três coisas pequenas',
           'tabs.distanceMeta' => 'Fusos e reencontro',
+          'tabs.diaryTitle' => 'Diário',
           'tabs.diaryMeta' => 'Só seu',
           'tabs.moodCalendarTitle' => 'Meus humores',
           'tabs.moodCalendarMeta' => 'Seu mês, só você vê',
-          'tabs.hardTalkMeta' => 'Notas antes de falar',
           'tabs.notesMeta' => 'Quando quiser',
           'tabs.learningMeta' => 'Anotações privadas',
           'tabs.partnerMeta' => 'Só para você',
@@ -14880,6 +13846,9 @@ extension on Translations {
           'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',
+          _ => null,
+        } ??
+        switch (path) {
           'today.greetingNoName' => 'Olá',
           'today.dateLine' => ({
             required Object weekday,

@@ -10,7 +10,6 @@ export const tables = {
     object: { repairSession: 'repair_session_id' },
   }),
   journal_entries: ownerOnly({ insert: ['entry_date', 'body', 'mood'] }),
-  conversation_preps: ownerOnly({ insert: ['guide', 'topic', 'notes', 'draft'] }),
   moods: ownerOnly({ insert: ['day', 'mood', 'need', 'share'], update: ['mood', 'need', 'share'] }),
   shared_moods: {
     object: { profile: 'user_id' },
@@ -28,8 +27,6 @@ export const tables = {
       },
     },
   },
-  program_enrollments: ownerOnly({ insert: ['program_slug', 'current_day', 'completed_at'], update: ['current_day', 'completed_at'] }),
-  lesson_progress: ownerOnly({ insert: ['program_slug', 'lesson_day', 'status'], update: ['status'] }),
   quiz_results: {
     object: { author: 'author_id' },
     roles: {

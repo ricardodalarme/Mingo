@@ -127,22 +127,6 @@ class AnnoyanceCheckRouteArgs {
 }
 
 /// generated route for
-/// [BadDayPage]
-class BadDayRoute extends PageRouteInfo<void> {
-  const BadDayRoute({List<PageRouteInfo>? children})
-    : super(BadDayRoute.name, initialChildren: children);
-
-  static const String name = 'BadDayRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const BadDayPage());
-    },
-  );
-}
-
-/// generated route for
 /// [BreakupPage]
 class BreakupRoute extends PageRouteInfo<void> {
   const BreakupRoute({List<PageRouteInfo>? children})
@@ -424,53 +408,18 @@ class CounterVariationsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [CouplePage]
-class CoupleRoute extends PageRouteInfo<CoupleRouteArgs> {
-  CoupleRoute({
-    CoupleSection section = CoupleSection.together,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-         CoupleRoute.name,
-         args: CoupleRouteArgs(section: section, key: key),
-         initialChildren: children,
-       );
+class CoupleRoute extends PageRouteInfo<void> {
+  const CoupleRoute({List<PageRouteInfo>? children})
+    : super(CoupleRoute.name, initialChildren: children);
 
   static const String name = 'CoupleRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<CoupleRouteArgs>(
-        orElse: () => const CoupleRouteArgs(),
-      );
-      return WrappedRoute(
-        child: CouplePage(section: args.section, key: args.key),
-      );
+      return WrappedRoute(child: const CouplePage());
     },
   );
-}
-
-class CoupleRouteArgs {
-  const CoupleRouteArgs({this.section = CoupleSection.together, this.key});
-
-  final CoupleSection section;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'CoupleRouteArgs{section: $section, key: $key}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! CoupleRouteArgs) return false;
-    return section == other.section && key == other.key;
-  }
-
-  @override
-  int get hashCode => section.hashCode ^ key.hashCode;
 }
 
 /// generated route for
@@ -897,56 +846,6 @@ class GriefSupportRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [GuidePage]
-class GuideRoute extends PageRouteInfo<GuideRouteArgs> {
-  GuideRoute({String slug = '', Key? key, List<PageRouteInfo>? children})
-    : super(
-        GuideRoute.name,
-        args: GuideRouteArgs(slug: slug, key: key),
-        rawPathParams: {'slug': slug},
-        initialChildren: children,
-      );
-
-  static const String name = 'GuideRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<GuideRouteArgs>(
-        orElse: () => GuideRouteArgs(slug: pathParams.getString('slug', '')),
-      );
-      return WrappedRoute(
-        child: GuidePage(slug: args.slug, key: args.key),
-      );
-    },
-  );
-}
-
-class GuideRouteArgs {
-  const GuideRouteArgs({this.slug = '', this.key});
-
-  final String slug;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'GuideRouteArgs{slug: $slug, key: $key}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! GuideRouteArgs) return false;
-    return slug == other.slug && key == other.key;
-  }
-
-  @override
-  int get hashCode => slug.hashCode ^ key.hashCode;
-}
-
-/// generated route for
 /// [GuidedRepairPage]
 class GuidedRepairRoute extends PageRouteInfo<void> {
   const GuidedRepairRoute({List<PageRouteInfo>? children})
@@ -958,38 +857,6 @@ class GuidedRepairRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const GuidedRepairPage());
-    },
-  );
-}
-
-/// generated route for
-/// [GuidesPage]
-class GuidesRoute extends PageRouteInfo<void> {
-  const GuidesRoute({List<PageRouteInfo>? children})
-    : super(GuidesRoute.name, initialChildren: children);
-
-  static const String name = 'GuidesRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const GuidesPage());
-    },
-  );
-}
-
-/// generated route for
-/// [HardConversationPage]
-class HardConversationRoute extends PageRouteInfo<void> {
-  const HardConversationRoute({List<PageRouteInfo>? children})
-    : super(HardConversationRoute.name, initialChildren: children);
-
-  static const String name = 'HardConversationRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const HardConversationPage());
     },
   );
 }
@@ -1304,65 +1171,6 @@ class LearningRouteArgs {
 }
 
 /// generated route for
-/// [LessonPage]
-class LessonRoute extends PageRouteInfo<LessonRouteArgs> {
-  LessonRoute({
-    required String slug,
-    required int day,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-         LessonRoute.name,
-         args: LessonRouteArgs(slug: slug, day: day, key: key),
-         rawPathParams: {'slug': slug, 'day': day},
-         initialChildren: children,
-       );
-
-  static const String name = 'LessonRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<LessonRouteArgs>(
-        orElse: () => LessonRouteArgs(
-          slug: pathParams.getString('slug'),
-          day: pathParams.getInt('day'),
-        ),
-      );
-      return WrappedRoute(
-        child: LessonPage(slug: args.slug, day: args.day, key: args.key),
-      );
-    },
-  );
-}
-
-class LessonRouteArgs {
-  const LessonRouteArgs({required this.slug, required this.day, this.key});
-
-  final String slug;
-
-  final int day;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'LessonRouteArgs{slug: $slug, day: $day, key: $key}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! LessonRouteArgs) return false;
-    return slug == other.slug && day == other.day && key == other.key;
-  }
-
-  @override
-  int get hashCode => slug.hashCode ^ day.hashCode ^ key.hashCode;
-}
-
-/// generated route for
 /// [ListDetailPage]
 class ListDetailRoute extends PageRouteInfo<ListDetailRouteArgs> {
   ListDetailRoute({
@@ -1491,71 +1299,6 @@ class ManagePlusRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const ManagePlusPage());
-    },
-  );
-}
-
-/// generated route for
-/// [MemoriesPage]
-class MemoriesRoute extends PageRouteInfo<MemoriesRouteArgs> {
-  MemoriesRoute({
-    bool isEmbedded = false,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-         MemoriesRoute.name,
-         args: MemoriesRouteArgs(isEmbedded: isEmbedded, key: key),
-         initialChildren: children,
-       );
-
-  static const String name = 'MemoriesRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<MemoriesRouteArgs>(
-        orElse: () => const MemoriesRouteArgs(),
-      );
-      return MemoriesPage(isEmbedded: args.isEmbedded, key: args.key);
-    },
-  );
-}
-
-class MemoriesRouteArgs {
-  const MemoriesRouteArgs({this.isEmbedded = false, this.key});
-
-  final bool isEmbedded;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'MemoriesRouteArgs{isEmbedded: $isEmbedded, key: $key}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! MemoriesRouteArgs) return false;
-    return isEmbedded == other.isEmbedded && key == other.key;
-  }
-
-  @override
-  int get hashCode => isEmbedded.hashCode ^ key.hashCode;
-}
-
-/// generated route for
-/// [MemoriesTimelinePage]
-class MemoriesTimelineRoute extends PageRouteInfo<void> {
-  const MemoriesTimelineRoute({List<PageRouteInfo>? children})
-    : super(MemoriesTimelineRoute.name, initialChildren: children);
-
-  static const String name = 'MemoriesTimelineRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const MemoriesTimelinePage());
     },
   );
 }
@@ -1891,123 +1634,6 @@ class ProfileSetupRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return WrappedRoute(child: const ProfileSetupPage());
-    },
-  );
-}
-
-/// generated route for
-/// [ProgramCompletePage]
-class ProgramCompleteRoute extends PageRouteInfo<ProgramCompleteRouteArgs> {
-  ProgramCompleteRoute({
-    required String title,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-         ProgramCompleteRoute.name,
-         args: ProgramCompleteRouteArgs(title: title, key: key),
-         initialChildren: children,
-       );
-
-  static const String name = 'ProgramCompleteRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<ProgramCompleteRouteArgs>();
-      return ProgramCompletePage(title: args.title, key: args.key);
-    },
-  );
-}
-
-class ProgramCompleteRouteArgs {
-  const ProgramCompleteRouteArgs({required this.title, this.key});
-
-  final String title;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'ProgramCompleteRouteArgs{title: $title, key: $key}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! ProgramCompleteRouteArgs) return false;
-    return title == other.title && key == other.key;
-  }
-
-  @override
-  int get hashCode => title.hashCode ^ key.hashCode;
-}
-
-/// generated route for
-/// [ProgramDetailPage]
-class ProgramDetailRoute extends PageRouteInfo<ProgramDetailRouteArgs> {
-  ProgramDetailRoute({
-    required String slug,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-         ProgramDetailRoute.name,
-         args: ProgramDetailRouteArgs(slug: slug, key: key),
-         rawPathParams: {'slug': slug},
-         initialChildren: children,
-       );
-
-  static const String name = 'ProgramDetailRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<ProgramDetailRouteArgs>(
-        orElse: () =>
-            ProgramDetailRouteArgs(slug: pathParams.getString('slug')),
-      );
-      return WrappedRoute(
-        child: ProgramDetailPage(slug: args.slug, key: args.key),
-      );
-    },
-  );
-}
-
-class ProgramDetailRouteArgs {
-  const ProgramDetailRouteArgs({required this.slug, this.key});
-
-  final String slug;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'ProgramDetailRouteArgs{slug: $slug, key: $key}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! ProgramDetailRouteArgs) return false;
-    return slug == other.slug && key == other.key;
-  }
-
-  @override
-  int get hashCode => slug.hashCode ^ key.hashCode;
-}
-
-/// generated route for
-/// [ProgramsPage]
-class ProgramsRoute extends PageRouteInfo<void> {
-  const ProgramsRoute({List<PageRouteInfo>? children})
-    : super(ProgramsRoute.name, initialChildren: children);
-
-  static const String name = 'ProgramsRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const ProgramsPage());
     },
   );
 }
@@ -2594,22 +2220,6 @@ class SpiceSettingsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [StarterPage]
-class StarterRoute extends PageRouteInfo<void> {
-  const StarterRoute({List<PageRouteInfo>? children})
-    : super(StarterRoute.name, initialChildren: children);
-
-  static const String name = 'StarterRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const StarterPage());
-    },
-  );
-}
-
-/// generated route for
 /// [StoryDatesPage]
 class StoryDatesRoute extends PageRouteInfo<void> {
   const StoryDatesRoute({List<PageRouteInfo>? children})
@@ -2821,22 +2431,6 @@ class TogetherRouteArgs {
 
   @override
   int get hashCode => isEmbedded.hashCode ^ key.hashCode;
-}
-
-/// generated route for
-/// [TouchPage]
-class TouchRoute extends PageRouteInfo<void> {
-  const TouchRoute({List<PageRouteInfo>? children})
-    : super(TouchRoute.name, initialChildren: children);
-
-  static const String name = 'TouchRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return WrappedRoute(child: const TouchPage());
-    },
-  );
 }
 
 /// generated route for

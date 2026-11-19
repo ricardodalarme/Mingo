@@ -13,18 +13,17 @@ import 'package:app/features/couple/di/couple_injection_module.dart';
 import 'package:app/features/dates/di/dates_injection_module.dart';
 import 'package:app/features/dev_menu/di/dev_menu_injection_module.dart';
 import 'package:app/features/devices/di/devices_injection_module.dart';
+import 'package:app/features/diary/di/diary_injection_module.dart';
 import 'package:app/features/distance/di/distance_injection_module.dart';
 import 'package:app/features/fight_style/di/fight_style_injection_module.dart';
 import 'package:app/features/games/di/games_injection_module.dart';
 import 'package:app/features/gifts/di/gifts_injection_module.dart';
-import 'package:app/features/guides/di/guides_injection_module.dart';
 import 'package:app/features/help/di/help_injection_module.dart';
 import 'package:app/features/history/di/history_injection_module.dart';
 import 'package:app/features/home_widgets/di/home_widgets_injection_module.dart';
 import 'package:app/features/ideas/di/ideas_injection_module.dart';
 import 'package:app/features/lists/di/lists_injection_module.dart';
 import 'package:app/features/love_style/di/love_style_injection_module.dart';
-import 'package:app/features/memories/di/memories_injection_module.dart';
 import 'package:app/features/mood/di/mood_injection_module.dart';
 import 'package:app/features/notes/di/notes_injection_module.dart';
 import 'package:app/features/notifications/di/notifications_injection_module.dart';
@@ -34,7 +33,6 @@ import 'package:app/features/partner/di/partner_injection_module.dart';
 import 'package:app/features/plus/di/plus_injection_module.dart';
 import 'package:app/features/privacy/di/privacy_injection_module.dart';
 import 'package:app/features/profile/di/profile_injection_module.dart';
-import 'package:app/features/programs/di/programs_injection_module.dart';
 import 'package:app/features/questions/di/questions_injection_module.dart';
 import 'package:app/features/quizzes/di/quizzes_injection_module.dart';
 import 'package:app/features/reminders/di/reminders_injection_module.dart';
@@ -66,7 +64,6 @@ void registerInjectionModules() {
     FightStyleInjectionModule(),
     GamesInjectionModule(),
     GiftsInjectionModule(),
-    GuidesInjectionModule(),
     IdeasInjectionModule(),
     ListsInjectionModule(),
     AgreementsInjectionModule(),
@@ -84,12 +81,11 @@ void registerInjectionModules() {
     DatesInjectionModule(),
     HelpInjectionModule(),
     HistoryInjectionModule(),
-    MemoriesInjectionModule(),
     MoodInjectionModule(),
     PartnerInjectionModule(),
     PlusInjectionModule(),
     ProfileInjectionModule(),
-    ProgramsInjectionModule(),
+    DiaryInjectionModule(),
     QuestionsInjectionModule(),
     QuizzesInjectionModule(),
     CardsInjectionModule(),

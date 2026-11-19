@@ -27,7 +27,6 @@ void main() {
     repository = _MockDatesRepository();
     profile = _MockProfileRepository();
     when(() => repository.getDates()).thenAnswer((_) async => const []);
-    when(() => repository.getGiftIdeas()).thenAnswer((_) async => const []);
     when(() => repository.getHolidays(any())).thenAnswer((_) async => const []);
     when(() => profile.getMySettings())
         .thenAnswer((_) async => const AccountSettings(theme: .rose));

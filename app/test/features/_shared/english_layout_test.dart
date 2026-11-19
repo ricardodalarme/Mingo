@@ -1,34 +1,23 @@
-import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/capsules/data/repositories/capsules_repository.dart';
 import 'package:app/features/capsules/presentation/capsules/capsules_page.dart';
 import 'package:app/features/capsules/presentation/capsules/cubit/capsules_cubit.dart';
 import 'package:app/features/connect/data/repositories/connect_repository.dart';
-import 'package:app/features/connect/presentation/touch/cubit/touch_cubit.dart';
-import 'package:app/features/connect/presentation/touch/touch_page.dart';
 import 'package:app/features/connect/presentation/us/cubit/us_cubit.dart';
 import 'package:app/features/connect/presentation/us/us_page.dart';
 import 'package:app/features/distance/data/models/distance_info.dart';
 import 'package:app/features/distance/data/repositories/distance_repository.dart';
 import 'package:app/features/distance/presentation/distance/cubit/distance_cubit.dart';
 import 'package:app/features/distance/presentation/distance/distance_page.dart';
-import 'package:app/features/guides/data/data_sources/local/guides_local_data_source.dart';
-import 'package:app/features/guides/data/data_sources/remote/guides_data_source.dart';
-import 'package:app/features/guides/data/repositories/guides_repository.dart';
-import 'package:app/features/guides/presentation/hub/cubit/guides_cubit.dart';
-import 'package:app/features/guides/presentation/hub/guides_page.dart';
 import 'package:app/features/notes/data/repositories/notes_repository.dart';
 import 'package:app/features/notes/presentation/compose/compose_page.dart';
 import 'package:app/features/notes/presentation/compose/cubit/compose_cubit.dart';
 import 'package:app/features/pairing/data/repositories/pairing_repository.dart';
-import 'package:app/features/plus/data/models/plus_state.dart';
-import 'package:app/features/plus/data/repositories/plus_repository.dart';
 import 'package:app/features/profile/data/models/avatar_kind.dart';
 import 'package:app/features/profile/data/models/profile.dart';
 import 'package:app/features/settings/data/models/settings.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:app/features/settings/presentation/language/cubit/language_cubit.dart';
 import 'package:app/features/settings/presentation/language/language_page.dart';
-import 'package:app/features/together/data/models/date_idea.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,23 +26,15 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../test_helpers/pump_app.dart';
 
-class _MockAuthentication() extends Mock implements AuthenticationRepository;
-
 class _MockCapsules() extends Mock implements CapsulesRepository;
 
 class _MockConnect() extends Mock implements ConnectRepository;
 
 class _MockDistance() extends Mock implements DistanceRepository;
 
-class _MockGuidesDataSource() extends Mock implements GuidesDataSource;
-
-class _MockGuidesLocalDataSource() extends Mock implements GuidesLocalDataSource;
-
 class _MockNotes() extends Mock implements NotesRepository;
 
 class _MockPairing() extends Mock implements PairingRepository;
-
-class _MockPlus() extends Mock implements PlusRepository;
 
 class _MockSettings() extends Mock implements SettingsRepository;
 
@@ -98,21 +79,6 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('the touch page fits in English at a small width and large text', (tester) async {
-    final repository = _MockConnect();
-    when(repository.getTouchTopicsEnabled).thenAnswer((_) async => true);
-    when(repository.getTouchCards)
-        .thenAnswer((_) async => const [HelpItem(slug: 'a', title: 'Hold hands for one minute.')]);
-    final cubit = TouchCubit(connectRepository: repository);
-    addTearDown(cubit.close);
-    await cubit.load();
-
-    await pumpNarrow(tester, BlocProvider.value(value: cubit, child: const TouchPage()));
-
-    expect(find.text('Hold hands for one minute.'), findsOneWidget);
-    expect(tester.takeException(), isNull);
-  });
-
   testWidgets('the note page fits in English at a small width and large text', (tester) async {
     final repository = _MockNotes();
     final pairingRepository = _MockPairing();
@@ -143,26 +109,6 @@ void main() {
 
     expect(find.text('Distance'), findsOneWidget);
     expect(find.text('Your partner'), findsOneWidget);
-    expect(tester.takeException(), isNull);
-  });
-
-  testWidgets('the guides page fits in English at a small width and large text', (tester) async {
-    final plusRepository = _MockPlus();
-    when(plusRepository.getPlus).thenAnswer((_) async => const PlusState(hasPlus: false));
-    final cubit = GuidesCubit(
-      repository: GuidesRepository(
-        dataSource: _MockGuidesDataSource(),
-        localDataSource: _MockGuidesLocalDataSource(),
-        authenticationRepository: _MockAuthentication(),
-      ),
-      plusRepository: plusRepository,
-    );
-    addTearDown(cubit.close);
-    await cubit.load();
-
-    await pumpNarrow(tester, BlocProvider.value(value: cubit, child: const GuidesPage()));
-
-    expect(find.text('One step at a time, in private.'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 

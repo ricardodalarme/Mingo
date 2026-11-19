@@ -8,9 +8,6 @@ class CoupleCubit({required final HistoryRepository _historyRepository})
     extends Cubit<CoupleState> {
   this : super(const CoupleState());
 
-  /// Opens one of the two parts of Nós.
-  void select(CoupleSection section) => emit(state.copyWith(section: section));
-
   /// Reads the relationship start; a failed read leaves the chip plain.
   Future<void> load() async {
     try {

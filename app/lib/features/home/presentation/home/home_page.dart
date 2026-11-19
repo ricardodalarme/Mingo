@@ -48,7 +48,7 @@ class const HomePage({super.key}) extends StatelessWidget {
         duration: AppMotion.base,
         curve: AppMotion.fastCurve,
         transitionBuilder: homeTabTransition,
-        routes: [const TodayRoute(), const SlipsRoute(), const ChatTabRoute(), CoupleRoute()],
+        routes: const [TodayRoute(), SlipsRoute(), ChatTabRoute(), CoupleRoute()],
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);
           final activeIndex = tabsRouter.activeIndex;

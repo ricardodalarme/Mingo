@@ -80,8 +80,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _Translations$common$en common = _Translations$common$en._(_root);
   @override
-  late final _Translations$connectTouch$en connectTouch = _Translations$connectTouch$en._(_root);
-  @override
   late final _Translations$connectUs$en connectUs = _Translations$connectUs$en._(_root);
   @override
   late final _Translations$createAccount$en createAccount = _Translations$createAccount$en._(_root);
@@ -95,6 +93,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$debugSignIn$en debugSignIn = _Translations$debugSignIn$en._(_root);
   @override
   late final _Translations$devices$en devices = _Translations$devices$en._(_root);
+  @override
+  late final _Translations$diary$en diary = _Translations$diary$en._(_root);
   @override
   late final _Translations$distance$en distance = _Translations$distance$en._(_root);
   @override
@@ -114,13 +114,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$globalErrors$en globalErrors = _Translations$globalErrors$en._(_root);
   @override
   late final _Translations$griefSupport$en griefSupport = _Translations$griefSupport$en._(_root);
-  @override
-  late final _Translations$guides$en guides = _Translations$guides$en._(_root);
-  @override
-  late final _Translations$hardConversation$en hardConversation =
-      _Translations$hardConversation$en._(_root);
-  @override
-  late final _Translations$help$en help = _Translations$help$en._(_root);
   @override
   late final _Translations$helpSupport$en helpSupport = _Translations$helpSupport$en._(_root);
   @override
@@ -145,8 +138,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _Translations$logistics$en logistics = _Translations$logistics$en._(_root);
   @override
   late final _Translations$loveStyle$en loveStyle = _Translations$loveStyle$en._(_root);
-  @override
-  late final _Translations$memories$en memories = _Translations$memories$en._(_root);
   @override
   late final _Translations$mood$en mood = _Translations$mood$en._(_root);
   @override
@@ -179,8 +170,6 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   );
   @override
   late final _Translations$profileSetup$en profileSetup = _Translations$profileSetup$en._(_root);
-  @override
-  late final _Translations$programs$en programs = _Translations$programs$en._(_root);
   @override
   late final _Translations$pronouns$en pronouns = _Translations$pronouns$en._(_root);
   @override
@@ -1129,45 +1118,6 @@ class _Translations$common$en extends Translations$common$pt {
   String get keepWriting => 'Keep writing';
 }
 
-// Path: connectTouch
-class _Translations$connectTouch$en extends Translations$connectTouch$pt {
-  _Translations$connectTouch$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Touch';
-  @override
-  String get text => 'Neutral cards, nothing spicy. Do it or skip it, no pressure.';
-  @override
-  String get switchTitle => 'Touch topics';
-  @override
-  String get switchText => 'Applies to both of you: if one turns it off, it goes away for both.';
-  @override
-  String get offTitle => 'Touch topics are off';
-  @override
-  String get offText =>
-      'You or your partner turned them off. You can turn them back on here anytime.';
-  @override
-  String get emptyTitle => 'No cards right now';
-  @override
-  String get emptyText => 'Come back later.';
-  @override
-  String get done => 'Done';
-  @override
-  String get skip => 'Skip';
-  @override
-  String get errorTitle => 'Couldn\'t load';
-  @override
-  String get errorText => 'Try again in a moment.';
-  @override
-  Map<String, String> get errors => {
-    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
-    'other': 'Couldn\'t change that right now. Try again.',
-  };
-}
-
 // Path: connectUs
 class _Translations$connectUs$en extends Translations$connectUs$pt {
   _Translations$connectUs$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -1298,8 +1248,6 @@ class _Translations$dates$en extends Translations$dates$pt {
   @override
   String get segmentDates => 'Dates';
   @override
-  String get segmentGifts => 'Gifts';
-  @override
   String get segmentHolidays => 'Holidays';
   @override
   String get titleLabel => 'Name';
@@ -1384,21 +1332,6 @@ class _Translations$dates$en extends Translations$dates$pt {
   String get emptyDatesTitle => 'No dates yet';
   @override
   String get emptyDatesText => 'Keep birthdays and dates that matter. We remind you ahead.';
-  @override
-  String get giftsPrivate => 'Gift ideas only you see.';
-  @override
-  String get giftHint => 'E.g. book of poems';
-  @override
-  Map<String, String> get giftErrors => {
-    'empty': 'Write the gift idea',
-    'tooLong': 'The gift idea is too long',
-  };
-  @override
-  String get given => 'Given';
-  @override
-  String get emptyGiftsTitle => 'No ideas yet';
-  @override
-  String get emptyGiftsText => 'Jot down gifts when you think of them.';
   @override
   String get emptyHolidaysTitle => 'No holidays here';
   @override
@@ -1516,6 +1449,80 @@ class _Translations$devices$en extends Translations$devices$pt {
     'DEVICE_REVOKE_FAILED': 'Couldn\'t stop notifications on that device. Try again.',
     'other': 'Couldn\'t stop notifications on that device. Try again.',
   };
+}
+
+// Path: diary
+class _Translations$diary$en extends Translations$diary$pt {
+  _Translations$diary$en._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => 'Diary';
+  @override
+  String get privacy => 'Just me. Never shared.';
+  @override
+  String get prompt => 'Today I felt...';
+  @override
+  String get hint => 'Write without hurry. Only you can see this.';
+  @override
+  Map<String, String> get bodyErrors => {
+    'empty': 'Write a little before saving',
+    'tooLong': 'The entry is too long',
+  };
+  @override
+  String get save => 'Save';
+  @override
+  String get newEntry => 'New entry';
+  @override
+  String get edit => 'Edit';
+  @override
+  String get delete => 'Delete';
+  @override
+  String get deleteTitle => 'Delete this entry?';
+  @override
+  String get deleteText => 'This can\'t be undone.';
+  @override
+  String get deleteConfirm => 'Delete';
+  @override
+  String get capHint => 'Showing your last 100 entries.';
+  @override
+  String get emptyTitle => 'Nothing written yet';
+  @override
+  String get emptyText => 'When you want, write how you are. Only you can see it.';
+  @override
+  String get errorTitle => 'Couldn\'t load';
+  @override
+  String get errorText => 'Your entries are still saved. Try again.';
+  @override
+  List<String> get monthsShort => [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  @override
+  String dateLine({required Object month, required Object day, required Object year}) =>
+      '${month} ${day}, ${year}';
+  @override
+  Map<String, String> get moods => {
+    'calm': 'At peace',
+    'tender': 'Held',
+    'tired': 'Tired',
+    'heavy': 'Heavy',
+    'other': 'How I am',
+  };
+  @override
+  Map<String, String> get errors => {'other': 'Couldn\'t save right now. Your text is still here.'};
 }
 
 // Path: distance
@@ -2041,150 +2048,6 @@ class _Translations$griefSupport$en extends Translations$griefSupport$pt {
   String get seeSupport => 'See support';
   @override
   String get backHome => 'Back to the start';
-}
-
-// Path: guides
-class _Translations$guides$en extends Translations$guides$pt {
-  _Translations$guides$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  late final _Translations$guides$hub$en hub = _Translations$guides$hub$en._(_root);
-  @override
-  late final _Translations$guides$viewer$en viewer = _Translations$guides$viewer$en._(_root);
-  @override
-  late final _Translations$guides$gate$en gate = _Translations$guides$gate$en._(_root);
-  @override
-  late final _Translations$guides$finish$en finish = _Translations$guides$finish$en._(_root);
-}
-
-// Path: hardConversation
-class _Translations$hardConversation$en extends Translations$hardConversation$pt {
-  _Translations$hardConversation$en._(TranslationsEn root)
-    : this._root = root,
-      super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Prepare a hard conversation';
-  @override
-  String stepOf({required Object current, required Object total}) => 'Step ${current} of ${total}';
-  @override
-  String get whatTitle => 'What happened?';
-  @override
-  String get whatHint => 'If you want, tell me in your own words';
-  @override
-  String get whatIgnored => 'She felt ignored';
-  @override
-  String get whatMoney => 'We fought about money';
-  @override
-  String get whatMisunderstanding => 'It was a misunderstanding';
-  @override
-  String get whatOther => 'Other: write it';
-  @override
-  String get needTitle => 'What do I need?';
-  @override
-  String get needHint => 'If you want, add something';
-  @override
-  String get needHeard => 'To be heard';
-  @override
-  String get needApology => 'To apologize';
-  @override
-  String get needAgree => 'To agree on something';
-  @override
-  String get sayTitle => 'How to say it';
-  @override
-  String get sayIntro => 'A starting point for you to edit before sending.';
-  @override
-  String get sayHint => 'Your opening sentence';
-  @override
-  Map<String, String> get messageErrors => {
-    'empty': 'Write the sentence first',
-    'tooLong': 'This sentence is too long',
-  };
-  @override
-  String get generating => 'Writing a gentle opening…';
-  @override
-  String get gentler => 'More gentle';
-  @override
-  String get moreDirect => 'More direct';
-  @override
-  String get copy => 'Copy';
-  @override
-  String get copied => 'Copied';
-  @override
-  String get sendAsNote => 'Send as a note';
-  @override
-  String get sent => 'Note sent';
-  @override
-  String get exit => 'Leave';
-  @override
-  String get next => 'Next';
-  @override
-  String get back => 'Back';
-  @override
-  String get retry => 'Try again';
-  @override
-  String get generationFailed => 'Couldn\'t write a sentence right now.';
-  @override
-  String get privateNote =>
-      'The mascot only sees what you write here. Your partner\'s data is never sent.';
-  @override
-  String get offline => 'You\'re offline. The opening sentence needs a connection.';
-  @override
-  String get emptyTitle => 'Couldn\'t load';
-  @override
-  String get emptyText => 'Try again in a moment.';
-  @override
-  String get plusTitle => 'Preparing a conversation is part of Plus';
-  @override
-  String get plusText => 'The three steps and the opening suggestion are in Plus.';
-  @override
-  String get plusCta => 'See plans';
-  @override
-  String get limitTitle => 'Today\'s messages are used up';
-  @override
-  String get limitText => 'Come back tomorrow, or see Plus to prepare more conversations.';
-  @override
-  Map<String, String> get errors => {
-    'CHAT_LIMIT': 'Today\'s messages are used up.',
-    'CHAT_DISABLED': 'The chat is off. Turn it on to use the mascot.',
-    'CHAT_UNAVAILABLE': 'The chat is not available right now.',
-    'UPSTREAM': 'Couldn\'t write a sentence right now. Try again.',
-    'NOT_PAIRED': 'To send this, you need to be connected with your partner in the app.',
-    'other': 'Couldn\'t do that right now. Try again.',
-  };
-}
-
-// Path: help
-class _Translations$help$en extends Translations$help$pt {
-  _Translations$help$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get badDayTitle => 'A hard day';
-  @override
-  String get badDayText => 'Three small things that may help right now. Nothing required.';
-  @override
-  String get starterTitle => 'Start a conversation';
-  @override
-  String get starterText => 'A question to open with, no rush.';
-  @override
-  String get another => 'Another';
-  @override
-  String get emptyTitle => 'Nothing here yet';
-  @override
-  String get emptyText => 'We\'re preparing more suggestions.';
-  @override
-  String get errorTitle => 'Couldn\'t load';
-  @override
-  String get errorText => 'Try again in a moment.';
 }
 
 // Path: helpSupport
@@ -3623,103 +3486,6 @@ class _Translations$loveStyle$en extends Translations$loveStyle$pt {
   };
 }
 
-// Path: memories
-class _Translations$memories$en extends Translations$memories$pt {
-  _Translations$memories$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Memories';
-  @override
-  String get historyLabel => 'OUR HISTORY';
-  @override
-  String get historyTitle => 'Our history';
-  @override
-  String get historyText => 'Milestones, dates, places and our story in numbers.';
-  @override
-  String get placesLabel => 'PLACES';
-  @override
-  String get placesText => 'Only the name of the place, never the location.';
-  @override
-  String get placeLabel => 'Place (optional)';
-  @override
-  String get placeHint => 'E.g. Lisbon';
-  @override
-  String get placeAddressNote => 'Prefer just the name of the place, with no address or number.';
-  @override
-  String get segmentTimeline => 'Timeline';
-  @override
-  String get titleLabel => 'A memory';
-  @override
-  String get titleHint => 'E.g. our first dinner';
-  @override
-  Map<String, String> get titleErrors => {
-    'empty': 'Give this memory a title',
-    'tooLong': 'The title is too long',
-  };
-  @override
-  Map<String, String> get placeErrors => {'tooLong': 'The place is too long'};
-  @override
-  Map<String, String> get bodyErrors => {'tooLong': 'The note is too long'};
-  @override
-  String get bodyHint => 'Tell how it went (optional)';
-  @override
-  String get add => 'Add a memory';
-  @override
-  String get save => 'Save memory';
-  @override
-  String get delete => 'Delete';
-  @override
-  String get deleteTitle => 'Delete this memory?';
-  @override
-  String get deleteText => 'It disappears from the timeline for both of you.';
-  @override
-  String get deleteConfirm => 'Delete';
-  @override
-  String get detailPlace => 'Place';
-  @override
-  String get detailBody => 'How it went';
-  @override
-  List<String> get monthsShort => [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-  @override
-  String dateLine({required Object month, required Object day, required Object year}) =>
-      '${month} ${day}, ${year}';
-  @override
-  String get emptyTitle => 'No memories yet';
-  @override
-  String get emptyText => 'Keep moments you want to look back on.';
-  @override
-  String get errorTitle => 'Couldn\'t load';
-  @override
-  String get errorText => 'Your memories are still saved. Try again.';
-  @override
-  Map<String, String> get errors => {
-    'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
-    'other': 'Couldn\'t do that right now. Your text is still here.',
-  };
-  @override
-  late final _Translations$memories$menu$en menu = _Translations$memories$menu$en._(_root);
-  @override
-  late final _Translations$memories$onThisDay$en onThisDay = _Translations$memories$onThisDay$en._(
-    _root,
-  );
-}
-
 // Path: mood
 class _Translations$mood$en extends Translations$mood$pt {
   _Translations$mood$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -4719,171 +4485,6 @@ class _Translations$profileSetup$en extends Translations$profileSetup$pt {
   String get themeNeutral => 'Neutral';
 }
 
-// Path: programs
-class _Translations$programs$en extends Translations$programs$pt {
-  _Translations$programs$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get label => 'PROGRAMS';
-  @override
-  String get title => 'Programs';
-  @override
-  String get entryText => 'Short guided programs, at your own pace.';
-  @override
-  String get hubSubtitle => 'One idea a day. No rush, no pressure.';
-  @override
-  String get free => 'FREE';
-  @override
-  String get plus => 'PLUS';
-  @override
-  String lessonCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '1 lesson',
-        other: '${count} lessons',
-      );
-  @override
-  String get noLessons => 'Lessons coming';
-  @override
-  String get emptyTitle => 'No programs here yet';
-  @override
-  String get emptyText => 'New programs are on the way. Come back whenever you like.';
-  @override
-  String get errorTitle => 'Couldn\'t load';
-  @override
-  String get errorText => 'The programs are still here. Try again.';
-  @override
-  String get diaryLabel => 'JUST ME';
-  @override
-  String get diaryTitle => 'Diary';
-  @override
-  String get diaryText => 'A private place to write how you are.';
-  @override
-  String get start => 'Start';
-  @override
-  String get kContinue => 'Continue';
-  @override
-  String get restart => 'Start over';
-  @override
-  String get restartConfirmTitle => 'Start over?';
-  @override
-  String get restartConfirmText => 'This clears your lesson marks and returns to the first lesson.';
-  @override
-  String get restartConfirm => 'Start over';
-  @override
-  String get completed => 'Completed';
-  @override
-  String get lessonsTitle => 'Lessons';
-  @override
-  String get lessonsComingTitle => 'Lessons coming';
-  @override
-  String get lessonsComingText => 'This program is still being prepared. Come back soon.';
-  @override
-  String get lessonGoneTitle => 'Lesson not here';
-  @override
-  String get lessonGoneText => 'This day is no longer part of the program. Choose another lesson.';
-  @override
-  String get dayOneHint => 'The first lesson is always open in this program.';
-  @override
-  String dayLabel({required Object day}) => 'Day ${day}';
-  @override
-  String get shortRead => 'A short idea for today.';
-  @override
-  String get ready => 'Done';
-  @override
-  String get saveForLater => 'Save for later';
-  @override
-  String get saved => 'Saved for later.';
-  @override
-  String get savedTag => 'Saved';
-  @override
-  String get lockedTitle => 'Plus lesson';
-  @override
-  String get lockedLessonText => 'This lesson is part of Plus.';
-  @override
-  String get lockedProgramText => 'This program is part of Plus.';
-  @override
-  String get completeTitle => 'Well done';
-  @override
-  String completeText({required Object title}) => 'You completed ${title}.';
-  @override
-  String get completeHint => 'Choose another whenever you want.';
-  @override
-  String get seePrograms => 'See programs';
-  @override
-  String get diaryPrivacy => 'Just me. Never shared.';
-  @override
-  String get diaryPrompt => 'Today I felt...';
-  @override
-  String get diaryHint => 'Write without hurry. Only you can see this.';
-  @override
-  Map<String, String> get diaryBodyErrors => {
-    'empty': 'Write a little before saving',
-    'tooLong': 'The entry is too long',
-  };
-  @override
-  String get diarySave => 'Save';
-  @override
-  String get diaryNew => 'New entry';
-  @override
-  String get diaryEdit => 'Edit';
-  @override
-  String get diaryDelete => 'Delete';
-  @override
-  String get diaryDeleteTitle => 'Delete this entry?';
-  @override
-  String get diaryDeleteText => 'This can\'t be undone.';
-  @override
-  String get diaryDeleteConfirm => 'Delete';
-  @override
-  String get diaryCapHint => 'Showing your last 100 entries.';
-  @override
-  String get diaryEmptyTitle => 'Nothing written yet';
-  @override
-  String get diaryEmptyText => 'When you want, write how you are. Only you can see it.';
-  @override
-  String get diaryErrorTitle => 'Couldn\'t load';
-  @override
-  String get diaryErrorText => 'Your entries are still saved. Try again.';
-  @override
-  List<String> get monthsShort => [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-  @override
-  String dateLine({required Object month, required Object day, required Object year}) =>
-      '${month} ${day}, ${year}';
-  @override
-  Map<String, String> get moods => {
-    'calm': 'At peace',
-    'tender': 'Held',
-    'tired': 'Tired',
-    'heavy': 'Heavy',
-    'other': 'How I am',
-  };
-  @override
-  Map<String, String> get lessonErrors => {'other': 'Couldn\'t do that right now. Try again.'};
-  @override
-  Map<String, String> get diaryErrors => {
-    'other': 'Couldn\'t save right now. Your text is still here.',
-  };
-  @override
-  String get freeNote => 'Free shows only the first lesson.';
-}
-
 // Path: pronouns
 class _Translations$pronouns$en extends Translations$pronouns$pt {
   _Translations$pronouns$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -5567,8 +5168,6 @@ class _Translations$share$en extends Translations$share$pt {
   @override
   String get entrySubtitleToday => 'Your time together and the moon from the day it began.';
   @override
-  String get entrySubtitleMemories => 'A timeline of the moments you kept.';
-  @override
   String get entrySubtitleCard => 'A line from the card that reached you.';
   @override
   String get sheetTitle => 'Share image';
@@ -5580,7 +5179,6 @@ class _Translations$share$en extends Translations$share$pt {
   Map<String, String> get cardLabels => {
     'counter': 'Our time',
     'moon': 'The moon of our day',
-    'timeline': 'Our timeline',
     'quote': 'From a card',
     'other': '',
   };
@@ -5599,10 +5197,6 @@ class _Translations$share$en extends Translations$share$pt {
   String get moonEyebrow => 'THE MOON OF OUR DAY';
   @override
   String get moonSupport => 'This is how the sky looked when it all began.';
-  @override
-  String get timelineEyebrow => 'OUR TIMELINE';
-  @override
-  String get timelineTitle => 'Moments we kept';
   @override
   String get quoteEyebrow => 'FROM A CARD';
   @override
@@ -6165,8 +5759,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get together => 'Together';
   @override
-  String get memories => 'Memories';
-  @override
   String get capture => 'New slip';
   @override
   String get soonTitle => 'Under construction';
@@ -6239,12 +5831,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get chatText => 'A calm conversation that is not kept.';
   @override
-  String get hardTalkLabel => 'HARD CONVERSATION';
-  @override
-  String get hardTalkTitle => 'Prepare a hard conversation';
-  @override
-  String get hardTalkText => 'The mascot helps you sort out what to say.';
-  @override
   String get notesLabel => 'FOR YOUR PARTNER';
   @override
   String get notesTitle => 'A note or a drawing';
@@ -6256,12 +5842,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get usTitle => 'I miss us';
   @override
   String get usText => 'A light tap for your partner, no pressure.';
-  @override
-  String get touchLabel => 'TOUCH';
-  @override
-  String get touchTitle => 'Touch cards';
-  @override
-  String get touchText => 'Neutral, to do or skip.';
   @override
   String get distanceLabel => 'DISTANCE';
   @override
@@ -6284,18 +5864,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get datesTitle => 'Important dates';
   @override
   String get datesText => 'Birthdays, gifts and holidays, with a heads-up.';
-  @override
-  String get badDayLabel => 'HELP';
-  @override
-  String get badDayTitle => 'A hard day';
-  @override
-  String get badDayText => 'Three small things to do right now.';
-  @override
-  String get starterLabel => 'TALK';
-  @override
-  String get starterTitle => 'Start a conversation';
-  @override
-  String get starterText => 'A question to open with, no rush.';
   @override
   String get dayLabel => 'DAY';
   @override
@@ -6323,12 +5891,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get fightStyleLabel => 'JUST FOR YOU';
   @override
-  String get guidesLabel => 'CONVERSATIONS';
-  @override
-  String get guidesTitle => 'Difficult conversations';
-  @override
-  String get guidesText => 'One step at a time, just for you.';
-  @override
   String get gamesLabel => 'GAMES';
   @override
   String get gamesTitle => 'Play together';
@@ -6351,8 +5913,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get dateNightMeta => 'For you two';
   @override
-  String get programsMeta => 'Micro-lessons';
-  @override
   String get checkinMeta => 'Once a week';
   @override
   String get questionMeta => 'One for both';
@@ -6370,10 +5930,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
         other: '${count} wishes',
       );
   @override
-  String get guidesMeta => 'One step at a time';
-  @override
-  String get starterMeta => 'One question';
-  @override
   String get dayMeta => 'One day at a time';
   @override
   String get capsulesMeta => 'For the future';
@@ -6384,19 +5940,15 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get usMeta => 'One touch';
   @override
-  String get touchMeta => 'Neutral cards';
-  @override
-  String get badDayMeta => 'Three small things';
-  @override
   String get distanceMeta => 'Time zones and reunion';
+  @override
+  String get diaryTitle => 'Diary';
   @override
   String get diaryMeta => 'Only yours';
   @override
   String get moodCalendarTitle => 'My moods';
   @override
   String get moodCalendarMeta => 'Your month, only you';
-  @override
-  String get hardTalkMeta => 'Notes before you talk';
   @override
   String get notesMeta => 'When you want';
   @override
@@ -7385,105 +6937,6 @@ class _Translations$games$common$en extends Translations$games$common$pt {
   String get back => 'Back';
 }
 
-// Path: guides.hub
-class _Translations$guides$hub$en extends Translations$guides$hub$pt {
-  _Translations$guides$hub$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Difficult conversations';
-  @override
-  String get titleHighlight => 'Difficult';
-  @override
-  String get subtitle => 'One step at a time, in private.';
-  @override
-  String get privateNote => 'Your notes stay with you. Nothing is sent to your partner.';
-  @override
-  String stepCount({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '1 step',
-        other: '${count} steps',
-      );
-  @override
-  String get loadErrorTitle => 'Could not open the topics';
-  @override
-  String get loadErrorText => 'Nothing was lost. Try again.';
-}
-
-// Path: guides.viewer
-class _Translations$guides$viewer$en extends Translations$guides$viewer$pt {
-  _Translations$guides$viewer$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String stepOf({required Object current, required Object total}) => 'Step ${current} of ${total}';
-  @override
-  String get answerHint => 'Write whatever makes sense. It can stay blank.';
-  @override
-  String get stepNote => 'Saved as you go. Only you can see it.';
-  @override
-  String get next => 'Next';
-  @override
-  String get finish => 'Finish';
-  @override
-  String get back => 'Back';
-  @override
-  String get loadErrorTitle => 'Could not open this conversation';
-  @override
-  String get loadErrorText => 'Nothing was lost. Try again.';
-  @override
-  Map<String, String> get errors => {
-    'other': 'Could not save right now. Your answers are still here.',
-  };
-}
-
-// Path: guides.gate
-class _Translations$guides$gate$en extends Translations$guides$gate$pt {
-  _Translations$guides$gate$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'A sensitive topic';
-  @override
-  String get text =>
-      'This topic is about intimacy and is meant for adults. You can go slowly or choose another topic whenever you like.';
-  @override
-  String get cycleText =>
-      'This topic is about your body and mood through the month and is meant for adults. You can go slowly or choose another topic whenever you like.';
-  @override
-  String get continueAction => 'Continue';
-  @override
-  String get otherAction => 'See other topics';
-}
-
-// Path: guides.finish
-class _Translations$guides$finish$en extends Translations$guides$finish$pt {
-  _Translations$guides$finish$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get title => 'Your conversation is ready';
-  @override
-  String get titleHighlight => 'ready';
-  @override
-  String get text => 'Your notes are saved to your account, privately.';
-  @override
-  String get finishSaved => 'Saved only for you.';
-  @override
-  String get start => 'Start a conversation';
-  @override
-  String get other => 'Back to topics';
-}
-
 // Path: intro.phase
 class _Translations$intro$phase$en extends Translations$intro$phase$pt {
   _Translations$intro$phase$en._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -7561,53 +7014,6 @@ class _Translations$intro$theme$en extends Translations$intro$theme$pt {
   String get neutralSupport => 'Paper and green';
   @override
   String get footnote => 'You can change it later in Settings, Appearance.';
-}
-
-// Path: memories.menu
-class _Translations$memories$menu$en extends Translations$memories$menu$pt {
-  _Translations$memories$menu$en._(TranslationsEn root) : this._root = root, super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get timeline => 'Timeline';
-  @override
-  String get timelineText => 'Memories you kept';
-  @override
-  String get storyText => 'Milestones, places and numbers';
-  @override
-  String get dates => 'Dates and numbers';
-  @override
-  String get datesText => 'Anniversaries, holidays and counts';
-  @override
-  String get diary => 'Diary';
-  @override
-  String get diaryText => 'Only yours, never goes to the other person';
-  @override
-  String get gifts => 'Gift ideas';
-  @override
-  String get giftsText => 'Each one\'s wishes and ideas for the other';
-}
-
-// Path: memories.onThisDay
-class _Translations$memories$onThisDay$en extends Translations$memories$onThisDay$pt {
-  _Translations$memories$onThisDay$en._(TranslationsEn root)
-    : this._root = root,
-      super.internal(root);
-
-  final TranslationsEn _root; // ignore: unused_field
-
-  // Translations
-  @override
-  String get label => 'ON THIS DAY';
-  @override
-  String yearsAgo({required num count}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-        count,
-        one: '1 year ago',
-        other: '${count} years ago',
-      );
 }
 
 // Path: need.sent
@@ -9284,22 +8690,6 @@ extension on TranslationsEn {
           'common.discardText' => 'What you wrote won\'t be saved.',
           'common.discard' => 'Discard',
           'common.keepWriting' => 'Keep writing',
-          'connectTouch.title' => 'Touch',
-          'connectTouch.text' => 'Neutral cards, nothing spicy. Do it or skip it, no pressure.',
-          'connectTouch.switchTitle' => 'Touch topics',
-          'connectTouch.switchText' =>
-            'Applies to both of you: if one turns it off, it goes away for both.',
-          'connectTouch.offTitle' => 'Touch topics are off',
-          'connectTouch.offText' =>
-            'You or your partner turned them off. You can turn them back on here anytime.',
-          'connectTouch.emptyTitle' => 'No cards right now',
-          'connectTouch.emptyText' => 'Come back later.',
-          'connectTouch.done' => 'Done',
-          'connectTouch.skip' => 'Skip',
-          'connectTouch.errorTitle' => 'Couldn\'t load',
-          'connectTouch.errorText' => 'Try again in a moment.',
-          'connectTouch.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
-          'connectTouch.errors.other' => 'Couldn\'t change that right now. Try again.',
           'connectUs.title' => 'I miss us',
           'connectUs.text' =>
             'Send “I miss us” with one tap. Light, no guilt. Your partner doesn\'t have to answer.',
@@ -9332,9 +8722,6 @@ extension on TranslationsEn {
           'dateNight.monthsShort.1' => 'Feb',
           'dateNight.monthsShort.2' => 'Mar',
           'dateNight.monthsShort.3' => 'Apr',
-          _ => null,
-        } ??
-        switch (path) {
           'dateNight.monthsShort.4' => 'May',
           'dateNight.monthsShort.5' => 'Jun',
           'dateNight.monthsShort.6' => 'Jul',
@@ -9349,6 +8736,9 @@ extension on TranslationsEn {
           'dateNight.planChoices.sunday' => 'Plan for Sunday',
           'dateNight.planChoices.other' => '',
           'dateNight.markDone' => 'We did it',
+          _ => null,
+        } ??
+        switch (path) {
           'dateNight.reopen' => 'Back to ideas',
           'dateNight.done' => 'Done',
           'dateNight.delete' => 'Delete',
@@ -9360,7 +8750,6 @@ extension on TranslationsEn {
           'dateNight.errors.other' => 'Couldn\'t do that right now. Try again.',
           'dates.title' => 'Dates',
           'dates.segmentDates' => 'Dates',
-          'dates.segmentGifts' => 'Gifts',
           'dates.segmentHolidays' => 'Holidays',
           'dates.titleLabel' => 'Name',
           'dates.titleHint' => 'E.g. their birthday',
@@ -9418,13 +8807,6 @@ extension on TranslationsEn {
           'dates.add' => 'Add',
           'dates.emptyDatesTitle' => 'No dates yet',
           'dates.emptyDatesText' => 'Keep birthdays and dates that matter. We remind you ahead.',
-          'dates.giftsPrivate' => 'Gift ideas only you see.',
-          'dates.giftHint' => 'E.g. book of poems',
-          'dates.giftErrors.empty' => 'Write the gift idea',
-          'dates.giftErrors.tooLong' => 'The gift idea is too long',
-          'dates.given' => 'Given',
-          'dates.emptyGiftsTitle' => 'No ideas yet',
-          'dates.emptyGiftsText' => 'Jot down gifts when you think of them.',
           'dates.emptyHolidaysTitle' => 'No holidays here',
           'dates.emptyHolidaysText' => 'The calendar has no holidays for you yet.',
           'dates.errorTitle' => 'Couldn\'t load',
@@ -9483,6 +8865,47 @@ extension on TranslationsEn {
           'devices.errors.DEVICE_REVOKE_FAILED' =>
             'Couldn\'t stop notifications on that device. Try again.',
           'devices.errors.other' => 'Couldn\'t stop notifications on that device. Try again.',
+          'diary.title' => 'Diary',
+          'diary.privacy' => 'Just me. Never shared.',
+          'diary.prompt' => 'Today I felt...',
+          'diary.hint' => 'Write without hurry. Only you can see this.',
+          'diary.bodyErrors.empty' => 'Write a little before saving',
+          'diary.bodyErrors.tooLong' => 'The entry is too long',
+          'diary.save' => 'Save',
+          'diary.newEntry' => 'New entry',
+          'diary.edit' => 'Edit',
+          'diary.delete' => 'Delete',
+          'diary.deleteTitle' => 'Delete this entry?',
+          'diary.deleteText' => 'This can\'t be undone.',
+          'diary.deleteConfirm' => 'Delete',
+          'diary.capHint' => 'Showing your last 100 entries.',
+          'diary.emptyTitle' => 'Nothing written yet',
+          'diary.emptyText' => 'When you want, write how you are. Only you can see it.',
+          'diary.errorTitle' => 'Couldn\'t load',
+          'diary.errorText' => 'Your entries are still saved. Try again.',
+          'diary.monthsShort.0' => 'Jan',
+          'diary.monthsShort.1' => 'Feb',
+          'diary.monthsShort.2' => 'Mar',
+          'diary.monthsShort.3' => 'Apr',
+          'diary.monthsShort.4' => 'May',
+          'diary.monthsShort.5' => 'Jun',
+          'diary.monthsShort.6' => 'Jul',
+          'diary.monthsShort.7' => 'Aug',
+          'diary.monthsShort.8' => 'Sep',
+          'diary.monthsShort.9' => 'Oct',
+          'diary.monthsShort.10' => 'Nov',
+          'diary.monthsShort.11' => 'Dec',
+          'diary.dateLine' => ({
+            required Object month,
+            required Object day,
+            required Object year,
+          }) => '${month} ${day}, ${year}',
+          'diary.moods.calm' => 'At peace',
+          'diary.moods.tender' => 'Held',
+          'diary.moods.tired' => 'Tired',
+          'diary.moods.heavy' => 'Heavy',
+          'diary.moods.other' => 'How I am',
+          'diary.errors.other' => 'Couldn\'t save right now. Your text is still here.',
           'distance.title' => 'Distance',
           'distance.text' => 'Two clocks, each in its own time zone, never mixed up.',
           'distance.you' => 'You',
@@ -9926,106 +9349,6 @@ extension on TranslationsEn {
           'griefSupport.text' => 'Your memories stay here, at your pace.',
           'griefSupport.seeSupport' => 'See support',
           'griefSupport.backHome' => 'Back to the start',
-          'guides.hub.title' => 'Difficult conversations',
-          'guides.hub.titleHighlight' => 'Difficult',
-          'guides.hub.subtitle' => 'One step at a time, in private.',
-          'guides.hub.privateNote' => 'Your notes stay with you. Nothing is sent to your partner.',
-          'guides.hub.stepCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '1 step',
-                  other: '${count} steps',
-                ),
-          'guides.hub.loadErrorTitle' => 'Could not open the topics',
-          'guides.hub.loadErrorText' => 'Nothing was lost. Try again.',
-          'guides.viewer.stepOf' => ({
-            required Object current,
-            required Object total,
-          }) => 'Step ${current} of ${total}',
-          'guides.viewer.answerHint' => 'Write whatever makes sense. It can stay blank.',
-          'guides.viewer.stepNote' => 'Saved as you go. Only you can see it.',
-          'guides.viewer.next' => 'Next',
-          'guides.viewer.finish' => 'Finish',
-          'guides.viewer.back' => 'Back',
-          'guides.viewer.loadErrorTitle' => 'Could not open this conversation',
-          'guides.viewer.loadErrorText' => 'Nothing was lost. Try again.',
-          'guides.viewer.errors.other' => 'Could not save right now. Your answers are still here.',
-          'guides.gate.title' => 'A sensitive topic',
-          'guides.gate.text' => 'This topic is about intimacy and is meant for adults. You can go slowly or choose another topic whenever you like.',
-          'guides.gate.cycleText' => 'This topic is about your body and mood through the month and is meant for adults. You can go slowly or choose another topic whenever you like.',
-          'guides.gate.continueAction' => 'Continue',
-          'guides.gate.otherAction' => 'See other topics',
-          'guides.finish.title' => 'Your conversation is ready',
-          'guides.finish.titleHighlight' => 'ready',
-          'guides.finish.text' => 'Your notes are saved to your account, privately.',
-          'guides.finish.finishSaved' => 'Saved only for you.',
-          'guides.finish.start' => 'Start a conversation',
-          'guides.finish.other' => 'Back to topics',
-          'hardConversation.title' => 'Prepare a hard conversation',
-          'hardConversation.stepOf' => ({
-            required Object current,
-            required Object total,
-          }) => 'Step ${current} of ${total}',
-          'hardConversation.whatTitle' => 'What happened?',
-          'hardConversation.whatHint' => 'If you want, tell me in your own words',
-          'hardConversation.whatIgnored' => 'She felt ignored',
-          'hardConversation.whatMoney' => 'We fought about money',
-          'hardConversation.whatMisunderstanding' => 'It was a misunderstanding',
-          'hardConversation.whatOther' => 'Other: write it',
-          'hardConversation.needTitle' => 'What do I need?',
-          'hardConversation.needHint' => 'If you want, add something',
-          _ => null,
-        } ??
-        switch (path) {
-          'hardConversation.needHeard' => 'To be heard',
-          'hardConversation.needApology' => 'To apologize',
-          'hardConversation.needAgree' => 'To agree on something',
-          'hardConversation.sayTitle' => 'How to say it',
-          'hardConversation.sayIntro' => 'A starting point for you to edit before sending.',
-          'hardConversation.sayHint' => 'Your opening sentence',
-          'hardConversation.messageErrors.empty' => 'Write the sentence first',
-          'hardConversation.messageErrors.tooLong' => 'This sentence is too long',
-          'hardConversation.generating' => 'Writing a gentle opening…',
-          'hardConversation.gentler' => 'More gentle',
-          'hardConversation.moreDirect' => 'More direct',
-          'hardConversation.copy' => 'Copy',
-          'hardConversation.copied' => 'Copied',
-          'hardConversation.sendAsNote' => 'Send as a note',
-          'hardConversation.sent' => 'Note sent',
-          'hardConversation.exit' => 'Leave',
-          'hardConversation.next' => 'Next',
-          'hardConversation.back' => 'Back',
-          'hardConversation.retry' => 'Try again',
-          'hardConversation.generationFailed' => 'Couldn\'t write a sentence right now.',
-          'hardConversation.privateNote' =>
-            'The mascot only sees what you write here. Your partner\'s data is never sent.',
-          'hardConversation.offline' => 'You\'re offline. The opening sentence needs a connection.',
-          'hardConversation.emptyTitle' => 'Couldn\'t load',
-          'hardConversation.emptyText' => 'Try again in a moment.',
-          'hardConversation.plusTitle' => 'Preparing a conversation is part of Plus',
-          'hardConversation.plusText' => 'The three steps and the opening suggestion are in Plus.',
-          'hardConversation.plusCta' => 'See plans',
-          'hardConversation.limitTitle' => 'Today\'s messages are used up',
-          'hardConversation.limitText' =>
-            'Come back tomorrow, or see Plus to prepare more conversations.',
-          'hardConversation.errors.CHAT_LIMIT' => 'Today\'s messages are used up.',
-          'hardConversation.errors.CHAT_DISABLED' =>
-            'The chat is off. Turn it on to use the mascot.',
-          'hardConversation.errors.CHAT_UNAVAILABLE' => 'The chat is not available right now.',
-          'hardConversation.errors.UPSTREAM' => 'Couldn\'t write a sentence right now. Try again.',
-          'hardConversation.errors.NOT_PAIRED' =>
-            'To send this, you need to be connected with your partner in the app.',
-          'hardConversation.errors.other' => 'Couldn\'t do that right now. Try again.',
-          'help.badDayTitle' => 'A hard day',
-          'help.badDayText' => 'Three small things that may help right now. Nothing required.',
-          'help.starterTitle' => 'Start a conversation',
-          'help.starterText' => 'A question to open with, no rush.',
-          'help.another' => 'Another',
-          'help.emptyTitle' => 'Nothing here yet',
-          'help.emptyText' => 'We\'re preparing more suggestions.',
-          'help.errorTitle' => 'Couldn\'t load',
-          'help.errorText' => 'Try again in a moment.',
           'helpSupport.title' => 'Help',
           'helpSupport.contactTitle' => 'Talk to support',
           'helpSupport.reportBug' => 'Report a bug',
@@ -10050,6 +9373,9 @@ extension on TranslationsEn {
           'helpSupport.topics.bug' => 'Bug',
           'helpSupport.topics.other' => 'Other',
           'helpSupport.messageLabel' => 'Message',
+          _ => null,
+        } ??
+        switch (path) {
           'helpSupport.messageHint' => 'Tell us what happened, with as much detail as you like.',
           'helpSupport.messageErrors.empty' => 'Write your message first',
           'helpSupport.messageErrors.tooLong' => 'The message is too long',
@@ -10720,9 +10046,6 @@ extension on TranslationsEn {
           'lists.private' => 'Private',
           'lists.emptyTitle' => 'No lists yet',
           'lists.emptyTextShared' => 'Start a list of things you want to do together.',
-          _ => null,
-        } ??
-        switch (path) {
           'lists.emptyTextPrivate' => 'Start a list of things you want to keep for yourself.',
           'lists.create' => 'Create list',
           'lists.rename' => 'Rename',
@@ -10792,6 +10115,9 @@ extension on TranslationsEn {
           'loveStyle.questionHighlights.0' => 'loved',
           'loveStyle.questionHighlights.1' => 'comforts',
           'loveStyle.questionHighlights.2' => 'care',
+          _ => null,
+        } ??
+        switch (path) {
           'loveStyle.questionHighlights.3' => 'heart',
           'loveStyle.questionHighlights.4' => 'important',
           'loveStyle.questionHighlights.5' => 'gesture',
@@ -10908,72 +10234,6 @@ extension on TranslationsEn {
           'loveStyle.shareErrors.other' => 'Couldn\'t show it right now. Try again.',
           'loveStyle.revokeErrors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'loveStyle.revokeErrors.other' => 'Couldn\'t stop showing it right now. Try again.',
-          'memories.title' => 'Memories',
-          'memories.historyLabel' => 'OUR HISTORY',
-          'memories.historyTitle' => 'Our history',
-          'memories.historyText' => 'Milestones, dates, places and our story in numbers.',
-          'memories.placesLabel' => 'PLACES',
-          'memories.placesText' => 'Only the name of the place, never the location.',
-          'memories.placeLabel' => 'Place (optional)',
-          'memories.placeHint' => 'E.g. Lisbon',
-          'memories.placeAddressNote' =>
-            'Prefer just the name of the place, with no address or number.',
-          'memories.segmentTimeline' => 'Timeline',
-          'memories.titleLabel' => 'A memory',
-          'memories.titleHint' => 'E.g. our first dinner',
-          'memories.titleErrors.empty' => 'Give this memory a title',
-          'memories.titleErrors.tooLong' => 'The title is too long',
-          'memories.placeErrors.tooLong' => 'The place is too long',
-          'memories.bodyErrors.tooLong' => 'The note is too long',
-          'memories.bodyHint' => 'Tell how it went (optional)',
-          'memories.add' => 'Add a memory',
-          'memories.save' => 'Save memory',
-          'memories.delete' => 'Delete',
-          'memories.deleteTitle' => 'Delete this memory?',
-          'memories.deleteText' => 'It disappears from the timeline for both of you.',
-          'memories.deleteConfirm' => 'Delete',
-          'memories.detailPlace' => 'Place',
-          'memories.detailBody' => 'How it went',
-          'memories.monthsShort.0' => 'Jan',
-          'memories.monthsShort.1' => 'Feb',
-          'memories.monthsShort.2' => 'Mar',
-          'memories.monthsShort.3' => 'Apr',
-          'memories.monthsShort.4' => 'May',
-          'memories.monthsShort.5' => 'Jun',
-          'memories.monthsShort.6' => 'Jul',
-          'memories.monthsShort.7' => 'Aug',
-          'memories.monthsShort.8' => 'Sep',
-          'memories.monthsShort.9' => 'Oct',
-          'memories.monthsShort.10' => 'Nov',
-          'memories.monthsShort.11' => 'Dec',
-          'memories.dateLine' => ({
-            required Object month,
-            required Object day,
-            required Object year,
-          }) => '${month} ${day}, ${year}',
-          'memories.emptyTitle' => 'No memories yet',
-          'memories.emptyText' => 'Keep moments you want to look back on.',
-          'memories.errorTitle' => 'Couldn\'t load',
-          'memories.errorText' => 'Your memories are still saved. Try again.',
-          'memories.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
-          'memories.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
-          'memories.menu.timeline' => 'Timeline',
-          'memories.menu.timelineText' => 'Memories you kept',
-          'memories.menu.storyText' => 'Milestones, places and numbers',
-          'memories.menu.dates' => 'Dates and numbers',
-          'memories.menu.datesText' => 'Anniversaries, holidays and counts',
-          'memories.menu.diary' => 'Diary',
-          'memories.menu.diaryText' => 'Only yours, never goes to the other person',
-          'memories.menu.gifts' => 'Gift ideas',
-          'memories.menu.giftsText' => 'Each one\'s wishes and ideas for the other',
-          'memories.onThisDay.label' => 'ON THIS DAY',
-          'memories.onThisDay.yearsAgo' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '1 year ago',
-                  other: '${count} years ago',
-                ),
           'mood.title' => 'How are you today?',
           'mood.titleHighlight' => 'today',
           'mood.subtitle' => 'One tap. The “I need…” tag is optional.',
@@ -11299,9 +10559,6 @@ extension on TranslationsEn {
           'partnerProfile.errorText' => 'Your notes are still saved. Try again.',
           'partnerProfile.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'partnerProfile.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
-          _ => null,
-        } ??
-        switch (path) {
           'partnerStep.title' => 'Want to bring your partner?',
           'partnerStep.titleHighlight' => 'partner',
           'partnerStep.subtitle' => 'The app works on your own. Invite whenever you want.',
@@ -11448,6 +10705,9 @@ extension on TranslationsEn {
           'profileDetails.saved' => 'Saved',
           'profileDetails.loadErrorTitle' => 'Could not load your profile',
           'profileDetails.loadErrorText' => 'Check your connection and try again.',
+          _ => null,
+        } ??
+        switch (path) {
           'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
           'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           'profileDetails.timeZones.America/Bogota' => 'Bogotá',
@@ -11505,97 +10765,6 @@ extension on TranslationsEn {
           'profileSetup.themeRose' => 'Rose',
           'profileSetup.themeBlue' => 'Blue',
           'profileSetup.themeNeutral' => 'Neutral',
-          'programs.label' => 'PROGRAMS',
-          'programs.title' => 'Programs',
-          'programs.entryText' => 'Short guided programs, at your own pace.',
-          'programs.hubSubtitle' => 'One idea a day. No rush, no pressure.',
-          'programs.free' => 'FREE',
-          'programs.plus' => 'PLUS',
-          'programs.lessonCount' =>
-            ({required num count}) =>
-                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
-                  count,
-                  one: '1 lesson',
-                  other: '${count} lessons',
-                ),
-          'programs.noLessons' => 'Lessons coming',
-          'programs.emptyTitle' => 'No programs here yet',
-          'programs.emptyText' => 'New programs are on the way. Come back whenever you like.',
-          'programs.errorTitle' => 'Couldn\'t load',
-          'programs.errorText' => 'The programs are still here. Try again.',
-          'programs.diaryLabel' => 'JUST ME',
-          'programs.diaryTitle' => 'Diary',
-          'programs.diaryText' => 'A private place to write how you are.',
-          'programs.start' => 'Start',
-          'programs.kContinue' => 'Continue',
-          'programs.restart' => 'Start over',
-          'programs.restartConfirmTitle' => 'Start over?',
-          'programs.restartConfirmText' =>
-            'This clears your lesson marks and returns to the first lesson.',
-          'programs.restartConfirm' => 'Start over',
-          'programs.completed' => 'Completed',
-          'programs.lessonsTitle' => 'Lessons',
-          'programs.lessonsComingTitle' => 'Lessons coming',
-          'programs.lessonsComingText' => 'This program is still being prepared. Come back soon.',
-          'programs.lessonGoneTitle' => 'Lesson not here',
-          'programs.lessonGoneText' =>
-            'This day is no longer part of the program. Choose another lesson.',
-          'programs.dayOneHint' => 'The first lesson is always open in this program.',
-          'programs.dayLabel' => ({required Object day}) => 'Day ${day}',
-          'programs.shortRead' => 'A short idea for today.',
-          'programs.ready' => 'Done',
-          'programs.saveForLater' => 'Save for later',
-          'programs.saved' => 'Saved for later.',
-          'programs.savedTag' => 'Saved',
-          'programs.lockedTitle' => 'Plus lesson',
-          'programs.lockedLessonText' => 'This lesson is part of Plus.',
-          'programs.lockedProgramText' => 'This program is part of Plus.',
-          'programs.completeTitle' => 'Well done',
-          'programs.completeText' => ({required Object title}) => 'You completed ${title}.',
-          'programs.completeHint' => 'Choose another whenever you want.',
-          'programs.seePrograms' => 'See programs',
-          'programs.diaryPrivacy' => 'Just me. Never shared.',
-          'programs.diaryPrompt' => 'Today I felt...',
-          'programs.diaryHint' => 'Write without hurry. Only you can see this.',
-          'programs.diaryBodyErrors.empty' => 'Write a little before saving',
-          'programs.diaryBodyErrors.tooLong' => 'The entry is too long',
-          'programs.diarySave' => 'Save',
-          'programs.diaryNew' => 'New entry',
-          'programs.diaryEdit' => 'Edit',
-          'programs.diaryDelete' => 'Delete',
-          'programs.diaryDeleteTitle' => 'Delete this entry?',
-          'programs.diaryDeleteText' => 'This can\'t be undone.',
-          'programs.diaryDeleteConfirm' => 'Delete',
-          'programs.diaryCapHint' => 'Showing your last 100 entries.',
-          'programs.diaryEmptyTitle' => 'Nothing written yet',
-          'programs.diaryEmptyText' => 'When you want, write how you are. Only you can see it.',
-          'programs.diaryErrorTitle' => 'Couldn\'t load',
-          'programs.diaryErrorText' => 'Your entries are still saved. Try again.',
-          'programs.monthsShort.0' => 'Jan',
-          'programs.monthsShort.1' => 'Feb',
-          'programs.monthsShort.2' => 'Mar',
-          'programs.monthsShort.3' => 'Apr',
-          'programs.monthsShort.4' => 'May',
-          'programs.monthsShort.5' => 'Jun',
-          'programs.monthsShort.6' => 'Jul',
-          'programs.monthsShort.7' => 'Aug',
-          'programs.monthsShort.8' => 'Sep',
-          'programs.monthsShort.9' => 'Oct',
-          'programs.monthsShort.10' => 'Nov',
-          'programs.monthsShort.11' => 'Dec',
-          'programs.dateLine' => ({
-            required Object month,
-            required Object day,
-            required Object year,
-          }) => '${month} ${day}, ${year}',
-          'programs.moods.calm' => 'At peace',
-          'programs.moods.tender' => 'Held',
-          'programs.moods.tired' => 'Tired',
-          'programs.moods.heavy' => 'Heavy',
-          'programs.moods.other' => 'How I am',
-          'programs.lessonErrors.other' => 'Couldn\'t do that right now. Try again.',
-          'programs.diaryErrors.other' => 'Couldn\'t save right now. Your text is still here.',
-          'programs.freeNote' => 'Free shows only the first lesson.',
           'pronouns.options.she' => 'She',
           'pronouns.options.he' => 'He',
           'pronouns.options.nameOnly' => 'Name only',
@@ -11895,9 +11064,6 @@ extension on TranslationsEn {
           'repair.guided.stepHints.0' => 'In your own words, without blaming anyone.',
           'repair.guided.stepHints.1' => 'One thing that would help right now.',
           'repair.guided.stepHints.2' => 'Something small and sincere.',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.guided.private' => 'Only you see this. Nothing is sent to your partner.',
           'repair.guided.next' => 'Continue',
           'repair.guided.back' => 'Back',
@@ -12050,7 +11216,6 @@ extension on TranslationsEn {
           'settingsHome.connectedWith' => ({required Object name}) => 'Connected with ${name}',
           'share.entryTitle' => 'Share image',
           'share.entrySubtitleToday' => 'Your time together and the moon from the day it began.',
-          'share.entrySubtitleMemories' => 'A timeline of the moments you kept.',
           'share.entrySubtitleCard' => 'A line from the card that reached you.',
           'share.sheetTitle' => 'Share image',
           'share.sheetSubtitle' =>
@@ -12058,7 +11223,6 @@ extension on TranslationsEn {
           'share.shareAction' => 'Share',
           'share.cardLabels.counter' => 'Our time',
           'share.cardLabels.moon' => 'The moon of our day',
-          'share.cardLabels.timeline' => 'Our timeline',
           'share.cardLabels.quote' => 'From a card',
           'share.cardLabels.other' => '',
           'share.counterEyebrow' => 'OUR TIME',
@@ -12072,8 +11236,6 @@ extension on TranslationsEn {
           'share.counterSince' => ({required Object date}) => 'Since ${date}',
           'share.moonEyebrow' => 'THE MOON OF OUR DAY',
           'share.moonSupport' => 'This is how the sky looked when it all began.',
-          'share.timelineEyebrow' => 'OUR TIMELINE',
-          'share.timelineTitle' => 'Moments we kept',
           'share.quoteEyebrow' => 'FROM A CARD',
           'share.quoteText' => ({required Object quote}) => '“${quote}”',
           'share.quoteFromName' => ({required Object name}) => '— ${name}',
@@ -12124,6 +11286,9 @@ extension on TranslationsEn {
           'slipDetail.monthsShort.2' => 'Mar',
           'slipDetail.monthsShort.3' => 'Apr',
           'slipDetail.monthsShort.4' => 'May',
+          _ => null,
+        } ??
+        switch (path) {
           'slipDetail.monthsShort.5' => 'Jun',
           'slipDetail.monthsShort.6' => 'Jul',
           'slipDetail.monthsShort.7' => 'Aug',
@@ -12492,9 +11657,6 @@ extension on TranslationsEn {
             'Set since when you are together in Our history to create the image.',
           'story.errorTitle' => 'Couldn\'t load',
           'story.errorText' => 'Try again in a moment.',
-          _ => null,
-        } ??
-        switch (path) {
           'story.errors.other' => 'Couldn\'t share right now. Try again.',
           'sundayCard.title' => 'Your card',
           'sundayCard.edit' => 'Edit',
@@ -12558,7 +11720,6 @@ extension on TranslationsEn {
           'tabs.today' => 'Today',
           'tabs.slips' => 'Slips',
           'tabs.together' => 'Together',
-          'tabs.memories' => 'Memories',
           'tabs.capture' => 'New slip',
           'tabs.soonTitle' => 'Under construction',
           'tabs.soonText' => 'This part of the app is still being prepared.',
@@ -12602,18 +11763,12 @@ extension on TranslationsEn {
           'tabs.chatLabel' => 'TALK',
           'tabs.chatTitle' => 'Mascot',
           'tabs.chatText' => 'A calm conversation that is not kept.',
-          'tabs.hardTalkLabel' => 'HARD CONVERSATION',
-          'tabs.hardTalkTitle' => 'Prepare a hard conversation',
-          'tabs.hardTalkText' => 'The mascot helps you sort out what to say.',
           'tabs.notesLabel' => 'FOR YOUR PARTNER',
           'tabs.notesTitle' => 'A note or a drawing',
           'tabs.notesText' => 'Send something short and kind, whenever you like.',
           'tabs.usLabel' => 'US',
           'tabs.usTitle' => 'I miss us',
           'tabs.usText' => 'A light tap for your partner, no pressure.',
-          'tabs.touchLabel' => 'TOUCH',
-          'tabs.touchTitle' => 'Touch cards',
-          'tabs.touchText' => 'Neutral, to do or skip.',
           'tabs.distanceLabel' => 'DISTANCE',
           'tabs.distanceTitle' => 'Our two clocks',
           'tabs.distanceText' => 'Time zones and the countdown to seeing each other.',
@@ -12625,12 +11780,6 @@ extension on TranslationsEn {
           'tabs.datesLabel' => 'DATES',
           'tabs.datesTitle' => 'Important dates',
           'tabs.datesText' => 'Birthdays, gifts and holidays, with a heads-up.',
-          'tabs.badDayLabel' => 'HELP',
-          'tabs.badDayTitle' => 'A hard day',
-          'tabs.badDayText' => 'Three small things to do right now.',
-          'tabs.starterLabel' => 'TALK',
-          'tabs.starterTitle' => 'Start a conversation',
-          'tabs.starterText' => 'A question to open with, no rush.',
           'tabs.dayLabel' => 'DAY',
           'tabs.dayTitle' => 'Day by day',
           'tabs.dayText' => 'What matters on each day.',
@@ -12644,9 +11793,6 @@ extension on TranslationsEn {
           'tabs.learningTitle' => 'What you learned',
           'tabs.learningText' => 'Private notes you can delete.',
           'tabs.fightStyleLabel' => 'JUST FOR YOU',
-          'tabs.guidesLabel' => 'CONVERSATIONS',
-          'tabs.guidesTitle' => 'Difficult conversations',
-          'tabs.guidesText' => 'One step at a time, just for you.',
           'tabs.gamesLabel' => 'GAMES',
           'tabs.gamesTitle' => 'Play together',
           'tabs.gamesText' => 'Short games, no scores and no winner.',
@@ -12658,7 +11804,6 @@ extension on TranslationsEn {
           'tabs.logisticsMeta' => '15 min · weekly',
           'tabs.ritualsMeta' => 'Small habits',
           'tabs.dateNightMeta' => 'For you two',
-          'tabs.programsMeta' => 'Micro-lessons',
           'tabs.checkinMeta' => 'Once a week',
           'tabs.questionMeta' => 'One for both',
           'tabs.gamesMeta' => 'No score',
@@ -12671,20 +11816,16 @@ extension on TranslationsEn {
                   one: '1 wish',
                   other: '${count} wishes',
                 ),
-          'tabs.guidesMeta' => 'One step at a time',
-          'tabs.starterMeta' => 'One question',
           'tabs.dayMeta' => 'One day at a time',
           'tabs.capsulesMeta' => 'For the future',
           'tabs.temperatureMeta' => 'Private, no score',
           'tabs.homeWidgetsMeta' => 'On the home screen',
           'tabs.usMeta' => 'One touch',
-          'tabs.touchMeta' => 'Neutral cards',
-          'tabs.badDayMeta' => 'Three small things',
           'tabs.distanceMeta' => 'Time zones and reunion',
+          'tabs.diaryTitle' => 'Diary',
           'tabs.diaryMeta' => 'Only yours',
           'tabs.moodCalendarTitle' => 'My moods',
           'tabs.moodCalendarMeta' => 'Your month, only you',
-          'tabs.hardTalkMeta' => 'Notes before you talk',
           'tabs.notesMeta' => 'When you want',
           'tabs.learningMeta' => 'Private notes',
           'tabs.partnerMeta' => 'Only for you',
@@ -12779,6 +11920,9 @@ extension on TranslationsEn {
           'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
+          _ => null,
+        } ??
+        switch (path) {
           'today.greetingNoName' => 'Hello',
           'today.dateLine' => ({
             required Object weekday,

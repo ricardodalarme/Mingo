@@ -44,27 +44,16 @@ enum ContentKind_enum {
   date_idea
   holiday
   how_well
-  lesson
   me_or_you
   mission
-  mood_tip
   never_have_we
   notification
-  program
   question
   repair_card
   ritual_idea
   spice_card
   spice_challenge
   spice_desire
-  touch_card
-}
-enum ConversationGuide_enum {
-  apology
-  difficult
-  free
-  money
-  transition
 }
 enum DateIdeaStatus_enum {
   done
@@ -163,10 +152,6 @@ enum LearnedItemTarget_enum {
   date
   memory
   partner_fact
-}
-enum LessonStatus_enum {
-  done
-  saved
 }
 enum ListItemStatus_enum {
   done
@@ -1049,73 +1034,6 @@ enum contentItems_select_column {
   title
 }
 """
-unique or primary key constraints on table "conversation_preps"
-"""
-enum conversationPreps_constraint {
-  """
-  unique or primary key constraint on columns "id"
-  """
-  conversation_preps_pkey
-}
-"""
-select columns of table "conversation_preps"
-"""
-enum conversationPreps_select_column {
-  """
-  column name
-  """
-  authorId
-  """
-  column name
-  """
-  createdAt
-  """
-  column name
-  """
-  draft
-  """
-  column name
-  """
-  guide
-  """
-  column name
-  """
-  id
-  """
-  column name
-  """
-  notes
-  """
-  column name
-  """
-  topic
-  """
-  column name
-  """
-  updatedAt
-}
-"""
-update columns of table "conversation_preps"
-"""
-enum conversationPreps_update_column {
-  """
-  column name
-  """
-  draft
-  """
-  column name
-  """
-  guide
-  """
-  column name
-  """
-  notes
-  """
-  column name
-  """
-  topic
-}
-"""
 select columns of table "couple_members"
 """
 enum coupleMembers_select_column {
@@ -1199,10 +1117,6 @@ enum couples_select_column {
   column name
   """
   startDateSetBy
-  """
-  column name
-  """
-  touchTopicsEnabled
 }
 """
 select columns of table "current_consents"
@@ -2118,61 +2032,6 @@ enum learnedItems_update_column {
   text
 }
 """
-unique or primary key constraints on table "lesson_progress"
-"""
-enum lessonProgress_constraint {
-  """
-  unique or primary key constraint on columns "program_slug", "lesson_day", "author_id"
-  """
-  lesson_progress_once
-  """
-  unique or primary key constraint on columns "id"
-  """
-  lesson_progress_pkey
-}
-"""
-select columns of table "lesson_progress"
-"""
-enum lessonProgress_select_column {
-  """
-  column name
-  """
-  authorId
-  """
-  column name
-  """
-  createdAt
-  """
-  column name
-  """
-  id
-  """
-  column name
-  """
-  lessonDay
-  """
-  column name
-  """
-  programSlug
-  """
-  column name
-  """
-  status
-  """
-  column name
-  """
-  updatedAt
-}
-"""
-update columns of table "lesson_progress"
-"""
-enum lessonProgress_update_column {
-  """
-  column name
-  """
-  status
-}
-"""
 unique or primary key constraints on table "list_items"
 """
 enum listItems_constraint {
@@ -3015,65 +2874,6 @@ enum profiles_select_column {
   column name
   """
   updatedAt
-}
-"""
-unique or primary key constraints on table "program_enrollments"
-"""
-enum programEnrollments_constraint {
-  """
-  unique or primary key constraint on columns "program_slug", "author_id"
-  """
-  program_enrollments_once
-  """
-  unique or primary key constraint on columns "id"
-  """
-  program_enrollments_pkey
-}
-"""
-select columns of table "program_enrollments"
-"""
-enum programEnrollments_select_column {
-  """
-  column name
-  """
-  authorId
-  """
-  column name
-  """
-  completedAt
-  """
-  column name
-  """
-  createdAt
-  """
-  column name
-  """
-  currentDay
-  """
-  column name
-  """
-  id
-  """
-  column name
-  """
-  programSlug
-  """
-  column name
-  """
-  updatedAt
-}
-"""
-update columns of table "program_enrollments"
-"""
-enum programEnrollments_update_column {
-  """
-  column name
-  """
-  completedAt
-  """
-  column name
-  """
-  currentDay
 }
 """
 unique or primary key constraints on table "question_answers"
@@ -5130,75 +4930,6 @@ type contentItems {
   title: String!
 }
 """
-columns and relationships of "conversation_preps"
-"""
-type conversationPreps {
-  """
-  An object relationship
-  """
-  author: profiles!
-  authorId: uuid!
-  createdAt: timestamptz!
-  draft: String
-  guide: ConversationGuide_enum!
-  id: uuid!
-  notes: String
-  topic: String
-  updatedAt: timestamptz!
-}
-"""
-aggregated selection of "conversation_preps"
-"""
-type conversationPreps_aggregate {
-  aggregate: conversationPreps_aggregate_fields
-  nodes: [conversationPreps!]!
-}
-"""
-aggregate fields of "conversation_preps"
-"""
-type conversationPreps_aggregate_fields {
-  count(columns: [conversationPreps_select_column!], distinct: Boolean): Int!
-  max: conversationPreps_max_fields
-  min: conversationPreps_min_fields
-}
-"""
-aggregate max on columns
-"""
-type conversationPreps_max_fields {
-  authorId: uuid
-  createdAt: timestamptz
-  draft: String
-  id: uuid
-  notes: String
-  topic: String
-  updatedAt: timestamptz
-}
-"""
-aggregate min on columns
-"""
-type conversationPreps_min_fields {
-  authorId: uuid
-  createdAt: timestamptz
-  draft: String
-  id: uuid
-  notes: String
-  topic: String
-  updatedAt: timestamptz
-}
-"""
-response of any mutation on the table "conversation_preps"
-"""
-type conversationPreps_mutation_response {
-  """
-  number of rows affected by the mutation
-  """
-  affected_rows: Int!
-  """
-  data from the rows affected by the mutation
-  """
-  returning: [conversationPreps!]!
-}
-"""
 columns and relationships of "couple_members"
 """
 type coupleMembers {
@@ -5320,20 +5051,6 @@ type couples {
   photo: couplePhotos
   startDate: date
   startDateSetBy: uuid
-  touchTopicsEnabled: Boolean!
-}
-"""
-response of any mutation on the table "couples"
-"""
-type couples_mutation_response {
-  """
-  number of rows affected by the mutation
-  """
-  affected_rows: Int!
-  """
-  data from the rows affected by the mutation
-  """
-  returning: [couples!]!
 }
 """
 columns and relationships of "current_consents"
@@ -6290,128 +6007,6 @@ type learnedItems_mutation_response {
   returning: [learnedItems!]!
 }
 """
-columns and relationships of "lesson_progress"
-"""
-type lessonProgress {
-  """
-  An object relationship
-  """
-  author: profiles!
-  authorId: uuid!
-  createdAt: timestamptz!
-  id: uuid!
-  lessonDay: smallint!
-  programSlug: String!
-  status: LessonStatus_enum!
-  updatedAt: timestamptz!
-}
-"""
-aggregated selection of "lesson_progress"
-"""
-type lessonProgress_aggregate {
-  aggregate: lessonProgress_aggregate_fields
-  nodes: [lessonProgress!]!
-}
-"""
-aggregate fields of "lesson_progress"
-"""
-type lessonProgress_aggregate_fields {
-  avg: lessonProgress_avg_fields
-  count(columns: [lessonProgress_select_column!], distinct: Boolean): Int!
-  max: lessonProgress_max_fields
-  min: lessonProgress_min_fields
-  stddev: lessonProgress_stddev_fields
-  stddev_pop: lessonProgress_stddev_pop_fields
-  stddev_samp: lessonProgress_stddev_samp_fields
-  sum: lessonProgress_sum_fields
-  var_pop: lessonProgress_var_pop_fields
-  var_samp: lessonProgress_var_samp_fields
-  variance: lessonProgress_variance_fields
-}
-"""
-aggregate avg on columns
-"""
-type lessonProgress_avg_fields {
-  lessonDay: Float
-}
-"""
-aggregate max on columns
-"""
-type lessonProgress_max_fields {
-  authorId: uuid
-  createdAt: timestamptz
-  id: uuid
-  lessonDay: smallint
-  programSlug: String
-  updatedAt: timestamptz
-}
-"""
-aggregate min on columns
-"""
-type lessonProgress_min_fields {
-  authorId: uuid
-  createdAt: timestamptz
-  id: uuid
-  lessonDay: smallint
-  programSlug: String
-  updatedAt: timestamptz
-}
-"""
-response of any mutation on the table "lesson_progress"
-"""
-type lessonProgress_mutation_response {
-  """
-  number of rows affected by the mutation
-  """
-  affected_rows: Int!
-  """
-  data from the rows affected by the mutation
-  """
-  returning: [lessonProgress!]!
-}
-"""
-aggregate stddev on columns
-"""
-type lessonProgress_stddev_fields {
-  lessonDay: Float
-}
-"""
-aggregate stddev_pop on columns
-"""
-type lessonProgress_stddev_pop_fields {
-  lessonDay: Float
-}
-"""
-aggregate stddev_samp on columns
-"""
-type lessonProgress_stddev_samp_fields {
-  lessonDay: Float
-}
-"""
-aggregate sum on columns
-"""
-type lessonProgress_sum_fields {
-  lessonDay: smallint
-}
-"""
-aggregate var_pop on columns
-"""
-type lessonProgress_var_pop_fields {
-  lessonDay: Float
-}
-"""
-aggregate var_samp on columns
-"""
-type lessonProgress_var_samp_fields {
-  lessonDay: Float
-}
-"""
-aggregate variance on columns
-"""
-type lessonProgress_variance_fields {
-  lessonDay: Float
-}
-"""
 columns and relationships of "list_items"
 """
 type listItems {
@@ -7111,19 +6706,6 @@ type mutation_root {
   """
   deleteCheckinsByPk(id: uuid!): checkins
   """
-  delete data from the table: "conversation_preps"
-  """
-  deleteConversationPreps(
-    """
-    filter the rows which have to be deleted
-    """
-    where: conversationPreps_bool_exp!
-  ): conversationPreps_mutation_response
-  """
-  delete single row from the table: "conversation_preps"
-  """
-  deleteConversationPrepsByPk(id: uuid!): conversationPreps
-  """
   delete data from the table: "couple_photos"
   """
   deleteCouplePhotos(
@@ -7254,19 +6836,6 @@ type mutation_root {
   """
   deleteLearnedItemsByPk(id: uuid!): learnedItems
   """
-  delete data from the table: "lesson_progress"
-  """
-  deleteLessonProgress(
-    """
-    filter the rows which have to be deleted
-    """
-    where: lessonProgress_bool_exp!
-  ): lessonProgress_mutation_response
-  """
-  delete single row from the table: "lesson_progress"
-  """
-  deleteLessonProgressByPk(id: uuid!): lessonProgress
-  """
   delete data from the table: "list_items"
   """
   deleteListItems(
@@ -7383,19 +6952,6 @@ type mutation_root {
   delete single row from the table: "partner_messages"
   """
   deletePartnerMessagesByPk(id: uuid!): partnerMessages
-  """
-  delete data from the table: "program_enrollments"
-  """
-  deleteProgramEnrollments(
-    """
-    filter the rows which have to be deleted
-    """
-    where: programEnrollments_bool_exp!
-  ): programEnrollments_mutation_response
-  """
-  delete single row from the table: "program_enrollments"
-  """
-  deleteProgramEnrollmentsByPk(id: uuid!): programEnrollments
   """
   delete data from the table: "question_answers"
   """
@@ -7777,34 +7333,6 @@ type mutation_root {
     on_conflict: consents_on_conflict
   ): consents
   """
-  insert data into the table: "conversation_preps"
-  """
-  insertConversationPreps(
-    """
-    the rows to be inserted
-    """
-    objects: [conversationPreps_insert_input!]!
-
-    """
-    upsert condition
-    """
-    on_conflict: conversationPreps_on_conflict
-  ): conversationPreps_mutation_response
-  """
-  insert a single row into the table: "conversation_preps"
-  """
-  insertConversationPrepsOne(
-    """
-    the row to be inserted
-    """
-    object: conversationPreps_insert_input!
-
-    """
-    upsert condition
-    """
-    on_conflict: conversationPreps_on_conflict
-  ): conversationPreps
-  """
   insert data into the table: "couple_photos"
   """
   insertCouplePhotos(
@@ -8141,34 +7669,6 @@ type mutation_root {
     on_conflict: learnedItems_on_conflict
   ): learnedItems
   """
-  insert data into the table: "lesson_progress"
-  """
-  insertLessonProgress(
-    """
-    the rows to be inserted
-    """
-    objects: [lessonProgress_insert_input!]!
-
-    """
-    upsert condition
-    """
-    on_conflict: lessonProgress_on_conflict
-  ): lessonProgress_mutation_response
-  """
-  insert a single row into the table: "lesson_progress"
-  """
-  insertLessonProgressOne(
-    """
-    the row to be inserted
-    """
-    object: lessonProgress_insert_input!
-
-    """
-    upsert condition
-    """
-    on_conflict: lessonProgress_on_conflict
-  ): lessonProgress
-  """
   insert data into the table: "list_items"
   """
   insertListItems(
@@ -8420,34 +7920,6 @@ type mutation_root {
     """
     on_conflict: partnerMessages_on_conflict
   ): partnerMessages
-  """
-  insert data into the table: "program_enrollments"
-  """
-  insertProgramEnrollments(
-    """
-    the rows to be inserted
-    """
-    objects: [programEnrollments_insert_input!]!
-
-    """
-    upsert condition
-    """
-    on_conflict: programEnrollments_on_conflict
-  ): programEnrollments_mutation_response
-  """
-  insert a single row into the table: "program_enrollments"
-  """
-  insertProgramEnrollmentsOne(
-    """
-    the row to be inserted
-    """
-    object: programEnrollments_insert_input!
-
-    """
-    upsert condition
-    """
-    on_conflict: programEnrollments_on_conflict
-  ): programEnrollments
   """
   insert data into the table: "question_answers"
   """
@@ -9659,38 +9131,6 @@ type mutation_root {
     updates: [checkins_updates!]!
   ): [checkins_mutation_response]
   """
-  update data of the table: "conversation_preps"
-  """
-  updateConversationPreps(
-    """
-    sets the columns of the filtered rows to the given values
-    """
-    _set: conversationPreps_set_input
-
-    """
-    filter the rows which have to be updated
-    """
-    where: conversationPreps_bool_exp!
-  ): conversationPreps_mutation_response
-  """
-  update single row of the table: "conversation_preps"
-  """
-  updateConversationPrepsByPk(
-    """
-    sets the columns of the filtered rows to the given values
-    """
-    _set: conversationPreps_set_input
-  pk_columns: conversationPreps_pk_columns_input!): conversationPreps
-  """
-  update multiples rows of table: "conversation_preps"
-  """
-  updateConversationPrepsMany(
-    """
-    updates to execute, in order
-    """
-    updates: [conversationPreps_updates!]!
-  ): [conversationPreps_mutation_response]
-  """
   update data of the table: "couple_photos"
   """
   updateCouplePhotos(
@@ -9722,38 +9162,6 @@ type mutation_root {
     """
     updates: [couplePhotos_updates!]!
   ): [couplePhotos_mutation_response]
-  """
-  update data of the table: "couples"
-  """
-  updateCouples(
-    """
-    sets the columns of the filtered rows to the given values
-    """
-    _set: couples_set_input
-
-    """
-    filter the rows which have to be updated
-    """
-    where: couples_bool_exp!
-  ): couples_mutation_response
-  """
-  update single row of the table: "couples"
-  """
-  updateCouplesByPk(
-    """
-    sets the columns of the filtered rows to the given values
-    """
-    _set: couples_set_input
-  pk_columns: couples_pk_columns_input!): couples
-  """
-  update multiples rows of table: "couples"
-  """
-  updateCouplesMany(
-    """
-    updates to execute, in order
-    """
-    updates: [couples_updates!]!
-  ): [couples_mutation_response]
   """
   update data of the table: "devices"
   """
@@ -10086,38 +9494,6 @@ type mutation_root {
     """
     updates: [learnedItems_updates!]!
   ): [learnedItems_mutation_response]
-  """
-  update data of the table: "lesson_progress"
-  """
-  updateLessonProgress(
-    """
-    sets the columns of the filtered rows to the given values
-    """
-    _set: lessonProgress_set_input
-
-    """
-    filter the rows which have to be updated
-    """
-    where: lessonProgress_bool_exp!
-  ): lessonProgress_mutation_response
-  """
-  update single row of the table: "lesson_progress"
-  """
-  updateLessonProgressByPk(
-    """
-    sets the columns of the filtered rows to the given values
-    """
-    _set: lessonProgress_set_input
-  pk_columns: lessonProgress_pk_columns_input!): lessonProgress
-  """
-  update multiples rows of table: "lesson_progress"
-  """
-  updateLessonProgressMany(
-    """
-    updates to execute, in order
-    """
-    updates: [lessonProgress_updates!]!
-  ): [lessonProgress_mutation_response]
   """
   update data of the table: "list_items"
   """
@@ -10458,48 +9834,6 @@ type mutation_root {
     """
     updates: [profiles_updates!]!
   ): [profiles_mutation_response]
-  """
-  update data of the table: "program_enrollments"
-  """
-  updateProgramEnrollments(
-    """
-    increments the numeric columns with given value of the filtered values
-    """
-    _inc: programEnrollments_inc_input
-
-    """
-    sets the columns of the filtered rows to the given values
-    """
-    _set: programEnrollments_set_input
-
-    """
-    filter the rows which have to be updated
-    """
-    where: programEnrollments_bool_exp!
-  ): programEnrollments_mutation_response
-  """
-  update single row of the table: "program_enrollments"
-  """
-  updateProgramEnrollmentsByPk(
-    """
-    increments the numeric columns with given value of the filtered values
-    """
-    _inc: programEnrollments_inc_input
-
-    """
-    sets the columns of the filtered rows to the given values
-    """
-    _set: programEnrollments_set_input
-  pk_columns: programEnrollments_pk_columns_input!): programEnrollments
-  """
-  update multiples rows of table: "program_enrollments"
-  """
-  updateProgramEnrollmentsMany(
-    """
-    updates to execute, in order
-    """
-    updates: [programEnrollments_updates!]!
-  ): [programEnrollments_mutation_response]
   """
   update data of the table: "quiz_results"
   """
@@ -11156,130 +10490,6 @@ type profiles_mutation_response {
   """
   returning: [profiles!]!
 }
-"""
-columns and relationships of "program_enrollments"
-"""
-type programEnrollments {
-  """
-  An object relationship
-  """
-  author: profiles!
-  authorId: uuid!
-  completedAt: timestamptz
-  createdAt: timestamptz!
-  currentDay: smallint!
-  id: uuid!
-  programSlug: String!
-  updatedAt: timestamptz!
-}
-"""
-aggregated selection of "program_enrollments"
-"""
-type programEnrollments_aggregate {
-  aggregate: programEnrollments_aggregate_fields
-  nodes: [programEnrollments!]!
-}
-"""
-aggregate fields of "program_enrollments"
-"""
-type programEnrollments_aggregate_fields {
-  avg: programEnrollments_avg_fields
-  count(columns: [programEnrollments_select_column!], distinct: Boolean): Int!
-  max: programEnrollments_max_fields
-  min: programEnrollments_min_fields
-  stddev: programEnrollments_stddev_fields
-  stddev_pop: programEnrollments_stddev_pop_fields
-  stddev_samp: programEnrollments_stddev_samp_fields
-  sum: programEnrollments_sum_fields
-  var_pop: programEnrollments_var_pop_fields
-  var_samp: programEnrollments_var_samp_fields
-  variance: programEnrollments_variance_fields
-}
-"""
-aggregate avg on columns
-"""
-type programEnrollments_avg_fields {
-  currentDay: Float
-}
-"""
-aggregate max on columns
-"""
-type programEnrollments_max_fields {
-  authorId: uuid
-  completedAt: timestamptz
-  createdAt: timestamptz
-  currentDay: smallint
-  id: uuid
-  programSlug: String
-  updatedAt: timestamptz
-}
-"""
-aggregate min on columns
-"""
-type programEnrollments_min_fields {
-  authorId: uuid
-  completedAt: timestamptz
-  createdAt: timestamptz
-  currentDay: smallint
-  id: uuid
-  programSlug: String
-  updatedAt: timestamptz
-}
-"""
-response of any mutation on the table "program_enrollments"
-"""
-type programEnrollments_mutation_response {
-  """
-  number of rows affected by the mutation
-  """
-  affected_rows: Int!
-  """
-  data from the rows affected by the mutation
-  """
-  returning: [programEnrollments!]!
-}
-"""
-aggregate stddev on columns
-"""
-type programEnrollments_stddev_fields {
-  currentDay: Float
-}
-"""
-aggregate stddev_pop on columns
-"""
-type programEnrollments_stddev_pop_fields {
-  currentDay: Float
-}
-"""
-aggregate stddev_samp on columns
-"""
-type programEnrollments_stddev_samp_fields {
-  currentDay: Float
-}
-"""
-aggregate sum on columns
-"""
-type programEnrollments_sum_fields {
-  currentDay: smallint
-}
-"""
-aggregate var_pop on columns
-"""
-type programEnrollments_var_pop_fields {
-  currentDay: Float
-}
-"""
-aggregate var_samp on columns
-"""
-type programEnrollments_var_samp_fields {
-  currentDay: Float
-}
-"""
-aggregate variance on columns
-"""
-type programEnrollments_variance_fields {
-  currentDay: Float
-}
 type query_root {
   """
   fetch data from the table: "agreements"
@@ -11860,68 +11070,6 @@ type query_root {
   fetch data from the table: "content_items" using primary key columns
   """
   contentItemsByPk(id: uuid!): contentItems
-  """
-  fetch data from the table: "conversation_preps"
-  """
-  conversationPreps(
-    """
-    distinct select on columns
-    """
-    distinct_on: [conversationPreps_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [conversationPreps_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: conversationPreps_bool_exp
-  ): [conversationPreps!]!
-  """
-  fetch aggregated fields from the table: "conversation_preps"
-  """
-  conversationPrepsAggregate(
-    """
-    distinct select on columns
-    """
-    distinct_on: [conversationPreps_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [conversationPreps_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: conversationPreps_bool_exp
-  ): conversationPreps_aggregate!
-  """
-  fetch data from the table: "conversation_preps" using primary key columns
-  """
-  conversationPrepsByPk(id: uuid!): conversationPreps
   """
   An array relationship
   """
@@ -12851,68 +11999,6 @@ type query_root {
   """
   learnedItemsByPk(id: uuid!): learnedItems
   """
-  fetch data from the table: "lesson_progress"
-  """
-  lessonProgress(
-    """
-    distinct select on columns
-    """
-    distinct_on: [lessonProgress_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [lessonProgress_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: lessonProgress_bool_exp
-  ): [lessonProgress!]!
-  """
-  fetch aggregated fields from the table: "lesson_progress"
-  """
-  lessonProgressAggregate(
-    """
-    distinct select on columns
-    """
-    distinct_on: [lessonProgress_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [lessonProgress_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: lessonProgress_bool_exp
-  ): lessonProgress_aggregate!
-  """
-  fetch data from the table: "lesson_progress" using primary key columns
-  """
-  lessonProgressByPk(id: uuid!): lessonProgress
-  """
   fetch data from the table: "list_items"
   """
   listItems(
@@ -13574,68 +12660,6 @@ type query_root {
   fetch data from the table: "profiles" using primary key columns
   """
   profilesByPk(id: uuid!): profiles
-  """
-  fetch data from the table: "program_enrollments"
-  """
-  programEnrollments(
-    """
-    distinct select on columns
-    """
-    distinct_on: [programEnrollments_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [programEnrollments_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: programEnrollments_bool_exp
-  ): [programEnrollments!]!
-  """
-  fetch aggregated fields from the table: "program_enrollments"
-  """
-  programEnrollmentsAggregate(
-    """
-    distinct select on columns
-    """
-    distinct_on: [programEnrollments_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [programEnrollments_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: programEnrollments_bool_exp
-  ): programEnrollments_aggregate!
-  """
-  fetch data from the table: "program_enrollments" using primary key columns
-  """
-  programEnrollmentsByPk(id: uuid!): programEnrollments
   """
   fetch data from the table: "question_answers"
   """
@@ -16727,87 +15751,6 @@ type subscription_root {
     where: contentItems_bool_exp
   ): [contentItems!]!
   """
-  fetch data from the table: "conversation_preps"
-  """
-  conversationPreps(
-    """
-    distinct select on columns
-    """
-    distinct_on: [conversationPreps_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [conversationPreps_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: conversationPreps_bool_exp
-  ): [conversationPreps!]!
-  """
-  fetch aggregated fields from the table: "conversation_preps"
-  """
-  conversationPrepsAggregate(
-    """
-    distinct select on columns
-    """
-    distinct_on: [conversationPreps_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [conversationPreps_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: conversationPreps_bool_exp
-  ): conversationPreps_aggregate!
-  """
-  fetch data from the table: "conversation_preps" using primary key columns
-  """
-  conversationPrepsByPk(id: uuid!): conversationPreps
-  """
-  fetch data from the table in a streaming manner: "conversation_preps"
-  """
-  conversationPrepsStream(
-    """
-    maximum number of rows returned in a single batch
-    """
-    batch_size: Int!
-
-    """
-    cursor to stream the results returned by the query
-    """
-    cursor: [conversationPreps_stream_cursor_input]!
-
-    """
-    filter the rows returned
-    """
-    where: conversationPreps_bool_exp
-  ): [conversationPreps!]!
-  """
   An array relationship
   """
   coupleMembers(
@@ -18135,87 +17078,6 @@ type subscription_root {
     where: learnedItems_bool_exp
   ): [learnedItems!]!
   """
-  fetch data from the table: "lesson_progress"
-  """
-  lessonProgress(
-    """
-    distinct select on columns
-    """
-    distinct_on: [lessonProgress_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [lessonProgress_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: lessonProgress_bool_exp
-  ): [lessonProgress!]!
-  """
-  fetch aggregated fields from the table: "lesson_progress"
-  """
-  lessonProgressAggregate(
-    """
-    distinct select on columns
-    """
-    distinct_on: [lessonProgress_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [lessonProgress_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: lessonProgress_bool_exp
-  ): lessonProgress_aggregate!
-  """
-  fetch data from the table: "lesson_progress" using primary key columns
-  """
-  lessonProgressByPk(id: uuid!): lessonProgress
-  """
-  fetch data from the table in a streaming manner: "lesson_progress"
-  """
-  lessonProgressStream(
-    """
-    maximum number of rows returned in a single batch
-    """
-    batch_size: Int!
-
-    """
-    cursor to stream the results returned by the query
-    """
-    cursor: [lessonProgress_stream_cursor_input]!
-
-    """
-    filter the rows returned
-    """
-    where: lessonProgress_bool_exp
-  ): [lessonProgress!]!
-  """
   fetch data from the table: "list_items"
   """
   listItems(
@@ -19124,87 +17986,6 @@ type subscription_root {
     """
     where: profiles_bool_exp
   ): [profiles!]!
-  """
-  fetch data from the table: "program_enrollments"
-  """
-  programEnrollments(
-    """
-    distinct select on columns
-    """
-    distinct_on: [programEnrollments_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [programEnrollments_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: programEnrollments_bool_exp
-  ): [programEnrollments!]!
-  """
-  fetch aggregated fields from the table: "program_enrollments"
-  """
-  programEnrollmentsAggregate(
-    """
-    distinct select on columns
-    """
-    distinct_on: [programEnrollments_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [programEnrollments_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: programEnrollments_bool_exp
-  ): programEnrollments_aggregate!
-  """
-  fetch data from the table: "program_enrollments" using primary key columns
-  """
-  programEnrollmentsByPk(id: uuid!): programEnrollments
-  """
-  fetch data from the table in a streaming manner: "program_enrollments"
-  """
-  programEnrollmentsStream(
-    """
-    maximum number of rows returned in a single batch
-    """
-    batch_size: Int!
-
-    """
-    cursor to stream the results returned by the query
-    """
-    cursor: [programEnrollments_stream_cursor_input]!
-
-    """
-    filter the rows returned
-    """
-    where: programEnrollments_bool_exp
-  ): [programEnrollments!]!
   """
   fetch data from the table: "question_answers"
   """
@@ -21171,16 +19952,6 @@ input ContentKind_enum_comparison_exp {
   _nin: [ContentKind_enum!]
 }
 """
-Boolean expression to compare columns of type "ConversationGuide_enum". All fields are combined with logical 'AND'.
-"""
-input ConversationGuide_enum_comparison_exp {
-  _eq: ConversationGuide_enum
-  _in: [ConversationGuide_enum!]
-  _is_null: Boolean
-  _neq: ConversationGuide_enum
-  _nin: [ConversationGuide_enum!]
-}
-"""
 Boolean expression to compare columns of type "DateIdeaStatus_enum". All fields are combined with logical 'AND'.
 """
 input DateIdeaStatus_enum_comparison_exp {
@@ -21363,16 +20134,6 @@ input LearnedItemTarget_enum_comparison_exp {
   _is_null: Boolean
   _neq: LearnedItemTarget_enum
   _nin: [LearnedItemTarget_enum!]
-}
-"""
-Boolean expression to compare columns of type "LessonStatus_enum". All fields are combined with logical 'AND'.
-"""
-input LessonStatus_enum_comparison_exp {
-  _eq: LessonStatus_enum
-  _in: [LessonStatus_enum!]
-  _is_null: Boolean
-  _neq: LessonStatus_enum
-  _nin: [LessonStatus_enum!]
 }
 """
 Boolean expression to compare columns of type "ListItemStatus_enum". All fields are combined with logical 'AND'.
@@ -22975,106 +21736,6 @@ input contentItems_stream_cursor_value_input {
   title: String
 }
 """
-Boolean expression to filter rows from the table "conversation_preps". All fields are combined with a logical 'AND'.
-"""
-input conversationPreps_bool_exp {
-  _and: [conversationPreps_bool_exp!]
-  _not: conversationPreps_bool_exp
-  _or: [conversationPreps_bool_exp!]
-  author: profiles_bool_exp
-  authorId: uuid_comparison_exp
-  createdAt: timestamptz_comparison_exp
-  draft: String_comparison_exp
-  guide: ConversationGuide_enum_comparison_exp
-  id: uuid_comparison_exp
-  notes: String_comparison_exp
-  topic: String_comparison_exp
-  updatedAt: timestamptz_comparison_exp
-}
-"""
-input type for inserting data into table "conversation_preps"
-"""
-input conversationPreps_insert_input {
-  draft: String
-  guide: ConversationGuide_enum
-  id: uuid
-  notes: String
-  topic: String
-}
-"""
-on_conflict condition type for table "conversation_preps"
-"""
-input conversationPreps_on_conflict {
-  constraint: conversationPreps_constraint!
-  update_columns: [conversationPreps_update_column!]! = []
-  where: conversationPreps_bool_exp
-}
-"""
-Ordering options when selecting data from "conversation_preps".
-"""
-input conversationPreps_order_by {
-  author: profiles_order_by
-  authorId: order_by
-  createdAt: order_by
-  draft: order_by
-  guide: order_by
-  id: order_by
-  notes: order_by
-  topic: order_by
-  updatedAt: order_by
-}
-"""
-primary key columns input for table: conversation_preps
-"""
-input conversationPreps_pk_columns_input {
-  id: uuid!
-}
-"""
-input type for updating data in table "conversation_preps"
-"""
-input conversationPreps_set_input {
-  draft: String
-  guide: ConversationGuide_enum
-  notes: String
-  topic: String
-}
-"""
-Streaming cursor of the table "conversationPreps"
-"""
-input conversationPreps_stream_cursor_input {
-  """
-  Stream column input with initial value
-  """
-  initial_value: conversationPreps_stream_cursor_value_input!
-  """
-  cursor ordering
-  """
-  ordering: cursor_ordering
-}
-"""
-Initial value of the column from where the streaming should start
-"""
-input conversationPreps_stream_cursor_value_input {
-  authorId: uuid
-  createdAt: timestamptz
-  draft: String
-  guide: ConversationGuide_enum
-  id: uuid
-  notes: String
-  topic: String
-  updatedAt: timestamptz
-}
-input conversationPreps_updates {
-  """
-  sets the columns of the filtered rows to the given values
-  """
-  _set: conversationPreps_set_input
-  """
-  filter the rows which have to be updated
-  """
-  where: conversationPreps_bool_exp!
-}
-"""
 order by aggregate values of table "couple_members"
 """
 input coupleMembers_aggregate_order_by {
@@ -23284,7 +21945,6 @@ input couples_bool_exp {
   photo: couplePhotos_bool_exp
   startDate: date_comparison_exp
   startDateSetBy: uuid_comparison_exp
-  touchTopicsEnabled: Boolean_comparison_exp
 }
 """
 Ordering options when selecting data from "couples".
@@ -23297,19 +21957,6 @@ input couples_order_by {
   photo: couplePhotos_order_by
   startDate: order_by
   startDateSetBy: order_by
-  touchTopicsEnabled: order_by
-}
-"""
-primary key columns input for table: couples
-"""
-input couples_pk_columns_input {
-  id: uuid!
-}
-"""
-input type for updating data in table "couples"
-"""
-input couples_set_input {
-  touchTopicsEnabled: Boolean
 }
 """
 Streaming cursor of the table "couples"
@@ -23333,17 +21980,6 @@ input couples_stream_cursor_value_input {
   id: uuid
   startDate: date
   startDateSetBy: uuid
-  touchTopicsEnabled: Boolean
-}
-input couples_updates {
-  """
-  sets the columns of the filtered rows to the given values
-  """
-  _set: couples_set_input
-  """
-  filter the rows which have to be updated
-  """
-  where: couples_bool_exp!
 }
 """
 Boolean expression to filter rows from the table "current_consents". All fields are combined with a logical 'AND'.
@@ -24997,99 +23633,6 @@ input learnedItems_updates {
   where: learnedItems_bool_exp!
 }
 """
-Boolean expression to filter rows from the table "lesson_progress". All fields are combined with a logical 'AND'.
-"""
-input lessonProgress_bool_exp {
-  _and: [lessonProgress_bool_exp!]
-  _not: lessonProgress_bool_exp
-  _or: [lessonProgress_bool_exp!]
-  author: profiles_bool_exp
-  authorId: uuid_comparison_exp
-  createdAt: timestamptz_comparison_exp
-  id: uuid_comparison_exp
-  lessonDay: smallint_comparison_exp
-  programSlug: String_comparison_exp
-  status: LessonStatus_enum_comparison_exp
-  updatedAt: timestamptz_comparison_exp
-}
-"""
-input type for inserting data into table "lesson_progress"
-"""
-input lessonProgress_insert_input {
-  id: uuid
-  lessonDay: smallint
-  programSlug: String
-  status: LessonStatus_enum
-}
-"""
-on_conflict condition type for table "lesson_progress"
-"""
-input lessonProgress_on_conflict {
-  constraint: lessonProgress_constraint!
-  update_columns: [lessonProgress_update_column!]! = []
-  where: lessonProgress_bool_exp
-}
-"""
-Ordering options when selecting data from "lesson_progress".
-"""
-input lessonProgress_order_by {
-  author: profiles_order_by
-  authorId: order_by
-  createdAt: order_by
-  id: order_by
-  lessonDay: order_by
-  programSlug: order_by
-  status: order_by
-  updatedAt: order_by
-}
-"""
-primary key columns input for table: lesson_progress
-"""
-input lessonProgress_pk_columns_input {
-  id: uuid!
-}
-"""
-input type for updating data in table "lesson_progress"
-"""
-input lessonProgress_set_input {
-  status: LessonStatus_enum
-}
-"""
-Streaming cursor of the table "lessonProgress"
-"""
-input lessonProgress_stream_cursor_input {
-  """
-  Stream column input with initial value
-  """
-  initial_value: lessonProgress_stream_cursor_value_input!
-  """
-  cursor ordering
-  """
-  ordering: cursor_ordering
-}
-"""
-Initial value of the column from where the streaming should start
-"""
-input lessonProgress_stream_cursor_value_input {
-  authorId: uuid
-  createdAt: timestamptz
-  id: uuid
-  lessonDay: smallint
-  programSlug: String
-  status: LessonStatus_enum
-  updatedAt: timestamptz
-}
-input lessonProgress_updates {
-  """
-  sets the columns of the filtered rows to the given values
-  """
-  _set: lessonProgress_set_input
-  """
-  filter the rows which have to be updated
-  """
-  where: lessonProgress_bool_exp!
-}
-"""
 order by aggregate values of table "list_items"
 """
 input listItems_aggregate_order_by {
@@ -26665,110 +25208,6 @@ input profiles_updates {
   filter the rows which have to be updated
   """
   where: profiles_bool_exp!
-}
-"""
-Boolean expression to filter rows from the table "program_enrollments". All fields are combined with a logical 'AND'.
-"""
-input programEnrollments_bool_exp {
-  _and: [programEnrollments_bool_exp!]
-  _not: programEnrollments_bool_exp
-  _or: [programEnrollments_bool_exp!]
-  author: profiles_bool_exp
-  authorId: uuid_comparison_exp
-  completedAt: timestamptz_comparison_exp
-  createdAt: timestamptz_comparison_exp
-  currentDay: smallint_comparison_exp
-  id: uuid_comparison_exp
-  programSlug: String_comparison_exp
-  updatedAt: timestamptz_comparison_exp
-}
-"""
-input type for incrementing numeric columns in table "program_enrollments"
-"""
-input programEnrollments_inc_input {
-  currentDay: smallint
-}
-"""
-input type for inserting data into table "program_enrollments"
-"""
-input programEnrollments_insert_input {
-  completedAt: timestamptz
-  currentDay: smallint
-  id: uuid
-  programSlug: String
-}
-"""
-on_conflict condition type for table "program_enrollments"
-"""
-input programEnrollments_on_conflict {
-  constraint: programEnrollments_constraint!
-  update_columns: [programEnrollments_update_column!]! = []
-  where: programEnrollments_bool_exp
-}
-"""
-Ordering options when selecting data from "program_enrollments".
-"""
-input programEnrollments_order_by {
-  author: profiles_order_by
-  authorId: order_by
-  completedAt: order_by
-  createdAt: order_by
-  currentDay: order_by
-  id: order_by
-  programSlug: order_by
-  updatedAt: order_by
-}
-"""
-primary key columns input for table: program_enrollments
-"""
-input programEnrollments_pk_columns_input {
-  id: uuid!
-}
-"""
-input type for updating data in table "program_enrollments"
-"""
-input programEnrollments_set_input {
-  completedAt: timestamptz
-  currentDay: smallint
-}
-"""
-Streaming cursor of the table "programEnrollments"
-"""
-input programEnrollments_stream_cursor_input {
-  """
-  Stream column input with initial value
-  """
-  initial_value: programEnrollments_stream_cursor_value_input!
-  """
-  cursor ordering
-  """
-  ordering: cursor_ordering
-}
-"""
-Initial value of the column from where the streaming should start
-"""
-input programEnrollments_stream_cursor_value_input {
-  authorId: uuid
-  completedAt: timestamptz
-  createdAt: timestamptz
-  currentDay: smallint
-  id: uuid
-  programSlug: String
-  updatedAt: timestamptz
-}
-input programEnrollments_updates {
-  """
-  increments the numeric columns with given value of the filtered values
-  """
-  _inc: programEnrollments_inc_input
-  """
-  sets the columns of the filtered rows to the given values
-  """
-  _set: programEnrollments_set_input
-  """
-  filter the rows which have to be updated
-  """
-  where: programEnrollments_bool_exp!
 }
 """
 order by aggregate values of table "question_answers"

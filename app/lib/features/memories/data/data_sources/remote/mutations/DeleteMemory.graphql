@@ -1,5 +1,0 @@
-mutation DeleteMemory($id: uuid!) {
-  deleteMemories(where: { id: { _eq: $id } }) {
-    affected_rows
-  }
-}

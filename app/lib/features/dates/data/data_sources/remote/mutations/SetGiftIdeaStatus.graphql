@@ -1,5 +1,0 @@
-mutation SetGiftIdeaStatus($id: uuid!, $status: GiftIdeaStatus_enum!) {
-  updateGiftIdeasByPk(pk_columns: { id: $id }, _set: { status: $status }) {
-    id
-  }
-}

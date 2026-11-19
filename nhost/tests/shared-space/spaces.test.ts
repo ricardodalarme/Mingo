@@ -7,12 +7,9 @@ const privateTables: Record<string, string> = {
   repairSessions: 'intensity: 5',
   repairLearnings: 'kind: trigger, note: "tom de voz"',
   journalEntries: 'body: "hoje foi bom"',
-  conversationPreps: 'topic: "dinheiro"',
   moods: 'mood: tired',
   partnerFacts: 'label: "café", value: "sem açúcar"',
   manualEntries: 'key: "quando estou triste", value: "preciso de silêncio"',
-  programEnrollments: 'programSlug: "gratitude-7"',
-  lessonProgress: 'programSlug: "gratitude-7", lessonDay: 1',
   quizResults: 'quizKey: loved, ranked: ["words", "time"]',
   learnedItems: 'target: partner_fact, text: "gosta de café"',
 };

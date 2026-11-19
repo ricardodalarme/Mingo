@@ -1,9 +1,0 @@
-query Memories {
-  memories(order_by: { happenedOn: desc }, limit: 200) {
-    id
-    title
-    body
-    happenedOn
-    place
-  }
-}

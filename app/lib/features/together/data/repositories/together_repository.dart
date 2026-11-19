@@ -1,11 +1,8 @@
 import 'dart:async';
 
-import 'package:app/features/_shared/data/mappers/content_kind_mapper.dart';
-import 'package:app/features/_shared/data/models/content_kind.dart';
 import 'package:app/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:app/features/together/data/data_sources/remote/together_data_source.dart';
 import 'package:app/features/together/data/mappers/date_idea_mapper.dart';
-import 'package:app/features/together/data/mappers/help_item_mapper.dart';
 import 'package:app/features/together/data/mappers/logistic_item_mapper.dart';
 import 'package:app/features/together/data/mappers/ritual_mapper.dart';
 import 'package:app/features/together/data/mappers/together_enum_mapper.dart';
@@ -182,12 +179,4 @@ class TogetherRepository({
       );
 
   Future<void> deleteDateIdea(String id) => _dataSource.deleteDateIdea(id);
-
-  /// Editorial help content of a [kind], such as [ContentKind.moodTip], in editorial order.
-  Future<List<HelpItem>> getHelpContent({required ContentKind kind, required String locale}) async {
-    return [
-      for (final node in await _dataSource.getHelpContent(kind: kind.toRemote(), locale: locale))
-        node.toModel(),
-    ];
-  }
 }
