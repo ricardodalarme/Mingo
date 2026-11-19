@@ -6,18 +6,15 @@ import 'package:clock/clock.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// How long the couple has been together; alone it only names the story. Tapping opens it.
+/// How long the couple has been together; without a start date it only names the story.
 class const TogetherChip({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.tabs;
     final since = context.select((CoupleCubit cubit) => cubit.state.togetherSince);
-    final hasPartner = context.select((CoupleCubit cubit) => cubit.state.hasPartner);
 
     return BaseChip.icon(
-      label: since != null && hasPartner
-          ? togetherDuration(l10n, since, clock.now())
-          : l10n.storyChip,
+      label: since != null ? togetherDuration(l10n, since, clock.now()) : l10n.storyChip,
       icon: AppIcons.heart,
       onTap: () => context.pushRoute(const HistoryRoute()),
     );
