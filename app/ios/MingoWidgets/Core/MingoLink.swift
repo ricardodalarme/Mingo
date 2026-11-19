@@ -14,6 +14,6 @@ enum MingoLink: String {
   case signIn = "sign-in"
 
   var url: URL? {
-    URL(string: "mingo://\(rawValue)?homeWidget=1")
+    URL(string: "mingo://\(rawValue)?src=widget")
   }
 }

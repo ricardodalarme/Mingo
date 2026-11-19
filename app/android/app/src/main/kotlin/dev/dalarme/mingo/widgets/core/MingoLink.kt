@@ -22,7 +22,7 @@ enum class MingoLink(private val host: String) {
     SignIn("sign-in");
 
     fun action(context: Context): Action = actionStartActivity(
-        Intent("es.antonborri.home_widget.action.LAUNCH", Uri.parse("mingo://$host?homeWidget=1"))
+        Intent("es.antonborri.home_widget.action.LAUNCH", Uri.parse("mingo://$host?src=widget"))
             .setComponent(ComponentName(context, MainActivity::class.java)),
     )
 }
