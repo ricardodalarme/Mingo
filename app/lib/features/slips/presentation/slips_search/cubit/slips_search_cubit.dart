@@ -40,10 +40,34 @@ class SlipsSearchCubit({required final SlipRepository _slipRepository})
     return _search();
   }
 
-  Future<void> _search() async {
+  /// Reads the next page of the current search; ignored while one is loading or when there is none.
+  Future<void> loadMore() async {
+    final results = state.results;
+    if (results is! Success<List<SlipEntry>> || !state.hasNext || state.isLoadingMore) return;
+
+    emit(state.copyWith(isLoadingMore: true));
+    try {
+      final page = await _slipRepository.getSlips(offset: results.value.length, filter: _filter());
+      if (!isClosed) {
+        emit(
+          state.copyWith(
+            results: Success([...results.value, ...page.items]),
+            hasNext: page.hasNext,
+            isLoadingMore: false,
+          ),
+        );
+      }
+    } catch (exception, stack) {
+      addError(exception, stack);
+      if (!isClosed) emit(state.copyWith(isLoadingMore: false));
+    }
+  }
+
+  SlipFilter _filter() {
     final now = clock.now();
     final filters = state.filters;
-    final filter = SlipFilter(
+
+    return SlipFilter(
       since: filters.contains(SlipsSearchFilter.thisMonth) ? DateTime(now.year, now.month) : null,
       inCard: filters.contains(SlipsSearchFilter.inCard)
           ? true
@@ -53,9 +77,16 @@ class SlipsSearchCubit({required final SlipRepository _slipRepository})
       onlyInvisible: filters.contains(SlipsSearchFilter.invisible),
       text: state.query,
     );
+  }
+
+  Future<void> _search() async {
     try {
-      final page = await _slipRepository.getSlips(filter: filter);
-      if (!isClosed) emit(state.copyWith(results: Success(page.items)));
+      final page = await _slipRepository.getSlips(filter: _filter());
+      if (!isClosed) {
+        emit(
+          state.copyWith(results: Success(page.items), hasNext: page.hasNext, isLoadingMore: false),
+        );
+      }
     } catch (exception, stack) {
       addError(exception, stack);
       if (!isClosed) emit(state.copyWith(results: Failure.fromObject(exception)));

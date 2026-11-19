@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/features/_shared/data/models/page_info.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/data/models/slip_filter.dart';
@@ -80,5 +82,52 @@ void main() {
     await cubit.start();
 
     expect(cubit.state.results, isA<Failure>());
+  });
+
+  group('loadMore', () {
+    SlipEntry slip(String id) => SlipEntry(id: id, body: id, createdAt: DateTime(2026, 3, 10));
+
+    test('appends the next page after the loaded ones', () async {
+      when(
+        () => repository.getSlips(filter: any(named: 'filter')),
+      ).thenAnswer((_) async => PageInfo<SlipEntry>(items: [slip('a'), slip('b')], hasNext: true));
+      when(() => repository.getSlips(offset: 2, filter: any(named: 'filter')))
+          .thenAnswer((_) async => PageInfo<SlipEntry>(items: [slip('c')], hasNext: false));
+      final cubit = build();
+      addTearDown(cubit.close);
+      await cubit.start();
+
+      await cubit.loadMore();
+
+      final results = cubit.state.results as Success<List<SlipEntry>>;
+      expect(results.value.map((slip) => slip.id), ['a', 'b', 'c']);
+      expect(cubit.state.hasNext, isFalse);
+      expect(cubit.state.isLoadingMore, isFalse);
+    });
+
+    test('does nothing when there is no next page', () async {
+      final cubit = build();
+      addTearDown(cubit.close);
+      await cubit.start();
+
+      await cubit.loadMore();
+
+      verify(() => repository.getSlips(filter: any(named: 'filter'))).called(1);
+    });
+
+    test('keeps what is loaded when the next page fails', () async {
+      when(() => repository.getSlips(filter: any(named: 'filter')))
+          .thenAnswer((_) async => PageInfo<SlipEntry>(items: [slip('a')], hasNext: true));
+      when(() => repository.getSlips(offset: 1, filter: any(named: 'filter')))
+          .thenThrow(Exception());
+      final cubit = build();
+      addTearDown(cubit.close);
+      await cubit.start();
+
+      await runZonedGuarded(cubit.loadMore, (_, _) {});
+
+      expect(cubit.state.results, isA<Success<List<SlipEntry>>>());
+      expect(cubit.state.isLoadingMore, isFalse);
+    });
   });
 }

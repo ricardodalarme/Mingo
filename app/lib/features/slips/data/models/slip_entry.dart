@@ -12,7 +12,8 @@ final class const SlipEntry({
   final bool forCard = true,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
-  factory fake() => SlipEntry(id: 'fake', body: 'Fez café sem eu pedir', createdAt: DateTime(2026));
+  factory fake({String id = 'fake'}) =>
+      SlipEntry(id: id, body: 'Fez café sem eu pedir', createdAt: DateTime(2026));
 
   /// Whether the slip stays out of the weekly card.
   bool get isPrivate => !forCard;

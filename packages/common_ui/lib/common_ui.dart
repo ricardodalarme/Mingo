@@ -10,4 +10,5 @@ export 'src/widgets/base_list_view.dart';
 export 'src/widgets/infinite_list_view.dart';
 export 'src/widgets/reveal.dart';
 export 'src/widgets/skeletonizer_resource_widget.dart';
+export 'src/widgets/sliver_wall.dart';
 export 'src/widgets/web_view.dart';

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app/features/_shared/data/models/page_info.dart';
 import 'package:app/features/_shared/presentation/errors/app_error_view.dart';
+import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_entry.dart';
 import 'package:app/features/slips/data/models/slip_filter.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
@@ -11,7 +12,6 @@ import 'package:app/features/slips/presentation/slips/slips_page.dart';
 import 'package:app/features/slips/presentation/slips/widgets/slips_groups.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:clock/clock.dart';
-import 'package:common_ui/common_ui.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,9 +21,11 @@ import '../../../../test_helpers/pump_app.dart';
 
 class _MockSlipRepository() extends Mock implements SlipRepository;
 
-double _rowOpacity(WidgetTester tester, int index) => tester
+double _noteOpacity(WidgetTester tester, int index) => tester
     .widget<Opacity>(
-      find.descendant(of: find.byType(Reveal).at(index), matching: find.byType(Opacity)).first,
+      find
+          .descendant(of: find.byType(BaseSlipNote).at(index), matching: find.byType(Opacity))
+          .first,
     )
     .opacity;
 
@@ -103,7 +105,7 @@ void main() {
     });
   });
 
-  testWidgets('a detailed slip shows its kind on the list row', (tester) async {
+  testWidgets('a detailed slip shows its kind and day on the note', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
       stubPage([
         SlipEntry(
@@ -117,11 +119,64 @@ void main() {
 
       await pumpPage(tester, cubit);
 
-      expect(find.text('Ter · Específico'), findsOneWidget);
+      expect(find.text('ESPECÍFICO'), findsOneWidget);
+      expect(find.text('Ter'), findsOneWidget);
     });
   });
 
-  testWidgets('the week rows fade in one after another and settle at rest', (tester) async {
+  testWidgets('a slip with a category takes that type on its note', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      stubPage([
+        SlipEntry(
+          id: 'a',
+          body: 'Me ouviu até o fim',
+          category: SlipCategory.said,
+          createdAt: clock.now(),
+        ),
+      ]);
+      final cubit = await build();
+
+      await pumpPage(tester, cubit);
+
+      expect(find.text('DISSE ALGO'), findsOneWidget);
+      expect(find.byIcon(AppIcons.message), findsOneWidget);
+    });
+  });
+
+  testWidgets('the week line counts the notes and says only the person sees them', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      stubPage([
+        SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: clock.now()),
+        SlipEntry(id: 'b', body: 'Deixou um bilhete', createdAt: clock.now()),
+        SlipEntry(id: 'c', body: 'Buscou o pão', createdAt: clock.now()),
+      ]);
+      final cubit = await build();
+
+      await pumpPage(tester, cubit);
+
+      expect(find.text('3 coisas boas desta semana. Só você vê.'), findsOneWidget);
+    });
+  });
+
+  testWidgets('the add card is the last item of the week and opens nothing else', (tester) async {
+    await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
+      stubPage([
+        SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: clock.now()),
+        SlipEntry(id: 'b', body: 'Deixou um bilhete', createdAt: clock.now()),
+      ]);
+      final cubit = await build();
+
+      await pumpPage(tester, cubit);
+
+      expect(find.byType(BaseSlipNote), findsNWidgets(2));
+      expect(find.text('Anotar mais um'), findsOneWidget);
+      final addTop = tester.getTopLeft(find.byType(BaseSlipNoteAdd)).dy;
+      final lastNoteTop = tester.getTopLeft(find.byType(BaseSlipNote).last).dy;
+      expect(addTop, greaterThanOrEqualTo(lastNoteTop - 40));
+    });
+  });
+
+  testWidgets('the notes fade in on the first load and settle at rest', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
       stubPage([
         SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: clock.now()),
@@ -131,54 +186,69 @@ void main() {
 
       await pumpPage(tester, cubit);
 
-      expect(find.byType(Reveal), findsNWidgets(2));
-      expect(_rowOpacity(tester, 0), 0);
-      expect(_rowOpacity(tester, 1), 0);
+      expect(_noteOpacity(tester, 0), 0);
+      expect(_noteOpacity(tester, 1), 0);
 
-      await tester.pump(AppMotion.stagger);
+      await tester.pump(const Duration(milliseconds: 250));
 
-      expect(_rowOpacity(tester, 0), greaterThan(.5));
-      expect(_rowOpacity(tester, 1), lessThan(.01));
-
-      await tester.pump(AppMotion.stagger);
-      await tester.pump(AppMotion.fast);
-
-      expect(_rowOpacity(tester, 0), 1);
-      expect(_rowOpacity(tester, 1), 1);
+      expect(_noteOpacity(tester, 0), 1);
+      expect(_noteOpacity(tester, 1), 1);
       expect(tester.takeException(), isNull);
     });
   });
 
-  testWidgets('reduced motion shows the week rows at rest', (tester) async {
+  testWidgets('reduced motion shows the notes at rest', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
       stubPage([SlipEntry(id: 'a', body: 'Fez café sem eu pedir', createdAt: clock.now())]);
       final cubit = await build();
 
       await _pumpReducedMotionPage(tester, cubit);
 
-      expect(_rowOpacity(tester, 0), 1);
+      expect(_noteOpacity(tester, 0), 1);
       expect(find.text('Fez café sem eu pedir'), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
   });
 
-  testWidgets('a private slip carries the lock on its row', (tester) async {
+  testWidgets('the empty state shows the ghost notes above the face', (tester) async {
+    stubPage(const []);
+    final cubit = await build();
+
+    await pumpPage(tester, cubit);
+
+    expect(find.byType(BaseSlipNoteGhost), findsOneWidget);
+    expect(find.byType(BaseSlipNote), findsNothing);
+    expect(find.byType(BaseSlipNoteAdd), findsNothing);
+  });
+
+  testWidgets('a long list builds lazily and asks for the next page near the end', (tester) async {
     await withClock(Clock.fixed(DateTime(2026, 3, 10, 12)), () async {
-      stubPage([
-        SlipEntry(id: 'a', body: 'Fez café', createdAt: clock.now(), forCard: false),
-        SlipEntry(id: 'b', body: 'Deixou um bilhete', createdAt: clock.now(), forCard: true),
-      ]);
+      final items = [
+        for (var i = 0; i < 40; i++)
+          SlipEntry(id: 'id-$i', body: 'Slip número $i', createdAt: clock.now()),
+      ];
+      when(
+        () => repository.watchSlips(
+          count: any(named: 'count'),
+          filter: any(named: 'filter'),
+        ),
+      ).thenAnswer((_) => Stream.value(PageInfo<SlipEntry>(items: items, hasNext: true)));
       final cubit = await build();
-      final semantics = tester.ensureSemantics();
 
       await pumpPage(tester, cubit);
 
-      await tester.pump(AppMotion.stagger);
-      await tester.pump(AppMotion.stagger);
+      expect(find.byType(BaseSlipNote).evaluate().length, lessThan(20));
+      expect(find.text('Slip número 39'), findsNothing);
 
-      expect(find.byIcon(AppIcons.lock), findsOneWidget);
-      expect(find.bySemanticsLabel(RegExp('Slip privado')), findsOneWidget);
-      semantics.dispose();
+      await tester.drag(find.byType(CustomScrollView), const Offset(0, -20000));
+      await tester.pump(const Duration(milliseconds: 300));
+
+      verify(
+        () => repository.watchSlips(
+          count: 2 * slipPageSize,
+          filter: any(named: 'filter'),
+        ),
+      ).called(greaterThanOrEqualTo(1));
     });
   });
 

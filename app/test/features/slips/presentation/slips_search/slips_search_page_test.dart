@@ -61,7 +61,7 @@ void main() {
       expect(find.text('Em um cartão'), findsOneWidget);
       expect(find.text('Trabalho invisível'), findsOneWidget);
       expect(find.text('Fez café sem eu pedir'), findsOneWidget);
-      expect(find.byType(BaseSectionHeader), findsNothing);
+      expect(find.text('1 slip em novembro'), findsOneWidget);
     });
   });
 
