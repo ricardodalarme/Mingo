@@ -250,6 +250,9 @@ class Translations$navigation$en {
 
   /// en: 'Card {current} of {total}'
   String cardOf({required Object current, required Object total}) => 'Card ${current} of ${total}';
+
+  /// en: 'Close'
+  String get closeMenu => 'Close';
 }
 
 // Path: input.calendar
@@ -401,6 +404,7 @@ extension on Translations {
         required Object current,
         required Object total,
       }) => 'Card ${current} of ${total}',
+      'navigation.closeMenu' => 'Close',
       _ => null,
     };
   }

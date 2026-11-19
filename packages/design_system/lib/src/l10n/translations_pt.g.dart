@@ -208,6 +208,8 @@ class _Translations$navigation$pt extends Translations$navigation$en {
   @override
   String cardOf({required Object current, required Object total}) =>
       'Cartão ${current} de ${total}';
+  @override
+  String get closeMenu => 'Fechar';
 }
 
 // Path: input.calendar
@@ -353,6 +355,7 @@ extension on TranslationsPt {
         required Object current,
         required Object total,
       }) => 'Cartão ${current} de ${total}',
+      'navigation.closeMenu' => 'Fechar',
       _ => null,
     };
   }

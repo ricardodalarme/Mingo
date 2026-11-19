@@ -20,6 +20,7 @@ abstract final class AppPalette() {
   static const Color tabBarSurface = Color(0xF0FFFFFF);
   static const Color innerGlow = Color(0xE6FFFFFF);
   static const Color scrim = Color(0x52000000);
+  static const Color menuScrim = Color(0x6B1F1D1E);
   static const Color pressedAction = Color(0xFF141213);
 
   static const Color partnerAvatarSurface = Color(0xFFECE8E6);
@@ -45,6 +46,7 @@ abstract final class AppPalette() {
   static const Color foldShadow = Color(0x0F000000);
 
   static const Color shadowRing = Color(0x1F000000);
+  static const Color shadowMenu = Color(0x80000000);
   static const Color shadowFace = Color(0x0A000000);
   static const Color shadowPaper = Color(0x38000000);
   static const Color shadowSlipNote = Color(0x47000000);

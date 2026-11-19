@@ -13,6 +13,16 @@ abstract final class AppShadows() {
     ),
   ];
 
+  /// Anchored menu card: y 20, blur 40, spread −18, black 50%.
+  static const List<BoxShadow> menu = [
+    BoxShadow(
+      color: AppPalette.shadowMenu,
+      offset: Offset(0, 20),
+      blurRadius: 40,
+      spreadRadius: -18,
+    ),
+  ];
+
   /// Face circle: y 2, blur 8, black 4%.
   static const List<BoxShadow> face = [
     BoxShadow(color: AppPalette.shadowFace, offset: Offset(0, 2), blurRadius: 8),

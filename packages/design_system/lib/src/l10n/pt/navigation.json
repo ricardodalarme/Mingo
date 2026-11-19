@@ -1,5 +1,6 @@
 {
   "stepOf": "Etapa {current} de {total}",
   "partOf": "Parte {current} de {total}",
-  "cardOf": "Cartão {current} de {total}"
+  "cardOf": "Cartão {current} de {total}",
+  "closeMenu": "Fechar"
 }

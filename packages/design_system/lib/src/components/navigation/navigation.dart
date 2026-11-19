@@ -1,5 +1,6 @@
 export 'base_app_bar.dart';
 export 'base_carousel.dart';
+export 'base_menu.dart';
 export 'base_page_dots.dart';
 export 'base_sheet.dart';
 export 'base_stepper.dart';

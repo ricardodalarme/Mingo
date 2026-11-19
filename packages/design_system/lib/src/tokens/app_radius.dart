@@ -6,6 +6,7 @@ abstract final class AppRadius() {
   static const double lg = 14;
   static const double xl = 18;
   static const double xxl = 20;
+  static const double menu = 22;
   static const double card = 28;
   static const double ring = 34;
   static const double sheet = 30;
