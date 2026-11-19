@@ -5,16 +5,14 @@ configuration:
   column_config:
     author_id:
       custom_name: authorId
-    budget:
-      custom_name: budget
-    couple_id:
-      custom_name: coupleId
     created_at:
       custom_name: createdAt
     id:
       custom_name: id
     kind:
       custom_name: kind
+    link:
+      custom_name: link
     note:
       custom_name: note
     occasion_date_id:
@@ -27,11 +25,10 @@ configuration:
       custom_name: updatedAt
   custom_column_names:
     author_id: authorId
-    budget: budget
-    couple_id: coupleId
     created_at: createdAt
     id: id
     kind: kind
+    link: link
     note: note
     occasion_date_id: occasionDateId
     status: status
@@ -54,53 +51,32 @@ object_relationships:
   - name: author
     using:
       foreign_key_constraint_on: author_id
-  - name: couple
-    using:
-      foreign_key_constraint_on: couple_id
   - name: occasion
     using:
       foreign_key_constraint_on: occasion_date_id
-array_relationships:
-  - name: coupleMembers
-    using:
-      manual_configuration:
-        column_mapping:
-          couple_id: couple_id
-        insertion_order: null
-        remote_table:
-          name: couple_members
-          schema: public
 insert_permissions:
   - role: user
     permission:
-      check:
-        _or:
-          - couple_id:
-              _is_null: true
-          - coupleMembers:
-              user_id:
-                _eq: X-Hasura-User-Id
+      check: {}
       set:
         author_id: X-Hasura-User-Id
       columns:
         - id
-        - couple_id
         - kind
         - title
         - note
         - occasion_date_id
         - status
-        - budget
+        - link
 select_permissions:
   - role: user
     permission:
       columns:
         - author_id
-        - budget
-        - couple_id
         - created_at
         - id
         - kind
+        - link
         - note
         - occasion_date_id
         - status
@@ -110,31 +86,29 @@ select_permissions:
         _or:
           - author_id:
               _eq: X-Hasura-User-Id
-          - coupleMembers:
-              user_id:
-                _eq: X-Hasura-User-Id
+          - _and:
+              - kind:
+                  _eq: wish
+              - author:
+                  membership:
+                    couple:
+                      members:
+                        user_id:
+                          _eq: X-Hasura-User-Id
       allow_aggregations: true
 update_permissions:
   - role: user
     permission:
       columns:
-        - couple_id
-        - kind
         - title
         - note
         - occasion_date_id
         - status
-        - budget
+        - link
       filter:
         author_id:
           _eq: X-Hasura-User-Id
-      check:
-        _or:
-          - couple_id:
-              _is_null: true
-          - coupleMembers:
-              user_id:
-                _eq: X-Hasura-User-Id
+      check: null
 delete_permissions:
   - role: user
     permission:

@@ -101,10 +101,10 @@
   "questionMeta": "Uma para os dois",
   "gamesMeta": "Sem placar",
   "datesMeta": "Com aviso antes",
-  "giftsMeta": "Só para você",
+  "giftsMeta": "Uma página para seu par",
   "giftsMetaShared(plural, param=count)": {
-    "one": "1 desejo compartilhado",
-    "other": "{count} desejos compartilhados"
+    "one": "1 desejo",
+    "other": "{count} desejos"
   },
   "guidesMeta": "Um passo de cada vez",
   "starterMeta": "Uma pergunta",

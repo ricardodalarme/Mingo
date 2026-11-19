@@ -2,8 +2,7 @@ fragment GiftWishFragment on giftIdeas {
   id
   title
   note
-  budget
+  link
   status
   authorId
-  coupleId
 }

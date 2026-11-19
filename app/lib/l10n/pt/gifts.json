@@ -1,15 +1,15 @@
 {
   "title": "Página de presentes",
-  "subtitle": "Uma página que seu par vê no app. Você escolhe o que compartilhar.",
+  "subtitle": "Uma página que seu par vê no app.",
   "myTitle": "Meus desejos",
   "partnerTitle": "Do seu par",
   "emptyPageTitle": "Nenhum desejo ainda",
-  "emptyPageTextShared": "Adicione um desejo ou espere seu par compartilhar um.",
-  "emptyPageTextSolo": "Adicione o que você gostaria de ganhar. Fica privado até vocês se conectarem.",
+  "emptyPageTextShared": "Adicione um desejo ou espere seu par adicionar um.",
+  "emptyPageTextSolo": "Adicione o que você gostaria de ganhar. Seu par vê quando vocês se conectarem.",
   "emptyMineTitle": "Nenhum desejo ainda",
   "emptyMineText": "Adicione o que você gostaria de ganhar.",
-  "emptyPartnerTitle": "Nada compartilhado ainda",
-  "emptyPartnerText": "Quando seu par compartilhar um desejo, ele aparece aqui.",
+  "emptyPartnerTitle": "Nada por aqui ainda",
+  "emptyPartnerText": "Quando seu par adicionar um desejo, ele aparece aqui.",
   "addTitle": "Novo desejo",
   "editTitle": "Editar desejo",
   "titleLabel": "Presente",
@@ -22,20 +22,14 @@
   "noteErrors(map)": {
     "tooLong": "Use no máximo 1000 caracteres na nota."
   },
-  "budgetLabel": "Orçamento (opcional)",
-  "budgets(map)": {
-    "free": "Grátis",
-    "low": "Baixo",
-    "medium": "Médio",
-    "high": "Alto",
-    "other": ""
+  "linkLabel": "Onde comprar (opcional)",
+  "linkHint": "https://...",
+  "linkErrors(map)": {
+    "invalid": "Use um link que comece com https://.",
+    "tooLong": "Use no máximo 500 caracteres no link."
   },
-  "noBudget": "Sem orçamento",
-  "shared": "Compartilhado",
-  "private": "Privado",
-  "sharedHint": "Seu par pode ver este desejo.",
-  "privateHint": "Só você vê este desejo.",
-  "sharedNeedsPartner": "Conecte-se com seu par para compartilhar um desejo.",
+  "openLink": "Abrir link",
+  "openFailed": "Não foi possível abrir o link.",
   "save": "Salvar",
   "add": "Adicionar",
   "delete": "Excluir",
@@ -44,7 +38,7 @@
   "deleteConfirm": "Excluir",
   "entryLabel": "PRESENTES",
   "entryTitle": "Página de presentes",
-  "entryText": "Desejos que você escolhe compartilhar, ou guardar só para você.",
+  "entryText": "Desejos que seu par vê no app.",
   "errors(map)": {
     "RATE_LIMITED": "Muitas tentativas seguidas. Espere um momento.",
     "other": "Não foi possível agora. Tente de novo."

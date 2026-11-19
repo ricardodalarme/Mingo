@@ -6,6 +6,6 @@ export const enums = [
   'game_status', 'game_outcome', 'game_action', 'conversation_guide', 'mood', 'mood_need', 'mood_share', 'repair_feeling',
   'repair_learning_kind', 'repair_path', 'temperature_level', 'partner_fact_category', 'partner_fact_source', 'lesson_status',
   'quiz_key', 'ritual_cadence', 'date_idea_status', 'important_date_kind', 'important_date_origin', 'date_precision',
-  'memory_origin', 'story_event_kind', 'list_kind', 'list_item_status', 'gift_idea_kind', 'gift_idea_status', 'gift_budget',
+  'memory_origin', 'story_event_kind', 'list_kind', 'list_item_status', 'gift_idea_kind', 'gift_idea_status',
   'pronoun', 'partner_intent', 'spice_answer', 'gentle_response', 'held_reason', 'spice_stage',
 ];

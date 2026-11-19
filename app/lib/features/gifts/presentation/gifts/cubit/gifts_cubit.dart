@@ -1,4 +1,3 @@
-import 'package:app/features/gifts/data/models/gift_budget.dart';
 import 'package:app/features/gifts/data/models/gift_idea.dart';
 import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:core/core.dart';
@@ -29,26 +28,19 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
     }
   }
 
-  /// Adds a wish, private unless the person chooses to share it and has a partner.
-  Future<void> add({
-    required String title,
-    required bool isShared,
-    String? note,
-    GiftBudget? budget,
-  }) async {
+  /// Adds a wish; the page is shared with the partner, so there is nothing to choose.
+  Future<void> add({required String title, String? note, String? link}) async {
     final trimmed = title.trim();
-    if (!_isValid(trimmed, note) || state.saveAction.isLoading || state.gifts is! Success) {
+    if (!_isValid(trimmed, note, link) || state.saveAction.isLoading || state.gifts is! Success) {
       return;
     }
 
     final previous = state.gifts;
-    final coupleId = isShared ? state.coupleId : null;
     final gift = GiftIdea(
       id: _uuid.v4(),
       title: trimmed,
       note: _clean(note),
-      budget: budget,
-      isShared: coupleId != null,
+      link: _clean(link),
       isMine: true,
     );
     emit(
@@ -59,8 +51,7 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
         id: gift.id,
         title: gift.title,
         note: gift.note,
-        budget: gift.budget,
-        coupleId: coupleId,
+        link: gift.link,
       );
       emit(state.copyWith(gifts: Success(_replace(saved)), saveAction: const Success(null)));
     } catch (exception, stack) {
@@ -70,14 +61,9 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
     emit(state.copyWith(saveAction: const Initial()));
   }
 
-  Future<void> edit(
-    GiftIdea gift, {
-    required String title,
-    String? note,
-    GiftBudget? budget,
-  }) async {
+  Future<void> edit(GiftIdea gift, {required String title, String? note, String? link}) async {
     final trimmed = title.trim();
-    if (!gift.isMine || !_isValid(trimmed, note) || state.saveAction.isLoading) return;
+    if (!gift.isMine || !_isValid(trimmed, note, link) || state.saveAction.isLoading) return;
 
     final previous = state.currentGifts;
     await _change(
@@ -85,7 +71,7 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
       next: [
         for (final item in previous)
           if (item.id == gift.id)
-            item.withDetails(title: trimmed, note: _clean(note), budget: budget)
+            item.withDetails(title: trimmed, note: _clean(note), link: _clean(link))
           else
             item,
       ],
@@ -94,7 +80,7 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
           id: gift.id,
           title: trimmed,
           note: _clean(note),
-          budget: budget,
+          link: _clean(link),
         ),
       ),
     );
@@ -117,27 +103,11 @@ class GiftsCubit({required final GiftsRepository _giftsRepository}) extends Cubi
     );
   }
 
-  /// Shares or unshares a wish; sharing needs a partner.
-  Future<void> setVisibility(GiftIdea gift, {required bool isShared}) async {
-    if (!gift.isMine || state.saveAction.isLoading) return;
-    final coupleId = isShared ? state.coupleId : null;
-    if (isShared && coupleId == null) return;
-
-    await _change(
-      previous: state.currentGifts,
-      next: [
-        for (final item in state.currentGifts)
-          if (item.id == gift.id) item.withShared(isShared: coupleId != null) else item,
-      ],
-      action: () async =>
-          _replace(await _giftsRepository.setGiftWishVisibility(id: gift.id, coupleId: coupleId)),
-    );
-  }
-
-  bool _isValid(String title, String? note) =>
+  bool _isValid(String title, String? note, String? link) =>
       title.isNotEmpty &&
       title.length <= giftTitleMaxLength &&
-      (note == null || note.trim().length <= giftNoteMaxLength);
+      (note == null || note.trim().length <= giftNoteMaxLength) &&
+      (link == null || link.trim().length <= giftLinkMaxLength);
 
   String? _clean(String? value) {
     final trimmed = value?.trim();

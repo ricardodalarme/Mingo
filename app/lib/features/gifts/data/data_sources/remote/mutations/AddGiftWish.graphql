@@ -1,13 +1,5 @@
-mutation AddGiftWish(
-  $id: uuid!
-  $title: String!
-  $note: String
-  $budget: GiftBudget_enum
-  $coupleId: uuid
-) {
-  insertGiftIdeasOne(
-    object: { id: $id, title: $title, note: $note, budget: $budget, coupleId: $coupleId, kind: wish }
-  ) {
+mutation AddGiftWish($id: uuid!, $title: String!, $note: String, $link: String) {
+  insertGiftIdeasOne(object: { id: $id, title: $title, note: $note, link: $link, kind: wish }) {
     ...GiftWishFragment
   }
 }

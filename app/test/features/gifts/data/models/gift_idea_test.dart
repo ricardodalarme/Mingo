@@ -1,43 +1,33 @@
-import 'package:app/features/gifts/data/models/gift_budget.dart';
 import 'package:app/features/gifts/data/models/gift_idea.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('a wish without a couple id is private', () {
+  test('a wish is mine only when the person added it', () {
     const gift = GiftIdea(id: 'g1', title: 'Livro');
 
-    expect(gift.isShared, isFalse);
     expect(gift.isMine, isFalse);
+    expect(gift.link, isNull);
   });
 
-  test('a shared wish', () {
-    const gift = GiftIdea(id: 'g1', title: 'Livro', isShared: true, isMine: true);
+  test('a partner wish', () {
+    const gift = GiftIdea(id: 'g1', title: 'Livro', isMine: true);
 
-    expect(gift.isShared, isTrue);
     expect(gift.isMine, isTrue);
   });
 
-  test('details keep identity and visibility', () {
-    const gift = GiftIdea(id: 'g1', title: 'Livro', isShared: true, isMine: true);
+  test('details keep identity and authorship', () {
+    const gift = GiftIdea(id: 'g1', title: 'Livro', isMine: true);
 
     final edited = gift.withDetails(
       title: 'Livro de poemas',
       note: 'Capa dura',
-      budget: GiftBudget.low,
+      link: 'https://example.com/livro',
     );
 
     expect(edited.id, gift.id);
     expect(edited.title, 'Livro de poemas');
     expect(edited.note, 'Capa dura');
-    expect(edited.budget, GiftBudget.low);
-    expect(edited.isShared, isTrue);
+    expect(edited.link, 'https://example.com/livro');
     expect(edited.isMine, isTrue);
-  });
-
-  test('changing visibility changes only visibility', () {
-    const gift = GiftIdea(id: 'g1', title: 'Livro', isMine: true);
-
-    expect(gift.withShared(isShared: true).isShared, isTrue);
-    expect(gift.withShared(isShared: false).isShared, isFalse);
   });
 }

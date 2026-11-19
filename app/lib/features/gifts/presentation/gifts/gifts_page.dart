@@ -9,6 +9,7 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:link_launcher_service/link_launcher_service.dart';
 
 /// The wishes a person shares with their partner, and the partner's wishes.
 @RoutePage()
@@ -62,7 +63,7 @@ class const GiftsPage({super.key}) extends StatelessWidget implements AutoRouteW
                 ? BaseButton(
                     text: l10n.add,
                     icon: AppIcons.plus,
-                    onPressed: () => _addGift(context, hasPartner),
+                    onPressed: () => _addGift(context),
                   )
                 : null,
           ),
@@ -94,9 +95,7 @@ class const _GiftSections({required final List<GiftIdea> gifts, required final b
         if (myGifts.isEmpty)
           BaseEmptyState(title: l10n.emptyMineTitle, text: l10n.emptyMineText)
         else
-          BaseListGroup(
-            children: [for (final gift in myGifts) _GiftTile(gift: gift, hasPartner: hasPartner)],
-          ),
+          BaseListGroup(children: [for (final gift in myGifts) _GiftTile(gift: gift)]),
         if (hasPartner) ...[
           const SizedBox(height: AppSpace.s24),
           _SectionTitle(text: l10n.partnerTitle),
@@ -120,27 +119,16 @@ class const _SectionTitle({required final String text}) extends StatelessWidget 
   }
 }
 
-class const _GiftTile({required final GiftIdea gift, required final bool hasPartner})
-    extends StatelessWidget {
+class const _GiftTile({required final GiftIdea gift}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n.gifts;
-    final cubit = context.read<GiftsCubit>();
-
     return BaseListTile(
       title: gift.title,
       titleMaxLines: 1,
-      subtitle: gift.note ?? (gift.isShared ? l10n.shared : l10n.private),
+      subtitle: gift.note,
       subtitleMaxLines: 2,
-      value: gift.budget == null ? null : l10n.budgets.selectOrFallback(gift.budget!.name),
-      trailing: hasPartner
-          ? BaseSwitch(
-              value: gift.isShared,
-              semanticLabel: gift.isShared ? l10n.shared : l10n.private,
-              onChanged: (isShared) => cubit.setVisibility(gift, isShared: isShared),
-            )
-          : AppIcon(icon: AppIcons.lock, color: context.colors.iconMuted),
-      onTap: () => _editGift(context, gift, hasPartner),
+      trailing: gift.link == null ? null : _BuyLink(link: gift.link!),
+      onTap: () => _editGift(context, gift),
     );
   }
 }
@@ -148,44 +136,60 @@ class const _GiftTile({required final GiftIdea gift, required final bool hasPart
 class const _PartnerGiftTile({required final GiftIdea gift}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n.gifts;
-
     return BaseListTile(
       icon: AppIcons.gift,
       title: gift.title,
       titleMaxLines: 1,
-      subtitle: gift.note ?? l10n.shared,
+      subtitle: gift.note,
       subtitleMaxLines: 2,
-      value: gift.budget == null ? null : l10n.budgets.selectOrFallback(gift.budget!.name),
+      trailing: gift.link == null ? null : _BuyLink(link: gift.link!),
     );
   }
 }
 
-Future<void> _addGift(BuildContext context, bool hasPartner) async {
+class const _BuyLink({required final String link}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.gifts;
+
+    return AppPressable(
+      onTap: () => _openLink(context, link),
+      semanticLabel: l10n.openLink,
+      borderRadius: BorderRadius.circular(AppRadius.pill),
+      enforceMinTapTarget: true,
+      child: AppIcon(icon: AppIcons.link, color: context.colors.iconMuted),
+    );
+  }
+}
+
+Future<void> _openLink(BuildContext context, String link) async {
+  final l10n = context.l10n.gifts;
+  final opened = await AppInjector.instance.get<LinkLauncherService>().openExternal(
+    Uri.parse(link),
+  );
+  if (!opened && context.mounted) BaseToast.show(context, l10n.openFailed);
+}
+
+Future<void> _addGift(BuildContext context) async {
   final l10n = context.l10n.gifts;
   final cubit = context.read<GiftsCubit>();
   final draft = await BaseSheet.show<GiftDraft>(
     context: context,
     title: l10n.addTitle,
-    child: GiftSheet(hasPartner: hasPartner),
+    child: const GiftSheet(),
   );
   if (draft == null || draft.isDelete || !context.mounted) return;
 
-  await cubit.add(
-    title: draft.title,
-    note: draft.note,
-    budget: draft.budget,
-    isShared: draft.isShared,
-  );
+  await cubit.add(title: draft.title, note: draft.note, link: draft.link);
 }
 
-Future<void> _editGift(BuildContext context, GiftIdea gift, bool hasPartner) async {
+Future<void> _editGift(BuildContext context, GiftIdea gift) async {
   final l10n = context.l10n.gifts;
   final cubit = context.read<GiftsCubit>();
   final draft = await BaseSheet.show<GiftDraft>(
     context: context,
     title: l10n.editTitle,
-    child: GiftSheet(hasPartner: hasPartner, gift: gift),
+    child: GiftSheet(gift: gift),
   );
   if (draft == null || !context.mounted) return;
 
@@ -194,7 +198,7 @@ Future<void> _editGift(BuildContext context, GiftIdea gift, bool hasPartner) asy
 
     return;
   }
-  await cubit.edit(gift, title: draft.title, note: draft.note, budget: draft.budget);
+  await cubit.edit(gift, title: draft.title, note: draft.note, link: draft.link);
 }
 
 Future<void> _deleteGift(BuildContext context, GiftIdea gift) async {

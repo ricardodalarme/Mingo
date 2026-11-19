@@ -1,4 +1,3 @@
-import 'package:app/features/gifts/data/models/gift_budget.dart';
 import 'package:app/features/gifts/data/models/gift_idea.dart';
 import 'package:app/features/gifts/presentation/gift_sheet/cubit/gift_sheet_cubit.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
@@ -10,18 +9,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 final class const GiftDraft({
   final String title = '',
   final String? note,
-  final GiftBudget? budget,
-  final bool isShared = false,
+  final String? link,
   final bool isDelete = false,
 });
 
 /// The sheet that adds or edits one wish.
-class const GiftSheet({required final bool hasPartner, final GiftIdea? gift, super.key})
-    extends StatelessWidget {
+class const GiftSheet({final GiftIdea? gift, super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => GiftSheetCubit()..start(hasPartner: hasPartner, gift: gift),
+      create: (_) => GiftSheetCubit()..start(gift: gift),
       child: const _GiftSheetContent(),
     );
   }
@@ -33,10 +30,8 @@ class const _GiftSheetContent() extends StatelessWidget {
     final l10n = context.l10n.gifts;
     final title = context.select((GiftSheetCubit cubit) => cubit.state.title);
     final note = context.select((GiftSheetCubit cubit) => cubit.state.note);
-    final budget = context.select((GiftSheetCubit cubit) => cubit.state.budget);
-    final isShared = context.select((GiftSheetCubit cubit) => cubit.state.isShared);
+    final link = context.select((GiftSheetCubit cubit) => cubit.state.link);
     final isEditing = context.select((GiftSheetCubit cubit) => cubit.state.isEditing);
-    final hasPartner = context.select((GiftSheetCubit cubit) => cubit.state.hasPartner);
     final cubit = context.read<GiftSheetCubit>();
 
     return Column(
@@ -59,51 +54,14 @@ class const _GiftSheetContent() extends StatelessWidget {
           onChanged: cubit.onNoteChanged,
         ),
         const SizedBox(height: AppSpace.s16),
-        Text(
-          l10n.budgetLabel,
-          style: context.text.caption.copyWith(color: context.colors.textSecondary),
+        BaseTextField(
+          text: link.value,
+          label: l10n.linkLabel,
+          hint: l10n.linkHint,
+          type: .url,
+          errorText: l10n.linkErrors.selectOrNull(link.errorName),
+          onChanged: cubit.onLinkChanged,
         ),
-        const SizedBox(height: AppSpace.s8),
-        Wrap(
-          spacing: AppSpace.s8,
-          runSpacing: AppSpace.s8,
-          children: [
-            BaseChoiceChip(
-              label: l10n.noBudget,
-              isSelected: budget == null,
-              onTap: () => cubit.onBudgetChanged(null),
-            ),
-            for (final option in GiftBudget.values)
-              BaseChoiceChip(
-                label: l10n.budgets.selectOrFallback(option.name),
-                isSelected: budget == option,
-                onTap: () => cubit.onBudgetChanged(option),
-              ),
-          ],
-        ),
-        if (!isEditing) ...[
-          const SizedBox(height: AppSpace.s16),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  hasPartner
-                      ? (isShared ? l10n.sharedHint : l10n.privateHint)
-                      : l10n.sharedNeedsPartner,
-                  style: context.text.caption.copyWith(color: context.colors.textSecondary),
-                ),
-              ),
-              if (hasPartner) ...[
-                const SizedBox(width: AppSpace.s12),
-                BaseSwitch(
-                  value: isShared,
-                  semanticLabel: isShared ? l10n.shared : l10n.private,
-                  onChanged: cubit.onSharedChanged,
-                ),
-              ],
-            ],
-          ),
-        ],
         const SizedBox(height: AppSpace.s24),
         BaseButton(text: isEditing ? l10n.save : l10n.add, onPressed: () => _save(context)),
         if (isEditing) ...[
@@ -122,13 +80,6 @@ class const _GiftSheetContent() extends StatelessWidget {
     final draft = context.read<GiftSheetCubit>().submit();
     if (draft == null) return;
 
-    Navigator.of(context).pop(
-      GiftDraft(
-        title: draft.title,
-        note: draft.note,
-        budget: draft.budget,
-        isShared: draft.isShared,
-      ),
-    );
+    Navigator.of(context).pop(GiftDraft(title: draft.title, note: draft.note, link: draft.link));
   }
 }

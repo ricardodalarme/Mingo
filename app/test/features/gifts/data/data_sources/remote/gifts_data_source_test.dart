@@ -1,7 +1,6 @@
 import 'package:app/features/gifts/data/data_sources/remote/gifts_data_source.dart';
 import 'package:app/features/gifts/data/data_sources/remote/mutations/generated/AddGiftWish.graphql.dart';
 import 'package:app/features/gifts/data/data_sources/remote/mutations/generated/DeleteGiftWish.graphql.dart';
-import 'package:app/features/gifts/data/data_sources/remote/mutations/generated/SetGiftWishVisibility.graphql.dart';
 import 'package:app/features/gifts/data/data_sources/remote/mutations/generated/UpdateGiftWish.graphql.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network/network.dart';
@@ -42,7 +41,6 @@ const Map<String, dynamic> _wish = {
   'title': 'Livro',
   'status': 'idea',
   'authorId': 'user-1',
-  'coupleId': null,
   '__typename': 'giftIdeas',
 };
 
@@ -101,19 +99,6 @@ void main() {
     expect(dataSource.deleteGiftWish('g1'), throwsA(isA<NoDataException>()));
   });
 
-  test('changing visibility on a missing wish fails', () {
-    final options = OptionsMutationSetGiftWishVisibility(
-      variables: VariablesMutationSetGiftWishVisibility(id: 'g1'),
-    );
-    final dataSource = GiftsDataSource(
-      client: _StubGQLClient(
-        _result(options, {'updateGiftIdeasByPk': null, '__typename': 'Mutation'}),
-      ),
-    );
-
-    expect(dataSource.setGiftWishVisibility(id: 'g1'), throwsA(isA<NoDataException>()));
-  });
-
   test('a mutation that touches one row returns the stored wish', () async {
     final client = _CapturingGQLClient();
     final dataSource = GiftsDataSource(client: client);
@@ -124,29 +109,7 @@ void main() {
     expect(saved.authorId, 'user-1');
   });
 
-  test('unsharing a wish sends coupleId as null in one request', () async {
-    final client = _CapturingGQLClient();
-    final dataSource = GiftsDataSource(client: client);
-
-    await dataSource.setGiftWishVisibility(id: 'g1');
-
-    final operation = client.mutations.single;
-    expect(printNode(operation.document), contains('mutation SetGiftWishVisibility'));
-    expect(operation.variables, {'id': 'g1', 'coupleId': null});
-  });
-
-  test('sharing a wish sends the couple id variable', () async {
-    final client = _CapturingGQLClient();
-    final dataSource = GiftsDataSource(client: client);
-
-    await dataSource.setGiftWishVisibility(id: 'g1', coupleId: 'couple-1');
-
-    final operation = client.mutations.single;
-    expect(printNode(operation.document), contains('mutation SetGiftWishVisibility'));
-    expect(operation.variables, {'id': 'g1', 'coupleId': 'couple-1'});
-  });
-
-  test('clearing a note and budget is one request with explicit nulls', () async {
+  test('clearing a note and a link is one request with explicit nulls', () async {
     final client = _CapturingGQLClient();
     final dataSource = GiftsDataSource(client: client);
 
@@ -154,7 +117,21 @@ void main() {
 
     final operation = client.mutations.single;
     expect(printNode(operation.document), contains('mutation UpdateGiftWish'));
-    expect(operation.variables, {'id': 'g1', 'title': 'Livro', 'note': null, 'budget': null});
+    expect(operation.variables, {'id': 'g1', 'title': 'Livro', 'note': null, 'link': null});
+  });
+
+  test('a wish stores where to buy it', () async {
+    final client = _CapturingGQLClient();
+    final dataSource = GiftsDataSource(client: client);
+
+    await dataSource.addGiftWish(id: 'g1', title: 'Livro', link: 'https://example.com/livro');
+
+    final operation = client.mutations.single;
+    expect(operation.variables, {
+      'id': 'g1',
+      'title': 'Livro',
+      'link': 'https://example.com/livro',
+    });
   });
 
   test('a new wish is inserted as a wish, not a date idea', () async {

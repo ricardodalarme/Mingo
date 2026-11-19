@@ -7,9 +7,8 @@ extension GiftWishFragmentMapper on FragmentGiftWishFragment {
     id: id,
     title: title,
     note: note,
-    budget: budget?.toModel(),
+    link: link,
     status: status.toModel(),
-    isShared: coupleId != null,
     isMine: authorId == currentUserId,
   );
 }

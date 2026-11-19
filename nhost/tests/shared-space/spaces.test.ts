@@ -1,5 +1,5 @@
 import { test } from 'node:test';
-import { adult, assert, couple, denied, gql, ok, person, randomUUID, sql, type Person } from '../lib.ts';
+import { adult, assert, couple, denied, gql, ok, pair, person, randomUUID, sql, type Person } from '../lib.ts';
 
 // table -> a minimal valid row, for the tables that are private to their author.
 const privateTables: Record<string, string> = {
@@ -73,7 +73,6 @@ const sharedTables: Record<string, string> = {
   memories: 'title: "primeira viagem", happenedOn: "2024-02-01"',
   storyEvents: 'kind: met, happenedOn: "2020-01-01"',
   lists: 'title: "filmes"',
-  giftIdeas: 'title: "livro"',
   agreements: 'body: "sem celular na mesa"',
 };
 
@@ -99,6 +98,24 @@ for (const [table, row] of Object.entries(sharedTables)) {
   });
 }
 
+test('a wish is always visible to the current partner; a date gift idea stays private', async () => {
+  const a = await person('Ana');
+  const b = await person('Bruno');
+  const wish = (await ok(a, `mutation { insertGiftIdeasOne(object: {title: "livro", kind: wish, link: "https://example.com/livro"}) { id link } }`)).insertGiftIdeasOne;
+  const idea = (await ok(a, `mutation { insertGiftIdeasOne(object: {title: "caneca", kind: idea, link: "https://example.com/caneca"}) { id } }`)).insertGiftIdeasOne;
+  assert.equal(wish.link, 'https://example.com/livro');
+  const seenBy = (who: Person) => ok(who, `{ giftIdeas(order_by: {title: asc}) { id title kind } }`).then((d) => d.giftIdeas);
+  assert.deepEqual(await seenBy(b), [], 'there is no partner yet');
+  await pair(a, b);
+  assert.deepEqual(await seenBy(b), [{ id: wish.id, title: 'livro', kind: 'wish' }], 'pairing shares wishes added before it');
+  assert.deepEqual(await seenBy(a), [
+    { id: idea.id, title: 'caneca', kind: 'idea' },
+    { id: wish.id, title: 'livro', kind: 'wish' },
+  ]);
+  await ok(a, `mutation { unpair { id } }`);
+  assert.deepEqual(await seenBy(b), [], 'an ex-partner loses the wishes at once');
+});
+
 test('after the couple ends, the author keeps the shared rows as private ones or deletes them', async () => {
   const keep = await couple();
   await ok(keep.a, `mutation ($c: uuid!) { insertListsOne(object: {title: "x", coupleId: $c}) { id } }`, { c: keep.coupleId });
@@ -108,17 +125,18 @@ test('after the couple ends, the author keeps the shared rows as private ones or
   assert.deepEqual((await ok(keep.a, `{ lists { coupleId } }`)).lists, [{ coupleId: null }]);
   const drop = await couple();
   await ok(drop.a, `mutation ($c: uuid!) { insertListsOne(object: {title: "x", coupleId: $c}) { id } insertRitualsOne(object: {title: "mine"}) { id } }`, { c: drop.coupleId });
+  await ok(drop.a, `mutation { insertGiftIdeasOne(object: {title: "livro", kind: wish}) { id } }`);
   await ok(drop.a, `mutation { unpair { id } }`);
   await ok(drop.a, `mutation { resolveSharedItems(args: {keep: false}) { id } }`);
-  assert.deepEqual(await ok(drop.a, `{ lists { id } rituals { title } }`), { lists: [], rituals: [{ title: 'mine' }] });
+  assert.deepEqual(await ok(drop.a, `{ lists { id } rituals { title } giftIdeas { id } }`), { lists: [], rituals: [{ title: 'mine' }], giftIdeas: [] });
 });
 
-test('the partner edits shared rows but not gift ideas or memories, and never a private row', async () => {
+test('the partner edits shared rows but not gift wishes or memories, and never a private row', async () => {
   const { a, b, coupleId } = await couple();
   const mk = (table: string, row: string) => ok(a, `mutation ($c: uuid!) { insert${table}One(object: {${row}, coupleId: $c}) { id } }`, { c: coupleId }).then((d) => d[`insert${table}One`].id);
   const ritual = await mk('Rituals', 'title: "café"');
-  const gift = await mk('GiftIdeas', 'title: "livro", kind: wish');
   const memory = await mk('Memories', 'title: "viagem", happenedOn: "2024-01-01"');
+  const gift = (await ok(a, 'mutation { insertGiftIdeasOne(object: {title: "livro", kind: wish}) { id } }')).insertGiftIdeasOne.id;
   const out = await ok(b, `mutation ($r: uuid!, $g: uuid!, $m: uuid!) {
     updateRitualsByPk(pk_columns: {id: $r}, _set: {title: "chá"}) { title }
     updateGiftIdeasByPk(pk_columns: {id: $g}, _set: {title: "x"}) { id }

@@ -61,7 +61,6 @@
 - "!include public_game_status.yaml"
 - "!include public_gentle_requests.yaml"
 - "!include public_gentle_response.yaml"
-- "!include public_gift_budget.yaml"
 - "!include public_gift_idea_kind.yaml"
 - "!include public_gift_idea_status.yaml"
 - "!include public_gift_ideas.yaml"

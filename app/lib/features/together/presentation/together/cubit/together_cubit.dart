@@ -52,10 +52,7 @@ class TogetherCubit({
       () async => (await _questionsRepository.getPrompt()).title,
       null,
     );
-    final sharedGiftCount = _orElse(
-      () async => (await _giftsRepository.getGiftIdeas()).where((gift) => gift.isShared).length,
-      0,
-    );
+    final sharedGiftCount = _orElse(() async => (await _giftsRepository.getGiftIdeas()).length, 0);
     final togetherSince = _orElse<DateTime?>(
       () async => (await _historyRepository.getOverview()).togetherSince,
       null,

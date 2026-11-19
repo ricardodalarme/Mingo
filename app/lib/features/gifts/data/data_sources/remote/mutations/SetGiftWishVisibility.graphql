@@ -1,5 +1,0 @@
-mutation SetGiftWishVisibility($id: uuid!, $coupleId: uuid) {
-  updateGiftIdeasByPk(pk_columns: { id: $id }, _set: { coupleId: $coupleId }) {
-    ...GiftWishFragment
-  }
-}

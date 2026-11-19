@@ -1,4 +1,3 @@
-import 'package:app/features/gifts/data/models/gift_budget.dart';
 import 'package:app/features/gifts/data/models/gift_idea_status.dart';
 import 'package:equatable/equatable.dart';
 
@@ -8,17 +7,19 @@ const int giftTitleMaxLength = 120;
 /// The longest gift note the server accepts.
 const int giftNoteMaxLength = 1000;
 
+/// The longest gift link the server accepts.
+const int giftLinkMaxLength = 500;
+
 /// One wish on a person's gift page.
 ///
-/// When [isShared] is false only the author sees it; when it is true the current
-/// partner can read it too. [isMine] is false for items the partner shared.
+/// A wish is always shared with the current partner; [isMine] is false for
+/// wishes the partner added.
 final class const GiftIdea({
   required final String id,
   required final String title,
   final String? note,
-  final GiftBudget? budget,
+  final String? link,
   final GiftIdeaStatus status = GiftIdeaStatus.idea,
-  final bool isShared = false,
   final bool isMine = false,
 }) with Equatable {
   /// A skeleton placeholder, never shown as a real record.
@@ -26,34 +27,13 @@ final class const GiftIdea({
     id: 'fake',
     title: 'Livro de poemas',
     note: 'Capa dura',
-    budget: GiftBudget.low,
+    link: 'https://example.com/livro',
     isMine: true,
   );
 
-  GiftIdea withDetails({
-    required String title,
-    required String? note,
-    required GiftBudget? budget,
-  }) => GiftIdea(
-    id: id,
-    title: title,
-    note: note,
-    budget: budget,
-    status: status,
-    isShared: isShared,
-    isMine: isMine,
-  );
-
-  GiftIdea withShared({required bool isShared}) => GiftIdea(
-    id: id,
-    title: title,
-    note: note,
-    budget: budget,
-    status: status,
-    isShared: isShared,
-    isMine: isMine,
-  );
+  GiftIdea withDetails({required String title, required String? note, required String? link}) =>
+      GiftIdea(id: id, title: title, note: note, link: link, status: status, isMine: isMine);
 
   @override
-  List<Object?> get props => [id, title, note, budget, status, isShared, isMine];
+  List<Object?> get props => [id, title, note, link, status, isMine];
 }

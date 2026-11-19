@@ -64,11 +64,21 @@ export const tables = {
       },
     },
   },
-  gift_ideas: sharedWithCouple({
-    insert: ['kind', 'title', 'note', 'occasion_date_id', 'status', 'budget'],
-    object: { occasion: 'occasion_date_id' },
-    partnerWrites: false,
-  }),
+  gift_ideas: {
+    object: { author: 'author_id', occasion: 'occasion_date_id' },
+    roles: {
+      user: {
+        select: {
+          columns: '*',
+          filter: or(mine(), and({ kind: { _eq: 'wish' } }, { author: meOrPartner })),
+          aggregate: true,
+        },
+        insert: { columns: ['id', 'kind', 'title', 'note', 'occasion_date_id', 'status', 'link'], set: { author_id: ME } },
+        update: { columns: ['title', 'note', 'occasion_date_id', 'status', 'link'], filter: mine() },
+        delete: { filter: mine() },
+      },
+    },
+  },
 
 };
 

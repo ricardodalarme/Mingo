@@ -1,15 +1,15 @@
 {
   "title": "Gift page",
-  "subtitle": "A page your partner can see in the app. You choose what to share.",
+  "subtitle": "A page your partner sees in the app.",
   "myTitle": "My wishes",
   "partnerTitle": "From your partner",
   "emptyPageTitle": "No wishes yet",
-  "emptyPageTextShared": "Add a wish, or wait for your partner to share one.",
-  "emptyPageTextSolo": "Add what you would love to receive. It stays private until you pair.",
+  "emptyPageTextShared": "Add a wish, or wait for your partner to add one.",
+  "emptyPageTextSolo": "Add what you would love to receive. Your partner sees it when you pair.",
   "emptyMineTitle": "No wishes yet",
   "emptyMineText": "Add what you would love to receive.",
-  "emptyPartnerTitle": "Nothing shared yet",
-  "emptyPartnerText": "When your partner shares a wish, it shows up here.",
+  "emptyPartnerTitle": "Nothing here yet",
+  "emptyPartnerText": "When your partner adds a wish, it shows up here.",
   "addTitle": "New wish",
   "editTitle": "Edit wish",
   "titleLabel": "Gift",
@@ -22,20 +22,14 @@
   "noteErrors(map)": {
     "tooLong": "Keep the note under 1000 characters."
   },
-  "budgetLabel": "Budget (optional)",
-  "budgets(map)": {
-    "free": "Free",
-    "low": "Low",
-    "medium": "Medium",
-    "high": "High",
-    "other": ""
+  "linkLabel": "Where to buy (optional)",
+  "linkHint": "https://...",
+  "linkErrors(map)": {
+    "invalid": "Use a link that starts with https://.",
+    "tooLong": "Keep the link to 500 characters or fewer."
   },
-  "noBudget": "No budget",
-  "shared": "Shared",
-  "private": "Private",
-  "sharedHint": "Your partner can see this wish.",
-  "privateHint": "Only you can see this wish.",
-  "sharedNeedsPartner": "Pair with your partner to share a wish.",
+  "openLink": "Open link",
+  "openFailed": "Couldn't open the link.",
   "save": "Save",
   "add": "Add",
   "delete": "Delete",
@@ -44,7 +38,7 @@
   "deleteConfirm": "Delete",
   "entryLabel": "GIFTS",
   "entryTitle": "Gift page",
-  "entryText": "Wishes you choose to share, or keep to yourself.",
+  "entryText": "Wishes your partner sees in the app.",
   "errors(map)": {
     "RATE_LIMITED": "Too many attempts in a row. Wait a moment.",
     "other": "Couldn't do that right now. Try again."

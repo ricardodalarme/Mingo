@@ -141,12 +141,12 @@ void main() {
     expect(cubit.state.togetherSince, isNull);
   });
 
-  test('the gifts entry counts the wishes shared with the partner', () async {
+  test('the gifts entry counts the wishes on the couple page', () async {
     when(giftsRepository.getGiftIdeas).thenAnswer(
       (_) async => const [
-        GiftIdea(id: 'g1', title: 'Livro', isShared: true, isMine: true),
+        GiftIdea(id: 'g1', title: 'Livro', isMine: true),
         GiftIdea(id: 'g2', title: 'Chá', isMine: true),
-        GiftIdea(id: 'g3', title: 'Flor', isShared: true),
+        GiftIdea(id: 'g3', title: 'Flor'),
       ],
     );
     final cubit = build();
@@ -154,7 +154,7 @@ void main() {
 
     await cubit.load();
 
-    expect(cubit.state.sharedGiftCount, 2);
+    expect(cubit.state.sharedGiftCount, 3);
   });
 
   test('unreadable gifts leave the entry without a shared count', () async {

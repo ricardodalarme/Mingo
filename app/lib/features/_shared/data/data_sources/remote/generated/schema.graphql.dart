@@ -3575,189 +3575,6 @@ class InputGentleResponse_enum_comparison_exp {
   }
 }
 
-class InputGiftBudget_enum_comparison_exp {
-  factory InputGiftBudget_enum_comparison_exp({
-    EnumGiftBudget_enum? $_eq,
-    List<EnumGiftBudget_enum>? $_in,
-    bool? $_is_null,
-    EnumGiftBudget_enum? $_neq,
-    List<EnumGiftBudget_enum>? $_nin,
-  }) => InputGiftBudget_enum_comparison_exp._({
-    if ($_eq != null) r'_eq': $_eq,
-    if ($_in != null) r'_in': $_in,
-    if ($_is_null != null) r'_is_null': $_is_null,
-    if ($_neq != null) r'_neq': $_neq,
-    if ($_nin != null) r'_nin': $_nin,
-  });
-
-  InputGiftBudget_enum_comparison_exp._(this._$data);
-
-  factory InputGiftBudget_enum_comparison_exp.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('_eq')) {
-      final l$$_eq = data['_eq'];
-      result$data['_eq'] = l$$_eq == null ? null : fromJsonEnumGiftBudget_enum((l$$_eq as String));
-    }
-    if (data.containsKey('_in')) {
-      final l$$_in = data['_in'];
-      result$data['_in'] = (l$$_in as List<dynamic>?)
-          ?.map((e) => fromJsonEnumGiftBudget_enum((e as String)))
-          .toList();
-    }
-    if (data.containsKey('_is_null')) {
-      final l$$_is_null = data['_is_null'];
-      result$data['_is_null'] = (l$$_is_null as bool?);
-    }
-    if (data.containsKey('_neq')) {
-      final l$$_neq = data['_neq'];
-      result$data['_neq'] = l$$_neq == null
-          ? null
-          : fromJsonEnumGiftBudget_enum((l$$_neq as String));
-    }
-    if (data.containsKey('_nin')) {
-      final l$$_nin = data['_nin'];
-      result$data['_nin'] = (l$$_nin as List<dynamic>?)
-          ?.map((e) => fromJsonEnumGiftBudget_enum((e as String)))
-          .toList();
-    }
-    return InputGiftBudget_enum_comparison_exp._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  EnumGiftBudget_enum? get $_eq => (_$data['_eq'] as EnumGiftBudget_enum?);
-
-  List<EnumGiftBudget_enum>? get $_in => (_$data['_in'] as List<EnumGiftBudget_enum>?);
-
-  bool? get $_is_null => (_$data['_is_null'] as bool?);
-
-  EnumGiftBudget_enum? get $_neq => (_$data['_neq'] as EnumGiftBudget_enum?);
-
-  List<EnumGiftBudget_enum>? get $_nin => (_$data['_nin'] as List<EnumGiftBudget_enum>?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('_eq')) {
-      final l$$_eq = $_eq;
-      result$data['_eq'] = l$$_eq == null ? null : toJsonEnumGiftBudget_enum(l$$_eq);
-    }
-    if (_$data.containsKey('_in')) {
-      final l$$_in = $_in;
-      result$data['_in'] = l$$_in?.map((e) => toJsonEnumGiftBudget_enum(e)).toList();
-    }
-    if (_$data.containsKey('_is_null')) {
-      final l$$_is_null = $_is_null;
-      result$data['_is_null'] = l$$_is_null;
-    }
-    if (_$data.containsKey('_neq')) {
-      final l$$_neq = $_neq;
-      result$data['_neq'] = l$$_neq == null ? null : toJsonEnumGiftBudget_enum(l$$_neq);
-    }
-    if (_$data.containsKey('_nin')) {
-      final l$$_nin = $_nin;
-      result$data['_nin'] = l$$_nin?.map((e) => toJsonEnumGiftBudget_enum(e)).toList();
-    }
-    return result$data;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! InputGiftBudget_enum_comparison_exp || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$$_eq = $_eq;
-    final lOther$$_eq = other.$_eq;
-    if (_$data.containsKey('_eq') != other._$data.containsKey('_eq')) {
-      return false;
-    }
-    if (l$$_eq != lOther$$_eq) {
-      return false;
-    }
-    final l$$_in = $_in;
-    final lOther$$_in = other.$_in;
-    if (_$data.containsKey('_in') != other._$data.containsKey('_in')) {
-      return false;
-    }
-    if (l$$_in != null && lOther$$_in != null) {
-      if (l$$_in.length != lOther$$_in.length) {
-        return false;
-      }
-      for (int i = 0; i < l$$_in.length; i++) {
-        final l$$_in$entry = l$$_in[i];
-        final lOther$$_in$entry = lOther$$_in[i];
-        if (l$$_in$entry != lOther$$_in$entry) {
-          return false;
-        }
-      }
-    } else if (l$$_in != lOther$$_in) {
-      return false;
-    }
-    final l$$_is_null = $_is_null;
-    final lOther$$_is_null = other.$_is_null;
-    if (_$data.containsKey('_is_null') != other._$data.containsKey('_is_null')) {
-      return false;
-    }
-    if (l$$_is_null != lOther$$_is_null) {
-      return false;
-    }
-    final l$$_neq = $_neq;
-    final lOther$$_neq = other.$_neq;
-    if (_$data.containsKey('_neq') != other._$data.containsKey('_neq')) {
-      return false;
-    }
-    if (l$$_neq != lOther$$_neq) {
-      return false;
-    }
-    final l$$_nin = $_nin;
-    final lOther$$_nin = other.$_nin;
-    if (_$data.containsKey('_nin') != other._$data.containsKey('_nin')) {
-      return false;
-    }
-    if (l$$_nin != null && lOther$$_nin != null) {
-      if (l$$_nin.length != lOther$$_nin.length) {
-        return false;
-      }
-      for (int i = 0; i < l$$_nin.length; i++) {
-        final l$$_nin$entry = l$$_nin[i];
-        final lOther$$_nin$entry = lOther$$_nin[i];
-        if (l$$_nin$entry != lOther$$_nin$entry) {
-          return false;
-        }
-      }
-    } else if (l$$_nin != lOther$$_nin) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$$_eq = $_eq;
-    final l$$_in = $_in;
-    final l$$_is_null = $_is_null;
-    final l$$_neq = $_neq;
-    final l$$_nin = $_nin;
-    return Object.hashAll([
-      _$data.containsKey('_eq') ? l$$_eq : const {},
-      _$data.containsKey('_in')
-          ? l$$_in == null
-                ? null
-                : Object.hashAll(l$$_in.map((v) => v))
-          : const {},
-      _$data.containsKey('_is_null') ? l$$_is_null : const {},
-      _$data.containsKey('_neq') ? l$$_neq : const {},
-      _$data.containsKey('_nin')
-          ? l$$_nin == null
-                ? null
-                : Object.hashAll(l$$_nin.map((v) => v))
-          : const {},
-    ]);
-  }
-}
-
 class InputGiftIdeaKind_enum_comparison_exp {
   factory InputGiftIdeaKind_enum_comparison_exp({
     EnumGiftIdeaKind_enum? $_eq,
@@ -46232,13 +46049,10 @@ class InputgiftIdeas_bool_exp {
     List<InputgiftIdeas_bool_exp>? $_or,
     Inputprofiles_bool_exp? author,
     Inputuuid_comparison_exp? authorId,
-    InputGiftBudget_enum_comparison_exp? budget,
-    Inputcouples_bool_exp? couple,
-    Inputuuid_comparison_exp? coupleId,
-    InputcoupleMembers_bool_exp? coupleMembers,
     Inputtimestamptz_comparison_exp? createdAt,
     Inputuuid_comparison_exp? id,
     InputGiftIdeaKind_enum_comparison_exp? kind,
+    InputString_comparison_exp? link,
     InputString_comparison_exp? note,
     InputimportantDates_bool_exp? occasion,
     Inputuuid_comparison_exp? occasionDateId,
@@ -46251,13 +46065,10 @@ class InputgiftIdeas_bool_exp {
     if ($_or != null) r'_or': $_or,
     if (author != null) r'author': author,
     if (authorId != null) r'authorId': authorId,
-    if (budget != null) r'budget': budget,
-    if (couple != null) r'couple': couple,
-    if (coupleId != null) r'coupleId': coupleId,
-    if (coupleMembers != null) r'coupleMembers': coupleMembers,
     if (createdAt != null) r'createdAt': createdAt,
     if (id != null) r'id': id,
     if (kind != null) r'kind': kind,
+    if (link != null) r'link': link,
     if (note != null) r'note': note,
     if (occasion != null) r'occasion': occasion,
     if (occasionDateId != null) r'occasionDateId': occasionDateId,
@@ -46300,30 +46111,6 @@ class InputgiftIdeas_bool_exp {
           ? null
           : Inputuuid_comparison_exp.fromJson((l$authorId as Map<String, dynamic>));
     }
-    if (data.containsKey('budget')) {
-      final l$budget = data['budget'];
-      result$data['budget'] = l$budget == null
-          ? null
-          : InputGiftBudget_enum_comparison_exp.fromJson((l$budget as Map<String, dynamic>));
-    }
-    if (data.containsKey('couple')) {
-      final l$couple = data['couple'];
-      result$data['couple'] = l$couple == null
-          ? null
-          : Inputcouples_bool_exp.fromJson((l$couple as Map<String, dynamic>));
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = l$coupleId == null
-          ? null
-          : Inputuuid_comparison_exp.fromJson((l$coupleId as Map<String, dynamic>));
-    }
-    if (data.containsKey('coupleMembers')) {
-      final l$coupleMembers = data['coupleMembers'];
-      result$data['coupleMembers'] = l$coupleMembers == null
-          ? null
-          : InputcoupleMembers_bool_exp.fromJson((l$coupleMembers as Map<String, dynamic>));
-    }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
       result$data['createdAt'] = l$createdAt == null
@@ -46341,6 +46128,12 @@ class InputgiftIdeas_bool_exp {
       result$data['kind'] = l$kind == null
           ? null
           : InputGiftIdeaKind_enum_comparison_exp.fromJson((l$kind as Map<String, dynamic>));
+    }
+    if (data.containsKey('link')) {
+      final l$link = data['link'];
+      result$data['link'] = l$link == null
+          ? null
+          : InputString_comparison_exp.fromJson((l$link as Map<String, dynamic>));
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -46393,16 +46186,6 @@ class InputgiftIdeas_bool_exp {
 
   Inputuuid_comparison_exp? get authorId => (_$data['authorId'] as Inputuuid_comparison_exp?);
 
-  InputGiftBudget_enum_comparison_exp? get budget =>
-      (_$data['budget'] as InputGiftBudget_enum_comparison_exp?);
-
-  Inputcouples_bool_exp? get couple => (_$data['couple'] as Inputcouples_bool_exp?);
-
-  Inputuuid_comparison_exp? get coupleId => (_$data['coupleId'] as Inputuuid_comparison_exp?);
-
-  InputcoupleMembers_bool_exp? get coupleMembers =>
-      (_$data['coupleMembers'] as InputcoupleMembers_bool_exp?);
-
   Inputtimestamptz_comparison_exp? get createdAt =>
       (_$data['createdAt'] as Inputtimestamptz_comparison_exp?);
 
@@ -46410,6 +46193,8 @@ class InputgiftIdeas_bool_exp {
 
   InputGiftIdeaKind_enum_comparison_exp? get kind =>
       (_$data['kind'] as InputGiftIdeaKind_enum_comparison_exp?);
+
+  InputString_comparison_exp? get link => (_$data['link'] as InputString_comparison_exp?);
 
   InputString_comparison_exp? get note => (_$data['note'] as InputString_comparison_exp?);
 
@@ -46449,22 +46234,6 @@ class InputgiftIdeas_bool_exp {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId?.toJson();
     }
-    if (_$data.containsKey('budget')) {
-      final l$budget = budget;
-      result$data['budget'] = l$budget?.toJson();
-    }
-    if (_$data.containsKey('couple')) {
-      final l$couple = couple;
-      result$data['couple'] = l$couple?.toJson();
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId?.toJson();
-    }
-    if (_$data.containsKey('coupleMembers')) {
-      final l$coupleMembers = coupleMembers;
-      result$data['coupleMembers'] = l$coupleMembers?.toJson();
-    }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt?.toJson();
@@ -46476,6 +46245,10 @@ class InputgiftIdeas_bool_exp {
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
       result$data['kind'] = l$kind?.toJson();
+    }
+    if (_$data.containsKey('link')) {
+      final l$link = link;
+      result$data['link'] = l$link?.toJson();
     }
     if (_$data.containsKey('note')) {
       final l$note = note;
@@ -46574,38 +46347,6 @@ class InputgiftIdeas_bool_exp {
     if (l$authorId != lOther$authorId) {
       return false;
     }
-    final l$budget = budget;
-    final lOther$budget = other.budget;
-    if (_$data.containsKey('budget') != other._$data.containsKey('budget')) {
-      return false;
-    }
-    if (l$budget != lOther$budget) {
-      return false;
-    }
-    final l$couple = couple;
-    final lOther$couple = other.couple;
-    if (_$data.containsKey('couple') != other._$data.containsKey('couple')) {
-      return false;
-    }
-    if (l$couple != lOther$couple) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
-    final l$coupleMembers = coupleMembers;
-    final lOther$coupleMembers = other.coupleMembers;
-    if (_$data.containsKey('coupleMembers') != other._$data.containsKey('coupleMembers')) {
-      return false;
-    }
-    if (l$coupleMembers != lOther$coupleMembers) {
-      return false;
-    }
     final l$createdAt = createdAt;
     final lOther$createdAt = other.createdAt;
     if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
@@ -46628,6 +46369,14 @@ class InputgiftIdeas_bool_exp {
       return false;
     }
     if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$link = link;
+    final lOther$link = other.link;
+    if (_$data.containsKey('link') != other._$data.containsKey('link')) {
+      return false;
+    }
+    if (l$link != lOther$link) {
       return false;
     }
     final l$note = note;
@@ -46688,13 +46437,10 @@ class InputgiftIdeas_bool_exp {
     final l$$_or = $_or;
     final l$author = author;
     final l$authorId = authorId;
-    final l$budget = budget;
-    final l$couple = couple;
-    final l$coupleId = coupleId;
-    final l$coupleMembers = coupleMembers;
     final l$createdAt = createdAt;
     final l$id = id;
     final l$kind = kind;
+    final l$link = link;
     final l$note = note;
     final l$occasion = occasion;
     final l$occasionDateId = occasionDateId;
@@ -46715,13 +46461,10 @@ class InputgiftIdeas_bool_exp {
           : const {},
       _$data.containsKey('author') ? l$author : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
-      _$data.containsKey('budget') ? l$budget : const {},
-      _$data.containsKey('couple') ? l$couple : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
-      _$data.containsKey('coupleMembers') ? l$coupleMembers : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('link') ? l$link : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('occasion') ? l$occasion : const {},
       _$data.containsKey('occasionDateId') ? l$occasionDateId : const {},
@@ -46734,20 +46477,18 @@ class InputgiftIdeas_bool_exp {
 
 class InputgiftIdeas_insert_input {
   factory InputgiftIdeas_insert_input({
-    EnumGiftBudget_enum? budget,
-    String? coupleId,
     String? id,
     EnumGiftIdeaKind_enum? kind,
+    String? link,
     String? note,
     InputimportantDates_obj_rel_insert_input? occasion,
     String? occasionDateId,
     EnumGiftIdeaStatus_enum? status,
     String? title,
   }) => InputgiftIdeas_insert_input._({
-    if (budget != null) r'budget': budget,
-    if (coupleId != null) r'coupleId': coupleId,
     if (id != null) r'id': id,
     if (kind != null) r'kind': kind,
+    if (link != null) r'link': link,
     if (note != null) r'note': note,
     if (occasion != null) r'occasion': occasion,
     if (occasionDateId != null) r'occasionDateId': occasionDateId,
@@ -46759,16 +46500,6 @@ class InputgiftIdeas_insert_input {
 
   factory InputgiftIdeas_insert_input.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('budget')) {
-      final l$budget = data['budget'];
-      result$data['budget'] = l$budget == null
-          ? null
-          : fromJsonEnumGiftBudget_enum((l$budget as String));
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = (l$coupleId as String?);
-    }
     if (data.containsKey('id')) {
       final l$id = data['id'];
       result$data['id'] = (l$id as String?);
@@ -46778,6 +46509,10 @@ class InputgiftIdeas_insert_input {
       result$data['kind'] = l$kind == null
           ? null
           : fromJsonEnumGiftIdeaKind_enum((l$kind as String));
+    }
+    if (data.containsKey('link')) {
+      final l$link = data['link'];
+      result$data['link'] = (l$link as String?);
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -46808,13 +46543,11 @@ class InputgiftIdeas_insert_input {
 
   Map<String, dynamic> _$data;
 
-  EnumGiftBudget_enum? get budget => (_$data['budget'] as EnumGiftBudget_enum?);
-
-  String? get coupleId => (_$data['coupleId'] as String?);
-
   String? get id => (_$data['id'] as String?);
 
   EnumGiftIdeaKind_enum? get kind => (_$data['kind'] as EnumGiftIdeaKind_enum?);
+
+  String? get link => (_$data['link'] as String?);
 
   String? get note => (_$data['note'] as String?);
 
@@ -46829,14 +46562,6 @@ class InputgiftIdeas_insert_input {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('budget')) {
-      final l$budget = budget;
-      result$data['budget'] = l$budget == null ? null : toJsonEnumGiftBudget_enum(l$budget);
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId;
-    }
     if (_$data.containsKey('id')) {
       final l$id = id;
       result$data['id'] = l$id;
@@ -46844,6 +46569,10 @@ class InputgiftIdeas_insert_input {
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
       result$data['kind'] = l$kind == null ? null : toJsonEnumGiftIdeaKind_enum(l$kind);
+    }
+    if (_$data.containsKey('link')) {
+      final l$link = link;
+      result$data['link'] = l$link;
     }
     if (_$data.containsKey('note')) {
       final l$note = note;
@@ -46876,22 +46605,6 @@ class InputgiftIdeas_insert_input {
     if (other is! InputgiftIdeas_insert_input || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$budget = budget;
-    final lOther$budget = other.budget;
-    if (_$data.containsKey('budget') != other._$data.containsKey('budget')) {
-      return false;
-    }
-    if (l$budget != lOther$budget) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
     final l$id = id;
     final lOther$id = other.id;
     if (_$data.containsKey('id') != other._$data.containsKey('id')) {
@@ -46906,6 +46619,14 @@ class InputgiftIdeas_insert_input {
       return false;
     }
     if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$link = link;
+    final lOther$link = other.link;
+    if (_$data.containsKey('link') != other._$data.containsKey('link')) {
+      return false;
+    }
+    if (l$link != lOther$link) {
       return false;
     }
     final l$note = note;
@@ -46953,20 +46674,18 @@ class InputgiftIdeas_insert_input {
 
   @override
   int get hashCode {
-    final l$budget = budget;
-    final l$coupleId = coupleId;
     final l$id = id;
     final l$kind = kind;
+    final l$link = link;
     final l$note = note;
     final l$occasion = occasion;
     final l$occasionDateId = occasionDateId;
     final l$status = status;
     final l$title = title;
     return Object.hashAll([
-      _$data.containsKey('budget') ? l$budget : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('link') ? l$link : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('occasion') ? l$occasion : const {},
       _$data.containsKey('occasionDateId') ? l$occasionDateId : const {},
@@ -47098,13 +46817,10 @@ class InputgiftIdeas_order_by {
   factory InputgiftIdeas_order_by({
     Inputprofiles_order_by? author,
     Enumorder_by? authorId,
-    Enumorder_by? budget,
-    Inputcouples_order_by? couple,
-    Enumorder_by? coupleId,
-    InputcoupleMembers_aggregate_order_by? coupleMembers_aggregate,
     Enumorder_by? createdAt,
     Enumorder_by? id,
     Enumorder_by? kind,
+    Enumorder_by? link,
     Enumorder_by? note,
     InputimportantDates_order_by? occasion,
     Enumorder_by? occasionDateId,
@@ -47114,13 +46830,10 @@ class InputgiftIdeas_order_by {
   }) => InputgiftIdeas_order_by._({
     if (author != null) r'author': author,
     if (authorId != null) r'authorId': authorId,
-    if (budget != null) r'budget': budget,
-    if (couple != null) r'couple': couple,
-    if (coupleId != null) r'coupleId': coupleId,
-    if (coupleMembers_aggregate != null) r'coupleMembers_aggregate': coupleMembers_aggregate,
     if (createdAt != null) r'createdAt': createdAt,
     if (id != null) r'id': id,
     if (kind != null) r'kind': kind,
+    if (link != null) r'link': link,
     if (note != null) r'note': note,
     if (occasion != null) r'occasion': occasion,
     if (occasionDateId != null) r'occasionDateId': occasionDateId,
@@ -47145,30 +46858,6 @@ class InputgiftIdeas_order_by {
           ? null
           : fromJsonEnumorder_by((l$authorId as String));
     }
-    if (data.containsKey('budget')) {
-      final l$budget = data['budget'];
-      result$data['budget'] = l$budget == null ? null : fromJsonEnumorder_by((l$budget as String));
-    }
-    if (data.containsKey('couple')) {
-      final l$couple = data['couple'];
-      result$data['couple'] = l$couple == null
-          ? null
-          : Inputcouples_order_by.fromJson((l$couple as Map<String, dynamic>));
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = l$coupleId == null
-          ? null
-          : fromJsonEnumorder_by((l$coupleId as String));
-    }
-    if (data.containsKey('coupleMembers_aggregate')) {
-      final l$coupleMembers_aggregate = data['coupleMembers_aggregate'];
-      result$data['coupleMembers_aggregate'] = l$coupleMembers_aggregate == null
-          ? null
-          : InputcoupleMembers_aggregate_order_by.fromJson(
-              (l$coupleMembers_aggregate as Map<String, dynamic>),
-            );
-    }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
       result$data['createdAt'] = l$createdAt == null
@@ -47182,6 +46871,10 @@ class InputgiftIdeas_order_by {
     if (data.containsKey('kind')) {
       final l$kind = data['kind'];
       result$data['kind'] = l$kind == null ? null : fromJsonEnumorder_by((l$kind as String));
+    }
+    if (data.containsKey('link')) {
+      final l$link = data['link'];
+      result$data['link'] = l$link == null ? null : fromJsonEnumorder_by((l$link as String));
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -47222,20 +46915,13 @@ class InputgiftIdeas_order_by {
 
   Enumorder_by? get authorId => (_$data['authorId'] as Enumorder_by?);
 
-  Enumorder_by? get budget => (_$data['budget'] as Enumorder_by?);
-
-  Inputcouples_order_by? get couple => (_$data['couple'] as Inputcouples_order_by?);
-
-  Enumorder_by? get coupleId => (_$data['coupleId'] as Enumorder_by?);
-
-  InputcoupleMembers_aggregate_order_by? get coupleMembers_aggregate =>
-      (_$data['coupleMembers_aggregate'] as InputcoupleMembers_aggregate_order_by?);
-
   Enumorder_by? get createdAt => (_$data['createdAt'] as Enumorder_by?);
 
   Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
 
   Enumorder_by? get kind => (_$data['kind'] as Enumorder_by?);
+
+  Enumorder_by? get link => (_$data['link'] as Enumorder_by?);
 
   Enumorder_by? get note => (_$data['note'] as Enumorder_by?);
 
@@ -47260,22 +46946,6 @@ class InputgiftIdeas_order_by {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId == null ? null : toJsonEnumorder_by(l$authorId);
     }
-    if (_$data.containsKey('budget')) {
-      final l$budget = budget;
-      result$data['budget'] = l$budget == null ? null : toJsonEnumorder_by(l$budget);
-    }
-    if (_$data.containsKey('couple')) {
-      final l$couple = couple;
-      result$data['couple'] = l$couple?.toJson();
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId == null ? null : toJsonEnumorder_by(l$coupleId);
-    }
-    if (_$data.containsKey('coupleMembers_aggregate')) {
-      final l$coupleMembers_aggregate = coupleMembers_aggregate;
-      result$data['coupleMembers_aggregate'] = l$coupleMembers_aggregate?.toJson();
-    }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt == null ? null : toJsonEnumorder_by(l$createdAt);
@@ -47287,6 +46957,10 @@ class InputgiftIdeas_order_by {
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
       result$data['kind'] = l$kind == null ? null : toJsonEnumorder_by(l$kind);
+    }
+    if (_$data.containsKey('link')) {
+      final l$link = link;
+      result$data['link'] = l$link == null ? null : toJsonEnumorder_by(l$link);
     }
     if (_$data.containsKey('note')) {
       final l$note = note;
@@ -47341,39 +47015,6 @@ class InputgiftIdeas_order_by {
     if (l$authorId != lOther$authorId) {
       return false;
     }
-    final l$budget = budget;
-    final lOther$budget = other.budget;
-    if (_$data.containsKey('budget') != other._$data.containsKey('budget')) {
-      return false;
-    }
-    if (l$budget != lOther$budget) {
-      return false;
-    }
-    final l$couple = couple;
-    final lOther$couple = other.couple;
-    if (_$data.containsKey('couple') != other._$data.containsKey('couple')) {
-      return false;
-    }
-    if (l$couple != lOther$couple) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
-    final l$coupleMembers_aggregate = coupleMembers_aggregate;
-    final lOther$coupleMembers_aggregate = other.coupleMembers_aggregate;
-    if (_$data.containsKey('coupleMembers_aggregate') !=
-        other._$data.containsKey('coupleMembers_aggregate')) {
-      return false;
-    }
-    if (l$coupleMembers_aggregate != lOther$coupleMembers_aggregate) {
-      return false;
-    }
     final l$createdAt = createdAt;
     final lOther$createdAt = other.createdAt;
     if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
@@ -47396,6 +47037,14 @@ class InputgiftIdeas_order_by {
       return false;
     }
     if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$link = link;
+    final lOther$link = other.link;
+    if (_$data.containsKey('link') != other._$data.containsKey('link')) {
+      return false;
+    }
+    if (l$link != lOther$link) {
       return false;
     }
     final l$note = note;
@@ -47453,13 +47102,10 @@ class InputgiftIdeas_order_by {
   int get hashCode {
     final l$author = author;
     final l$authorId = authorId;
-    final l$budget = budget;
-    final l$couple = couple;
-    final l$coupleId = coupleId;
-    final l$coupleMembers_aggregate = coupleMembers_aggregate;
     final l$createdAt = createdAt;
     final l$id = id;
     final l$kind = kind;
+    final l$link = link;
     final l$note = note;
     final l$occasion = occasion;
     final l$occasionDateId = occasionDateId;
@@ -47469,13 +47115,10 @@ class InputgiftIdeas_order_by {
     return Object.hashAll([
       _$data.containsKey('author') ? l$author : const {},
       _$data.containsKey('authorId') ? l$authorId : const {},
-      _$data.containsKey('budget') ? l$budget : const {},
-      _$data.containsKey('couple') ? l$couple : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
-      _$data.containsKey('coupleMembers_aggregate') ? l$coupleMembers_aggregate : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('link') ? l$link : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('occasion') ? l$occasion : const {},
       _$data.containsKey('occasionDateId') ? l$occasionDateId : const {},
@@ -47535,17 +47178,13 @@ class InputgiftIdeas_pk_columns_input {
 
 class InputgiftIdeas_set_input {
   factory InputgiftIdeas_set_input({
-    EnumGiftBudget_enum? budget,
-    String? coupleId,
-    EnumGiftIdeaKind_enum? kind,
+    String? link,
     String? note,
     String? occasionDateId,
     EnumGiftIdeaStatus_enum? status,
     String? title,
   }) => InputgiftIdeas_set_input._({
-    if (budget != null) r'budget': budget,
-    if (coupleId != null) r'coupleId': coupleId,
-    if (kind != null) r'kind': kind,
+    if (link != null) r'link': link,
     if (note != null) r'note': note,
     if (occasionDateId != null) r'occasionDateId': occasionDateId,
     if (status != null) r'status': status,
@@ -47556,21 +47195,9 @@ class InputgiftIdeas_set_input {
 
   factory InputgiftIdeas_set_input.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('budget')) {
-      final l$budget = data['budget'];
-      result$data['budget'] = l$budget == null
-          ? null
-          : fromJsonEnumGiftBudget_enum((l$budget as String));
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = (l$coupleId as String?);
-    }
-    if (data.containsKey('kind')) {
-      final l$kind = data['kind'];
-      result$data['kind'] = l$kind == null
-          ? null
-          : fromJsonEnumGiftIdeaKind_enum((l$kind as String));
+    if (data.containsKey('link')) {
+      final l$link = data['link'];
+      result$data['link'] = (l$link as String?);
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -47595,11 +47222,7 @@ class InputgiftIdeas_set_input {
 
   Map<String, dynamic> _$data;
 
-  EnumGiftBudget_enum? get budget => (_$data['budget'] as EnumGiftBudget_enum?);
-
-  String? get coupleId => (_$data['coupleId'] as String?);
-
-  EnumGiftIdeaKind_enum? get kind => (_$data['kind'] as EnumGiftIdeaKind_enum?);
+  String? get link => (_$data['link'] as String?);
 
   String? get note => (_$data['note'] as String?);
 
@@ -47611,17 +47234,9 @@ class InputgiftIdeas_set_input {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('budget')) {
-      final l$budget = budget;
-      result$data['budget'] = l$budget == null ? null : toJsonEnumGiftBudget_enum(l$budget);
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId;
-    }
-    if (_$data.containsKey('kind')) {
-      final l$kind = kind;
-      result$data['kind'] = l$kind == null ? null : toJsonEnumGiftIdeaKind_enum(l$kind);
+    if (_$data.containsKey('link')) {
+      final l$link = link;
+      result$data['link'] = l$link;
     }
     if (_$data.containsKey('note')) {
       final l$note = note;
@@ -47650,28 +47265,12 @@ class InputgiftIdeas_set_input {
     if (other is! InputgiftIdeas_set_input || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$budget = budget;
-    final lOther$budget = other.budget;
-    if (_$data.containsKey('budget') != other._$data.containsKey('budget')) {
+    final l$link = link;
+    final lOther$link = other.link;
+    if (_$data.containsKey('link') != other._$data.containsKey('link')) {
       return false;
     }
-    if (l$budget != lOther$budget) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
-    final l$kind = kind;
-    final lOther$kind = other.kind;
-    if (_$data.containsKey('kind') != other._$data.containsKey('kind')) {
-      return false;
-    }
-    if (l$kind != lOther$kind) {
+    if (l$link != lOther$link) {
       return false;
     }
     final l$note = note;
@@ -47711,17 +47310,13 @@ class InputgiftIdeas_set_input {
 
   @override
   int get hashCode {
-    final l$budget = budget;
-    final l$coupleId = coupleId;
-    final l$kind = kind;
+    final l$link = link;
     final l$note = note;
     final l$occasionDateId = occasionDateId;
     final l$status = status;
     final l$title = title;
     return Object.hashAll([
-      _$data.containsKey('budget') ? l$budget : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
-      _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('link') ? l$link : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('occasionDateId') ? l$occasionDateId : const {},
       _$data.containsKey('status') ? l$status : const {},
@@ -47812,11 +47407,10 @@ class InputgiftIdeas_stream_cursor_input {
 class InputgiftIdeas_stream_cursor_value_input {
   factory InputgiftIdeas_stream_cursor_value_input({
     String? authorId,
-    EnumGiftBudget_enum? budget,
-    String? coupleId,
     DateTime? createdAt,
     String? id,
     EnumGiftIdeaKind_enum? kind,
+    String? link,
     String? note,
     String? occasionDateId,
     EnumGiftIdeaStatus_enum? status,
@@ -47824,11 +47418,10 @@ class InputgiftIdeas_stream_cursor_value_input {
     DateTime? updatedAt,
   }) => InputgiftIdeas_stream_cursor_value_input._({
     if (authorId != null) r'authorId': authorId,
-    if (budget != null) r'budget': budget,
-    if (coupleId != null) r'coupleId': coupleId,
     if (createdAt != null) r'createdAt': createdAt,
     if (id != null) r'id': id,
     if (kind != null) r'kind': kind,
+    if (link != null) r'link': link,
     if (note != null) r'note': note,
     if (occasionDateId != null) r'occasionDateId': occasionDateId,
     if (status != null) r'status': status,
@@ -47843,16 +47436,6 @@ class InputgiftIdeas_stream_cursor_value_input {
     if (data.containsKey('authorId')) {
       final l$authorId = data['authorId'];
       result$data['authorId'] = (l$authorId as String?);
-    }
-    if (data.containsKey('budget')) {
-      final l$budget = data['budget'];
-      result$data['budget'] = l$budget == null
-          ? null
-          : fromJsonEnumGiftBudget_enum((l$budget as String));
-    }
-    if (data.containsKey('coupleId')) {
-      final l$coupleId = data['coupleId'];
-      result$data['coupleId'] = (l$coupleId as String?);
     }
     if (data.containsKey('createdAt')) {
       final l$createdAt = data['createdAt'];
@@ -47869,6 +47452,10 @@ class InputgiftIdeas_stream_cursor_value_input {
       result$data['kind'] = l$kind == null
           ? null
           : fromJsonEnumGiftIdeaKind_enum((l$kind as String));
+    }
+    if (data.containsKey('link')) {
+      final l$link = data['link'];
+      result$data['link'] = (l$link as String?);
     }
     if (data.containsKey('note')) {
       final l$note = data['note'];
@@ -47901,15 +47488,13 @@ class InputgiftIdeas_stream_cursor_value_input {
 
   String? get authorId => (_$data['authorId'] as String?);
 
-  EnumGiftBudget_enum? get budget => (_$data['budget'] as EnumGiftBudget_enum?);
-
-  String? get coupleId => (_$data['coupleId'] as String?);
-
   DateTime? get createdAt => (_$data['createdAt'] as DateTime?);
 
   String? get id => (_$data['id'] as String?);
 
   EnumGiftIdeaKind_enum? get kind => (_$data['kind'] as EnumGiftIdeaKind_enum?);
+
+  String? get link => (_$data['link'] as String?);
 
   String? get note => (_$data['note'] as String?);
 
@@ -47927,14 +47512,6 @@ class InputgiftIdeas_stream_cursor_value_input {
       final l$authorId = authorId;
       result$data['authorId'] = l$authorId;
     }
-    if (_$data.containsKey('budget')) {
-      final l$budget = budget;
-      result$data['budget'] = l$budget == null ? null : toJsonEnumGiftBudget_enum(l$budget);
-    }
-    if (_$data.containsKey('coupleId')) {
-      final l$coupleId = coupleId;
-      result$data['coupleId'] = l$coupleId;
-    }
     if (_$data.containsKey('createdAt')) {
       final l$createdAt = createdAt;
       result$data['createdAt'] = l$createdAt == null
@@ -47948,6 +47525,10 @@ class InputgiftIdeas_stream_cursor_value_input {
     if (_$data.containsKey('kind')) {
       final l$kind = kind;
       result$data['kind'] = l$kind == null ? null : toJsonEnumGiftIdeaKind_enum(l$kind);
+    }
+    if (_$data.containsKey('link')) {
+      final l$link = link;
+      result$data['link'] = l$link;
     }
     if (_$data.containsKey('note')) {
       final l$note = note;
@@ -47990,22 +47571,6 @@ class InputgiftIdeas_stream_cursor_value_input {
     if (l$authorId != lOther$authorId) {
       return false;
     }
-    final l$budget = budget;
-    final lOther$budget = other.budget;
-    if (_$data.containsKey('budget') != other._$data.containsKey('budget')) {
-      return false;
-    }
-    if (l$budget != lOther$budget) {
-      return false;
-    }
-    final l$coupleId = coupleId;
-    final lOther$coupleId = other.coupleId;
-    if (_$data.containsKey('coupleId') != other._$data.containsKey('coupleId')) {
-      return false;
-    }
-    if (l$coupleId != lOther$coupleId) {
-      return false;
-    }
     final l$createdAt = createdAt;
     final lOther$createdAt = other.createdAt;
     if (_$data.containsKey('createdAt') != other._$data.containsKey('createdAt')) {
@@ -48028,6 +47593,14 @@ class InputgiftIdeas_stream_cursor_value_input {
       return false;
     }
     if (l$kind != lOther$kind) {
+      return false;
+    }
+    final l$link = link;
+    final lOther$link = other.link;
+    if (_$data.containsKey('link') != other._$data.containsKey('link')) {
+      return false;
+    }
+    if (l$link != lOther$link) {
       return false;
     }
     final l$note = note;
@@ -48076,11 +47649,10 @@ class InputgiftIdeas_stream_cursor_value_input {
   @override
   int get hashCode {
     final l$authorId = authorId;
-    final l$budget = budget;
-    final l$coupleId = coupleId;
     final l$createdAt = createdAt;
     final l$id = id;
     final l$kind = kind;
+    final l$link = link;
     final l$note = note;
     final l$occasionDateId = occasionDateId;
     final l$status = status;
@@ -48088,11 +47660,10 @@ class InputgiftIdeas_stream_cursor_value_input {
     final l$updatedAt = updatedAt;
     return Object.hashAll([
       _$data.containsKey('authorId') ? l$authorId : const {},
-      _$data.containsKey('budget') ? l$budget : const {},
-      _$data.containsKey('coupleId') ? l$coupleId : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('kind') ? l$kind : const {},
+      _$data.containsKey('link') ? l$link : const {},
       _$data.containsKey('note') ? l$note : const {},
       _$data.containsKey('occasionDateId') ? l$occasionDateId : const {},
       _$data.containsKey('status') ? l$status : const {},
@@ -122699,48 +122270,6 @@ EnumGentleResponse_enum fromJsonEnumGentleResponse_enum(String value) {
   }
 }
 
-enum EnumGiftBudget_enum {
-  free,
-  high,
-  low,
-  medium,
-  $unknown;
-
-  factory EnumGiftBudget_enum.fromJson(String value) => fromJsonEnumGiftBudget_enum(value);
-
-  String toJson() => toJsonEnumGiftBudget_enum(this);
-}
-
-String toJsonEnumGiftBudget_enum(EnumGiftBudget_enum e) {
-  switch (e) {
-    case EnumGiftBudget_enum.free:
-      return r'free';
-    case EnumGiftBudget_enum.high:
-      return r'high';
-    case EnumGiftBudget_enum.low:
-      return r'low';
-    case EnumGiftBudget_enum.medium:
-      return r'medium';
-    case EnumGiftBudget_enum.$unknown:
-      return r'$unknown';
-  }
-}
-
-EnumGiftBudget_enum fromJsonEnumGiftBudget_enum(String value) {
-  switch (value) {
-    case r'free':
-      return EnumGiftBudget_enum.free;
-    case r'high':
-      return EnumGiftBudget_enum.high;
-    case r'low':
-      return EnumGiftBudget_enum.low;
-    case r'medium':
-      return EnumGiftBudget_enum.medium;
-    default:
-      return EnumGiftBudget_enum.$unknown;
-  }
-}
-
 enum EnumGiftIdeaKind_enum {
   idea,
   wish,
@@ -127101,11 +126630,10 @@ EnumgiftIdeas_constraint fromJsonEnumgiftIdeas_constraint(String value) {
 
 enum EnumgiftIdeas_select_column {
   authorId,
-  budget,
-  coupleId,
   createdAt,
   id,
   kind,
+  link,
   note,
   occasionDateId,
   status,
@@ -127123,16 +126651,14 @@ String toJsonEnumgiftIdeas_select_column(EnumgiftIdeas_select_column e) {
   switch (e) {
     case EnumgiftIdeas_select_column.authorId:
       return r'authorId';
-    case EnumgiftIdeas_select_column.budget:
-      return r'budget';
-    case EnumgiftIdeas_select_column.coupleId:
-      return r'coupleId';
     case EnumgiftIdeas_select_column.createdAt:
       return r'createdAt';
     case EnumgiftIdeas_select_column.id:
       return r'id';
     case EnumgiftIdeas_select_column.kind:
       return r'kind';
+    case EnumgiftIdeas_select_column.link:
+      return r'link';
     case EnumgiftIdeas_select_column.note:
       return r'note';
     case EnumgiftIdeas_select_column.occasionDateId:
@@ -127152,16 +126678,14 @@ EnumgiftIdeas_select_column fromJsonEnumgiftIdeas_select_column(String value) {
   switch (value) {
     case r'authorId':
       return EnumgiftIdeas_select_column.authorId;
-    case r'budget':
-      return EnumgiftIdeas_select_column.budget;
-    case r'coupleId':
-      return EnumgiftIdeas_select_column.coupleId;
     case r'createdAt':
       return EnumgiftIdeas_select_column.createdAt;
     case r'id':
       return EnumgiftIdeas_select_column.id;
     case r'kind':
       return EnumgiftIdeas_select_column.kind;
+    case r'link':
+      return EnumgiftIdeas_select_column.link;
     case r'note':
       return EnumgiftIdeas_select_column.note;
     case r'occasionDateId':
@@ -127178,9 +126702,7 @@ EnumgiftIdeas_select_column fromJsonEnumgiftIdeas_select_column(String value) {
 }
 
 enum EnumgiftIdeas_update_column {
-  budget,
-  coupleId,
-  kind,
+  link,
   note,
   occasionDateId,
   status,
@@ -127195,12 +126717,8 @@ enum EnumgiftIdeas_update_column {
 
 String toJsonEnumgiftIdeas_update_column(EnumgiftIdeas_update_column e) {
   switch (e) {
-    case EnumgiftIdeas_update_column.budget:
-      return r'budget';
-    case EnumgiftIdeas_update_column.coupleId:
-      return r'coupleId';
-    case EnumgiftIdeas_update_column.kind:
-      return r'kind';
+    case EnumgiftIdeas_update_column.link:
+      return r'link';
     case EnumgiftIdeas_update_column.note:
       return r'note';
     case EnumgiftIdeas_update_column.occasionDateId:
@@ -127216,12 +126734,8 @@ String toJsonEnumgiftIdeas_update_column(EnumgiftIdeas_update_column e) {
 
 EnumgiftIdeas_update_column fromJsonEnumgiftIdeas_update_column(String value) {
   switch (value) {
-    case r'budget':
-      return EnumgiftIdeas_update_column.budget;
-    case r'coupleId':
-      return EnumgiftIdeas_update_column.coupleId;
-    case r'kind':
-      return EnumgiftIdeas_update_column.kind;
+    case r'link':
+      return EnumgiftIdeas_update_column.link;
     case r'note':
       return EnumgiftIdeas_update_column.note;
     case r'occasionDateId':

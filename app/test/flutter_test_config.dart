@@ -10,7 +10,6 @@ import 'package:app/features/games/data/models/game_kind.dart';
 import 'package:app/features/games/data/models/game_play.dart';
 import 'package:app/features/games/data/models/game_session.dart';
 import 'package:app/features/games/data/models/games_overview.dart';
-import 'package:app/features/gifts/data/models/gift_budget.dart';
 import 'package:app/features/gifts/data/models/gift_idea_status.dart';
 import 'package:app/features/help/data/repositories/support_repository.dart';
 import 'package:app/features/history/data/models/history_models.dart';
@@ -55,7 +54,6 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(EnumGameOutcome_enum.great);
   registerFallbackValue(EnumGameStatus_enum.invited);
   registerFallbackValue(EnumGentleResponse_enum.will_do);
-  registerFallbackValue(EnumGiftBudget_enum.free);
   registerFallbackValue(EnumGiftIdeaKind_enum.idea);
   registerFallbackValue(EnumGiftIdeaStatus_enum.idea);
   registerFallbackValue(EnumHeldReason_enum.absolute);
@@ -107,7 +105,6 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   registerFallbackValue(GamePhase.answer);
   registerFallbackValue(GameStatus.invited);
   registerFallbackValue(GameEntryState.idle);
-  registerFallbackValue(GiftBudget.free);
   registerFallbackValue(GiftIdeaStatus.idea);
   registerFallbackValue(SupportSendOutcome.sent);
   registerFallbackValue(MilestoneSource.storyEvent);

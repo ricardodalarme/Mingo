@@ -1,5 +1,4 @@
 // dart format width=100
-import '../../../../../../_shared/data/data_sources/remote/generated/schema.graphql.dart';
 import '../../fragments/generated/GiftWishFragment.graphql.dart';
 
 import 'dart:async';
@@ -12,12 +11,12 @@ class VariablesMutationUpdateGiftWish {
     required String id,
     required String title,
     String? note,
-    EnumGiftBudget_enum? budget,
+    String? link,
   }) => VariablesMutationUpdateGiftWish._({
     r'id': id,
     r'title': title,
     if (note != null) r'note': note,
-    if (budget != null) r'budget': budget,
+    if (link != null) r'link': link,
   });
 
   VariablesMutationUpdateGiftWish._(this._$data);
@@ -32,11 +31,9 @@ class VariablesMutationUpdateGiftWish {
       final l$note = data['note'];
       result$data['note'] = (l$note as String?);
     }
-    if (data.containsKey('budget')) {
-      final l$budget = data['budget'];
-      result$data['budget'] = l$budget == null
-          ? null
-          : fromJsonEnumGiftBudget_enum((l$budget as String));
+    if (data.containsKey('link')) {
+      final l$link = data['link'];
+      result$data['link'] = (l$link as String?);
     }
     return VariablesMutationUpdateGiftWish._(result$data);
   }
@@ -49,7 +46,7 @@ class VariablesMutationUpdateGiftWish {
 
   String? get note => (_$data['note'] as String?);
 
-  EnumGiftBudget_enum? get budget => (_$data['budget'] as EnumGiftBudget_enum?);
+  String? get link => (_$data['link'] as String?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -61,9 +58,9 @@ class VariablesMutationUpdateGiftWish {
       final l$note = note;
       result$data['note'] = l$note;
     }
-    if (_$data.containsKey('budget')) {
-      final l$budget = budget;
-      result$data['budget'] = l$budget == null ? null : toJsonEnumGiftBudget_enum(l$budget);
+    if (_$data.containsKey('link')) {
+      final l$link = link;
+      result$data['link'] = l$link;
     }
     return result$data;
   }
@@ -94,12 +91,12 @@ class VariablesMutationUpdateGiftWish {
     if (l$note != lOther$note) {
       return false;
     }
-    final l$budget = budget;
-    final lOther$budget = other.budget;
-    if (_$data.containsKey('budget') != other._$data.containsKey('budget')) {
+    final l$link = link;
+    final lOther$link = other.link;
+    if (_$data.containsKey('link') != other._$data.containsKey('link')) {
       return false;
     }
-    if (l$budget != lOther$budget) {
+    if (l$link != lOther$link) {
       return false;
     }
     return true;
@@ -110,12 +107,12 @@ class VariablesMutationUpdateGiftWish {
     final l$id = id;
     final l$title = title;
     final l$note = note;
-    final l$budget = budget;
+    final l$link = link;
     return Object.hashAll([
       l$id,
       l$title,
       _$data.containsKey('note') ? l$note : const {},
-      _$data.containsKey('budget') ? l$budget : const {},
+      _$data.containsKey('link') ? l$link : const {},
     ]);
   }
 }
@@ -201,8 +198,8 @@ const documentNodeMutationUpdateGiftWish = DocumentNode(
           directives: [],
         ),
         VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'budget')),
-          type: NamedTypeNode(name: NameNode(value: 'GiftBudget_enum'), isNonNull: false),
+          variable: VariableNode(name: NameNode(value: 'link')),
+          type: NamedTypeNode(name: NameNode(value: 'String'), isNonNull: false),
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
@@ -238,8 +235,8 @@ const documentNodeMutationUpdateGiftWish = DocumentNode(
                       value: VariableNode(name: NameNode(value: 'note')),
                     ),
                     ObjectFieldNode(
-                      name: NameNode(value: 'budget'),
-                      value: VariableNode(name: NameNode(value: 'budget')),
+                      name: NameNode(value: 'link'),
+                      value: VariableNode(name: NameNode(value: 'link')),
                     ),
                   ],
                 ),

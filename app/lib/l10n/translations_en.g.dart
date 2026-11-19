@@ -1904,7 +1904,7 @@ class _Translations$gifts$en extends Translations$gifts$pt {
   @override
   String get title => 'Gift page';
   @override
-  String get subtitle => 'A page your partner can see in the app. You choose what to share.';
+  String get subtitle => 'A page your partner sees in the app.';
   @override
   String get myTitle => 'My wishes';
   @override
@@ -1912,18 +1912,18 @@ class _Translations$gifts$en extends Translations$gifts$pt {
   @override
   String get emptyPageTitle => 'No wishes yet';
   @override
-  String get emptyPageTextShared => 'Add a wish, or wait for your partner to share one.';
+  String get emptyPageTextShared => 'Add a wish, or wait for your partner to add one.';
   @override
   String get emptyPageTextSolo =>
-      'Add what you would love to receive. It stays private until you pair.';
+      'Add what you would love to receive. Your partner sees it when you pair.';
   @override
   String get emptyMineTitle => 'No wishes yet';
   @override
   String get emptyMineText => 'Add what you would love to receive.';
   @override
-  String get emptyPartnerTitle => 'Nothing shared yet';
+  String get emptyPartnerTitle => 'Nothing here yet';
   @override
-  String get emptyPartnerText => 'When your partner shares a wish, it shows up here.';
+  String get emptyPartnerText => 'When your partner adds a wish, it shows up here.';
   @override
   String get addTitle => 'New wish';
   @override
@@ -1942,27 +1942,18 @@ class _Translations$gifts$en extends Translations$gifts$pt {
   @override
   Map<String, String> get noteErrors => {'tooLong': 'Keep the note under 1000 characters.'};
   @override
-  String get budgetLabel => 'Budget (optional)';
+  String get linkLabel => 'Where to buy (optional)';
   @override
-  Map<String, String> get budgets => {
-    'free': 'Free',
-    'low': 'Low',
-    'medium': 'Medium',
-    'high': 'High',
-    'other': '',
+  String get linkHint => 'https://...';
+  @override
+  Map<String, String> get linkErrors => {
+    'invalid': 'Use a link that starts with https://.',
+    'tooLong': 'Keep the link to 500 characters or fewer.',
   };
   @override
-  String get noBudget => 'No budget';
+  String get openLink => 'Open link';
   @override
-  String get shared => 'Shared';
-  @override
-  String get private => 'Private';
-  @override
-  String get sharedHint => 'Your partner can see this wish.';
-  @override
-  String get privateHint => 'Only you can see this wish.';
-  @override
-  String get sharedNeedsPartner => 'Pair with your partner to share a wish.';
+  String get openFailed => 'Couldn\'t open the link.';
   @override
   String get save => 'Save';
   @override
@@ -1980,7 +1971,7 @@ class _Translations$gifts$en extends Translations$gifts$pt {
   @override
   String get entryTitle => 'Gift page';
   @override
-  String get entryText => 'Wishes you choose to share, or keep to yourself.';
+  String get entryText => 'Wishes your partner sees in the app.';
   @override
   Map<String, String> get errors => {
     'RATE_LIMITED': 'Too many attempts in a row. Wait a moment.',
@@ -6370,13 +6361,13 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get datesMeta => 'With a heads-up';
   @override
-  String get giftsMeta => 'Only for you';
+  String get giftsMeta => 'A page for your partner';
   @override
   String giftsMetaShared({required num count}) =>
       (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
         count,
-        one: '1 shared wish',
-        other: '${count} shared wishes',
+        one: '1 wish',
+        other: '${count} wishes',
       );
   @override
   String get guidesMeta => 'One step at a time';
@@ -9876,17 +9867,17 @@ extension on TranslationsEn {
           'gentleRequestDetail.errors.NETWORK' => 'No connection. Try again.',
           'gentleRequestDetail.errors.other' => 'Something went wrong. Try again.',
           'gifts.title' => 'Gift page',
-          'gifts.subtitle' => 'A page your partner can see in the app. You choose what to share.',
+          'gifts.subtitle' => 'A page your partner sees in the app.',
           'gifts.myTitle' => 'My wishes',
           'gifts.partnerTitle' => 'From your partner',
           'gifts.emptyPageTitle' => 'No wishes yet',
-          'gifts.emptyPageTextShared' => 'Add a wish, or wait for your partner to share one.',
+          'gifts.emptyPageTextShared' => 'Add a wish, or wait for your partner to add one.',
           'gifts.emptyPageTextSolo' =>
-            'Add what you would love to receive. It stays private until you pair.',
+            'Add what you would love to receive. Your partner sees it when you pair.',
           'gifts.emptyMineTitle' => 'No wishes yet',
           'gifts.emptyMineText' => 'Add what you would love to receive.',
-          'gifts.emptyPartnerTitle' => 'Nothing shared yet',
-          'gifts.emptyPartnerText' => 'When your partner shares a wish, it shows up here.',
+          'gifts.emptyPartnerTitle' => 'Nothing here yet',
+          'gifts.emptyPartnerText' => 'When your partner adds a wish, it shows up here.',
           'gifts.addTitle' => 'New wish',
           'gifts.editTitle' => 'Edit wish',
           'gifts.titleLabel' => 'Gift',
@@ -9895,18 +9886,12 @@ extension on TranslationsEn {
           'gifts.titleErrors.tooLong' => 'Keep it to 120 characters or fewer.',
           'gifts.noteHint' => 'Size, color, where to find it.',
           'gifts.noteErrors.tooLong' => 'Keep the note under 1000 characters.',
-          'gifts.budgetLabel' => 'Budget (optional)',
-          'gifts.budgets.free' => 'Free',
-          'gifts.budgets.low' => 'Low',
-          'gifts.budgets.medium' => 'Medium',
-          'gifts.budgets.high' => 'High',
-          'gifts.budgets.other' => '',
-          'gifts.noBudget' => 'No budget',
-          'gifts.shared' => 'Shared',
-          'gifts.private' => 'Private',
-          'gifts.sharedHint' => 'Your partner can see this wish.',
-          'gifts.privateHint' => 'Only you can see this wish.',
-          'gifts.sharedNeedsPartner' => 'Pair with your partner to share a wish.',
+          'gifts.linkLabel' => 'Where to buy (optional)',
+          'gifts.linkHint' => 'https://...',
+          'gifts.linkErrors.invalid' => 'Use a link that starts with https://.',
+          'gifts.linkErrors.tooLong' => 'Keep the link to 500 characters or fewer.',
+          'gifts.openLink' => 'Open link',
+          'gifts.openFailed' => 'Couldn\'t open the link.',
           'gifts.save' => 'Save',
           'gifts.add' => 'Add',
           'gifts.delete' => 'Delete',
@@ -9915,7 +9900,7 @@ extension on TranslationsEn {
           'gifts.deleteConfirm' => 'Delete',
           'gifts.entryLabel' => 'GIFTS',
           'gifts.entryTitle' => 'Gift page',
-          'gifts.entryText' => 'Wishes you choose to share, or keep to yourself.',
+          'gifts.entryText' => 'Wishes your partner sees in the app.',
           'gifts.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'gifts.errors.other' => 'Couldn\'t do that right now. Try again.',
           'globalErrors.offline' => 'No connection. Your notes stay saved and sync later.',
@@ -9984,15 +9969,15 @@ extension on TranslationsEn {
           }) => 'Step ${current} of ${total}',
           'hardConversation.whatTitle' => 'What happened?',
           'hardConversation.whatHint' => 'If you want, tell me in your own words',
-          _ => null,
-        } ??
-        switch (path) {
           'hardConversation.whatIgnored' => 'She felt ignored',
           'hardConversation.whatMoney' => 'We fought about money',
           'hardConversation.whatMisunderstanding' => 'It was a misunderstanding',
           'hardConversation.whatOther' => 'Other: write it',
           'hardConversation.needTitle' => 'What do I need?',
           'hardConversation.needHint' => 'If you want, add something',
+          _ => null,
+        } ??
+        switch (path) {
           'hardConversation.needHeard' => 'To be heard',
           'hardConversation.needApology' => 'To apologize',
           'hardConversation.needAgree' => 'To agree on something',
@@ -10729,15 +10714,15 @@ extension on TranslationsEn {
           'lists.kinds.travel' => 'Travel',
           'lists.kinds.restaurants' => 'Restaurants',
           'lists.kinds.movies' => 'Movies',
-          _ => null,
-        } ??
-        switch (path) {
           'lists.kinds.custom' => 'Other',
           'lists.kinds.other' => '',
           'lists.shared' => 'Shared',
           'lists.private' => 'Private',
           'lists.emptyTitle' => 'No lists yet',
           'lists.emptyTextShared' => 'Start a list of things you want to do together.',
+          _ => null,
+        } ??
+        switch (path) {
           'lists.emptyTextPrivate' => 'Start a list of things you want to keep for yourself.',
           'lists.create' => 'Create list',
           'lists.rename' => 'Rename',
@@ -11308,15 +11293,15 @@ extension on TranslationsEn {
           'partnerProfile.valueErrors.tooLong' => 'Use at most 500 characters.',
           'partnerProfile.save' => 'Save note',
           'partnerProfile.delete' => 'Delete',
-          _ => null,
-        } ??
-        switch (path) {
           'partnerProfile.emptyTitle' => 'No notes yet',
           'partnerProfile.emptyText' => 'Small details help you pick a gift or a gesture.',
           'partnerProfile.errorTitle' => 'Couldn\'t load',
           'partnerProfile.errorText' => 'Your notes are still saved. Try again.',
           'partnerProfile.errors.RATE_LIMITED' => 'Too many attempts in a row. Wait a moment.',
           'partnerProfile.errors.other' => 'Couldn\'t do that right now. Your text is still here.',
+          _ => null,
+        } ??
+        switch (path) {
           'partnerStep.title' => 'Want to bring your partner?',
           'partnerStep.titleHighlight' => 'partner',
           'partnerStep.subtitle' => 'The app works on your own. Invite whenever you want.',
@@ -11904,15 +11889,15 @@ extension on TranslationsEn {
           'repair.guided.stepTitles.0' => 'What happened?',
           'repair.guided.stepTitles.1' => 'What do you need?',
           'repair.guided.stepTitles.2' => 'What can you offer?',
-          _ => null,
-        } ??
-        switch (path) {
           'repair.guided.stepHighlights.0' => 'happened',
           'repair.guided.stepHighlights.1' => 'need',
           'repair.guided.stepHighlights.2' => 'offer',
           'repair.guided.stepHints.0' => 'In your own words, without blaming anyone.',
           'repair.guided.stepHints.1' => 'One thing that would help right now.',
           'repair.guided.stepHints.2' => 'Something small and sincere.',
+          _ => null,
+        } ??
+        switch (path) {
           'repair.guided.private' => 'Only you see this. Nothing is sent to your partner.',
           'repair.guided.next' => 'Continue',
           'repair.guided.back' => 'Back',
@@ -12500,9 +12485,6 @@ extension on TranslationsEn {
           'story.namesLabel' => 'Include the names',
           'story.namesText' => 'Off by default.',
           'story.phraseLabel' => 'A line (optional)',
-          _ => null,
-        } ??
-        switch (path) {
           'story.phraseHint' => 'E.g. so much still ahead',
           'story.share' => 'Share image',
           'story.emptyTitle' => 'Your date is missing',
@@ -12510,6 +12492,9 @@ extension on TranslationsEn {
             'Set since when you are together in Our history to create the image.',
           'story.errorTitle' => 'Couldn\'t load',
           'story.errorText' => 'Try again in a moment.',
+          _ => null,
+        } ??
+        switch (path) {
           'story.errors.other' => 'Couldn\'t share right now. Try again.',
           'sundayCard.title' => 'Your card',
           'sundayCard.edit' => 'Edit',
@@ -12678,13 +12663,13 @@ extension on TranslationsEn {
           'tabs.questionMeta' => 'One for both',
           'tabs.gamesMeta' => 'No score',
           'tabs.datesMeta' => 'With a heads-up',
-          'tabs.giftsMeta' => 'Only for you',
+          'tabs.giftsMeta' => 'A page for your partner',
           'tabs.giftsMetaShared' =>
             ({required num count}) =>
                 (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
                   count,
-                  one: '1 shared wish',
-                  other: '${count} shared wishes',
+                  one: '1 wish',
+                  other: '${count} wishes',
                 ),
           'tabs.guidesMeta' => 'One step at a time',
           'tabs.starterMeta' => 'One question',

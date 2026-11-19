@@ -1,4 +1,3 @@
-import 'package:app/features/gifts/data/models/gift_budget.dart';
 import 'package:app/features/gifts/data/models/gift_idea.dart';
 import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:app/features/gifts/presentation/gift_sheet/gift_sheet.dart';
@@ -18,39 +17,35 @@ class _MockGiftsRepository() extends Mock implements GiftsRepository;
 void main() {
   late GiftsRepository repository;
 
-  const shared = GiftIdea(id: 'g1', title: 'Livro', isShared: true, isMine: true);
-  const partnerShared = GiftIdea(id: 'g2', title: 'Vinil', isShared: true);
+  const mine = GiftIdea(
+    id: 'g1',
+    title: 'Livro',
+    note: 'Capa dura',
+    link: 'https://example.com/livro',
+    isMine: true,
+  );
+  const partner = GiftIdea(id: 'g2', title: 'Vinil');
 
   setUpAll(() => LocaleSettings.setLocaleSync(AppLocale.pt));
 
   setUp(() {
     repository = _MockGiftsRepository();
     when(repository.getCoupleId).thenAnswer((_) async => 'couple-1');
-    when(repository.getGiftIdeas).thenAnswer((_) async => [shared, partnerShared]);
-    when(
-      () => repository.setGiftWishVisibility(
-        id: any(named: 'id'),
-        coupleId: any(named: 'coupleId'),
-      ),
-    ).thenAnswer(
-      (invocation) async => [shared, partnerShared]
-          .firstWhere((gift) => gift.id == invocation.namedArguments[#id])
-          .withShared(isShared: invocation.namedArguments[#coupleId] != null),
-    );
+    when(repository.getGiftIdeas).thenAnswer((_) async => [mine, partner]);
     when(
       () => repository.updateGiftWish(
         id: any(named: 'id'),
         title: any(named: 'title'),
         note: any(named: 'note'),
-        budget: any(named: 'budget'),
+        link: any(named: 'link'),
       ),
     ).thenAnswer(
-      (invocation) async => [shared, partnerShared]
+      (invocation) async => [mine, partner]
           .firstWhere((gift) => gift.id == invocation.namedArguments[#id])
           .withDetails(
             title: invocation.namedArguments[#title] as String,
             note: invocation.namedArguments[#note] as String?,
-            budget: invocation.namedArguments[#budget] as GiftBudget?,
+            link: invocation.namedArguments[#link] as String?,
           ),
     );
     when(() => repository.deleteGiftWish(any())).thenAnswer((_) async {
@@ -70,7 +65,7 @@ void main() {
     return cubit;
   }
 
-  testWidgets('the page shows my wishes and my partner shared wishes without platform calls', (
+  testWidgets('the page shows my wishes and my partner wishes without platform calls', (
     tester,
   ) async {
     final calls = <MethodCall>[];
@@ -109,7 +104,7 @@ void main() {
     await pumpGifts(tester, gifts: []);
 
     expect(find.text('Nenhum desejo ainda'), findsOneWidget);
-    expect(find.text('Adicione um desejo ou espere seu par compartilhar um.'), findsOneWidget);
+    expect(find.text('Adicione um desejo ou espere seu par adicionar um.'), findsOneWidget);
     expect(find.text('Adicionar'), findsOneWidget);
   });
 
@@ -127,41 +122,56 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('a partner shared page is read-only', (tester) async {
-    await pumpGifts(tester, gifts: [partnerShared]);
+  testWidgets('a wish with a buy link offers to open it from my list and my partner list', (
+    tester,
+  ) async {
+    await pumpGifts(
+      tester,
+      gifts: [
+        mine,
+        const GiftIdea(id: 'g2', title: 'Vinil', link: 'https://example.com/vinil'),
+      ],
+    );
 
-    expect(find.text('Vinil'), findsOneWidget);
+    expect(
+      find.byWidgetPredicate((widget) => widget is AppIcon && widget.icon == AppIcons.link),
+      findsNWidgets(2),
+    );
+  });
+
+  testWidgets('the page has no visibility switch', (tester) async {
+    await pumpGifts(
+      tester,
+      gifts: [const GiftIdea(id: 'g1', title: 'Livro', isMine: true)],
+    );
+
     expect(find.byType(BaseSwitch), findsNothing);
   });
 
-  testWidgets('the visibility switch shares and unshares a wish', (tester) async {
-    await pumpGifts(tester, gifts: [shared]);
-
-    await tester.tap(find.byType(BaseSwitch));
-    await tester.pumpAndSettle();
-
-    verify(() => repository.setGiftWishVisibility(id: 'g1', coupleId: null)).called(1);
-  });
-
   testWidgets('editing a wish saves the new title', (tester) async {
-    await pumpGifts(tester, gifts: [shared]);
+    await pumpGifts(tester, gifts: [mine]);
 
     await tester.tap(find.text('Livro'));
     await tester.pumpAndSettle();
     expect(find.text('Editar desejo'), findsOneWidget);
 
-    tester.widget<BaseTextField>(find.byType(BaseTextField)).onChanged!('Livro de poemas');
+    tester.widget<BaseTextField>(find.byType(BaseTextField).first).onChanged!('Livro de poemas');
     await tester.pump();
     await tester.tap(find.text('Salvar'));
     await tester.pumpAndSettle();
 
     verify(
-      () => repository.updateGiftWish(id: 'g1', title: 'Livro de poemas', note: null, budget: null),
+      () => repository.updateGiftWish(
+        id: 'g1',
+        title: 'Livro de poemas',
+        note: 'Capa dura',
+        link: 'https://example.com/livro',
+      ),
     ).called(1);
   });
 
   testWidgets('deleting a wish asks for confirmation first', (tester) async {
-    await pumpGifts(tester, gifts: [shared]);
+    await pumpGifts(tester, gifts: [mine]);
 
     await tester.tap(find.text('Livro'));
     await tester.pumpAndSettle();
@@ -178,19 +188,25 @@ void main() {
     verify(() => repository.deleteGiftWish('g1')).called(1);
   });
 
-  testWidgets('the add sheet starts private even with a partner', (tester) async {
-    await tester.pumpApp(const GiftSheet(hasPartner: true));
-
-    expect(find.text('Só você vê este desejo.'), findsOneWidget);
-  });
-
   testWidgets('the add sheet asks for a name instead of closing', (tester) async {
-    await tester.pumpApp(const GiftSheet(hasPartner: true));
+    await tester.pumpApp(const GiftSheet());
 
     await tester.tap(find.text('Adicionar'));
     await tester.pump();
 
     expect(find.text('Dê um nome ao presente.'), findsOneWidget);
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('the add sheet rejects a link that is not a web address', (tester) async {
+    await tester.pumpApp(const GiftSheet());
+
+    tester.widget<BaseTextField>(find.byType(BaseTextField).first).onChanged!('Livro');
+    tester.widget<BaseTextField>(find.byType(BaseTextField).last).onChanged!('example.com');
+    await tester.pump();
+    await tester.tap(find.text('Adicionar'));
+    await tester.pump();
+
+    expect(find.text('Use um link que comece com https://.'), findsOneWidget);
   });
 }

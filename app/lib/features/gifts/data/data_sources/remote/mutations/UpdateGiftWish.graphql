@@ -1,8 +1,5 @@
-mutation UpdateGiftWish($id: uuid!, $title: String!, $note: String, $budget: GiftBudget_enum) {
-  updateGiftIdeasByPk(
-    pk_columns: { id: $id }
-    _set: { title: $title, note: $note, budget: $budget }
-  ) {
+mutation UpdateGiftWish($id: uuid!, $title: String!, $note: String, $link: String) {
+  updateGiftIdeasByPk(pk_columns: { id: $id }, _set: { title: $title, note: $note, link: $link }) {
     ...GiftWishFragment
   }
 }

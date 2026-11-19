@@ -44,6 +44,9 @@ enum BaseTextFieldType() {
   /// E-mail keyboard without autocorrect.
   email,
 
+  /// Link keyboard without autocorrect.
+  url,
+
   /// Uppercase code with wide letter spacing.
   inviteCode,
 
@@ -104,9 +107,14 @@ class _BaseTextFieldState() extends State<BaseTextField> {
   TextInputType get _keyboardType => switch (widget.type) {
     .text => TextInputType.text,
     .email => TextInputType.emailAddress,
+    .url => TextInputType.url,
     .inviteCode => TextInputType.text,
     .password => TextInputType.visiblePassword,
   };
+
+  /// Whether the system may correct or suggest words for the current text type.
+  bool get _allowsSuggestions =>
+      widget.type == BaseTextFieldType.text || widget.type == BaseTextFieldType.inviteCode;
 
   Widget? get _trailing {
     if (widget.trailingAction case final action?) return action;
@@ -178,8 +186,8 @@ class _BaseTextFieldState() extends State<BaseTextField> {
                     textCapitalization: widget.type == BaseTextFieldType.inviteCode
                         ? TextCapitalization.characters
                         : TextCapitalization.none,
-                    autocorrect: widget.type != BaseTextFieldType.password,
-                    enableSuggestions: widget.type != BaseTextFieldType.password,
+                    autocorrect: _allowsSuggestions,
+                    enableSuggestions: _allowsSuggestions,
                     obscureText: _isPassword && _isObscured,
                     inputFormatters: _formatters,
                     onChanged: widget.onChanged,

@@ -1,4 +1,3 @@
-import 'package:app/features/gifts/data/models/gift_budget.dart';
 import 'package:app/features/gifts/data/models/gift_idea.dart';
 import 'package:app/features/gifts/data/repositories/gifts_repository.dart';
 import 'package:app/features/gifts/presentation/gifts/cubit/gifts_cubit.dart';
@@ -11,29 +10,26 @@ class _MockGiftsRepository() extends Mock implements GiftsRepository;
 void main() {
   late GiftsRepository repository;
 
-  const shared = GiftIdea(id: 'g1', title: 'Livro', isShared: true, isMine: true);
-  const partnerShared = GiftIdea(id: 'g2', title: 'Vinil', isShared: true);
-  const private = GiftIdea(id: 'g3', title: 'Caneca', isMine: true);
+  const mine = GiftIdea(id: 'g1', title: 'Livro', isMine: true);
+  const partner = GiftIdea(id: 'g2', title: 'Vinil');
 
   setUp(() {
     repository = _MockGiftsRepository();
     when(repository.getCoupleId).thenAnswer((_) async => 'couple-1');
-    when(repository.getGiftIdeas).thenAnswer((_) async => [shared, partnerShared, private]);
+    when(repository.getGiftIdeas).thenAnswer((_) async => [mine, partner]);
     when(
       () => repository.addGiftWish(
         id: any(named: 'id'),
         title: any(named: 'title'),
         note: any(named: 'note'),
-        budget: any(named: 'budget'),
-        coupleId: any(named: 'coupleId'),
+        link: any(named: 'link'),
       ),
     ).thenAnswer(
       (invocation) async => GiftIdea(
         id: invocation.namedArguments[#id] as String,
         title: invocation.namedArguments[#title] as String,
         note: invocation.namedArguments[#note] as String?,
-        budget: invocation.namedArguments[#budget] as GiftBudget?,
-        isShared: invocation.namedArguments[#coupleId] != null,
+        link: invocation.namedArguments[#link] as String?,
         isMine: true,
       ),
     );
@@ -42,30 +38,20 @@ void main() {
         id: any(named: 'id'),
         title: any(named: 'title'),
         note: any(named: 'note'),
-        budget: any(named: 'budget'),
+        link: any(named: 'link'),
       ),
     ).thenAnswer(
-      (invocation) async => [shared, partnerShared, private]
+      (invocation) async => [mine, partner]
           .firstWhere((gift) => gift.id == invocation.namedArguments[#id])
           .withDetails(
             title: invocation.namedArguments[#title] as String,
             note: invocation.namedArguments[#note] as String?,
-            budget: invocation.namedArguments[#budget] as GiftBudget?,
+            link: invocation.namedArguments[#link] as String?,
           ),
     );
     when(() => repository.deleteGiftWish(any())).thenAnswer((_) async {
       return;
     });
-    when(
-      () => repository.setGiftWishVisibility(
-        id: any(named: 'id'),
-        coupleId: any(named: 'coupleId'),
-      ),
-    ).thenAnswer(
-      (invocation) async => [shared, partnerShared, private]
-          .firstWhere((gift) => gift.id == invocation.namedArguments[#id])
-          .withShared(isShared: invocation.namedArguments[#coupleId] != null),
-    );
   });
 
   GiftsCubit build() => GiftsCubit(giftsRepository: repository);
@@ -76,9 +62,9 @@ void main() {
 
     await cubit.load();
 
-    expect(cubit.state.currentGifts, [shared, partnerShared, private]);
-    expect(cubit.state.myGifts, [shared, private]);
-    expect(cubit.state.partnerGifts, [partnerShared]);
+    expect(cubit.state.currentGifts, [mine, partner]);
+    expect(cubit.state.myGifts, [mine]);
+    expect(cubit.state.partnerGifts, [partner]);
     expect(cubit.state.coupleId, 'couple-1');
     expect(cubit.state.hasPartner, isTrue);
   });
@@ -103,67 +89,55 @@ void main() {
     expect(state.copyWith(coupleId: null).coupleId, isNull);
   });
 
-  test('a new wish is private by default', () async {
+  test('a new wish is saved without choosing who sees it', () async {
     final cubit = build();
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.add(title: '  Fone  ', isShared: false);
+    await cubit.add(title: '  Fone  ');
 
     final created = cubit.state.currentGifts.first;
     expect(created.title, 'Fone');
-    expect(created.isShared, isFalse);
     expect(created.isMine, isTrue);
-    verify(
-      () => repository.addGiftWish(
-        id: created.id,
-        title: 'Fone',
-        note: null,
-        budget: null,
-        coupleId: null,
-      ),
-    ).called(1);
+    verify(() => repository.addGiftWish(id: created.id, title: 'Fone', note: null, link: null))
+        .called(1);
   });
 
-  test('a shared wish is sent with the current couple id', () async {
+  test('a wish stores its note and where to buy it', () async {
     final cubit = build();
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.add(title: 'Fone', isShared: true, note: '  Sem fio  ', budget: GiftBudget.medium);
+    await cubit.add(title: 'Fone', note: '  Sem fio  ', link: '  https://example.com/fone  ');
 
     final created = cubit.state.currentGifts.first;
-    expect(created.isShared, isTrue);
     expect(created.note, 'Sem fio');
-    expect(created.budget, GiftBudget.medium);
+    expect(created.link, 'https://example.com/fone');
     verify(
       () => repository.addGiftWish(
         id: created.id,
         title: 'Fone',
         note: 'Sem fio',
-        budget: GiftBudget.medium,
-        coupleId: 'couple-1',
+        link: 'https://example.com/fone',
       ),
     ).called(1);
   });
 
-  test('a shared wish while alone stays private', () async {
+  test('a wish is saved while the person is on their own', () async {
     when(repository.getCoupleId).thenAnswer((_) async => null);
     final cubit = build();
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.add(title: 'Fone', isShared: true);
+    await cubit.add(title: 'Fone');
 
-    final created = cubit.state.currentGifts.first;
-    expect(created.isShared, isFalse);
+    expect(cubit.state.currentGifts.first.title, 'Fone');
     verify(
       () => repository.addGiftWish(
-        id: created.id,
+        id: any(named: 'id'),
         title: 'Fone',
         note: null,
-        budget: null,
-        coupleId: null,
+        link: null,
       ),
     ).called(1);
   });
@@ -173,42 +147,40 @@ void main() {
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.add(title: '   ', isShared: false);
+    await cubit.add(title: '   ');
 
     verifyNever(
       () => repository.addGiftWish(
         id: any(named: 'id'),
         title: any(named: 'title'),
         note: any(named: 'note'),
-        budget: any(named: 'budget'),
-        coupleId: any(named: 'coupleId'),
+        link: any(named: 'link'),
       ),
     );
   });
 
-  test('editing changes the details and keeps visibility', () async {
+  test('editing changes the details and the link', () async {
     final cubit = build();
     addTearDown(cubit.close);
     await cubit.load();
 
     await cubit.edit(
-      shared,
+      mine,
       title: '  Livro de poemas  ',
       note: 'Capa dura',
-      budget: GiftBudget.low,
+      link: 'https://example.com/livro',
     );
 
     final edited = cubit.state.currentGifts.first;
     expect(edited.title, 'Livro de poemas');
     expect(edited.note, 'Capa dura');
-    expect(edited.budget, GiftBudget.low);
-    expect(edited.isShared, isTrue);
+    expect(edited.link, 'https://example.com/livro');
     verify(
       () => repository.updateGiftWish(
         id: 'g1',
         title: 'Livro de poemas',
         note: 'Capa dura',
-        budget: GiftBudget.low,
+        link: 'https://example.com/livro',
       ),
     ).called(1);
   });
@@ -218,14 +190,14 @@ void main() {
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.edit(partnerShared, title: 'Outro');
+    await cubit.edit(partner, title: 'Outro');
 
     verifyNever(
       () => repository.updateGiftWish(
         id: any(named: 'id'),
         title: any(named: 'title'),
         note: any(named: 'note'),
-        budget: any(named: 'budget'),
+        link: any(named: 'link'),
       ),
     );
   });
@@ -235,44 +207,14 @@ void main() {
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.delete(private);
-    expect(cubit.state.currentGifts, [shared, partnerShared]);
+    await cubit.delete(mine);
+    expect(cubit.state.currentGifts, [partner]);
 
+    await cubit.load();
     when(() => repository.deleteGiftWish(any()))
         .thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
-    await cubit.delete(shared);
-    expect(cubit.state.currentGifts, [shared, partnerShared]);
-  });
-
-  test('sharing and unsharing changes the couple id', () async {
-    final cubit = build();
-    addTearDown(cubit.close);
-    await cubit.load();
-
-    await cubit.setVisibility(private, isShared: true);
-    expect(cubit.state.currentGifts.last.isShared, isTrue);
-    verify(() => repository.setGiftWishVisibility(id: 'g3', coupleId: 'couple-1')).called(1);
-
-    await cubit.setVisibility(shared, isShared: false);
-    expect(cubit.state.currentGifts.first.isShared, isFalse);
-    verify(() => repository.setGiftWishVisibility(id: 'g1', coupleId: null)).called(1);
-  });
-
-  test('sharing while alone does nothing', () async {
-    when(repository.getCoupleId).thenAnswer((_) async => null);
-    final cubit = build();
-    addTearDown(cubit.close);
-    await cubit.load();
-
-    await cubit.setVisibility(private, isShared: true);
-
-    expect(cubit.state.currentGifts.last.isShared, isFalse);
-    verifyNever(
-      () => repository.setGiftWishVisibility(
-        id: any(named: 'id'),
-        coupleId: any(named: 'coupleId'),
-      ),
-    );
+    await cubit.delete(mine);
+    expect(cubit.state.currentGifts, [mine, partner]);
   });
 
   test('a failed add restores the previous wishes and reports it', () async {
@@ -281,17 +223,16 @@ void main() {
         id: any(named: 'id'),
         title: any(named: 'title'),
         note: any(named: 'note'),
-        budget: any(named: 'budget'),
-        coupleId: any(named: 'coupleId'),
+        link: any(named: 'link'),
       ),
     ).thenThrow(const LocalizedException(l10nKey: 'NETWORK'));
     final cubit = build();
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.add(title: 'Fone', isShared: false);
+    await cubit.add(title: 'Fone');
 
-    expect(cubit.state.currentGifts, [shared, partnerShared, private]);
+    expect(cubit.state.currentGifts, [mine, partner]);
     expect(cubit.state.saveAction, isA<Initial>());
   });
 
@@ -311,8 +252,7 @@ void main() {
         id: any(named: 'id'),
         title: any(named: 'title'),
         note: any(named: 'note'),
-        budget: any(named: 'budget'),
-        coupleId: any(named: 'coupleId'),
+        link: any(named: 'link'),
       ),
     ).thenAnswer(
       (invocation) async => GiftIdea(
@@ -321,12 +261,12 @@ void main() {
         isMine: true,
       ),
     );
-    when(repository.getGiftIdeas).thenAnswer((_) async => [shared]);
+    when(repository.getGiftIdeas).thenAnswer((_) async => [mine]);
     final cubit = build();
     addTearDown(cubit.close);
     await cubit.load();
 
-    await cubit.add(title: 'Fone', isShared: false);
+    await cubit.add(title: 'Fone');
 
     expect(cubit.state.currentGifts.first.title, 'Fone (servidor)');
   });

@@ -8,4 +8,5 @@ export 'src/validators/non_empty_validator.dart';
 export 'src/validators/number_range_validator.dart';
 export 'src/validators/password_validator.dart';
 export 'src/validators/pattern_validator.dart';
+export 'src/validators/url_validator.dart';
 export 'src/validators/validator.dart';

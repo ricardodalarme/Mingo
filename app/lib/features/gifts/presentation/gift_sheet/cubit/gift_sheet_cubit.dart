@@ -1,4 +1,3 @@
-import 'package:app/features/gifts/data/models/gift_budget.dart';
 import 'package:app/features/gifts/data/models/gift_idea.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,14 +9,12 @@ part 'gift_sheet_state.dart';
 class GiftSheetCubit() extends Cubit<GiftSheetState> {
   this : super(const GiftSheetState());
 
-  void start({required bool hasPartner, GiftIdea? gift}) => emit(
+  void start({GiftIdea? gift}) => emit(
     GiftSheetState(
       title: FormInput(gift?.title ?? ''),
       note: FormInput(gift?.note ?? ''),
-      budget: gift?.budget,
-      isShared: gift?.isShared ?? false,
+      link: FormInput(gift?.link ?? ''),
       isEditing: gift != null,
-      hasPartner: hasPartner,
     ),
   );
 
@@ -25,29 +22,38 @@ class GiftSheetCubit() extends Cubit<GiftSheetState> {
 
   void onNoteChanged(String note) => emit(state.copyWith(note: FormInput(note)));
 
-  void onBudgetChanged(GiftBudget? budget) =>
-      emit(state.copyWith(budget: budget, clearBudget: budget == null));
-
-  void onSharedChanged(bool isShared) => emit(state.copyWith(isShared: isShared));
+  void onLinkChanged(String link) => emit(state.copyWith(link: FormInput(link)));
 
   /// Validates the fields and returns the draft, or null when a field is invalid.
-  ({String title, String? note, GiftBudget? budget, bool isShared})? submit() {
+  ({String title, String? note, String? link})? submit() {
     final validatedTitle = state.title.validate(
       CompositeValidator<String>([NonEmptyValidator(), MaxLengthValidator(giftTitleMaxLength)]),
     );
     final validatedNote = state.note.validate(MaxLengthValidator(giftNoteMaxLength));
+    final validatedLink = _validateLink(state.link);
 
-    emit(state.copyWith(title: validatedTitle, note: validatedNote));
+    emit(state.copyWith(title: validatedTitle, note: validatedNote, link: validatedLink));
 
-    if (!validatedTitle.isValid || !validatedNote.isValid) return null;
-
-    final note = validatedNote.value.trim();
+    if (!validatedTitle.isValid || !validatedNote.isValid || !validatedLink.isValid) return null;
 
     return (
       title: validatedTitle.value.trim(),
-      note: note.isEmpty ? null : note,
-      budget: state.budget,
-      isShared: state.isShared,
+      note: _clean(validatedNote.value),
+      link: _clean(validatedLink.value),
     );
+  }
+
+  FormInput<String> _validateLink(FormInput<String> link) {
+    if (link.value.trim().isEmpty) return FormInput(link.value);
+
+    return link.validate(
+      CompositeValidator<String>([UrlValidator(), MaxLengthValidator(giftLinkMaxLength)]),
+    );
+  }
+
+  String? _clean(String value) {
+    final trimmed = value.trim();
+
+    return trimmed.isEmpty ? null : trimmed;
   }
 }

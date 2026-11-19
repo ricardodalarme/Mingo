@@ -124,12 +124,6 @@ enum GentleResponse_enum {
   talk
   will_do
 }
-enum GiftBudget_enum {
-  free
-  high
-  low
-  medium
-}
 enum GiftIdeaKind_enum {
   idea
   wish
@@ -1641,14 +1635,6 @@ enum giftIdeas_select_column {
   """
   column name
   """
-  budget
-  """
-  column name
-  """
-  coupleId
-  """
-  column name
-  """
   createdAt
   """
   column name
@@ -1658,6 +1644,10 @@ enum giftIdeas_select_column {
   column name
   """
   kind
+  """
+  column name
+  """
+  link
   """
   column name
   """
@@ -1686,15 +1676,7 @@ enum giftIdeas_update_column {
   """
   column name
   """
-  budget
-  """
-  column name
-  """
-  coupleId
-  """
-  column name
-  """
-  kind
+  link
   """
   column name
   """
@@ -5774,44 +5756,10 @@ type giftIdeas {
   """
   author: profiles!
   authorId: uuid!
-  budget: GiftBudget_enum
-  """
-  An object relationship
-  """
-  couple: couples
-  coupleId: uuid
-  """
-  An array relationship
-  """
-  coupleMembers(
-    """
-    distinct select on columns
-    """
-    distinct_on: [coupleMembers_select_column!]
-
-    """
-    limit the number of rows returned
-    """
-    limit: Int
-
-    """
-    skip the first n rows. Use only with order_by
-    """
-    offset: Int
-
-    """
-    sort the rows by one or more columns
-    """
-    order_by: [coupleMembers_order_by!]
-
-    """
-    filter the rows returned
-    """
-    where: coupleMembers_bool_exp
-  ): [coupleMembers!]!
   createdAt: timestamptz!
   id: uuid!
   kind: GiftIdeaKind_enum!
+  link: String
   note: String
   """
   An object relationship
@@ -5842,9 +5790,9 @@ aggregate max on columns
 """
 type giftIdeas_max_fields {
   authorId: uuid
-  coupleId: uuid
   createdAt: timestamptz
   id: uuid
+  link: String
   note: String
   occasionDateId: uuid
   title: String
@@ -5855,9 +5803,9 @@ aggregate min on columns
 """
 type giftIdeas_min_fields {
   authorId: uuid
-  coupleId: uuid
   createdAt: timestamptz
   id: uuid
+  link: String
   note: String
   occasionDateId: uuid
   title: String
@@ -21333,16 +21281,6 @@ input GentleResponse_enum_comparison_exp {
   _nin: [GentleResponse_enum!]
 }
 """
-Boolean expression to compare columns of type "GiftBudget_enum". All fields are combined with logical 'AND'.
-"""
-input GiftBudget_enum_comparison_exp {
-  _eq: GiftBudget_enum
-  _in: [GiftBudget_enum!]
-  _is_null: Boolean
-  _neq: GiftBudget_enum
-  _nin: [GiftBudget_enum!]
-}
-"""
 Boolean expression to compare columns of type "GiftIdeaKind_enum". All fields are combined with logical 'AND'.
 """
 input GiftIdeaKind_enum_comparison_exp {
@@ -24185,13 +24123,10 @@ input giftIdeas_bool_exp {
   _or: [giftIdeas_bool_exp!]
   author: profiles_bool_exp
   authorId: uuid_comparison_exp
-  budget: GiftBudget_enum_comparison_exp
-  couple: couples_bool_exp
-  coupleId: uuid_comparison_exp
-  coupleMembers: coupleMembers_bool_exp
   createdAt: timestamptz_comparison_exp
   id: uuid_comparison_exp
   kind: GiftIdeaKind_enum_comparison_exp
+  link: String_comparison_exp
   note: String_comparison_exp
   occasion: importantDates_bool_exp
   occasionDateId: uuid_comparison_exp
@@ -24203,10 +24138,9 @@ input giftIdeas_bool_exp {
 input type for inserting data into table "gift_ideas"
 """
 input giftIdeas_insert_input {
-  budget: GiftBudget_enum
-  coupleId: uuid
   id: uuid
   kind: GiftIdeaKind_enum
+  link: String
   note: String
   occasion: importantDates_obj_rel_insert_input
   occasionDateId: uuid
@@ -24227,13 +24161,10 @@ Ordering options when selecting data from "gift_ideas".
 input giftIdeas_order_by {
   author: profiles_order_by
   authorId: order_by
-  budget: order_by
-  couple: couples_order_by
-  coupleId: order_by
-  coupleMembers_aggregate: coupleMembers_aggregate_order_by
   createdAt: order_by
   id: order_by
   kind: order_by
+  link: order_by
   note: order_by
   occasion: importantDates_order_by
   occasionDateId: order_by
@@ -24251,9 +24182,7 @@ input giftIdeas_pk_columns_input {
 input type for updating data in table "gift_ideas"
 """
 input giftIdeas_set_input {
-  budget: GiftBudget_enum
-  coupleId: uuid
-  kind: GiftIdeaKind_enum
+  link: String
   note: String
   occasionDateId: uuid
   status: GiftIdeaStatus_enum
@@ -24277,11 +24206,10 @@ Initial value of the column from where the streaming should start
 """
 input giftIdeas_stream_cursor_value_input {
   authorId: uuid
-  budget: GiftBudget_enum
-  coupleId: uuid
   createdAt: timestamptz
   id: uuid
   kind: GiftIdeaKind_enum
+  link: String
   note: String
   occasionDateId: uuid
   status: GiftIdeaStatus_enum

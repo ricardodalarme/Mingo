@@ -1,7 +1,5 @@
 import 'package:app/features/gifts/data/data_sources/remote/gifts_data_source.dart';
-import 'package:app/features/gifts/data/mappers/gift_enum_mapper.dart';
 import 'package:app/features/gifts/data/mappers/gift_mapper.dart';
-import 'package:app/features/gifts/data/models/gift_budget.dart';
 import 'package:app/features/gifts/data/models/gift_idea.dart';
 import 'package:app/features/together/data/repositories/together_repository.dart';
 
@@ -17,8 +15,7 @@ class GiftsRepository({
 
     return [
       for (final node in await _dataSource.getGiftIdeas())
-        if (node.authorId == currentUserId || node.coupleId != null)
-          node.toModel(currentUserId: currentUserId),
+        node.toModel(currentUserId: currentUserId),
     ];
   }
 
@@ -27,15 +24,13 @@ class GiftsRepository({
     required String id,
     required String title,
     String? note,
-    GiftBudget? budget,
-    String? coupleId,
+    String? link,
   }) async {
     final saved = await _dataSource.addGiftWish(
       id: id,
       title: title.trim(),
       note: _clean(note),
-      budget: budget?.toRemote(),
-      coupleId: coupleId,
+      link: _clean(link),
     );
 
     return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
@@ -45,25 +40,19 @@ class GiftsRepository({
     required String id,
     required String title,
     String? note,
-    GiftBudget? budget,
+    String? link,
   }) async {
     final saved = await _dataSource.updateGiftWish(
       id: id,
       title: title.trim(),
       note: _clean(note),
-      budget: budget?.toRemote(),
+      link: _clean(link),
     );
 
     return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
   }
 
   Future<void> deleteGiftWish(String id) => _dataSource.deleteGiftWish(id);
-
-  Future<GiftIdea> setGiftWishVisibility({required String id, String? coupleId}) async {
-    final saved = await _dataSource.setGiftWishVisibility(id: id, coupleId: coupleId);
-
-    return saved.toModel(currentUserId: await _togetherRepository.getCurrentUserId());
-  }
 
   String? _clean(String? value) {
     final trimmed = value?.trim();
