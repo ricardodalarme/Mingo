@@ -279,12 +279,6 @@ class const _PrivateMoreSection() extends StatelessWidget {
       footer: l10n.forMeFooter,
       children: [
         _row(
-          icon: AppIcons.pencil,
-          title: l10n.notesTitle,
-          subtitle: l10n.notesMeta,
-          onTap: () => context.pushRoute(const ComposeRoute()),
-        ),
-        _row(
           icon: AppIcons.lightbulb,
           title: l10n.learningTitle,
           subtitle: l10n.learningMeta,
