@@ -62,7 +62,12 @@ class _BaseTabBarState() extends State<BaseTabBar> {
     _isMenuOpen = true;
     final item = await showBaseMenu(
       context,
-      anchor: box.localToGlobal(Offset.zero) & box.size,
+      // The centre is stable while the button is still easing back from its press scale.
+      anchor: Rect.fromCenter(
+        center: box.localToGlobal(box.size.center(Offset.zero)),
+        width: box.size.width,
+        height: box.size.height,
+      ),
       items: menuItems,
       anchorBuilder: (context, animation) => _PrimaryAction(rotation: animation),
     );
