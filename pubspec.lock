@@ -389,10 +389,10 @@ packages:
     dependency: transitive
     description:
       name: dbus
-      sha256: f7db8504e715b835f5ebe5fe74604ccd961d504c73389a5d8e81bafc2e2f3612
+      sha256: fe6b46eae35441227e9e750656d06a4f40c230fe96e4390da7d7ebc69a60f0b3
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.0"
+    version: "0.8.1"
   dependabot_gen:
     dependency: "direct dev"
     description:
@@ -715,10 +715,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_local_notifications
-      sha256: fac349e7361f80591a0cedff03548f807282c9faee9fc6192763166e5f81def2
+      sha256: "7d37d69ded3028af4f22531a0097a3baa478a384dff2e23e873707c93df3b704"
       url: "https://pub.dev"
     source: hosted
-    version: "23.0.2"
+    version: "23.0.3"
   flutter_local_notifications_linux:
     dependency: transitive
     description:
@@ -1706,10 +1706,10 @@ packages:
     dependency: transitive
     description:
       name: purchases_flutter
-      sha256: "273a98e9fe3d6a763c9c23ef1fc466b055311d40c3c87b09aef605ec398fd85f"
+      sha256: bb41c8938153258f9d1b7a77eaac8a9869d87563dcac8b379d4a29531a075a08
       url: "https://pub.dev"
     source: hosted
-    version: "11.0.3"
+    version: "11.0.4"
   recase:
     dependency: transitive
     description:
