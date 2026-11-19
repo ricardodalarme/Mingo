@@ -123,5 +123,8 @@
   },
   "chat": "Chat",
   "couple": "Us",
-  "storyChip": "Our story"
+  "storyChip": "Our story",
+  "plusSlip": "Write a slip",
+  "plusNeed": "I need…",
+  "plusNote": "Send a note"
 }

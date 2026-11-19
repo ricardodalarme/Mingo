@@ -6003,6 +6003,12 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get couple => 'Us';
   @override
   String get storyChip => 'Our story';
+  @override
+  String get plusSlip => 'Write a slip';
+  @override
+  String get plusNeed => 'I need…';
+  @override
+  String get plusNote => 'Send a note';
 }
 
 // Path: temperature
@@ -11874,6 +11880,9 @@ extension on TranslationsEn {
           'tabs.chat' => 'Chat',
           'tabs.couple' => 'Us',
           'tabs.storyChip' => 'Our story',
+          'tabs.plusSlip' => 'Write a slip',
+          'tabs.plusNeed' => 'I need…',
+          'tabs.plusNote' => 'Send a note',
           'temperature.levelTitle' => 'How is it between you?',
           'temperature.levelHighlight' => 'between you',
           'temperature.levelNote' => 'Private. Never becomes a score.',
@@ -11917,12 +11926,12 @@ extension on TranslationsEn {
           'timeInApp.titleHighlight' => 'app',
           'timeInApp.text' => 'We hide cards and reminders until you come back.',
           'timeInApp.cancel' => 'Cancel',
-          'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
-          'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
-          'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
           _ => null,
         } ??
         switch (path) {
+          'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
+          'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
+          'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
           'today.greetingNoName' => 'Hello',
           'today.dateLine' => ({
             required Object weekday,

@@ -79,6 +79,23 @@ class const HomePage({super.key}) extends StatelessWidget {
                   }
                   tabsRouter.setActiveIndex(index < _captureIndex ? index : index - 1);
                 },
+                menuItems: [
+                  BaseMenuItem(
+                    id: 'slip',
+                    icon: AppIcons.pencil,
+                    label: l10n.plusSlip,
+                    isPrimary: true,
+                  ),
+                  BaseMenuItem(id: 'need', icon: AppIcons.heart, label: l10n.plusNeed),
+                  BaseMenuItem(id: 'note', icon: AppIcons.send, label: l10n.plusNote),
+                ],
+                onMenuSelected: (item) {
+                  context.router.root.push(switch (item.id) {
+                    'need' => const NeedRoute(),
+                    'note' => const ComposeRoute(),
+                    _ => const QuickSlipRoute(),
+                  });
+                },
                 items: [
                   BaseTabBarItem(icon: homeTabIcons[0], label: l10n.today),
                   BaseTabBarItem(icon: homeTabIcons[1], label: l10n.slips),

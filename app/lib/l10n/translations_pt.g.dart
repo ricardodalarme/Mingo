@@ -7460,6 +7460,15 @@ class Translations$tabs$pt {
 
   /// pt: 'Nossa história'
   String get storyChip => 'Nossa história';
+
+  /// pt: 'Anotar um slip'
+  String get plusSlip => 'Anotar um slip';
+
+  /// pt: 'Preciso de…'
+  String get plusNeed => 'Preciso de…';
+
+  /// pt: 'Mandar um recado'
+  String get plusNote => 'Mandar um recado';
 }
 
 // Path: temperature
@@ -13799,6 +13808,9 @@ extension on Translations {
           'tabs.chat' => 'Conversa',
           'tabs.couple' => 'Nós',
           'tabs.storyChip' => 'Nossa história',
+          'tabs.plusSlip' => 'Anotar um slip',
+          'tabs.plusNeed' => 'Preciso de…',
+          'tabs.plusNote' => 'Mandar um recado',
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
@@ -13843,12 +13855,12 @@ extension on Translations {
           'timeInApp.titleHighlight' => 'app',
           'timeInApp.text' => 'Escondemos cartões e lembretes até você voltar.',
           'timeInApp.cancel' => 'Cancelar',
-          'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
-          'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
-          'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',
           _ => null,
         } ??
         switch (path) {
+          'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
+          'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
+          'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',
           'today.greetingNoName' => 'Olá',
           'today.dateLine' => ({
             required Object weekday,
