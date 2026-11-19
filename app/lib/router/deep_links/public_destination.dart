@@ -15,11 +15,6 @@ const Set<String> publicRouteNames = {
   DebugSignInRoute.name,
   SessionExpiredRoute.name,
   NotFoundRoute.name,
-  SettingsHomeRoute.name,
-  SettingsThemeRoute.name,
-  LanguageRoute.name,
-  HelpRoute.name,
-  SupportRoute.name,
 };
 
 /// The page to open alone when [matches] end on a page a signed-out person may see, or null otherwise.
