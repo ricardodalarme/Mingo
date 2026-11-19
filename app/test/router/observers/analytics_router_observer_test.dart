@@ -1,29 +1,36 @@
+import 'package:analytics_service/analytics_service.dart';
 import 'package:app/router/observers/analytics_router_observer.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+class _MockAnalyticsService() extends Mock implements AnalyticsService;
+
+Route<dynamic> _routeNamed(String? name) => PageRouteBuilder<void>(
+  settings: RouteSettings(name: name),
+  pageBuilder: (_, _, _) => const SizedBox.shrink(),
+);
 
 void main() {
-  test('relationship and grief routes report a generic settings screen', () {
-    expect(analyticsScreenNameFor('RelationshipChangedRoute'), 'settings');
-    expect(analyticsScreenNameFor('GriefSupportRoute'), 'settings');
-    expect(analyticsScreenNameFor('RelationshipRoute'), 'settings');
-    expect(analyticsScreenNameFor('UnpairRoute'), 'settings');
-    expect(analyticsScreenNameFor('UsRoute'), 'settings');
-    expect(analyticsScreenNameFor('TouchRoute'), 'settings');
-    expect(analyticsScreenNameFor('CapsulesRoute'), 'settings');
-    expect(analyticsScreenNameFor('GuidesRoute'), 'settings');
-    expect(analyticsScreenNameFor('GuideRoute'), 'settings');
-    expect(analyticsScreenNameFor('DistanceRoute'), 'settings');
-    expect(analyticsScreenNameFor('CheckinRoute'), 'settings');
+  late _MockAnalyticsService analytics;
+  late AnalyticsRouterObserver observer;
+
+  setUp(() {
+    analytics = _MockAnalyticsService();
+    observer = AnalyticsRouterObserver(analyticsService: analytics);
   });
 
-  test('mood and fight screens stay out of analytics', () {
-    expect(analyticsScreenNameFor('MoodRoute'), 'settings');
-    expect(analyticsScreenNameFor('NeedRoute'), 'settings');
-    expect(analyticsScreenNameFor('FightStyleRoute'), 'settings');
+  test('logs the name of every route that is pushed', () {
+    for (final name in ['HomeRoute', 'GriefSupportRoute', 'UnpairRoute', 'MoodRoute']) {
+      observer.didPush(_routeNamed(name), null);
+
+      verify(() => analytics.logScreenView(screenName: name)).called(1);
+    }
   });
 
-  test('ordinary routes keep their name and missing names stay empty', () {
-    expect(analyticsScreenNameFor('HomeRoute'), 'HomeRoute');
-    expect(analyticsScreenNameFor(null), isNull);
+  test('logs nothing for a route without a name', () {
+    observer.didPush(_routeNamed(null), null);
+
+    verifyNever(() => analytics.logScreenView(screenName: any(named: 'screenName')));
   });
 }
