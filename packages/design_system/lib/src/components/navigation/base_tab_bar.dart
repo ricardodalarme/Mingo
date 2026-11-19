@@ -7,6 +7,9 @@ const double _primaryActionSide = 46;
 const double _labelGap = 3;
 const double _sidePadding = 8;
 
+/// Turns that rotate the plus by 45° into a cross.
+const double _closeTurns = .125;
+
 /// One item in a [BaseTabBar].
 ///
 /// [isPrimaryAction] renders the centre plus circle instead of an icon and label.
@@ -21,15 +24,56 @@ class const BaseTabBarItem({
 /// The five-column tab bar fixed to the bottom of a tab screen.
 ///
 /// Above 200% text scale labels drop and icons carry the meaning.
+///
+/// With two or more [menuItems] the primary action opens a [BaseMenu] above itself and reports the
+/// chosen row to [onMenuSelected], after the menu has closed. With fewer, or while the keyboard is
+/// up, it calls [onSelected] with its own index instead.
 class const BaseTabBar({
   required final List<BaseTabBarItem> items,
   required final int currentIndex,
   required final ValueChanged<int> onSelected,
+  final List<BaseMenuItem>? menuItems,
+  final ValueChanged<BaseMenuItem>? onMenuSelected,
   super.key,
-}) extends StatelessWidget {
+}) extends StatefulWidget {
+  @override
+  State<BaseTabBar> createState() => _BaseTabBarState();
+}
+
+class _BaseTabBarState() extends State<BaseTabBar> {
+  final GlobalKey _primaryKey = GlobalKey();
+  bool _isMenuOpen = false;
+
+  Future<void> _onTap(int index) async {
+    if (!widget.items[index].isPrimaryAction) return widget.onSelected(index);
+
+    final menuItems = widget.menuItems;
+    final box = _primaryKey.currentContext?.findRenderObject();
+    final hasKeyboard = MediaQuery.viewInsetsOf(context).bottom > 0;
+    if (_isMenuOpen ||
+        menuItems == null ||
+        menuItems.length < 2 ||
+        hasKeyboard ||
+        box is! RenderBox) {
+      if (!_isMenuOpen) widget.onSelected(index);
+      return;
+    }
+
+    _isMenuOpen = true;
+    final item = await showBaseMenu(
+      context,
+      anchor: box.localToGlobal(Offset.zero) & box.size,
+      items: menuItems,
+      anchorBuilder: (context, animation) => _PrimaryAction(rotation: animation),
+    );
+    _isMenuOpen = false;
+    if (item != null && mounted) widget.onMenuSelected?.call(item);
+  }
+
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final items = widget.items;
     final bottomInset = MediaQuery.paddingOf(context).bottom;
     final barHeight = math.max(AppSpace.tabBarHeight, _itemHeight + _sidePadding + bottomInset);
 
@@ -49,8 +93,9 @@ class const BaseTabBar({
                 Expanded(
                   child: _TabBarSlot(
                     item: items[index],
-                    isSelected: index == currentIndex,
-                    onTap: () => onSelected(index),
+                    isSelected: index == widget.currentIndex,
+                    onTap: () => _onTap(index),
+                    primaryKey: _primaryKey,
                   ),
                 ),
             ],
@@ -65,6 +110,7 @@ class const _TabBarSlot({
   required final BaseTabBarItem item,
   required final bool isSelected,
   required final VoidCallback onTap,
+  required final GlobalKey primaryKey,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -78,7 +124,7 @@ class const _TabBarSlot({
         constraints: const BoxConstraints(minHeight: _itemHeight),
         child: Center(
           child: item.isPrimaryAction
-              ? const _PrimaryAction()
+              ? _PrimaryAction(key: primaryKey)
               : _TabLabel(
                   item: item,
                   isSelected: isSelected,
@@ -90,10 +136,12 @@ class const _TabBarSlot({
   }
 }
 
-class const _PrimaryAction() extends StatelessWidget {
+class const _PrimaryAction({final Animation<double>? rotation, super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final glyph = AppIcon(icon: AppIcons.plus, size: AppIconSize.lg, color: colors.textOnAction);
+    final turns = rotation;
 
     return SizedBox(
       width: _primaryActionSide,
@@ -101,7 +149,16 @@ class const _PrimaryAction() extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(color: colors.actionPrimary, shape: BoxShape.circle),
         child: Center(
-          child: AppIcon(icon: AppIcons.plus, size: AppIconSize.lg, color: colors.textOnAction),
+          child: turns == null
+              ? glyph
+              : RotationTransition(
+                  key: const ValueKey('tabBarPlusRotation'),
+                  turns: Tween<double>(
+                    begin: 0,
+                    end: _closeTurns,
+                  ).animate(CurvedAnimation(parent: turns, curve: Curves.easeOut)),
+                  child: glyph,
+                ),
         ),
       ),
     );

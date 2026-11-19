@@ -13,7 +13,14 @@ double _captureScale(WidgetTester tester, Finder slot) {
       .value;
 }
 
-class const _TabGallery({final ValueChanged<int>? onSelected}) extends StatelessWidget {
+const _slip = BaseMenuItem(id: 'slip', icon: AppIcons.note, label: 'Write a slip', isPrimary: true);
+const _need = BaseMenuItem(id: 'need', icon: AppIcons.heart, label: 'I need…');
+
+class const _TabGallery({
+  final ValueChanged<int>? onSelected,
+  final List<BaseMenuItem>? menuItems,
+  final ValueChanged<BaseMenuItem>? onMenuSelected,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +40,8 @@ class const _TabGallery({final ValueChanged<int>? onSelected}) extends Stateless
         ],
         currentIndex: 0,
         onSelected: onSelected ?? _ignore,
+        menuItems: menuItems,
+        onMenuSelected: onMenuSelected,
       ),
     );
   }
@@ -76,6 +85,119 @@ void main() {
 
     await gesture.up();
     expect(tester.takeException(), isNull);
+  });
+
+  group('plus menu', () {
+    Future<void> pump(
+      WidgetTester tester, {
+      List<BaseMenuItem>? menuItems,
+      ValueChanged<int>? onSelected,
+      ValueChanged<BaseMenuItem>? onMenuSelected,
+    }) async {
+      setSurface(tester);
+      await tester.pumpWidget(
+        appFor(
+          variant: AppThemeVariant.rose,
+          home: _TabGallery(
+            menuItems: menuItems,
+            onSelected: onSelected,
+            onMenuSelected: onMenuSelected,
+          ),
+        ),
+      );
+    }
+
+    testWidgets('a single item runs the action directly', (tester) async {
+      final selected = <int>[];
+      await pump(tester, menuItems: const [_slip], onSelected: selected.add);
+
+      await tester.tap(find.byIcon(AppIcons.plus));
+      await tester.pumpAndSettle();
+
+      expect(selected, [2]);
+      expect(find.byType(BaseMenu), findsNothing);
+    });
+
+    testWidgets('no items runs the action directly', (tester) async {
+      final selected = <int>[];
+      await pump(tester, onSelected: selected.add);
+
+      await tester.tap(find.byIcon(AppIcons.plus));
+      await tester.pumpAndSettle();
+
+      expect(selected, [2]);
+      expect(find.byType(BaseMenu), findsNothing);
+    });
+
+    testWidgets('two items open the menu and the plus turns into a cross', (tester) async {
+      final selected = <int>[];
+      await pump(tester, menuItems: const [_slip, _need], onSelected: selected.add);
+
+      await tester.tap(find.byIcon(AppIcons.plus));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(BaseMenu), findsOneWidget);
+      expect(selected, isEmpty);
+      final rotation = tester.widget<RotationTransition>(
+        find.byKey(const ValueKey('tabBarPlusRotation')),
+      );
+      expect(rotation.turns.value, closeTo(.125, .001));
+    });
+
+    testWidgets('the plus stays above the scrim and closes the menu', (tester) async {
+      final chosen = <BaseMenuItem>[];
+      await pump(tester, menuItems: const [_slip, _need], onMenuSelected: chosen.add);
+
+      await tester.tap(find.byIcon(AppIcons.plus));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const ValueKey('tabBarPlusRotation')));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(BaseMenu), findsNothing);
+      expect(chosen, isEmpty);
+    });
+
+    testWidgets('a row closes the menu, then reports the item', (tester) async {
+      final chosen = <BaseMenuItem>[];
+      await pump(tester, menuItems: const [_slip, _need], onMenuSelected: chosen.add);
+
+      await tester.tap(find.byIcon(AppIcons.plus));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const ValueKey('baseMenuItem-need')));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(BaseMenu), findsNothing);
+      expect(chosen, [_need]);
+    });
+
+    testWidgets('the menu points at the plus', (tester) async {
+      await pump(tester, menuItems: const [_slip, _need]);
+      final plus = tester.getCenter(find.byIcon(AppIcons.plus));
+
+      await tester.tap(find.byIcon(AppIcons.plus));
+      await tester.pumpAndSettle();
+
+      expect(tester.getCenter(find.byKey(const ValueKey('baseMenuTail'))).dx, closeTo(plus.dx, .5));
+    });
+
+    testWidgets('the keyboard keeps the menu closed', (tester) async {
+      final selected = <int>[];
+      setSurface(tester);
+      tester.view.viewInsets = const FakeViewPadding(bottom: 300);
+      addTearDown(tester.view.resetViewInsets);
+      await tester.pumpWidget(
+        appFor(
+          variant: AppThemeVariant.rose,
+          home: _TabGallery(menuItems: const [_slip, _need], onSelected: selected.add),
+        ),
+      );
+
+      await tester.tap(find.byIcon(AppIcons.plus), warnIfMissed: false);
+      await tester.pumpAndSettle();
+
+      expect(selected, [2]);
+      expect(find.byType(BaseMenu), findsNothing);
+    });
   });
 
   for (final variant in AppThemeVariant.values) {
