@@ -28,6 +28,17 @@ abstract final class AppShadows() {
     ),
   ];
 
+  /// Slip note: y 14, blur 22, spread −16, black 28%, plus a 1 px hairline.
+  static const List<BoxShadow> slipNote = [
+    BoxShadow(
+      color: AppPalette.shadowSlipNote,
+      offset: Offset(0, 14),
+      blurRadius: 22,
+      spreadRadius: -16,
+    ),
+    BoxShadow(color: AppPalette.foldShadow, spreadRadius: 1),
+  ];
+
   /// Slider and switch knob: y 4, blur 10, black 16%.
   static const List<BoxShadow> knob = [
     BoxShadow(color: AppPalette.shadowKnob, offset: Offset(0, 4), blurRadius: 10),

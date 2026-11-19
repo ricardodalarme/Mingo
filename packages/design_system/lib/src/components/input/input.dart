@@ -17,6 +17,7 @@ export 'base_radio.dart';
 export 'base_segmented.dart';
 export 'base_select.dart';
 export 'base_slider.dart';
+export 'base_slip_note_field.dart';
 export 'base_switch.dart';
 export 'base_text_area.dart';
 export 'base_text_field.dart';

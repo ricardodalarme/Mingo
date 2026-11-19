@@ -47,6 +47,7 @@ abstract final class AppPalette() {
   static const Color shadowRing = Color(0x1F000000);
   static const Color shadowFace = Color(0x0A000000);
   static const Color shadowPaper = Color(0x38000000);
+  static const Color shadowSlipNote = Color(0x47000000);
   static const Color shadowSelected = Color(0x4D000000);
   static const Color shadowKnob = Color(0x29000000);
 }

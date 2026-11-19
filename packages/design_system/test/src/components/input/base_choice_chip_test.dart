@@ -42,4 +42,18 @@ void main() {
     expect(tester.takeException(), isNull);
     expect(find.text('A very long choice label that cannot fit'), findsOneWidget);
   });
+
+  testWidgets('a selected chip takes the paper and ink of its slip note type', (tester) async {
+    await tester.pumpWidget(
+      inputHost(
+        const BaseChoiceChip(label: 'Me ajudou', isSelected: true, slipNoteType: SlipNoteType.help),
+        variant: AppThemeVariant.rose,
+      ),
+    );
+
+    final tone = AppSlipNoteColors.standard.help;
+    final box = tester.widget<Container>(find.byType(Container).first);
+    expect((box.decoration! as BoxDecoration).color, tone.background);
+    expect(tester.widget<Text>(find.text('Me ajudou')).style?.color, tone.ink);
+  });
 }

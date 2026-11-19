@@ -7,23 +7,27 @@ const double _iconGap = 6;
 const double _textSize = 15;
 
 /// A single- or multi-select chip.
+///
+/// A selected chip takes the paper and ink of [slipNoteType] when it is set.
 class const BaseChoiceChip({
   required final String label,
   final bool isSelected = false,
   final VoidCallback? onTap,
   final IconData? icon,
+  final SlipNoteType? slipNoteType,
   super.key,
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final ink = isSelected ? colors.accentOnSoft : colors.textPrimary;
+    final tone = isSelected && slipNoteType != null ? context.slipNote.of(slipNoteType!) : null;
+    final ink = tone?.ink ?? (isSelected ? colors.accentOnSoft : colors.textPrimary);
 
     final chip = Container(
       constraints: const BoxConstraints(minHeight: _chipHeight),
       padding: const EdgeInsets.symmetric(horizontal: _horizontalPadding),
       decoration: BoxDecoration(
-        color: isSelected ? colors.accentSoft : colors.bgSurface,
+        color: tone?.background ?? (isSelected ? colors.accentSoft : colors.bgSurface),
         borderRadius: BorderRadius.circular(AppRadius.pill),
         border: isSelected ? null : Border.all(color: colors.borderDefault),
       ),
