@@ -1,3 +1,4 @@
+import 'package:app/features/slips/data/mappers/slip_note_mapper.dart';
 import 'package:app/features/slips/data/models/slip_category.dart';
 import 'package:app/features/slips/data/models/slip_kind.dart';
 import 'package:app/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
@@ -66,13 +67,21 @@ class const _TextField() extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n.quickSlip;
     final text = context.select((QuickSlipCubit cubit) => cubit.state.text);
+    final category = context.select((QuickSlipCubit cubit) => cubit.state.category);
     final isAnnoyance = context.select(
       (QuickSlipCubit cubit) => cubit.state.mode == QuickSlipMode.annoyance,
     );
 
-    return BaseTextArea(
+    return BaseSlipNoteField(
+      type: isAnnoyance ? SlipNoteType.annoyed : category.toNoteType(),
+      typeLabel: isAnnoyance
+          ? l10n.polarityBothered
+          : category == null
+          ? l10n.polarityLiked
+          : l10n.categories.selectOrFallback(category.name),
       text: text.value,
       hint: isAnnoyance ? l10n.annoyanceHint : l10n.hint,
+      tilt: slipNoteTilt('quick'),
       errorText: l10n.textErrors.selectOrNull(text.errorName),
       onChanged: context.read<QuickSlipCubit>().onTextChanged,
     );
@@ -93,6 +102,7 @@ class const _CategoryChips() extends StatelessWidget {
           BaseChoiceChip(
             label: labels.selectOrFallback(category.name),
             isSelected: selected == category,
+            slipNoteType: category.toNoteType(),
             onTap: () => context.read<QuickSlipCubit>().onCategoryToggled(category),
           ),
       ],

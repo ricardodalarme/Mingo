@@ -7151,12 +7151,6 @@ class Translations$slipDetail$pt {
   String factDate({required Object weekday, required Object day, required Object month}) =>
       '${weekday} ${day} de ${month}';
 
-  /// pt: 'Data'
-  String get factDateLabel => 'Data';
-
-  /// pt: 'Tipo'
-  String get factType => 'Tipo';
-
   /// pt: 'Visibilidade'
   String get factVisibility => 'Visibilidade';
 
@@ -14305,8 +14299,6 @@ extension on Translations {
             required Object day,
             required Object month,
           }) => '${weekday} ${day} de ${month}',
-          'slipDetail.factDateLabel' => 'Data',
-          'slipDetail.factType' => 'Tipo',
           'slipDetail.factVisibility' => 'Visibilidade',
           'slipDetail.factInCard' => 'Incluído no cartão',
           'slipDetail.visibilityPrivate' => 'Privado',
@@ -14615,11 +14607,11 @@ extension on Translations {
           'story.privacyNote' => 'A imagem é feita no seu aparelho e não leva nomes nem texto, a menos que você escolha.',
           'story.days' => 'dias',
           'story.together' => 'juntos',
+          'story.namesLabel' => 'Incluir os nomes',
+          'story.namesText' => 'Desligado por padrão.',
           _ => null,
         } ??
         switch (path) {
-          'story.namesLabel' => 'Incluir os nomes',
-          'story.namesText' => 'Desligado por padrão.',
           'story.phraseLabel' => 'Uma frase (opcional)',
           'story.phraseHint' => 'Ex.: ainda tem muito pela frente',
           'story.share' => 'Compartilhar imagem',

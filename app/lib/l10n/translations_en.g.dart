@@ -5756,10 +5756,6 @@ class _Translations$slipDetail$en extends Translations$slipDetail$pt {
   String factDate({required Object weekday, required Object month, required Object day}) =>
       '${weekday} ${month} ${day}';
   @override
-  String get factDateLabel => 'Date';
-  @override
-  String get factType => 'Type';
-  @override
   String get factVisibility => 'Visibility';
   @override
   String get factInCard => 'Included in a card';
@@ -12196,8 +12192,6 @@ extension on TranslationsEn {
             required Object month,
             required Object day,
           }) => '${weekday} ${month} ${day}',
-          'slipDetail.factDateLabel' => 'Date',
-          'slipDetail.factType' => 'Type',
           'slipDetail.factVisibility' => 'Visibility',
           'slipDetail.factInCard' => 'Included in a card',
           'slipDetail.visibilityPrivate' => 'Private',
@@ -12510,11 +12504,11 @@ extension on TranslationsEn {
             'The image is made on your device and carries no names or text unless you choose.',
           'story.days' => 'days',
           'story.together' => 'together',
+          'story.namesLabel' => 'Include the names',
+          'story.namesText' => 'Off by default.',
           _ => null,
         } ??
         switch (path) {
-          'story.namesLabel' => 'Include the names',
-          'story.namesText' => 'Off by default.',
           'story.phraseLabel' => 'A line (optional)',
           'story.phraseHint' => 'E.g. so much still ahead',
           'story.share' => 'Share image',

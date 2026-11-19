@@ -65,9 +65,10 @@ void main() {
     await build(tester);
 
     expect(find.text('Ela ficou acordada para me levar'), findsOneWidget);
-    expect(find.text('Data'), findsOneWidget);
-    expect(find.text('Tipo'), findsOneWidget);
-    expect(find.text('Fez algo'), findsOneWidget);
+    expect(find.byType(BaseSlipNote), findsOneWidget);
+    expect(find.text('FEZ ALGO'), findsOneWidget);
+    expect(find.text('Data'), findsNothing);
+    expect(find.text('Tipo'), findsNothing);
     expect(find.text('Visibilidade'), findsOneWidget);
     expect(find.text('Privado'), findsOneWidget);
     expect(find.text('Incluído no cartão'), findsOneWidget);
@@ -82,7 +83,8 @@ void main() {
     await tester.tap(find.text('Editar'));
     await tester.pump();
 
-    expect(find.byType(BaseTextArea), findsOneWidget);
+    expect(find.byType(BaseSlipNoteField), findsOneWidget);
+    expect(find.byType(BaseSlipNote), findsNothing);
     expect(find.text('Salvar'), findsOneWidget);
     expect(find.text('Cancelar'), findsOneWidget);
   });

@@ -1,8 +1,10 @@
+import 'package:app/features/slips/data/mappers/slip_note_mapper.dart';
 import 'package:app/features/slips/data/models/slip_detail.dart';
 import 'package:app/features/slips/data/models/slip_send_outcome.dart';
 import 'package:app/features/slips/presentation/slip_detail/cubit/slip_detail_cubit.dart';
 import 'package:app/features/slips/presentation/slip_detail/widgets/slip_visibility_sheet.dart';
 import 'package:app/features/slips/presentation/slip_kind/cubit/slip_kind_cubit.dart';
+import 'package:app/features/slips/presentation/slips/widgets/slip_type_label.dart';
 import 'package:app/l10n/l10n_map_extension.dart';
 import 'package:app/l10n/translations.g.dart';
 import 'package:design_system/design_system.dart';
@@ -19,10 +21,7 @@ class const SlipDetailContent({super.key}) extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if (isEditing)
-            const _EditField()
-          else
-            Semantics(header: true, child: Text(slip.body, style: context.text.titleXl)),
+          if (isEditing) _EditField(slip: slip) else _Note(slip: slip),
           const SizedBox(height: AppSpace.s16),
           if (!isEditing) ...[
             _Facts(slip: slip),
@@ -60,20 +59,31 @@ class const SlipDetailContent({super.key}) extends StatelessWidget {
   }
 }
 
-class const _Facts({required final SlipDetail slip}) extends StatelessWidget {
+class const _Note({required final SlipDetail slip}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n.slipDetail;
     final date = slip.createdAt.toLocal();
-    final dateLine = l10n.factDate(
-      weekday: l10n.weekdaysShort[date.weekday - 1],
-      day: date.day,
-      month: l10n.monthsShort[date.month - 1],
+
+    return BaseSlipNote(
+      text: slip.body,
+      type: slip.category.toNoteType(),
+      typeLabel: slipTypeLabel(context, category: slip.category, kind: slip.kind),
+      dayLabel: l10n.factDate(
+        weekday: l10n.weekdaysShort[date.weekday - 1],
+        day: date.day,
+        month: l10n.monthsShort[date.month - 1],
+      ),
+      tilt: slipNoteTilt(slip.id),
+      size: .large,
     );
-    final category = slip.category;
-    final type = category != null
-        ? l10n.categories.selectOrFallback(category.name)
-        : l10n.kinds.selectOrFallback(slip.kind.name);
+  }
+}
+
+class const _Facts({required final SlipDetail slip}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n.slipDetail;
     final visibility = slip.wasInCard
         ? l10n.visibilitySent
         : slip.forCard
@@ -83,8 +93,6 @@ class const _Facts({required final SlipDetail slip}) extends StatelessWidget {
 
     return BaseListGroup(
       children: [
-        BaseListTile(title: l10n.factDateLabel, value: dateLine, showsDivider: true),
-        BaseListTile(title: l10n.factType, value: type, showsDivider: true),
         BaseListTile(
           leading: BaseIconTile(
             icon: slip.forCard || slip.wasInCard ? AppIcons.mail_filled : AppIcons.lock,
@@ -138,13 +146,16 @@ class const _Labelled({required final String label, required final String text})
   }
 }
 
-class const _EditField() extends StatelessWidget {
+class const _EditField({required final SlipDetail slip}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = context.select((SlipDetailCubit cubit) => cubit.state.draftBody);
 
-    return BaseTextArea(
+    return BaseSlipNoteField(
+      type: slip.category.toNoteType(),
+      typeLabel: slipTypeLabel(context, category: slip.category, kind: slip.kind),
       text: text.value,
+      tilt: slipNoteTilt(slip.id),
       maxLength: slipKindMaxLength,
       errorText: context.l10n.slipDetail.draftBodyErrors.selectOrNull(text.errorName),
       onChanged: context.read<SlipDetailCubit>().onBodyChanged,

@@ -66,8 +66,6 @@
     "Dom"
   ],
   "factDate": "{weekday} {day} de {month}",
-  "factDateLabel": "Data",
-  "factType": "Tipo",
   "factVisibility": "Visibilidade",
   "factInCard": "Incluído no cartão",
   "visibilityPrivate": "Privado",

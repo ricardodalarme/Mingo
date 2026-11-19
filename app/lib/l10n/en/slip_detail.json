@@ -66,8 +66,6 @@
     "Sun"
   ],
   "factDate": "{weekday} {month} {day}",
-  "factDateLabel": "Date",
-  "factType": "Type",
   "factVisibility": "Visibility",
   "factInCard": "Included in a card",
   "visibilityPrivate": "Private",

@@ -4,7 +4,7 @@ import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/features/slips/presentation/quick_slip/cubit/quick_slip_cubit.dart';
 import 'package:app/features/slips/presentation/quick_slip/quick_slip_page.dart';
 import 'package:app/l10n/translations.g.dart';
-import 'package:flutter/widgets.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -108,6 +108,75 @@ void main() {
     expect(find.text('Pedido gentil'), findsOneWidget);
     expect(find.text('Guardar'), findsOneWidget);
     expect(find.text('Disse algo'), findsNothing);
+  });
+
+  testWidgets('the text is written on a note that takes the tint of the chosen type', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1200, 4000);
+    addTearDown(tester.view.reset);
+    final cubit = _buildCubit(_savingRepository());
+    addTearDown(cubit.close);
+    cubit.start();
+
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const QuickSlipPage()));
+    await tester.pump();
+
+    expect(find.byType(BaseSlipNoteField), findsOneWidget);
+    expect(find.text('GOSTEI'), findsOneWidget);
+    expect(find.text('0/140'), findsOneWidget);
+
+    await tester.tap(find.text('Me ajudou'));
+    await tester.pump();
+
+    expect(
+      tester.widget<BaseSlipNoteField>(find.byType(BaseSlipNoteField)).type,
+      SlipNoteType.help,
+    );
+    expect(find.text('ME AJUDOU'), findsOneWidget);
+    final chip = tester.widget<BaseChoiceChip>(find.widgetWithText(BaseChoiceChip, 'Me ajudou'));
+    expect(chip.isSelected, isTrue);
+    expect(chip.slipNoteType, SlipNoteType.help);
+  });
+
+  testWidgets('something that bothered is written on the quiet note', (tester) async {
+    final cubit = _buildCubit(_savingRepository());
+    addTearDown(cubit.close);
+    cubit.start();
+
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const QuickSlipPage()));
+    await tester.pump();
+    await tester.tap(find.text('Me incomodou'));
+    await tester.pump();
+
+    expect(
+      tester.widget<BaseSlipNoteField>(find.byType(BaseSlipNoteField)).type,
+      SlipNoteType.annoyed,
+    );
+  });
+
+  testWidgets('the saved slip shows its note between the copy and the undo', (tester) async {
+    final cubit = _buildCubit(_savingRepository());
+    addTearDown(cubit.close);
+    cubit
+      ..start()
+      ..onTextChanged('Fez café sem eu pedir');
+    await cubit.save();
+
+    await tester.pumpApp(BlocProvider.value(value: cubit, child: const QuickSlipPage()));
+    await tester.pump();
+
+    final note = find.byType(BaseSlipNote);
+    expect(note, findsOneWidget);
+    expect(find.text('Fez café sem eu pedir'), findsOneWidget);
+    expect(tester.getSize(note).width, lessThanOrEqualTo(230));
+    expect(tester.getTopLeft(note).dy, greaterThan(tester.getTopLeft(find.text('Salvo')).dy));
+    expect(
+      tester.getTopLeft(note).dy,
+      lessThan(tester.getTopLeft(find.text('Desfazer por 30 segundos.')).dy),
+    );
+
+    await tester.pumpWidget(const SizedBox.shrink());
   });
 
   testWidgets('a slip kept for later says when it will be sent', (tester) async {
