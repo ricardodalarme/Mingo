@@ -460,10 +460,6 @@ class Translations$annoyanceCheck$pt {
   /// pt: 'incomoda'
   String get titleHighlight => 'incomoda';
 
-  /// pt: 'Você anotou há {days} dias · some em {left} dias'
-  String age({required Object days, required Object left}) =>
-      'Você anotou há ${days} dias · some em ${left} dias';
-
   /// pt: 'Conversar sobre isso'
   String get talkTitle => 'Conversar sobre isso';
 
@@ -10940,10 +10936,6 @@ extension on Translations {
           'agreements.errors.other' => 'Não deu para concluir agora. Tente de novo.',
           'annoyanceCheck.title' => 'Isso ainda incomoda?',
           'annoyanceCheck.titleHighlight' => 'incomoda',
-          'annoyanceCheck.age' => ({
-            required Object days,
-            required Object left,
-          }) => 'Você anotou há ${days} dias · some em ${left} dias',
           'annoyanceCheck.talkTitle' => 'Conversar sobre isso',
           'annoyanceCheck.talkText' => 'Escrever um pedido gentil',
           'annoyanceCheck.chatTitle' => 'Falar com a Conversa',
@@ -11433,10 +11425,10 @@ extension on Translations {
           'dateNight.monthsShort.0' => 'jan',
           'dateNight.monthsShort.1' => 'fev',
           'dateNight.monthsShort.2' => 'mar',
+          'dateNight.monthsShort.3' => 'abr',
           _ => null,
         } ??
         switch (path) {
-          'dateNight.monthsShort.3' => 'abr',
           'dateNight.monthsShort.4' => 'mai',
           'dateNight.monthsShort.5' => 'jun',
           'dateNight.monthsShort.6' => 'jul',
@@ -12082,10 +12074,10 @@ extension on Translations {
             required Object total,
           }) => 'Passo ${current} de ${total}',
           'hardConversation.whatTitle' => 'O que aconteceu?',
+          'hardConversation.whatHint' => 'Se quiser, conte do seu jeito',
           _ => null,
         } ??
         switch (path) {
-          'hardConversation.whatHint' => 'Se quiser, conte do seu jeito',
           'hardConversation.whatIgnored' => 'Ela se sentiu ignorada',
           'hardConversation.whatMoney' => 'Brigamos por dinheiro',
           'hardConversation.whatMisunderstanding' => 'Foi um mal-entendido',
@@ -12828,10 +12820,10 @@ extension on Translations {
           'lists.privateHint' => 'Só você vê esta lista.',
           'lists.kinds.travel' => 'Viagem',
           'lists.kinds.restaurants' => 'Restaurantes',
+          'lists.kinds.movies' => 'Filmes',
           _ => null,
         } ??
         switch (path) {
-          'lists.kinds.movies' => 'Filmes',
           'lists.kinds.custom' => 'Outra',
           'lists.kinds.other' => '',
           'lists.shared' => 'Compartilhada',
@@ -13414,10 +13406,10 @@ extension on Translations {
           'partnerProfile.valueErrors.empty' => 'Escreva o que quer lembrar.',
           'partnerProfile.valueErrors.tooLong' => 'Use no máximo 500 caracteres.',
           'partnerProfile.save' => 'Guardar nota',
+          'partnerProfile.delete' => 'Apagar',
           _ => null,
         } ??
         switch (path) {
-          'partnerProfile.delete' => 'Apagar',
           'partnerProfile.emptyTitle' => 'Nenhuma nota ainda',
           'partnerProfile.emptyText' =>
             'Pequenos detalhes ajudam a escolher um presente ou um gesto.',
@@ -14008,10 +14000,10 @@ extension on Translations {
           }) => 'Passo ${current} de ${total}',
           'repair.guided.stepTitles.0' => 'O que aconteceu?',
           'repair.guided.stepTitles.1' => 'Do que você precisa?',
+          'repair.guided.stepTitles.2' => 'O que você pode oferecer?',
           _ => null,
         } ??
         switch (path) {
-          'repair.guided.stepTitles.2' => 'O que você pode oferecer?',
           'repair.guided.stepHighlights.0' => 'aconteceu',
           'repair.guided.stepHighlights.1' => 'precisa',
           'repair.guided.stepHighlights.2' => 'oferecer',
@@ -14609,10 +14601,10 @@ extension on Translations {
           'story.together' => 'juntos',
           'story.namesLabel' => 'Incluir os nomes',
           'story.namesText' => 'Desligado por padrão.',
+          'story.phraseLabel' => 'Uma frase (opcional)',
           _ => null,
         } ??
         switch (path) {
-          'story.phraseLabel' => 'Uma frase (opcional)',
           'story.phraseHint' => 'Ex.: ainda tem muito pela frente',
           'story.share' => 'Compartilhar imagem',
           'story.emptyTitle' => 'Falta a data de vocês',

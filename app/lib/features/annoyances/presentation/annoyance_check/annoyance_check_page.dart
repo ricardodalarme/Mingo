@@ -97,9 +97,13 @@ class const _Check({required final Annoyance annoyance, required final String an
             ),
           ),
           const SizedBox(height: AppSpace.s16),
-          BaseSurfaceCard(
-            supportText: l10n.age(days: annoyance.ageInDays(now), left: annoyance.daysLeft(now)),
-            child: Text(annoyance.body, style: context.text.bodyLg),
+          BaseSlipNote(
+            text: annoyance.body,
+            type: SlipNoteType.annoyed,
+            typeLabel: context.l10n.quickSlip.polarityBothered,
+            dayLabel: l10n.noteAge(days: annoyance.ageInDays(now), left: annoyance.daysLeft(now)),
+            tilt: slipNoteTilt(annoyance.id),
+            size: .large,
           ),
           const SizedBox(height: AppSpace.s16),
           BaseOptionTile(

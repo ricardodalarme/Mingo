@@ -1,7 +1,6 @@
 {
   "title": "Does this still bother you?",
   "titleHighlight": "bother",
-  "age": "You wrote it {days} days ago · gone in {left} days",
   "talkTitle": "Talk about it",
   "talkText": "Write a gentle request",
   "chatTitle": "Talk to the chat",
