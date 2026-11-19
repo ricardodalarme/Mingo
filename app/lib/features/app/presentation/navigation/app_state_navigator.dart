@@ -51,7 +51,7 @@ class AppStateNavigator({
   Future<void> _show(PageRouteInfo<void> route) async {
     final interrupted = route is HomeRoute ? _pending.take() : null;
     final pendingInvite = route is HomeRoute ? _inviteCodes.read() : null;
-    await _router.replaceAll([route]);
+    if (!(route is HomeRoute && _hasHome)) await _router.replaceAll([route]);
     if (interrupted != null) {
       await _router.pushPath(interrupted);
 
@@ -59,6 +59,8 @@ class AppStateNavigator({
     }
     if (pendingInvite != null) await _router.push(AcceptInviteRoute(code: pendingInvite));
   }
+
+  bool get _hasHome => _router.stack.any((page) => page.routeData.name == HomeRoute.name);
 
   Future<void> _returnToTheInterruptedPage() async {
     final interrupted = _pending.take();

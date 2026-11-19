@@ -1,7 +1,7 @@
 /// The invite code carried by [uri], upper-cased, or null when it is not an invite link.
 ///
-/// Accepts `mingo://invite/<code>`, `mingo://invite?code=<code>` and an
-/// `https://<host>/invite/<code>` (or `?code=`) link.
+/// Accepts `mingo://invite/<code>` and `mingo://invite?code=<code>`, and the same path
+/// under any other scheme or host.
 String? inviteCodeFromUri(Uri uri) {
   final segments = <String>[
     if (uri.host.trim().isNotEmpty) uri.host.trim().toLowerCase(),

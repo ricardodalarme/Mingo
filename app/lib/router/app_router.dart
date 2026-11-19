@@ -143,6 +143,18 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
 
   @override
   List<AutoRoute> get routes => [
+    AutoRoute(
+      page: HomeRoute.page,
+      path: '/',
+      children: [
+        RedirectRoute(path: '', redirectTo: 'today'),
+        AutoRoute(page: TodayRoute.page, path: 'today'),
+        AutoRoute(page: SlipsRoute.page, path: 'slips'),
+        AutoRoute(page: ChatTabRoute.page, path: 'chat'),
+        AutoRoute(page: CoupleRoute.page, path: 'couple'),
+      ],
+    ),
+    RedirectRoute(path: '/together', redirectTo: '/couple'),
     ..._accessRoutes,
     ..._captureRoutes,
     ..._repairRoutes,
@@ -150,34 +162,25 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     ..._togetherRoutes,
     ..._settingsRoutes,
     ..._homeWidgetRoutes,
-    AutoRoute(
-      page: HomeRoute.page,
-      children: [
-        AutoRoute(page: TodayRoute.page, initial: true),
-        AutoRoute(page: SlipsRoute.page),
-        AutoRoute(page: ChatTabRoute.page),
-        AutoRoute(page: CoupleRoute.page),
-      ],
-    ),
     AutoRoute(path: '*', page: NotFoundRoute.page),
   ];
 
   /// Signing in, onboarding, the invite and the person's own profile.
   List<AutoRoute> get _accessRoutes => [
-    AutoRoute(page: WelcomeRoute.page, initial: true),
+    AutoRoute(page: WelcomeRoute.page, path: '/welcome'),
     AutoRoute(page: IntroPhaseRoute.page),
     AutoRoute(page: IntroGoalsRoute.page),
     AutoRoute(page: IntroThemeRoute.page),
     AutoRoute(page: FirstSlipRoute.page),
     AutoRoute(page: PartnerStepRoute.page),
-    AutoRoute(page: SignInRoute.page),
+    AutoRoute(page: SignInRoute.page, path: '/sign-in'),
     AutoRoute(page: CreateAccountRoute.page),
     AutoRoute(page: SessionExpiredRoute.page),
     AutoRoute(page: ExistingAccountRoute.page),
     AutoRoute(page: DebugSignInRoute.page),
     AutoRoute(page: ProfileSetupRoute.page),
     AutoRoute(page: ProfileSettingsRoute.page),
-    AutoRoute(page: InviteRoute.page),
+    AutoRoute(page: InviteRoute.page, path: '/invite'),
     AutoRoute(page: AcceptInviteRoute.page, path: acceptInvitePath),
     AutoRoute(page: RelationshipRoute.page),
     AutoRoute(page: RelationshipChangedRoute.page),
@@ -194,7 +197,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
   /// Slips, notes and the weekly rhythm around them.
   List<AutoRoute> get _captureRoutes => [
     AutoRoute(page: NotificationPermissionRoute.page, fullscreenDialog: true),
-    AutoRoute(page: QuickSlipRoute.page, fullscreenDialog: true),
+    AutoRoute(page: QuickSlipRoute.page, path: '/capture', fullscreenDialog: true),
     AutoRoute(page: GentleRequestRoute.page),
     AutoRoute(page: AnnoyanceCheckRoute.page),
     AutoRoute(page: WeeklyReviewRoute.page),
@@ -206,13 +209,13 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: SlipDetailRoute.page, path: '/slip/:id'),
     AutoRoute(page: InboxRoute.page),
     AutoRoute(page: NotificationPreferencesRoute.page),
-    AutoRoute(page: SundayCardRoute.page),
+    AutoRoute(page: SundayCardRoute.page, path: '/card', fullMatch: true),
     AutoRoute(page: CardsListRoute.page),
     AutoRoute(page: CardSettingsRoute.page),
     AutoRoute(page: CheckinRoute.page),
     AutoRoute(page: IdeaDetailRoute.page, path: '/idea'),
     AutoRoute(page: CardDetailRoute.page, path: '/card/:id'),
-    AutoRoute(page: MoodRoute.page),
+    AutoRoute(page: MoodRoute.page, path: '/mood'),
     AutoRoute(page: MoodCalendarRoute.page),
   ];
 
@@ -249,13 +252,13 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
   List<AutoRoute> get _togetherRoutes => [
     AutoRoute(page: TimeInAppRoute.page, fullscreenDialog: true),
     AutoRoute(page: LogisticsRoute.page),
-    AutoRoute(page: RitualsRoute.page),
+    AutoRoute(page: RitualsRoute.page, path: '/rituals'),
     AutoRoute(page: TogetherRoute.page),
     AutoRoute(page: MemoriesRoute.page),
     AutoRoute(page: MemoriesTimelineRoute.page),
-    AutoRoute(page: DistanceRoute.page),
+    AutoRoute(page: DistanceRoute.page, path: '/distance'),
     AutoRoute(page: CapsulesRoute.page),
-    AutoRoute(page: DatesRoute.page),
+    AutoRoute(page: DatesRoute.page, path: '/dates'),
     AutoRoute(page: BadDayRoute.page),
     AutoRoute(page: StarterRoute.page),
     AutoRoute(page: DayRoute.page),
@@ -305,5 +308,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
   ];
 
   /// The home-screen widget gallery.
-  List<AutoRoute> get _homeWidgetRoutes => [AutoRoute(page: HomeWidgetsGalleryRoute.page)];
+  List<AutoRoute> get _homeWidgetRoutes => [
+    AutoRoute(page: HomeWidgetsGalleryRoute.page, path: '/widgets'),
+  ];
 }

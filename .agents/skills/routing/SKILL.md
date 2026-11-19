@@ -18,8 +18,9 @@ only what is specific to this app.
 
 1. Annotate the page `@RoutePage()`, declare its arguments in the primary constructor, and implement `AutoRouteWrapper` when it
    owns a cubit (`wrappedRoute` creates it; see `new-feature`).
-2. Add `AutoRoute(page: XRoute.page)` to `AppRouter.routes`. Nearly every page is a flat root route; the tabs are children of
-   `HomeRoute`, and `NotFoundRoute` is last with `path: '*'`.
+2. Add `AutoRoute(page: XRoute.page)` to `AppRouter.routes`. Nearly every page is a flat root route; `HomeRoute` is first with
+   `path: '/'` and holds the tabs as children, and `NotFoundRoute` is last with `path: '*'`. Keep that order: the matcher keeps every
+   earlier route that is a prefix of the path, so Home first is what puts Home under any page opened from a link.
 3. Run `melos gen`. The generated class is `<PageClassWithoutPage>Route`.
 4. Navigate with `context.pushRoute(XRoute(...))`, which covers almost all forward navigation in the app. `context.router.push`
    is for a nested stack; `context.router.replaceAll([...])` resets the stack.
@@ -47,9 +48,11 @@ and `BaseTabBar` own them.
 
 ## Signed-out access
 
-`AuthGuard` (`router/guards/auth_guard.dart`) is a global guard. A signed-out person can open only the routes in
-`publicRouteNames` (welcome, the onboarding steps, sign-in, existing account, debug sign-in, session expired, not found). Any other
-route is stashed in `PendingRoute`, the person is sent to `SignInRoute`, and sign-in resumes the stashed destination.
+`AuthGuard` (`router/guards/auth_guard.dart`) is a global guard that runs for every route of a stack, in order. A signed-out person
+can open only the routes in `publicRouteNames` (welcome, the onboarding steps, sign-in, existing account, debug sign-in, session
+expired, not found). Any other route stops the navigation, the last pending route (the real destination, not Home) is stashed in
+`PendingRoute`, the person is sent to `SignInRoute`, and sign-in resumes the stashed path. The guard never stashes Home or a public
+route.
 
 - A page that must work signed out (a new onboarding step, say) has to be added to `publicRouteNames`, or the guard redirects it.
 - Do not check authentication inside a page; leave it to the guard.
@@ -57,16 +60,32 @@ route is stashed in `PendingRoute`, the person is sent to `SignInRoute`, and sig
 ## Root routing and deep links
 
 - `AppCubit` holds the app state, and `routeForAppState` (`features/app/presentation/navigation/app_state_navigator.dart`) maps it to
-  the root route (onboarding, sign-in, home). `App` replaces the stack with `replaceAll` when the state changes. Add a new app-level
-  state there, not as a navigation call from a feature.
-- `App._deepLinkBuilder` handles incoming links. Widget links go through `transformWidgetDeepLinkUri` and `resolveWidgetDeepLinkUri`,
-  which depend on the current app state. A cold start link that is not a widget link falls back to the root route for the state.
+  the root route (onboarding, sign-in, home). `AppStateNavigator` replaces the stack with `replaceAll` when the state changes,
+  except when Home is already in the stack (a cold start link already built it). Add a new app-level state there, not as a
+  navigation call from a feature.
+- A link is matched by path. `transformDeepLinkUri` rewrites `mingo://<host>/<path>` into `/<host>/<path>`, so a link host is just a
+  route path: `mingo://card` is `/card`. With prefix matching on (the default on mobile), a page opened from a link gets Home under
+  it for free, on a cold start and while the app runs, and the link pops to the existing Home instead of rebuilding it.
+- To make a page reachable from a link, give its route an explicit short `path:` (the generated default is ugly, like
+  `/sunday-card-route`). A route whose path is also a prefix of a deeper sibling (`/card` and `/card/:id`) needs `fullMatch: true`,
+  or the shallow page is pushed under the deeper one. A tab is a child path of Home (`/slips`, `/couple`); an alias is a
+  `RedirectRoute` (`/together` to `/couple`).
+- A link that needs more than a path (the invite code) is a `DeepLinkHandler` in `router/deep_links/`: `resolve(uri)` returns a
+  page stack or null, and `DeepLinkResolver` asks the handlers in order. Register handlers in `AppInjectionModule`. A handler
+  returns the stack only; the guard does the signed-out redirect and resume.
+- `App._deepLinkBuilder` runs the resolver, then lets the platform link through. A plain `/` launch uses the root route for the app
+  state; a link whose destination is a public page drops the Home prefix, because the guard would block Home first. Widget taps
+  go through `navigatePath(..., includePrefixMatches: true)`, never `replaceAll`.
+- Widgets send `mingo://<host>?src=widget`. The hosts in `MingoLink.swift` and `MingoLink.kt` must match each other and open a
+  route; `test/router/app_router_test.dart` reads both files and fails on drift.
 - Router observers (`router/observers/`: logging and analytics) are lazy singletons in `shared_injection_module.dart` and are wired
   in `app.dart`. Add a new observer there, never inside a page.
 
 ## Gotchas
 
 - "Undefined name XRoute" means `melos gen` has not run since the page or `AutoRoute` was added.
-- Removing `initial: true` from a nested level breaks the stack at startup; keep the chain valid.
+- Home's empty path redirects to `today` (`RedirectRoute`); removing that redirect breaks the stack at startup.
+- `pushPath`, `navigatePath` and `replacePath` default to no prefix matching, `DeepLink.path` and platform links default to it.
+- An unknown link path reaches `NotFoundRoute` through `*`; without it the initial route cannot resolve and the app throws.
 - `wrappedRoute` returns the provider wrapping `this`, not a rebuilt page.
 - Never edit `*.gr.dart`, and do not create a second router config.

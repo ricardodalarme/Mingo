@@ -10,6 +10,7 @@ import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:app/router/guards/auth_guard.dart';
 import 'package:app/router/pending_route.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -68,7 +69,9 @@ void main() {
           initialVariant: AppThemeVariant.rose,
           child: Builder(
             builder: (context) => BaseApp.router(
-              routerConfig: router.config(),
+              routerConfig: router.config(
+                deepLinkBuilder: (_) => DeepLink.single(const WelcomeRoute()),
+              ),
               theme: AppTheme.light(AppThemeScope.of(context)),
               supportedLocales: AppLocaleUtils.supportedLocales,
             ),
@@ -91,6 +94,29 @@ void main() {
     expect(stack(), contains(SignInRoute.name));
     expect(stack(), isNot(contains(SlipDetailRoute.name)));
     expect(pending.take(), '/slip/s1');
+  });
+
+  testWidgets('a signed-out link keeps the last page of its stack, not Home', (tester) async {
+    when(() => authentication.isAuthenticated).thenReturn(false);
+    await pumpRouter(tester);
+
+    unawaited(router.navigatePath('/card', includePrefixMatches: true));
+    await settle(tester);
+
+    expect(stack(), contains(SignInRoute.name));
+    expect(stack(), isNot(contains(HomeRoute.name)));
+    expect(pending.take(), '/card');
+  });
+
+  testWidgets('a signed-out link to a public page behind Home keeps nothing', (tester) async {
+    when(() => authentication.isAuthenticated).thenReturn(false);
+    await pumpRouter(tester);
+
+    unawaited(router.navigatePath('/sign-in', includePrefixMatches: true));
+    await settle(tester);
+
+    expect(stack(), contains(SignInRoute.name));
+    expect(pending.take(), isNull);
   });
 
   testWidgets('a signed-out link to a public page is left alone', (tester) async {

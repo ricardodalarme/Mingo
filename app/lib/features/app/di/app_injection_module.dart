@@ -11,10 +11,12 @@ import 'package:app/features/help/data/repositories/support_repository.dart';
 import 'package:app/features/home_widgets/data/repositories/home_widgets_repository.dart';
 import 'package:app/features/notifications/data/repositories/notifications_repository.dart';
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
+import 'package:app/features/pairing/presentation/navigation/invite_deep_link_handler.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/reminders/data/services/reminder_sync_service.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
+import 'package:app/router/deep_links/deep_link_resolver.dart';
 import 'package:app/router/pending_route.dart';
 import 'package:app_info_service/app_info_service.dart';
 import 'package:auto_route/auto_route.dart' hide PageInfo;
@@ -31,6 +33,16 @@ class AppInjectionModule() implements InjectionModule {
         router: injector.get<RootStackRouter>(),
         pending: injector.get<PendingRoute>(),
         inviteCodes: injector.get<InviteCodeStore>(),
+      ),
+    )
+    ..registerLazySingleton<DeepLinkResolver>(
+      () => DeepLinkResolver(
+        handlers: [
+          InviteDeepLinkHandler(
+            inviteCodes: injector.get<InviteCodeStore>(),
+            authentication: injector.get<AuthenticationRepository>(),
+          ),
+        ],
       ),
     )
     ..registerLazySingleton<AppConfigDataSource>(

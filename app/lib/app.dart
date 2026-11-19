@@ -5,14 +5,14 @@ import 'package:app/features/app/presentation/navigation/app_state_navigator.dar
 import 'package:app/features/app/presentation/shell/app_shell.dart';
 import 'package:app/features/home_widgets/data/repositories/home_widgets_repository.dart';
 import 'package:app/features/home_widgets/data/services/home_widget_data_service.dart';
-import 'package:app/features/home_widgets/presentation/navigation/home_widget_deep_link_resolver.dart';
-import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/features/profile/data/repositories/profile_repository.dart';
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:app/l10n/translations.g.dart';
+import 'package:app/router/deep_links/deep_link_resolver.dart';
+import 'package:app/router/deep_links/deep_link_transformer.dart';
+import 'package:app/router/deep_links/public_destination.dart';
 import 'package:app/router/observers/analytics_router_observer.dart';
 import 'package:app/router/observers/log_router_observer.dart';
-import 'package:app/router/pending_route.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -46,7 +46,7 @@ class const App({super.key}) extends StatelessWidget {
                   onGenerateTitle: (context) => context.l10n.common.appName,
                   routerConfig: appRouter.config(
                     navigatorObservers: () => navigatorObservers,
-                    deepLinkTransformer: transformHomeWidgetDeepLinkUri,
+                    deepLinkTransformer: (uri) async => transformDeepLinkUri(uri),
                     deepLinkBuilder: _deepLinkBuilder,
                   ),
                   locale: TranslationProvider.of(context).flutterLocale,
@@ -73,23 +73,19 @@ class const App({super.key}) extends StatelessWidget {
 
   PageRouteInfo<void> _resolveRouteForState(AppState state) => routeForAppState(state);
 
-  DeepLink _deepLinkBuilder(PlatformDeepLink deepLink) {
+  Future<DeepLink> _deepLinkBuilder(PlatformDeepLink deepLink) async {
     final injector = AppInjector.instance;
-    final appCubit = injector.get<AppCubit>();
-    final inviteRoutes = resolveInviteDeepLinkUri(
-      deepLink.uri,
-      appState: appCubit.state,
-      inviteCodes: injector.get<InviteCodeStore>(),
-      pending: injector.get<PendingRoute>(),
-    );
-    if (inviteRoutes != null) {
-      return DeepLink(inviteRoutes);
+    final routes = await injector.get<DeepLinkResolver>().resolve(deepLink.uri);
+    if (routes != null) return DeepLink(routes);
+
+    final isLaunch = deepLink.initial && deepLink.path == '/';
+    if (!isLaunch) {
+      final alone = publicDestinationOf(deepLink.matches);
+
+      return alone == null ? deepLink : DeepLink.single(alone);
     }
-    final homeWidgetRoutes = resolveHomeWidgetDeepLinkUri(deepLink.uri, appState: appCubit.state);
-    if (homeWidgetRoutes != null) {
-      return DeepLink(homeWidgetRoutes);
-    }
-    return deepLink.initial ? DeepLink.single(_resolveRouteForState(appCubit.state)) : deepLink;
+
+    return DeepLink.single(_resolveRouteForState(injector.get<AppCubit>().state));
   }
 }
 
@@ -159,10 +155,15 @@ class _AppStateListenerState() extends State<_AppStateListener> with WidgetsBind
     _profileSubscriptions.clear();
   }
 
-  void _handleWidgetDeepLink(Uri? uri) {
-    final routes = resolveHomeWidgetDeepLinkUri(uri, appState: widget.cubit.state);
-    if (routes == null) return;
-    unawaited(AppInjector.instance.get<RootStackRouter>().replaceAll(routes));
+  Future<void> _handleWidgetDeepLink(Uri? uri) async {
+    if (uri == null) return;
+
+    final path = transformDeepLinkUri(uri);
+    await AppInjector.instance.get<RootStackRouter>().navigatePath(
+      path.toString(),
+      includePrefixMatches: true,
+      onFailure: (_) {},
+    );
   }
 
   void _onStateChanged(AppState current) {

@@ -22,6 +22,7 @@ import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:app/router/guards/auth_guard.dart';
 import 'package:app/router/pending_route.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_service/connectivity_service.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
@@ -166,7 +167,9 @@ void main() {
           initialVariant: AppThemeVariant.rose,
           child: Builder(
             builder: (context) => BaseApp.router(
-              routerConfig: router.config(),
+              routerConfig: router.config(
+                deepLinkBuilder: (_) => DeepLink.single(const WelcomeRoute()),
+              ),
               theme: AppTheme.light(AppThemeScope.of(context)),
               supportedLocales: AppLocaleUtils.supportedLocales,
             ),

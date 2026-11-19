@@ -41,6 +41,7 @@ void main() {
     inviteCodes = _FakeInviteCodeStore();
     navigator = AppStateNavigator(router: router, pending: pending, inviteCodes: inviteCodes);
 
+    when(() => router.stack).thenReturn([]);
     when(() => router.replaceAll(any())).thenAnswer((_) async {});
     when(() => router.pushPath<Object?>(any())).thenAnswer((_) async => null);
     when(() => router.push<Object?>(any())).thenAnswer((_) async => null);
