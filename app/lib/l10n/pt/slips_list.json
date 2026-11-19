@@ -38,7 +38,7 @@
     "said": "Disse algo",
     "did": "Fez algo",
     "noticed": "Me notou",
-    "helped": "Ajudou",
+    "helped": "Me ajudou",
     "other": ""
   },
   "kinds(map)": {
@@ -64,5 +64,34 @@
   "jarEmpty": "Quando um slip te fizer bem, guarde-o no potinho pelos detalhes dele.",
   "jarEmptyAction": "Ver meus slips",
   "jarAnother": "Outro",
-  "jarClose": "Fechar"
+  "jarClose": "Fechar",
+  "addNote": "Anotar mais um",
+  "weekLine(plural, param=count)": {
+    "zero": "Nenhuma coisa boa ainda. Só você vê.",
+    "one": "1 coisa boa desta semana. Só você vê.",
+    "other": "{count} coisas boas desta semana. Só você vê."
+  },
+  "resultCount(plural, param=count)": {
+    "one": "{count} slip",
+    "other": "{count} slips"
+  },
+  "resultCountMonth(plural, param=count)": {
+    "one": "{count} slip em {month}",
+    "other": "{count} slips em {month}"
+  },
+  "monthsLong": [
+    "janeiro",
+    "fevereiro",
+    "março",
+    "abril",
+    "maio",
+    "junho",
+    "julho",
+    "agosto",
+    "setembro",
+    "outubro",
+    "novembro",
+    "dezembro"
+  ],
+  "noteLabel": "{body}, {type}, {day}"
 }

@@ -505,6 +505,9 @@ class _Translations$annoyanceCheck$en extends Translations$annoyanceCheck$pt {
     'NETWORK': 'No connection. Try again.',
     'other': 'Something went wrong. Try again.',
   };
+  @override
+  String noteAge({required Object days, required Object left}) =>
+      '${days} days ago · gone in ${left} days';
 }
 
 // Path: authentication
@@ -5902,7 +5905,7 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
     'said': 'Said something',
     'did': 'Did something',
     'noticed': 'Noticed me',
-    'helped': 'Helped',
+    'helped': 'Helped me',
     'other': '',
   };
   @override
@@ -5947,6 +5950,48 @@ class _Translations$slipsList$en extends Translations$slipsList$pt {
   String get jarAnother => 'Another';
   @override
   String get jarClose => 'Close';
+  @override
+  String get addNote => 'Add another';
+  @override
+  String weekLine({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        zero: 'No good things yet. Only you see this.',
+        one: '1 good thing this week. Only you see this.',
+        other: '${count} good things this week. Only you see this.',
+      );
+  @override
+  String resultCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '${count} slip',
+        other: '${count} slips',
+      );
+  @override
+  String resultCountMonth({required num count, required Object month}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        count,
+        one: '${count} slip in ${month}',
+        other: '${count} slips in ${month}',
+      );
+  @override
+  List<String> get monthsLong => [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  @override
+  String noteLabel({required Object body, required Object type, required Object day}) =>
+      '${body}, ${type}, ${day}';
 }
 
 // Path: spice
@@ -8842,6 +8887,10 @@ extension on TranslationsEn {
           'annoyanceCheck.errorTitle' => 'We could not open the note',
           'annoyanceCheck.errors.NETWORK' => 'No connection. Try again.',
           'annoyanceCheck.errors.other' => 'Something went wrong. Try again.',
+          'annoyanceCheck.noteAge' => ({
+            required Object days,
+            required Object left,
+          }) => '${days} days ago · gone in ${left} days',
           'authentication.signInTitle' => 'Sign in',
           'authentication.signInSubtitle' => 'No email and password. Just Apple or Google.',
           'authentication.signInNote' => 'Signing in takes you straight to your Today.',
@@ -9302,10 +9351,10 @@ extension on TranslationsEn {
           'dateNight.monthsShort.0' => 'Jan',
           'dateNight.monthsShort.1' => 'Feb',
           'dateNight.monthsShort.2' => 'Mar',
-          'dateNight.monthsShort.3' => 'Apr',
           _ => null,
         } ??
         switch (path) {
+          'dateNight.monthsShort.3' => 'Apr',
           'dateNight.monthsShort.4' => 'May',
           'dateNight.monthsShort.5' => 'Jun',
           'dateNight.monthsShort.6' => 'Jul',
@@ -9945,10 +9994,10 @@ extension on TranslationsEn {
             required Object total,
           }) => 'Step ${current} of ${total}',
           'hardConversation.whatTitle' => 'What happened?',
-          'hardConversation.whatHint' => 'If you want, tell me in your own words',
           _ => null,
         } ??
         switch (path) {
+          'hardConversation.whatHint' => 'If you want, tell me in your own words',
           'hardConversation.whatIgnored' => 'She felt ignored',
           'hardConversation.whatMoney' => 'We fought about money',
           'hardConversation.whatMisunderstanding' => 'It was a misunderstanding',
@@ -10690,10 +10739,10 @@ extension on TranslationsEn {
           'lists.privateHint' => 'Only you can see this list.',
           'lists.kinds.travel' => 'Travel',
           'lists.kinds.restaurants' => 'Restaurants',
-          'lists.kinds.movies' => 'Movies',
           _ => null,
         } ??
         switch (path) {
+          'lists.kinds.movies' => 'Movies',
           'lists.kinds.custom' => 'Other',
           'lists.kinds.other' => '',
           'lists.shared' => 'Shared',
@@ -11269,10 +11318,10 @@ extension on TranslationsEn {
           'partnerProfile.valueErrors.empty' => 'Write what you want to remember.',
           'partnerProfile.valueErrors.tooLong' => 'Use at most 500 characters.',
           'partnerProfile.save' => 'Save note',
-          'partnerProfile.delete' => 'Delete',
           _ => null,
         } ??
         switch (path) {
+          'partnerProfile.delete' => 'Delete',
           'partnerProfile.emptyTitle' => 'No notes yet',
           'partnerProfile.emptyText' => 'Small details help you pick a gift or a gesture.',
           'partnerProfile.errorTitle' => 'Couldn\'t load',
@@ -11865,10 +11914,10 @@ extension on TranslationsEn {
           }) => 'Step ${current} of ${total}',
           'repair.guided.stepTitles.0' => 'What happened?',
           'repair.guided.stepTitles.1' => 'What do you need?',
-          'repair.guided.stepTitles.2' => 'What can you offer?',
           _ => null,
         } ??
         switch (path) {
+          'repair.guided.stepTitles.2' => 'What can you offer?',
           'repair.guided.stepHighlights.0' => 'happened',
           'repair.guided.stepHighlights.1' => 'need',
           'repair.guided.stepHighlights.2' => 'offer',
@@ -12265,7 +12314,7 @@ extension on TranslationsEn {
           'slipsList.categories.said' => 'Said something',
           'slipsList.categories.did' => 'Did something',
           'slipsList.categories.noticed' => 'Noticed me',
-          'slipsList.categories.helped' => 'Helped',
+          'slipsList.categories.helped' => 'Helped me',
           'slipsList.categories.other' => '',
           'slipsList.kinds.quick' => 'Quick',
           'slipsList.kinds.specific' => 'Specific',
@@ -12289,6 +12338,46 @@ extension on TranslationsEn {
           'slipsList.jarEmptyAction' => 'See my slips',
           'slipsList.jarAnother' => 'Another',
           'slipsList.jarClose' => 'Close',
+          'slipsList.addNote' => 'Add another',
+          'slipsList.weekLine' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  zero: 'No good things yet. Only you see this.',
+                  one: '1 good thing this week. Only you see this.',
+                  other: '${count} good things this week. Only you see this.',
+                ),
+          'slipsList.resultCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '${count} slip',
+                  other: '${count} slips',
+                ),
+          'slipsList.resultCountMonth' =>
+            ({required num count, required Object month}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+                  count,
+                  one: '${count} slip in ${month}',
+                  other: '${count} slips in ${month}',
+                ),
+          'slipsList.monthsLong.0' => 'January',
+          'slipsList.monthsLong.1' => 'February',
+          'slipsList.monthsLong.2' => 'March',
+          'slipsList.monthsLong.3' => 'April',
+          'slipsList.monthsLong.4' => 'May',
+          'slipsList.monthsLong.5' => 'June',
+          'slipsList.monthsLong.6' => 'July',
+          'slipsList.monthsLong.7' => 'August',
+          'slipsList.monthsLong.8' => 'September',
+          'slipsList.monthsLong.9' => 'October',
+          'slipsList.monthsLong.10' => 'November',
+          'slipsList.monthsLong.11' => 'December',
+          'slipsList.noteLabel' => ({
+            required Object body,
+            required Object type,
+            required Object day,
+          }) => '${body}, ${type}, ${day}',
           'spice.title' => 'Spice',
           'spice.introTitle' => 'Spice, just for the two of you',
           'spice.introHighlight' => 'the two of you',
@@ -12421,6 +12510,9 @@ extension on TranslationsEn {
             'The image is made on your device and carries no names or text unless you choose.',
           'story.days' => 'days',
           'story.together' => 'together',
+          _ => null,
+        } ??
+        switch (path) {
           'story.namesLabel' => 'Include the names',
           'story.namesText' => 'Off by default.',
           'story.phraseLabel' => 'A line (optional)',
@@ -12440,9 +12532,6 @@ extension on TranslationsEn {
           'sundayCard.noteHint' => 'Thank you for this week.',
           'sundayCard.emptyTitle' => 'A week without slips',
           'sundayCard.emptyText' => 'Note one good thing and it goes on the Sunday card.',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.emptyAction' => 'Note a slip',
           'sundayCard.errorTitle' => 'Could not load the card',
           'sundayCard.errorText' => 'Your slips are still saved. Try again.',

@@ -20,5 +20,6 @@
   "errors(map)": {
     "NETWORK": "Sem conexão. Tente de novo.",
     "other": "Algo deu errado. Tente de novo."
-  }
+  },
+  "noteAge": "há {days} dias · some em {left} dias"
 }

@@ -38,7 +38,7 @@
     "said": "Said something",
     "did": "Did something",
     "noticed": "Noticed me",
-    "helped": "Helped",
+    "helped": "Helped me",
     "other": ""
   },
   "kinds(map)": {
@@ -64,5 +64,34 @@
   "jarEmpty": "When a slip does you good, keep it in the jar from its details.",
   "jarEmptyAction": "See my slips",
   "jarAnother": "Another",
-  "jarClose": "Close"
+  "jarClose": "Close",
+  "addNote": "Add another",
+  "weekLine(plural, param=count)": {
+    "zero": "No good things yet. Only you see this.",
+    "one": "1 good thing this week. Only you see this.",
+    "other": "{count} good things this week. Only you see this."
+  },
+  "resultCount(plural, param=count)": {
+    "one": "{count} slip",
+    "other": "{count} slips"
+  },
+  "resultCountMonth(plural, param=count)": {
+    "one": "{count} slip in {month}",
+    "other": "{count} slips in {month}"
+  },
+  "monthsLong": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ],
+  "noteLabel": "{body}, {type}, {day}"
 }

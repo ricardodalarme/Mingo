@@ -514,6 +514,10 @@ class Translations$annoyanceCheck$pt {
     'NETWORK': 'Sem conexão. Tente de novo.',
     'other': 'Algo deu errado. Tente de novo.',
   };
+
+  /// pt: 'há {days} dias · some em {left} dias'
+  String noteAge({required Object days, required Object left}) =>
+      'há ${days} dias · some em ${left} dias';
 }
 
 // Path: authentication
@@ -7311,7 +7315,7 @@ class Translations$slipsList$pt {
     'said': 'Disse algo',
     'did': 'Fez algo',
     'noticed': 'Me notou',
-    'helped': 'Ajudou',
+    'helped': 'Me ajudou',
     'other': '',
   };
   Map<String, String> get kinds => {
@@ -7372,6 +7376,53 @@ class Translations$slipsList$pt {
 
   /// pt: 'Fechar'
   String get jarClose => 'Fechar';
+
+  /// pt: 'Anotar mais um'
+  String get addNote => 'Anotar mais um';
+
+  /// pt: '(zero) {Nenhuma coisa boa ainda. Só você vê.} (one) {1 coisa boa desta semana. Só você vê.} (other) {{count} coisas boas desta semana. Só você vê.}'
+  String weekLine({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        zero: 'Nenhuma coisa boa ainda. Só você vê.',
+        one: '1 coisa boa desta semana. Só você vê.',
+        other: '${count} coisas boas desta semana. Só você vê.',
+      );
+
+  /// pt: '(one) {{count} slip} (other) {{count} slips}'
+  String resultCount({required num count}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '${count} slip',
+        other: '${count} slips',
+      );
+
+  /// pt: '(one) {{count} slip em {month}} (other) {{count} slips em {month}}'
+  String resultCountMonth({required num count, required Object month}) =>
+      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+        count,
+        one: '${count} slip em ${month}',
+        other: '${count} slips em ${month}',
+      );
+
+  List<String> get monthsLong => [
+    'janeiro',
+    'fevereiro',
+    'março',
+    'abril',
+    'maio',
+    'junho',
+    'julho',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'dezembro',
+  ];
+
+  /// pt: '{body}, {type}, {day}'
+  String noteLabel({required Object body, required Object type, required Object day}) =>
+      '${body}, ${type}, ${day}';
 }
 
 // Path: spice
@@ -10917,6 +10968,10 @@ extension on Translations {
           'annoyanceCheck.errorTitle' => 'Não deu para abrir a anotação',
           'annoyanceCheck.errors.NETWORK' => 'Sem conexão. Tente de novo.',
           'annoyanceCheck.errors.other' => 'Algo deu errado. Tente de novo.',
+          'annoyanceCheck.noteAge' => ({
+            required Object days,
+            required Object left,
+          }) => 'há ${days} dias · some em ${left} dias',
           'authentication.signInTitle' => 'Entrar',
           'authentication.signInSubtitle' => 'Sem e-mail e senha. Só Apple ou Google.',
           'authentication.signInNote' => 'Entrar leva direto para o seu Hoje.',
@@ -11384,10 +11439,10 @@ extension on Translations {
           'dateNight.monthsShort.0' => 'jan',
           'dateNight.monthsShort.1' => 'fev',
           'dateNight.monthsShort.2' => 'mar',
-          'dateNight.monthsShort.3' => 'abr',
           _ => null,
         } ??
         switch (path) {
+          'dateNight.monthsShort.3' => 'abr',
           'dateNight.monthsShort.4' => 'mai',
           'dateNight.monthsShort.5' => 'jun',
           'dateNight.monthsShort.6' => 'jul',
@@ -12033,10 +12088,10 @@ extension on Translations {
             required Object total,
           }) => 'Passo ${current} de ${total}',
           'hardConversation.whatTitle' => 'O que aconteceu?',
-          'hardConversation.whatHint' => 'Se quiser, conte do seu jeito',
           _ => null,
         } ??
         switch (path) {
+          'hardConversation.whatHint' => 'Se quiser, conte do seu jeito',
           'hardConversation.whatIgnored' => 'Ela se sentiu ignorada',
           'hardConversation.whatMoney' => 'Brigamos por dinheiro',
           'hardConversation.whatMisunderstanding' => 'Foi um mal-entendido',
@@ -12779,10 +12834,10 @@ extension on Translations {
           'lists.privateHint' => 'Só você vê esta lista.',
           'lists.kinds.travel' => 'Viagem',
           'lists.kinds.restaurants' => 'Restaurantes',
-          'lists.kinds.movies' => 'Filmes',
           _ => null,
         } ??
         switch (path) {
+          'lists.kinds.movies' => 'Filmes',
           'lists.kinds.custom' => 'Outra',
           'lists.kinds.other' => '',
           'lists.shared' => 'Compartilhada',
@@ -13365,10 +13420,10 @@ extension on Translations {
           'partnerProfile.valueErrors.empty' => 'Escreva o que quer lembrar.',
           'partnerProfile.valueErrors.tooLong' => 'Use no máximo 500 caracteres.',
           'partnerProfile.save' => 'Guardar nota',
-          'partnerProfile.delete' => 'Apagar',
           _ => null,
         } ??
         switch (path) {
+          'partnerProfile.delete' => 'Apagar',
           'partnerProfile.emptyTitle' => 'Nenhuma nota ainda',
           'partnerProfile.emptyText' =>
             'Pequenos detalhes ajudam a escolher um presente ou um gesto.',
@@ -13959,10 +14014,10 @@ extension on Translations {
           }) => 'Passo ${current} de ${total}',
           'repair.guided.stepTitles.0' => 'O que aconteceu?',
           'repair.guided.stepTitles.1' => 'Do que você precisa?',
-          'repair.guided.stepTitles.2' => 'O que você pode oferecer?',
           _ => null,
         } ??
         switch (path) {
+          'repair.guided.stepTitles.2' => 'O que você pode oferecer?',
           'repair.guided.stepHighlights.0' => 'aconteceu',
           'repair.guided.stepHighlights.1' => 'precisa',
           'repair.guided.stepHighlights.2' => 'oferecer',
@@ -14367,7 +14422,7 @@ extension on Translations {
           'slipsList.categories.said' => 'Disse algo',
           'slipsList.categories.did' => 'Fez algo',
           'slipsList.categories.noticed' => 'Me notou',
-          'slipsList.categories.helped' => 'Ajudou',
+          'slipsList.categories.helped' => 'Me ajudou',
           'slipsList.categories.other' => '',
           'slipsList.kinds.quick' => 'Rápido',
           'slipsList.kinds.specific' => 'Específico',
@@ -14392,6 +14447,46 @@ extension on Translations {
           'slipsList.jarEmptyAction' => 'Ver meus slips',
           'slipsList.jarAnother' => 'Outro',
           'slipsList.jarClose' => 'Fechar',
+          'slipsList.addNote' => 'Anotar mais um',
+          'slipsList.weekLine' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  zero: 'Nenhuma coisa boa ainda. Só você vê.',
+                  one: '1 coisa boa desta semana. Só você vê.',
+                  other: '${count} coisas boas desta semana. Só você vê.',
+                ),
+          'slipsList.resultCount' =>
+            ({required num count}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '${count} slip',
+                  other: '${count} slips',
+                ),
+          'slipsList.resultCountMonth' =>
+            ({required num count, required Object month}) =>
+                (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(
+                  count,
+                  one: '${count} slip em ${month}',
+                  other: '${count} slips em ${month}',
+                ),
+          'slipsList.monthsLong.0' => 'janeiro',
+          'slipsList.monthsLong.1' => 'fevereiro',
+          'slipsList.monthsLong.2' => 'março',
+          'slipsList.monthsLong.3' => 'abril',
+          'slipsList.monthsLong.4' => 'maio',
+          'slipsList.monthsLong.5' => 'junho',
+          'slipsList.monthsLong.6' => 'julho',
+          'slipsList.monthsLong.7' => 'agosto',
+          'slipsList.monthsLong.8' => 'setembro',
+          'slipsList.monthsLong.9' => 'outubro',
+          'slipsList.monthsLong.10' => 'novembro',
+          'slipsList.monthsLong.11' => 'dezembro',
+          'slipsList.noteLabel' => ({
+            required Object body,
+            required Object type,
+            required Object day,
+          }) => '${body}, ${type}, ${day}',
           'spice.title' => 'Tempero',
           'spice.introTitle' => 'Tempero, só para vocês dois',
           'spice.introHighlight' => 'vocês dois',
@@ -14520,6 +14615,9 @@ extension on Translations {
           'story.privacyNote' => 'A imagem é feita no seu aparelho e não leva nomes nem texto, a menos que você escolha.',
           'story.days' => 'dias',
           'story.together' => 'juntos',
+          _ => null,
+        } ??
+        switch (path) {
           'story.namesLabel' => 'Incluir os nomes',
           'story.namesText' => 'Desligado por padrão.',
           'story.phraseLabel' => 'Uma frase (opcional)',
@@ -14539,9 +14637,6 @@ extension on Translations {
           'sundayCard.noteHint' => 'Obrigada por essa semana.',
           'sundayCard.emptyTitle' => 'Semana sem slips',
           'sundayCard.emptyText' => 'Anote uma coisa boa e ela entra no cartão de domingo.',
-          _ => null,
-        } ??
-        switch (path) {
           'sundayCard.emptyAction' => 'Anotar um slip',
           'sundayCard.errorTitle' => 'Não deu para carregar o cartão',
           'sundayCard.errorText' => 'Seus slips continuam salvos. Tente de novo.',
