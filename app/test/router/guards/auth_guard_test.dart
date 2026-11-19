@@ -9,7 +9,7 @@ import 'package:app/features/slips/presentation/slip_detail/cubit/slip_detail_cu
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/app_router.dart';
 import 'package:app/router/guards/auth_guard.dart';
-import 'package:app/router/pending_route.dart';
+import 'package:app/router/utils/pending_route.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';

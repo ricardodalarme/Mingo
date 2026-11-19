@@ -7,7 +7,7 @@ import 'package:app/router/app_router.dart';
 import 'package:app/router/guards/auth_guard.dart';
 import 'package:app/router/observers/analytics_router_observer.dart';
 import 'package:app/router/observers/log_router_observer.dart';
-import 'package:app/router/pending_route.dart';
+import 'package:app/router/utils/pending_route.dart';
 import 'package:app_info_service/app_info_service.dart';
 import 'package:auto_route/auto_route.dart' hide PageInfo;
 import 'package:biometric_service/biometric_service.dart';

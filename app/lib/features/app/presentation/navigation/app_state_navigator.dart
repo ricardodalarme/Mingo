@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:app/features/app/presentation/cubit/app_cubit.dart';
 import 'package:app/features/pairing/data/data_sources/local/invite_code_store.dart';
 import 'package:app/router/app_router.dart';
-import 'package:app/router/pending_route.dart';
+import 'package:app/router/utils/pending_route.dart';
 import 'package:auto_route/auto_route.dart';
 
 /// The root route an app state should show.

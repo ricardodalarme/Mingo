@@ -17,7 +17,7 @@ import 'package:app/features/reminders/data/services/reminder_sync_service.dart'
 import 'package:app/features/settings/data/repositories/settings_repository.dart';
 import 'package:app/features/slips/data/repositories/slip_repository.dart';
 import 'package:app/router/deep_links/deep_link_resolver.dart';
-import 'package:app/router/pending_route.dart';
+import 'package:app/router/utils/pending_route.dart';
 import 'package:app_info_service/app_info_service.dart';
 import 'package:auto_route/auto_route.dart' hide PageInfo;
 import 'package:connectivity_service/connectivity_service.dart';

@@ -1,5 +1,5 @@
 import 'package:app/router/app_router.dart';
-import 'package:app/router/deep_links/public_destination.dart';
+import 'package:app/router/utils/public_destination.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -32,5 +32,18 @@ void main() {
 
   test('no matches open nothing', () {
     expect(publicDestinationOf(const []), isNull);
+  });
+
+  test('a route with the public meta is public', () {
+    expect(isPublicRoute(publicRouteMeta), isTrue);
+  });
+
+  test('a route without meta is guarded', () {
+    expect(isPublicRoute(const {}), isFalse);
+  });
+
+  test('a route whose public meta is not true is guarded', () {
+    expect(isPublicRoute(const {'public': false}), isFalse);
+    expect(isPublicRoute(const {'public': 'yes'}), isFalse);
   });
 }

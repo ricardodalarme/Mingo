@@ -128,6 +128,7 @@ import 'package:app/features/together/presentation/ritual_edit/ritual_edit_page.
 import 'package:app/features/together/presentation/rituals/rituals_page.dart';
 import 'package:app/features/together/presentation/together/together_page.dart';
 import 'package:app/features/weekly_review/presentation/weekly_review/weekly_review_page.dart';
+import 'package:app/router/utils/public_destination.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 
@@ -162,22 +163,22 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     ..._togetherRoutes,
     ..._settingsRoutes,
     ..._homeWidgetRoutes,
-    AutoRoute(path: '*', page: NotFoundRoute.page),
+    AutoRoute(path: '*', page: NotFoundRoute.page, meta: publicRouteMeta),
   ];
 
   /// Signing in, onboarding, the invite and the person's own profile.
   List<AutoRoute> get _accessRoutes => [
-    AutoRoute(page: WelcomeRoute.page, path: '/welcome'),
-    AutoRoute(page: IntroPhaseRoute.page),
-    AutoRoute(page: IntroGoalsRoute.page),
-    AutoRoute(page: IntroThemeRoute.page),
-    AutoRoute(page: FirstSlipRoute.page),
-    AutoRoute(page: PartnerStepRoute.page),
-    AutoRoute(page: SignInRoute.page, path: '/sign-in'),
-    AutoRoute(page: CreateAccountRoute.page),
-    AutoRoute(page: SessionExpiredRoute.page),
-    AutoRoute(page: ExistingAccountRoute.page),
-    AutoRoute(page: DebugSignInRoute.page),
+    AutoRoute(page: WelcomeRoute.page, path: '/welcome', meta: publicRouteMeta),
+    AutoRoute(page: IntroPhaseRoute.page, meta: publicRouteMeta),
+    AutoRoute(page: IntroGoalsRoute.page, meta: publicRouteMeta),
+    AutoRoute(page: IntroThemeRoute.page, meta: publicRouteMeta),
+    AutoRoute(page: FirstSlipRoute.page, meta: publicRouteMeta),
+    AutoRoute(page: PartnerStepRoute.page, meta: publicRouteMeta),
+    AutoRoute(page: SignInRoute.page, path: '/sign-in', meta: publicRouteMeta),
+    AutoRoute(page: CreateAccountRoute.page, meta: publicRouteMeta),
+    AutoRoute(page: SessionExpiredRoute.page, meta: publicRouteMeta),
+    AutoRoute(page: ExistingAccountRoute.page, meta: publicRouteMeta),
+    AutoRoute(page: DebugSignInRoute.page, meta: publicRouteMeta),
     AutoRoute(page: ProfileSetupRoute.page),
     AutoRoute(page: ProfileSettingsRoute.page),
     AutoRoute(page: InviteRoute.page, path: '/invite'),

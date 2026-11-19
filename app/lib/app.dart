@@ -10,9 +10,9 @@ import 'package:app/features/settings/data/repositories/settings_repository.dart
 import 'package:app/l10n/translations.g.dart';
 import 'package:app/router/deep_links/deep_link_resolver.dart';
 import 'package:app/router/deep_links/deep_link_transformer.dart';
-import 'package:app/router/deep_links/public_destination.dart';
 import 'package:app/router/observers/analytics_router_observer.dart';
 import 'package:app/router/observers/log_router_observer.dart';
+import 'package:app/router/utils/public_destination.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';

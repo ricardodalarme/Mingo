@@ -54,7 +54,7 @@ expired, not found). Any other route stops the navigation, the last pending rout
 `PendingRoute`, the person is sent to `SignInRoute`, and sign-in resumes the stashed path. The guard never stashes Home or a public
 route.
 
-- A page that must work signed out (a new onboarding step, say) has to be added to `publicRouteNames`, or the guard redirects it.
+- A page that must work signed out (a new onboarding step, say) needs `meta: publicRouteMeta` on its `AutoRoute`, or the guard redirects it; `test/router/app_router_test.dart` pins the full list.
 - Do not check authentication inside a page; leave it to the guard.
 
 ## Root routing and deep links
