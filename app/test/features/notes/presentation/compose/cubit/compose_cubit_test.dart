@@ -21,7 +21,6 @@ void main() {
     id: 'm1',
     kind: MessageKind.note,
     createdAt: DateTime(2026),
-    forWidget: false,
     body: 'Boa sorte',
   );
 
@@ -31,20 +30,10 @@ void main() {
     when(() => pairingRepository.getPartner())
         .thenAnswer((_) async => const Profile(id: 'p1', avatarKind: AvatarKind.initials));
     when(() => repository.getSent()).thenAnswer((_) async => [message]);
-    when(
-      () => repository.sendNote(
-        body: any(named: 'body'),
-        forWidget: any(named: 'forWidget'),
-      ),
-    ).thenAnswer((_) async {
+    when(() => repository.sendNote(body: any(named: 'body'))).thenAnswer((_) async {
       return;
     });
-    when(
-      () => repository.sendDrawing(
-        png: any(named: 'png'),
-        forWidget: any(named: 'forWidget'),
-      ),
-    ).thenAnswer((_) async {
+    when(() => repository.sendDrawing(png: any(named: 'png'))).thenAnswer((_) async {
       return;
     });
     when(() => repository.delete(any())).thenAnswer((_) async {
@@ -63,10 +52,6 @@ void main() {
     exportDrawing: (_) async => Uint8List.fromList([1]),
   );
 
-  test('the widget switch starts on', () {
-    expect(build().state.forWidget, isTrue);
-  });
-
   test('a note needs text within the limit', () async {
     final cubit = build();
 
@@ -79,7 +64,7 @@ void main() {
 
     cubit.onTextChanged('Boa sorte');
     await cubit.send();
-    verify(() => repository.sendNote(body: 'Boa sorte', forWidget: true)).called(1);
+    verify(() => repository.sendNote(body: 'Boa sorte')).called(1);
   });
 
   test('an empty drawing cannot be sent', () async {
@@ -87,12 +72,7 @@ void main() {
 
     await cubit.send();
 
-    verifyNever(
-      () => repository.sendDrawing(
-        png: any(named: 'png'),
-        forWidget: any(named: 'forWidget'),
-      ),
-    );
+    verifyNever(() => repository.sendDrawing(png: any(named: 'png')));
   });
 
   test('a stroke makes the drawing sendable and undo takes it back', () async {
@@ -106,12 +86,7 @@ void main() {
     cubit.undo();
     await cubit.send();
 
-    verifyNever(
-      () => repository.sendDrawing(
-        png: any(named: 'png'),
-        forWidget: any(named: 'forWidget'),
-      ),
-    );
+    verifyNever(() => repository.sendDrawing(png: any(named: 'png')));
   });
 
   test('drawing mode opens and closes with the strokes kept', () {
@@ -148,7 +123,7 @@ void main() {
 
     await cubit.send();
 
-    verify(() => repository.sendNote(body: 'Boa sorte', forWidget: true)).called(1);
+    verify(() => repository.sendNote(body: 'Boa sorte')).called(1);
     expect(cubit.state.text.value, '');
     expect(cubit.state.strokes, isNotEmpty);
     verify(() => repository.getSent()).called(1);
@@ -162,18 +137,13 @@ void main() {
 
     await cubit.send();
 
-    verify(() => repository.sendDrawing(png: Uint8List.fromList([1]), forWidget: false)).called(1);
+    verify(() => repository.sendDrawing(png: Uint8List.fromList([1]))).called(1);
     expect(cubit.state.strokes, isEmpty);
     expect(cubit.state.text.value, 'Boa sorte');
   });
 
   test('a failed send keeps what was written', () async {
-    when(
-      () => repository.sendNote(
-        body: any(named: 'body'),
-        forWidget: any(named: 'forWidget'),
-      ),
-    ).thenThrow(Exception('offline'));
+    when(() => repository.sendNote(body: any(named: 'body'))).thenThrow(Exception('offline'));
     final cubit = build()..onTextChanged('Boa sorte');
 
     await cubit.send();
@@ -192,12 +162,7 @@ void main() {
 
     await cubit.send();
 
-    verifyNever(
-      () => repository.sendNote(
-        body: any(named: 'body'),
-        forWidget: any(named: 'forWidget'),
-      ),
-    );
+    verifyNever(() => repository.sendNote(body: any(named: 'body')));
   });
 
   test('deleting a message reads the list again', () async {

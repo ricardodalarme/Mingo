@@ -4763,12 +4763,6 @@ class Translations$notes$pt {
   /// pt: 'Concluído'
   String get done => 'Concluído';
 
-  /// pt: 'Enviar para o widget'
-  String get widgetLabel => 'Enviar para o widget';
-
-  /// pt: 'Aparece no widget dele se ele permitir recados.'
-  String get widgetText => 'Aparece no widget dele se ele permitir recados.';
-
   /// pt: 'Desenhos ficam na sua lista de enviados. Recados no widget são só texto por enquanto.'
   String get drawingHint =>
       'Desenhos ficam na sua lista de enviados. Recados no widget são só texto por enquanto.';
@@ -7215,15 +7209,6 @@ class Translations$tabs$pt {
   /// pt: 'Uma conversa calma, que não fica guardada.'
   String get chatText => 'Uma conversa calma, que não fica guardada.';
 
-  /// pt: 'PARA SEU PAR'
-  String get notesLabel => 'PARA SEU PAR';
-
-  /// pt: 'Bilhete ou desenho'
-  String get notesTitle => 'Bilhete ou desenho';
-
-  /// pt: 'Mande algo curto e carinhoso, quando quiser.'
-  String get notesText => 'Mande algo curto e carinhoso, quando quiser.';
-
   /// pt: 'NÓS'
   String get usLabel => 'NÓS';
 
@@ -7391,9 +7376,6 @@ class Translations$tabs$pt {
   /// pt: 'Seu mês, só você vê'
   String get moodCalendarMeta => 'Seu mês, só você vê';
 
-  /// pt: 'Quando quiser'
-  String get notesMeta => 'Quando quiser';
-
   /// pt: 'Anotações privadas'
   String get learningMeta => 'Anotações privadas';
 
@@ -7467,8 +7449,8 @@ class Translations$tabs$pt {
   /// pt: 'Preciso de…'
   String get plusNeed => 'Preciso de…';
 
-  /// pt: 'Mandar um recado'
-  String get plusNote => 'Mandar um recado';
+  /// pt: 'Mandar um bilhete'
+  String get plusNote => 'Mandar um bilhete';
 }
 
 // Path: temperature
@@ -12369,8 +12351,6 @@ extension on Translations {
           'notes.startDrawing' => 'Desenhar',
           'notes.continueDrawing' => 'Continuar desenhando',
           'notes.done' => 'Concluído',
-          'notes.widgetLabel' => 'Enviar para o widget',
-          'notes.widgetText' => 'Aparece no widget dele se ele permitir recados.',
           'notes.drawingHint' =>
             'Desenhos ficam na sua lista de enviados. Recados no widget são só texto por enquanto.',
           'notes.unpairedTitle' => 'Conecte-se com seu par',
@@ -12637,11 +12617,11 @@ extension on Translations {
           'profileDetails.saved' => 'Salvo',
           'profileDetails.loadErrorTitle' => 'Não deu para carregar seu perfil',
           'profileDetails.loadErrorText' => 'Confira a conexão e tente de novo.',
+          'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
+          'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           _ => null,
         } ??
         switch (path) {
-          'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
-          'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           'profileDetails.timeZones.America/Bogota' => 'Bogotá',
           'profileDetails.timeZones.America/Mexico_City' => 'Cidade do México',
           'profileDetails.timeZones.America/New_York' => 'Nova York',
@@ -13223,11 +13203,11 @@ extension on Translations {
           'slipDetail.monthsShort.2' => 'mar',
           'slipDetail.monthsShort.3' => 'abr',
           'slipDetail.monthsShort.4' => 'mai',
+          'slipDetail.monthsShort.5' => 'jun',
+          'slipDetail.monthsShort.6' => 'jul',
           _ => null,
         } ??
         switch (path) {
-          'slipDetail.monthsShort.5' => 'jun',
-          'slipDetail.monthsShort.6' => 'jul',
           'slipDetail.monthsShort.7' => 'ago',
           'slipDetail.monthsShort.8' => 'set',
           'slipDetail.monthsShort.9' => 'out',
@@ -13697,9 +13677,6 @@ extension on Translations {
           'tabs.chatLabel' => 'CONVERSAR',
           'tabs.chatTitle' => 'Mascote',
           'tabs.chatText' => 'Uma conversa calma, que não fica guardada.',
-          'tabs.notesLabel' => 'PARA SEU PAR',
-          'tabs.notesTitle' => 'Bilhete ou desenho',
-          'tabs.notesText' => 'Mande algo curto e carinhoso, quando quiser.',
           'tabs.usLabel' => 'NÓS',
           'tabs.usTitle' => 'Sinto saudade de nós',
           'tabs.usText' => 'Um toque leve para o seu par, sem cobrança.',
@@ -13760,7 +13737,6 @@ extension on Translations {
           'tabs.diaryMeta' => 'Só seu',
           'tabs.moodCalendarTitle' => 'Meus humores',
           'tabs.moodCalendarMeta' => 'Seu mês, só você vê',
-          'tabs.notesMeta' => 'Quando quiser',
           'tabs.learningMeta' => 'Anotações privadas',
           'tabs.partnerMeta' => 'Só para você',
           'tabs.chatMeta' => 'Uma conversa calma',
@@ -13810,7 +13786,7 @@ extension on Translations {
           'tabs.storyChip' => 'Nossa história',
           'tabs.plusSlip' => 'Anotar um slip',
           'tabs.plusNeed' => 'Preciso de…',
-          'tabs.plusNote' => 'Mandar um recado',
+          'tabs.plusNote' => 'Mandar um bilhete',
           'temperature.levelTitle' => 'Como está entre vocês?',
           'temperature.levelHighlight' => 'entre vocês',
           'temperature.levelNote' => 'Privado. Nunca vira nota.',
@@ -13855,9 +13831,6 @@ extension on Translations {
           'timeInApp.titleHighlight' => 'app',
           'timeInApp.text' => 'Escondemos cartões e lembretes até você voltar.',
           'timeInApp.cancel' => 'Cancelar',
-          _ => null,
-        } ??
-        switch (path) {
           'today.greetingMorning' => ({required Object name}) => 'Bom dia, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Boa tarde, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Boa noite, ${name}',
@@ -13868,6 +13841,9 @@ extension on Translations {
             required Object month,
           }) => '${weekday}, ${day} de ${month}',
           'today.weekdays.0' => 'segunda',
+          _ => null,
+        } ??
+        switch (path) {
           'today.weekdays.1' => 'terça',
           'today.weekdays.2' => 'quarta',
           'today.weekdays.3' => 'quinta',

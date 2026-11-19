@@ -19,7 +19,6 @@ class NotesDataSource({required final GQLClient _client}) {
 
   Future<void> send({
     required EnumPartnerMessageKind_enum kind,
-    required bool forWidget,
     String? body,
     String? mediaFileId,
   }) async {
@@ -29,7 +28,6 @@ class NotesDataSource({required final GQLClient _client}) {
           kind: kind,
           body: body,
           mediaFileId: mediaFileId,
-          forWidget: forWidget,
         ),
       ),
     );

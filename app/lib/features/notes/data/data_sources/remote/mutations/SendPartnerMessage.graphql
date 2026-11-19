@@ -2,11 +2,8 @@ mutation SendPartnerMessage(
   $kind: PartnerMessageKind_enum!
   $body: String
   $mediaFileId: uuid
-  $forWidget: Boolean
 ) {
-  insertPartnerMessagesOne(
-    object: { kind: $kind, body: $body, mediaFileId: $mediaFileId, forWidget: $forWidget }
-  ) {
+  insertPartnerMessagesOne(object: { kind: $kind, body: $body, mediaFileId: $mediaFileId }) {
     id
   }
 }

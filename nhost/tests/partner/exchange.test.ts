@@ -27,12 +27,11 @@ test('signals and messages need a partner and stop at 30 a day', async () => {
   await denied(a, `mutation { insertSignalsOne(object: {kind: hug}) { id } }`);
 });
 
-test('a note marked for the widget reaches it, and the sender can take it back', async () => {
+test('a note reaches the partner, and the sender can take it back', async () => {
   const { a, b } = await couple();
-  const first = (await ok(a, `mutation { insertPartnerMessagesOne(object: {kind: note, body: "pensei em você", forWidget: true}) { id forWidget recipientId } }`)).insertPartnerMessagesOne;
-  assert.deepEqual([first.forWidget, first.recipientId], [true, b.id]);
-  const second = (await ok(a, `mutation { insertPartnerMessagesOne(object: {kind: note, body: "oi"}) { id forWidget } }`)).insertPartnerMessagesOne;
-  assert.equal(second.forWidget, false);
+  const first = (await ok(a, `mutation { insertPartnerMessagesOne(object: {kind: note, body: "pensei em você"}) { id recipientId } }`)).insertPartnerMessagesOne;
+  assert.equal(first.recipientId, b.id);
+  const second = (await ok(a, `mutation { insertPartnerMessagesOne(object: {kind: note, body: "oi"}) { id } }`)).insertPartnerMessagesOne;
   const hearted = await ok(b, `mutation ($id: uuid!) { updatePartnerMessagesByPk(pk_columns: {id: $id}, _set: {heartedAt: "now()", seenAt: "now()"}) { heartedAt } }`, { id: second.id });
   assert.ok(hearted.updatePartnerMessagesByPk.heartedAt);
   assert.equal((await ok(b, `mutation ($id: uuid!) { deletePartnerMessagesByPk(id: $id) { id } }`, { id: second.id })).deletePartnerMessagesByPk, null);

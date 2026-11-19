@@ -1,14 +1,22 @@
 {
   "title": "Bilhete ou desenho",
   "intro": "Um recado curto para seu par, ou um desenho que fica na sua lista de enviados.",
-  "kinds": ["Bilhete", "Desenho"],
+  "kinds": [
+    "Bilhete",
+    "Desenho"
+  ],
   "noteHint": "Ex.: boa sorte na reunião de hoje",
   "textErrors(map)": {
     "empty": "Escreva o recado primeiro",
     "tooLong": "Este recado está muito longo"
   },
   "canvasLabel": "Área do desenho",
-  "pens": ["Preto", "Laranja", "Roxo", "Verde"],
+  "pens": [
+    "Preto",
+    "Laranja",
+    "Roxo",
+    "Verde"
+  ],
   "eraser": "Borracha",
   "undo": "Desfazer",
   "clear": "Limpar",
@@ -16,8 +24,6 @@
   "startDrawing": "Desenhar",
   "continueDrawing": "Continuar desenhando",
   "done": "Concluído",
-  "widgetLabel": "Enviar para o widget",
-  "widgetText": "Aparece no widget dele se ele permitir recados.",
   "drawingHint": "Desenhos ficam na sua lista de enviados. Recados no widget são só texto por enquanto.",
   "unpairedTitle": "Conecte-se com seu par",
   "unpairedText": "Você precisa estar conectado com seu par para enviar um bilhete ou desenho.",

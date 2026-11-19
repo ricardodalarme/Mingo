@@ -2673,10 +2673,6 @@ enum partnerMessages_select_column {
   """
   column name
   """
-  forWidget
-  """
-  column name
-  """
   heartedAt
   """
   column name
@@ -10367,7 +10363,6 @@ type partnerMessages {
   body: String
   createdAt: timestamptz!
   durationMs: Int
-  forWidget: Boolean!
   heartedAt: timestamptz
   id: uuid!
   kind: PartnerMessageKind_enum!
@@ -24757,7 +24752,6 @@ input partnerMessages_bool_exp {
   body: String_comparison_exp
   createdAt: timestamptz_comparison_exp
   durationMs: Int_comparison_exp
-  forWidget: Boolean_comparison_exp
   heartedAt: timestamptz_comparison_exp
   id: uuid_comparison_exp
   kind: PartnerMessageKind_enum_comparison_exp
@@ -24775,7 +24769,6 @@ input type for inserting data into table "partner_messages"
 input partnerMessages_insert_input {
   body: String
   durationMs: Int
-  forWidget: Boolean
   id: uuid
   kind: PartnerMessageKind_enum
   mediaFile: files_obj_rel_insert_input
@@ -24824,7 +24817,6 @@ input partnerMessages_order_by {
   body: order_by
   createdAt: order_by
   durationMs: order_by
-  forWidget: order_by
   heartedAt: order_by
   id: order_by
   kind: order_by
@@ -24887,7 +24879,6 @@ input partnerMessages_stream_cursor_value_input {
   body: String
   createdAt: timestamptz
   durationMs: Int
-  forWidget: Boolean
   heartedAt: timestamptz
   id: uuid
   kind: PartnerMessageKind_enum

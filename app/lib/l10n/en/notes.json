@@ -1,14 +1,22 @@
 {
   "title": "A note or a drawing",
   "intro": "A short note for your partner, or a drawing that stays in your sent list.",
-  "kinds": ["Note", "Drawing"],
+  "kinds": [
+    "Note",
+    "Drawing"
+  ],
   "noteHint": "E.g. good luck at today's meeting",
   "textErrors(map)": {
     "empty": "Write the note first",
     "tooLong": "This note is too long"
   },
   "canvasLabel": "Drawing area",
-  "pens": ["Black", "Orange", "Purple", "Green"],
+  "pens": [
+    "Black",
+    "Orange",
+    "Purple",
+    "Green"
+  ],
   "eraser": "Eraser",
   "undo": "Undo",
   "clear": "Clear",
@@ -16,8 +24,6 @@
   "startDrawing": "Draw",
   "continueDrawing": "Keep drawing",
   "done": "Done",
-  "widgetLabel": "Send to the widget",
-  "widgetText": "It appears on their widget if they allow notes.",
   "drawingHint": "Drawings stay in your sent list. Widget notes are text-only for now.",
   "unpairedTitle": "Connect with your partner",
   "unpairedText": "You need to be connected with your partner to send a note or drawing.",

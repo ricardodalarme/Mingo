@@ -35,16 +35,12 @@ class NotesRepository({
     ]);
   }
 
-  Future<void> sendNote({required String body, required bool forWidget}) async {
-    await _dataSource.send(
-      kind: MessageKind.note.toRemote(),
-      body: body.trim(),
-      forWidget: forWidget,
-    );
+  Future<void> sendNote({required String body}) async {
+    await _dataSource.send(kind: MessageKind.note.toRemote(), body: body.trim());
   }
 
   /// Uploads the [png] and then sends it as a drawing.
-  Future<void> sendDrawing({required Uint8List png, required bool forWidget}) async {
+  Future<void> sendDrawing({required Uint8List png}) async {
     final fileId = await _storageService.upload(
       bucket: _bucket,
       bytes: png,
@@ -52,11 +48,7 @@ class NotesRepository({
       name: '${_uuid.v4()}.png',
     );
     try {
-      await _dataSource.send(
-        kind: MessageKind.drawing.toRemote(),
-        mediaFileId: fileId,
-        forWidget: forWidget,
-      );
+      await _dataSource.send(kind: MessageKind.drawing.toRemote(), mediaFileId: fileId);
     } catch (_) {
       await _removeQuietly(fileId);
       rethrow;

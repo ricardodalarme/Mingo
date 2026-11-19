@@ -11,24 +11,21 @@ void main() {
     EnumPartnerMessageKind_enum kind = EnumPartnerMessageKind_enum.note,
     String? body = 'Bom dia',
     String? mediaFileId,
-    bool forWidget = true,
   }) => QuerySentPartnerMessagespartnerMessages(
     id: 'm1',
     kind: kind,
     body: body,
     mediaFileId: mediaFileId,
-    forWidget: forWidget,
     createdAt: created,
   );
 
-  test('a note keeps its text, day and widget flag', () {
+  test('a note keeps its text and day', () {
     final message = node().toModel();
 
     expect(message.id, 'm1');
     expect(message.kind, MessageKind.note);
     expect(message.body, 'Bom dia');
     expect(message.createdAt, created);
-    expect(message.forWidget, isTrue);
     expect(message.imageUrl, isNull);
   });
 
@@ -42,9 +39,5 @@ void main() {
     expect(message.kind, MessageKind.drawing);
     expect(message.mediaFileId, 'file-1');
     expect(message.imageUrl, 'https://files.example/file-1');
-  });
-
-  test('a message not meant for the widget says so', () {
-    expect(node(forWidget: false).toModel().forWidget, isFalse);
   });
 }

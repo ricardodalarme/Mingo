@@ -21,7 +21,6 @@ void main() {
     id: 'm1',
     kind: MessageKind.drawing,
     createdAt: DateTime(2026),
-    forWidget: false,
     mediaFileId: 'f1',
   );
 

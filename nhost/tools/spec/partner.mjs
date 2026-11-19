@@ -39,7 +39,7 @@ export const tables = {
       user: {
         select: { columns: '*', filter: or(mine('sender_id'), mine('recipient_id')) },
         insert: {
-          columns: ['id', 'kind', 'body', 'media_file_id', 'for_widget', 'duration_ms'],
+          columns: ['id', 'kind', 'body', 'media_file_id', 'duration_ms'],
           check: ownFile('media_file_id', 'mediaFile'),
           set: { sender_id: ME },
         },

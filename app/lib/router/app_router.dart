@@ -192,7 +192,7 @@ class AppRouter({required final AutoRouteGuard _guard}) extends RootStackRouter 
     AutoRoute(page: SlipsSearchRoute.page),
     AutoRoute(page: SlipKindRoute.page, fullscreenDialog: true),
     AutoRoute(page: NeedRoute.page, fullscreenDialog: true),
-    AutoRoute(page: ComposeRoute.page),
+    AutoRoute(page: ComposeRoute.page, fullscreenDialog: true),
     AutoRoute(page: SlipDetailRoute.page, path: '/slip/:id'),
     AutoRoute(page: InboxRoute.page),
     AutoRoute(page: NotificationPreferencesRoute.page),

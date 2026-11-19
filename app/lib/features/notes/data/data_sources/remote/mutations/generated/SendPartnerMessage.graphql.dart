@@ -11,12 +11,10 @@ class VariablesMutationSendPartnerMessage {
     required EnumPartnerMessageKind_enum kind,
     String? body,
     String? mediaFileId,
-    bool? forWidget,
   }) => VariablesMutationSendPartnerMessage._({
     r'kind': kind,
     if (body != null) r'body': body,
     if (mediaFileId != null) r'mediaFileId': mediaFileId,
-    if (forWidget != null) r'forWidget': forWidget,
   });
 
   VariablesMutationSendPartnerMessage._(this._$data);
@@ -33,10 +31,6 @@ class VariablesMutationSendPartnerMessage {
       final l$mediaFileId = data['mediaFileId'];
       result$data['mediaFileId'] = (l$mediaFileId as String?);
     }
-    if (data.containsKey('forWidget')) {
-      final l$forWidget = data['forWidget'];
-      result$data['forWidget'] = (l$forWidget as bool?);
-    }
     return VariablesMutationSendPartnerMessage._(result$data);
   }
 
@@ -47,8 +41,6 @@ class VariablesMutationSendPartnerMessage {
   String? get body => (_$data['body'] as String?);
 
   String? get mediaFileId => (_$data['mediaFileId'] as String?);
-
-  bool? get forWidget => (_$data['forWidget'] as bool?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -61,10 +53,6 @@ class VariablesMutationSendPartnerMessage {
     if (_$data.containsKey('mediaFileId')) {
       final l$mediaFileId = mediaFileId;
       result$data['mediaFileId'] = l$mediaFileId;
-    }
-    if (_$data.containsKey('forWidget')) {
-      final l$forWidget = forWidget;
-      result$data['forWidget'] = l$forWidget;
     }
     return result$data;
   }
@@ -98,14 +86,6 @@ class VariablesMutationSendPartnerMessage {
     if (l$mediaFileId != lOther$mediaFileId) {
       return false;
     }
-    final l$forWidget = forWidget;
-    final lOther$forWidget = other.forWidget;
-    if (_$data.containsKey('forWidget') != other._$data.containsKey('forWidget')) {
-      return false;
-    }
-    if (l$forWidget != lOther$forWidget) {
-      return false;
-    }
     return true;
   }
 
@@ -114,12 +94,10 @@ class VariablesMutationSendPartnerMessage {
     final l$kind = kind;
     final l$body = body;
     final l$mediaFileId = mediaFileId;
-    final l$forWidget = forWidget;
     return Object.hashAll([
       l$kind,
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('mediaFileId') ? l$mediaFileId : const {},
-      _$data.containsKey('forWidget') ? l$forWidget : const {},
     ]);
   }
 }
@@ -206,12 +184,6 @@ const documentNodeMutationSendPartnerMessage = DocumentNode(
           defaultValue: DefaultValueNode(value: null),
           directives: [],
         ),
-        VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'forWidget')),
-          type: NamedTypeNode(name: NameNode(value: 'Boolean'), isNonNull: false),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
-        ),
       ],
       directives: [],
       selectionSet: SelectionSetNode(
@@ -235,10 +207,6 @@ const documentNodeMutationSendPartnerMessage = DocumentNode(
                     ObjectFieldNode(
                       name: NameNode(value: 'mediaFileId'),
                       value: VariableNode(name: NameNode(value: 'mediaFileId')),
-                    ),
-                    ObjectFieldNode(
-                      name: NameNode(value: 'forWidget'),
-                      value: VariableNode(name: NameNode(value: 'forWidget')),
                     ),
                   ],
                 ),

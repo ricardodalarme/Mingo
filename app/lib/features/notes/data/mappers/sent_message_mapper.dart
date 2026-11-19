@@ -8,7 +8,6 @@ extension SentMessageMapper on QuerySentPartnerMessagespartnerMessages {
     id: id,
     kind: kind.toModel(),
     createdAt: createdAt,
-    forWidget: forWidget,
     body: body,
     mediaFileId: mediaFileId,
     imageUrl: imageUrl,

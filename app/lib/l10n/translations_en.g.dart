@@ -3870,10 +3870,6 @@ class _Translations$notes$en extends Translations$notes$pt {
   @override
   String get done => 'Done';
   @override
-  String get widgetLabel => 'Send to the widget';
-  @override
-  String get widgetText => 'It appears on their widget if they allow notes.';
-  @override
   String get drawingHint => 'Drawings stay in your sent list. Widget notes are text-only for now.';
   @override
   String get unpairedTitle => 'Connect with your partner';
@@ -5831,12 +5827,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   @override
   String get chatText => 'A calm conversation that is not kept.';
   @override
-  String get notesLabel => 'FOR YOUR PARTNER';
-  @override
-  String get notesTitle => 'A note or a drawing';
-  @override
-  String get notesText => 'Send something short and kind, whenever you like.';
-  @override
   String get usLabel => 'US';
   @override
   String get usTitle => 'I miss us';
@@ -5949,8 +5939,6 @@ class _Translations$tabs$en extends Translations$tabs$pt {
   String get moodCalendarTitle => 'My moods';
   @override
   String get moodCalendarMeta => 'Your month, only you';
-  @override
-  String get notesMeta => 'When you want';
   @override
   String get learningMeta => 'Private notes';
   @override
@@ -10446,8 +10434,6 @@ extension on TranslationsEn {
           'notes.startDrawing' => 'Draw',
           'notes.continueDrawing' => 'Keep drawing',
           'notes.done' => 'Done',
-          'notes.widgetLabel' => 'Send to the widget',
-          'notes.widgetText' => 'It appears on their widget if they allow notes.',
           'notes.drawingHint' =>
             'Drawings stay in your sent list. Widget notes are text-only for now.',
           'notes.unpairedTitle' => 'Connect with your partner',
@@ -10711,11 +10697,11 @@ extension on TranslationsEn {
           'profileDetails.saved' => 'Saved',
           'profileDetails.loadErrorTitle' => 'Could not load your profile',
           'profileDetails.loadErrorText' => 'Check your connection and try again.',
+          'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
+          'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           _ => null,
         } ??
         switch (path) {
-          'profileDetails.timeZones.America/Sao_Paulo' => 'São Paulo',
-          'profileDetails.timeZones.America/Argentina/Buenos_Aires' => 'Buenos Aires',
           'profileDetails.timeZones.America/Bogota' => 'Bogotá',
           'profileDetails.timeZones.America/Mexico_City' => 'Mexico City',
           'profileDetails.timeZones.America/New_York' => 'New York',
@@ -11292,11 +11278,11 @@ extension on TranslationsEn {
           'slipDetail.monthsShort.2' => 'Mar',
           'slipDetail.monthsShort.3' => 'Apr',
           'slipDetail.monthsShort.4' => 'May',
+          'slipDetail.monthsShort.5' => 'Jun',
+          'slipDetail.monthsShort.6' => 'Jul',
           _ => null,
         } ??
         switch (path) {
-          'slipDetail.monthsShort.5' => 'Jun',
-          'slipDetail.monthsShort.6' => 'Jul',
           'slipDetail.monthsShort.7' => 'Aug',
           'slipDetail.monthsShort.8' => 'Sep',
           'slipDetail.monthsShort.9' => 'Oct',
@@ -11769,9 +11755,6 @@ extension on TranslationsEn {
           'tabs.chatLabel' => 'TALK',
           'tabs.chatTitle' => 'Mascot',
           'tabs.chatText' => 'A calm conversation that is not kept.',
-          'tabs.notesLabel' => 'FOR YOUR PARTNER',
-          'tabs.notesTitle' => 'A note or a drawing',
-          'tabs.notesText' => 'Send something short and kind, whenever you like.',
           'tabs.usLabel' => 'US',
           'tabs.usTitle' => 'I miss us',
           'tabs.usText' => 'A light tap for your partner, no pressure.',
@@ -11832,7 +11815,6 @@ extension on TranslationsEn {
           'tabs.diaryMeta' => 'Only yours',
           'tabs.moodCalendarTitle' => 'My moods',
           'tabs.moodCalendarMeta' => 'Your month, only you',
-          'tabs.notesMeta' => 'When you want',
           'tabs.learningMeta' => 'Private notes',
           'tabs.partnerMeta' => 'Only for you',
           'tabs.chatMeta' => 'A calm conversation',
@@ -11926,9 +11908,6 @@ extension on TranslationsEn {
           'timeInApp.titleHighlight' => 'app',
           'timeInApp.text' => 'We hide cards and reminders until you come back.',
           'timeInApp.cancel' => 'Cancel',
-          _ => null,
-        } ??
-        switch (path) {
           'today.greetingMorning' => ({required Object name}) => 'Good morning, ${name}',
           'today.greetingAfternoon' => ({required Object name}) => 'Good afternoon, ${name}',
           'today.greetingEvening' => ({required Object name}) => 'Good evening, ${name}',
@@ -11939,6 +11918,9 @@ extension on TranslationsEn {
             required Object day,
           }) => '${weekday}, ${month} ${day}',
           'today.weekdays.0' => 'Monday',
+          _ => null,
+        } ??
+        switch (path) {
           'today.weekdays.1' => 'Tuesday',
           'today.weekdays.2' => 'Wednesday',
           'today.weekdays.3' => 'Thursday',

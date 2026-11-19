@@ -206,13 +206,6 @@ const documentNodeQuerySentPartnerMessages = DocumentNode(
                   selectionSet: null,
                 ),
                 FieldNode(
-                  name: NameNode(value: 'forWidget'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
                   name: NameNode(value: 'createdAt'),
                   alias: null,
                   arguments: [],
@@ -377,7 +370,6 @@ class QuerySentPartnerMessagespartnerMessages {
     required this.kind,
     this.body,
     this.mediaFileId,
-    required this.forWidget,
     required this.createdAt,
     this.$__typename = 'partnerMessages',
   });
@@ -387,7 +379,6 @@ class QuerySentPartnerMessagespartnerMessages {
     final l$kind = json['kind'];
     final l$body = json['body'];
     final l$mediaFileId = json['mediaFileId'];
-    final l$forWidget = json['forWidget'];
     final l$createdAt = json['createdAt'];
     final l$$__typename = json['__typename'];
     return QuerySentPartnerMessagespartnerMessages(
@@ -395,7 +386,6 @@ class QuerySentPartnerMessagespartnerMessages {
       kind: fromJsonEnumPartnerMessageKind_enum((l$kind as String)),
       body: (l$body as String?),
       mediaFileId: (l$mediaFileId as String?),
-      forWidget: (l$forWidget as bool),
       createdAt: DateTime.parse((l$createdAt as String)),
       $__typename: (l$$__typename as String),
     );
@@ -408,8 +398,6 @@ class QuerySentPartnerMessagespartnerMessages {
   final String? body;
 
   final String? mediaFileId;
-
-  final bool forWidget;
 
   final DateTime createdAt;
 
@@ -425,8 +413,6 @@ class QuerySentPartnerMessagespartnerMessages {
     _resultData['body'] = l$body;
     final l$mediaFileId = mediaFileId;
     _resultData['mediaFileId'] = l$mediaFileId;
-    final l$forWidget = forWidget;
-    _resultData['forWidget'] = l$forWidget;
     final l$createdAt = createdAt;
     _resultData['createdAt'] = ((v) => v.toUtc().toIso8601String())(l$createdAt);
     final l$$__typename = $__typename;
@@ -440,18 +426,9 @@ class QuerySentPartnerMessagespartnerMessages {
     final l$kind = kind;
     final l$body = body;
     final l$mediaFileId = mediaFileId;
-    final l$forWidget = forWidget;
     final l$createdAt = createdAt;
     final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$kind,
-      l$body,
-      l$mediaFileId,
-      l$forWidget,
-      l$createdAt,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$id, l$kind, l$body, l$mediaFileId, l$createdAt, l$$__typename]);
   }
 
   @override
@@ -480,11 +457,6 @@ class QuerySentPartnerMessagespartnerMessages {
     final l$mediaFileId = mediaFileId;
     final lOther$mediaFileId = other.mediaFileId;
     if (l$mediaFileId != lOther$mediaFileId) {
-      return false;
-    }
-    final l$forWidget = forWidget;
-    final lOther$forWidget = other.forWidget;
-    if (l$forWidget != lOther$forWidget) {
       return false;
     }
     final l$createdAt = createdAt;

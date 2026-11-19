@@ -28,7 +28,6 @@ void main() {
     id: 'm1',
     kind: MessageKind.note,
     createdAt: DateTime(2026, 3, 10, 12),
-    forWidget: true,
     body: 'Boa sorte',
   );
 
@@ -63,11 +62,12 @@ void main() {
     return cubit;
   }
 
-  testWidgets('the widget switch starts on for notes and disappears for drawings', (tester) async {
+  testWidgets('there is no widget switch; drawings explain they stay in the sent list', (
+    tester,
+  ) async {
     await pumpCompose(tester);
 
-    expect(tester.widget<BaseSwitch>(find.byType(BaseSwitch)).value, isTrue);
-    expect(find.text('Enviar para o widget'), findsOneWidget);
+    expect(find.byType(BaseSwitch), findsNothing);
 
     await tester.tap(find.text('Desenho'));
     await tester.pump();

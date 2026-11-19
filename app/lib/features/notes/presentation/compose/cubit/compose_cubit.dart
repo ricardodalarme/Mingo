@@ -44,8 +44,6 @@ class ComposeCubit({
 
   void onTextChanged(String text) => emit(state.copyWith(text: FormInput(text)));
 
-  void onForWidgetChanged(bool value) => emit(state.copyWith(forWidget: value));
-
   void onToolChanged(DrawingTool tool) => emit(state.copyWith(tool: tool));
 
   void onPenChanged(int penIndex) =>
@@ -91,13 +89,10 @@ class ComposeCubit({
     try {
       switch (state.kind) {
         case MessageKind.note:
-          await _notesRepository.sendNote(body: state.text.value, forWidget: state.forWidget);
+          await _notesRepository.sendNote(body: state.text.value);
           emit(state.copyWith(text: const FormInput(''), sendAction: const Success(null)));
         case MessageKind.drawing:
-          await _notesRepository.sendDrawing(
-            png: await _exportDrawing(state.strokes),
-            forWidget: false,
-          );
+          await _notesRepository.sendDrawing(png: await _exportDrawing(state.strokes));
           emit(state.copyWith(strokes: const [], sendAction: const Success(null)));
       }
       await load();

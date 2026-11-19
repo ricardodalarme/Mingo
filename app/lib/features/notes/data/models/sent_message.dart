@@ -14,7 +14,6 @@ final class const SentMessage({
   required final String id,
   required final MessageKind kind,
   required final DateTime createdAt,
-  required final bool forWidget,
   final String? body,
   final String? mediaFileId,
   final String? imageUrl,
@@ -24,10 +23,9 @@ final class const SentMessage({
     id: 'fake',
     kind: MessageKind.note,
     createdAt: DateTime(2026),
-    forWidget: false,
     body: 'Boa sorte hoje',
   );
 
   @override
-  List<Object?> get props => [id, kind, createdAt, forWidget, body, mediaFileId, imageUrl];
+  List<Object?> get props => [id, kind, createdAt, body, mediaFileId, imageUrl];
 }

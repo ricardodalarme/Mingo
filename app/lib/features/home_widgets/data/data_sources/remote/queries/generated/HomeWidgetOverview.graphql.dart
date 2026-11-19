@@ -644,12 +644,12 @@ const documentNodeQueryHomeWidgetOverview = DocumentNode(
                 value: ObjectValueNode(
                   fields: [
                     ObjectFieldNode(
-                      name: NameNode(value: 'forWidget'),
+                      name: NameNode(value: 'kind'),
                       value: ObjectValueNode(
                         fields: [
                           ObjectFieldNode(
                             name: NameNode(value: '_eq'),
-                            value: BooleanValueNode(value: true),
+                            value: EnumValueNode(name: NameNode(value: 'note')),
                           ),
                         ],
                       ),

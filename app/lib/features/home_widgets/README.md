@@ -1,8 +1,8 @@
 # Home widgets
 
 Eleven home widgets ship with the app, one per function, on iOS (WidgetKit) and Android (Jetpack Glance). There is nothing to
-configure: what a home widget shows is what the server already lets the person read (a note only appears when the partner marked
-it for the home widget, a mood only when the partner shared it). The gallery in the app only shows the home widgets and teaches how to
+configure: what a home widget shows is what the server already lets the person read (the latest note the partner sent, a mood only
+when the partner shared it). The gallery in the app only shows the home widgets and teaches how to
 add one; its previews are images and do nothing when tapped.
 
 ## Contract
@@ -26,7 +26,7 @@ never display text, so each platform formats dates, plurals, relative times and 
 | `nextDateTitle`, `nextDateOn` | string?, date? | Next important date; cleared once past |
 | `cardState` | `none`, `ready`, `sent` | Where the Sunday card stands |
 | `cardSendDay`, `cardSendHour` | int? | When the card goes out (`0` is Sunday) |
-| `partnerNote`, `partnerNoteAt` | string?, ISO 8601? | The latest note the partner marked for the widget |
+| `partnerNote`, `partnerNoteAt` | string?, ISO 8601? | The latest note the partner sent |
 | `partnerMood`, `partnerMoodAt` | mood name?, ISO 8601? | The mood the partner shared |
 | `partnerMissedAt` | ISO 8601? | The latest "missing you" from the partner |
 | `ritualTitle`, `ritualWeekday`, `ritualTime` | string?, 1 to 7?, `HH:mm`? | The latest active ritual |

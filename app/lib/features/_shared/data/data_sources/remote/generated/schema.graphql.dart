@@ -72633,7 +72633,6 @@ class InputpartnerMessages_bool_exp {
     InputString_comparison_exp? body,
     Inputtimestamptz_comparison_exp? createdAt,
     InputInt_comparison_exp? durationMs,
-    InputBoolean_comparison_exp? forWidget,
     Inputtimestamptz_comparison_exp? heartedAt,
     Inputuuid_comparison_exp? id,
     InputPartnerMessageKind_enum_comparison_exp? kind,
@@ -72651,7 +72650,6 @@ class InputpartnerMessages_bool_exp {
     if (body != null) r'body': body,
     if (createdAt != null) r'createdAt': createdAt,
     if (durationMs != null) r'durationMs': durationMs,
-    if (forWidget != null) r'forWidget': forWidget,
     if (heartedAt != null) r'heartedAt': heartedAt,
     if (id != null) r'id': id,
     if (kind != null) r'kind': kind,
@@ -72703,12 +72701,6 @@ class InputpartnerMessages_bool_exp {
       result$data['durationMs'] = l$durationMs == null
           ? null
           : InputInt_comparison_exp.fromJson((l$durationMs as Map<String, dynamic>));
-    }
-    if (data.containsKey('forWidget')) {
-      final l$forWidget = data['forWidget'];
-      result$data['forWidget'] = l$forWidget == null
-          ? null
-          : InputBoolean_comparison_exp.fromJson((l$forWidget as Map<String, dynamic>));
     }
     if (data.containsKey('heartedAt')) {
       final l$heartedAt = data['heartedAt'];
@@ -72790,9 +72782,6 @@ class InputpartnerMessages_bool_exp {
 
   InputInt_comparison_exp? get durationMs => (_$data['durationMs'] as InputInt_comparison_exp?);
 
-  InputBoolean_comparison_exp? get forWidget =>
-      (_$data['forWidget'] as InputBoolean_comparison_exp?);
-
   Inputtimestamptz_comparison_exp? get heartedAt =>
       (_$data['heartedAt'] as Inputtimestamptz_comparison_exp?);
 
@@ -72841,10 +72830,6 @@ class InputpartnerMessages_bool_exp {
     if (_$data.containsKey('durationMs')) {
       final l$durationMs = durationMs;
       result$data['durationMs'] = l$durationMs?.toJson();
-    }
-    if (_$data.containsKey('forWidget')) {
-      final l$forWidget = forWidget;
-      result$data['forWidget'] = l$forWidget?.toJson();
     }
     if (_$data.containsKey('heartedAt')) {
       final l$heartedAt = heartedAt;
@@ -72967,14 +72952,6 @@ class InputpartnerMessages_bool_exp {
     if (l$durationMs != lOther$durationMs) {
       return false;
     }
-    final l$forWidget = forWidget;
-    final lOther$forWidget = other.forWidget;
-    if (_$data.containsKey('forWidget') != other._$data.containsKey('forWidget')) {
-      return false;
-    }
-    if (l$forWidget != lOther$forWidget) {
-      return false;
-    }
     final l$heartedAt = heartedAt;
     final lOther$heartedAt = other.heartedAt;
     if (_$data.containsKey('heartedAt') != other._$data.containsKey('heartedAt')) {
@@ -73066,7 +73043,6 @@ class InputpartnerMessages_bool_exp {
     final l$body = body;
     final l$createdAt = createdAt;
     final l$durationMs = durationMs;
-    final l$forWidget = forWidget;
     final l$heartedAt = heartedAt;
     final l$id = id;
     final l$kind = kind;
@@ -73092,7 +73068,6 @@ class InputpartnerMessages_bool_exp {
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('durationMs') ? l$durationMs : const {},
-      _$data.containsKey('forWidget') ? l$forWidget : const {},
       _$data.containsKey('heartedAt') ? l$heartedAt : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('kind') ? l$kind : const {},
@@ -73111,7 +73086,6 @@ class InputpartnerMessages_insert_input {
   factory InputpartnerMessages_insert_input({
     String? body,
     int? durationMs,
-    bool? forWidget,
     String? id,
     EnumPartnerMessageKind_enum? kind,
     Inputfiles_obj_rel_insert_input? mediaFile,
@@ -73119,7 +73093,6 @@ class InputpartnerMessages_insert_input {
   }) => InputpartnerMessages_insert_input._({
     if (body != null) r'body': body,
     if (durationMs != null) r'durationMs': durationMs,
-    if (forWidget != null) r'forWidget': forWidget,
     if (id != null) r'id': id,
     if (kind != null) r'kind': kind,
     if (mediaFile != null) r'mediaFile': mediaFile,
@@ -73137,10 +73110,6 @@ class InputpartnerMessages_insert_input {
     if (data.containsKey('durationMs')) {
       final l$durationMs = data['durationMs'];
       result$data['durationMs'] = (l$durationMs as int?);
-    }
-    if (data.containsKey('forWidget')) {
-      final l$forWidget = data['forWidget'];
-      result$data['forWidget'] = (l$forWidget as bool?);
     }
     if (data.containsKey('id')) {
       final l$id = data['id'];
@@ -73171,8 +73140,6 @@ class InputpartnerMessages_insert_input {
 
   int? get durationMs => (_$data['durationMs'] as int?);
 
-  bool? get forWidget => (_$data['forWidget'] as bool?);
-
   String? get id => (_$data['id'] as String?);
 
   EnumPartnerMessageKind_enum? get kind => (_$data['kind'] as EnumPartnerMessageKind_enum?);
@@ -73191,10 +73158,6 @@ class InputpartnerMessages_insert_input {
     if (_$data.containsKey('durationMs')) {
       final l$durationMs = durationMs;
       result$data['durationMs'] = l$durationMs;
-    }
-    if (_$data.containsKey('forWidget')) {
-      final l$forWidget = forWidget;
-      result$data['forWidget'] = l$forWidget;
     }
     if (_$data.containsKey('id')) {
       final l$id = id;
@@ -73239,14 +73202,6 @@ class InputpartnerMessages_insert_input {
     if (l$durationMs != lOther$durationMs) {
       return false;
     }
-    final l$forWidget = forWidget;
-    final lOther$forWidget = other.forWidget;
-    if (_$data.containsKey('forWidget') != other._$data.containsKey('forWidget')) {
-      return false;
-    }
-    if (l$forWidget != lOther$forWidget) {
-      return false;
-    }
     final l$id = id;
     final lOther$id = other.id;
     if (_$data.containsKey('id') != other._$data.containsKey('id')) {
@@ -73286,7 +73241,6 @@ class InputpartnerMessages_insert_input {
   int get hashCode {
     final l$body = body;
     final l$durationMs = durationMs;
-    final l$forWidget = forWidget;
     final l$id = id;
     final l$kind = kind;
     final l$mediaFile = mediaFile;
@@ -73294,7 +73248,6 @@ class InputpartnerMessages_insert_input {
     return Object.hashAll([
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('durationMs') ? l$durationMs : const {},
-      _$data.containsKey('forWidget') ? l$forWidget : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('kind') ? l$kind : const {},
       _$data.containsKey('mediaFile') ? l$mediaFile : const {},
@@ -73921,7 +73874,6 @@ class InputpartnerMessages_order_by {
     Enumorder_by? body,
     Enumorder_by? createdAt,
     Enumorder_by? durationMs,
-    Enumorder_by? forWidget,
     Enumorder_by? heartedAt,
     Enumorder_by? id,
     Enumorder_by? kind,
@@ -73936,7 +73888,6 @@ class InputpartnerMessages_order_by {
     if (body != null) r'body': body,
     if (createdAt != null) r'createdAt': createdAt,
     if (durationMs != null) r'durationMs': durationMs,
-    if (forWidget != null) r'forWidget': forWidget,
     if (heartedAt != null) r'heartedAt': heartedAt,
     if (id != null) r'id': id,
     if (kind != null) r'kind': kind,
@@ -73968,12 +73919,6 @@ class InputpartnerMessages_order_by {
       result$data['durationMs'] = l$durationMs == null
           ? null
           : fromJsonEnumorder_by((l$durationMs as String));
-    }
-    if (data.containsKey('forWidget')) {
-      final l$forWidget = data['forWidget'];
-      result$data['forWidget'] = l$forWidget == null
-          ? null
-          : fromJsonEnumorder_by((l$forWidget as String));
     }
     if (data.containsKey('heartedAt')) {
       final l$heartedAt = data['heartedAt'];
@@ -74040,8 +73985,6 @@ class InputpartnerMessages_order_by {
 
   Enumorder_by? get durationMs => (_$data['durationMs'] as Enumorder_by?);
 
-  Enumorder_by? get forWidget => (_$data['forWidget'] as Enumorder_by?);
-
   Enumorder_by? get heartedAt => (_$data['heartedAt'] as Enumorder_by?);
 
   Enumorder_by? get id => (_$data['id'] as Enumorder_by?);
@@ -74075,10 +74018,6 @@ class InputpartnerMessages_order_by {
     if (_$data.containsKey('durationMs')) {
       final l$durationMs = durationMs;
       result$data['durationMs'] = l$durationMs == null ? null : toJsonEnumorder_by(l$durationMs);
-    }
-    if (_$data.containsKey('forWidget')) {
-      final l$forWidget = forWidget;
-      result$data['forWidget'] = l$forWidget == null ? null : toJsonEnumorder_by(l$forWidget);
     }
     if (_$data.containsKey('heartedAt')) {
       final l$heartedAt = heartedAt;
@@ -74153,14 +74092,6 @@ class InputpartnerMessages_order_by {
       return false;
     }
     if (l$durationMs != lOther$durationMs) {
-      return false;
-    }
-    final l$forWidget = forWidget;
-    final lOther$forWidget = other.forWidget;
-    if (_$data.containsKey('forWidget') != other._$data.containsKey('forWidget')) {
-      return false;
-    }
-    if (l$forWidget != lOther$forWidget) {
       return false;
     }
     final l$heartedAt = heartedAt;
@@ -74251,7 +74182,6 @@ class InputpartnerMessages_order_by {
     final l$body = body;
     final l$createdAt = createdAt;
     final l$durationMs = durationMs;
-    final l$forWidget = forWidget;
     final l$heartedAt = heartedAt;
     final l$id = id;
     final l$kind = kind;
@@ -74266,7 +74196,6 @@ class InputpartnerMessages_order_by {
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('durationMs') ? l$durationMs : const {},
-      _$data.containsKey('forWidget') ? l$forWidget : const {},
       _$data.containsKey('heartedAt') ? l$heartedAt : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('kind') ? l$kind : const {},
@@ -74669,7 +74598,6 @@ class InputpartnerMessages_stream_cursor_value_input {
     String? body,
     DateTime? createdAt,
     int? durationMs,
-    bool? forWidget,
     DateTime? heartedAt,
     String? id,
     EnumPartnerMessageKind_enum? kind,
@@ -74681,7 +74609,6 @@ class InputpartnerMessages_stream_cursor_value_input {
     if (body != null) r'body': body,
     if (createdAt != null) r'createdAt': createdAt,
     if (durationMs != null) r'durationMs': durationMs,
-    if (forWidget != null) r'forWidget': forWidget,
     if (heartedAt != null) r'heartedAt': heartedAt,
     if (id != null) r'id': id,
     if (kind != null) r'kind': kind,
@@ -74708,10 +74635,6 @@ class InputpartnerMessages_stream_cursor_value_input {
     if (data.containsKey('durationMs')) {
       final l$durationMs = data['durationMs'];
       result$data['durationMs'] = (l$durationMs as int?);
-    }
-    if (data.containsKey('forWidget')) {
-      final l$forWidget = data['forWidget'];
-      result$data['forWidget'] = (l$forWidget as bool?);
     }
     if (data.containsKey('heartedAt')) {
       final l$heartedAt = data['heartedAt'];
@@ -74756,8 +74679,6 @@ class InputpartnerMessages_stream_cursor_value_input {
 
   int? get durationMs => (_$data['durationMs'] as int?);
 
-  bool? get forWidget => (_$data['forWidget'] as bool?);
-
   DateTime? get heartedAt => (_$data['heartedAt'] as DateTime?);
 
   String? get id => (_$data['id'] as String?);
@@ -74787,10 +74708,6 @@ class InputpartnerMessages_stream_cursor_value_input {
     if (_$data.containsKey('durationMs')) {
       final l$durationMs = durationMs;
       result$data['durationMs'] = l$durationMs;
-    }
-    if (_$data.containsKey('forWidget')) {
-      final l$forWidget = forWidget;
-      result$data['forWidget'] = l$forWidget;
     }
     if (_$data.containsKey('heartedAt')) {
       final l$heartedAt = heartedAt;
@@ -74860,14 +74777,6 @@ class InputpartnerMessages_stream_cursor_value_input {
     if (l$durationMs != lOther$durationMs) {
       return false;
     }
-    final l$forWidget = forWidget;
-    final lOther$forWidget = other.forWidget;
-    if (_$data.containsKey('forWidget') != other._$data.containsKey('forWidget')) {
-      return false;
-    }
-    if (l$forWidget != lOther$forWidget) {
-      return false;
-    }
     final l$heartedAt = heartedAt;
     final lOther$heartedAt = other.heartedAt;
     if (_$data.containsKey('heartedAt') != other._$data.containsKey('heartedAt')) {
@@ -74932,7 +74841,6 @@ class InputpartnerMessages_stream_cursor_value_input {
     final l$body = body;
     final l$createdAt = createdAt;
     final l$durationMs = durationMs;
-    final l$forWidget = forWidget;
     final l$heartedAt = heartedAt;
     final l$id = id;
     final l$kind = kind;
@@ -74944,7 +74852,6 @@ class InputpartnerMessages_stream_cursor_value_input {
       _$data.containsKey('body') ? l$body : const {},
       _$data.containsKey('createdAt') ? l$createdAt : const {},
       _$data.containsKey('durationMs') ? l$durationMs : const {},
-      _$data.containsKey('forWidget') ? l$forWidget : const {},
       _$data.containsKey('heartedAt') ? l$heartedAt : const {},
       _$data.containsKey('id') ? l$id : const {},
       _$data.containsKey('kind') ? l$kind : const {},
@@ -123887,7 +123794,6 @@ enum EnumpartnerMessages_select_column {
   body,
   createdAt,
   durationMs,
-  forWidget,
   heartedAt,
   id,
   kind,
@@ -123911,8 +123817,6 @@ String toJsonEnumpartnerMessages_select_column(EnumpartnerMessages_select_column
       return r'createdAt';
     case EnumpartnerMessages_select_column.durationMs:
       return r'durationMs';
-    case EnumpartnerMessages_select_column.forWidget:
-      return r'forWidget';
     case EnumpartnerMessages_select_column.heartedAt:
       return r'heartedAt';
     case EnumpartnerMessages_select_column.id:
@@ -123940,8 +123844,6 @@ EnumpartnerMessages_select_column fromJsonEnumpartnerMessages_select_column(Stri
       return EnumpartnerMessages_select_column.createdAt;
     case r'durationMs':
       return EnumpartnerMessages_select_column.durationMs;
-    case r'forWidget':
-      return EnumpartnerMessages_select_column.forWidget;
     case r'heartedAt':
       return EnumpartnerMessages_select_column.heartedAt;
     case r'id':

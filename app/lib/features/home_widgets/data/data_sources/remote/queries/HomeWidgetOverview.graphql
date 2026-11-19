@@ -35,7 +35,7 @@ query HomeWidgetOverview($userId: uuid!, $today: date!) {
     happenedOn
   }
   partnerNote: partnerMessages(
-    where: { forWidget: { _eq: true }, senderId: { _neq: $userId }, recipientId: { _eq: $userId } }
+    where: { kind: { _eq: note }, senderId: { _neq: $userId }, recipientId: { _eq: $userId } }
     order_by: [{ createdAt: desc_nulls_last }]
     limit: 1
   ) {

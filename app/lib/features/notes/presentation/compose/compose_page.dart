@@ -31,7 +31,6 @@ class const ComposePage({super.key}) extends StatelessWidget implements AutoRout
     final isDrawing = context.select((ComposeCubit cubit) => cubit.state.isDrawing);
     final kind = context.select((ComposeCubit cubit) => cubit.state.kind);
     final text = context.select((ComposeCubit cubit) => cubit.state.text);
-    final forWidget = context.select((ComposeCubit cubit) => cubit.state.forWidget);
     final isUnpaired = context.select((ComposeCubit cubit) => cubit.state.isUnpaired);
     final isSending = context.select((ComposeCubit cubit) => cubit.state.sendAction.isLoading);
     final cubit = context.read<ComposeCubit>();
@@ -99,18 +98,7 @@ class const ComposePage({super.key}) extends StatelessWidget implements AutoRout
               else
                 AbsorbPointer(absorbing: isSending, child: const DrawingEntry()),
               const SizedBox(height: AppSpace.s16),
-              if (kind == MessageKind.note)
-                BaseListTile(
-                  title: l10n.widgetLabel,
-                  subtitle: l10n.widgetText,
-                  isEnabled: !isSending,
-                  control: BaseSwitch(
-                    value: forWidget,
-                    semanticLabel: l10n.widgetLabel,
-                    onChanged: isSending ? (_) {} : cubit.onForWidgetChanged,
-                  ),
-                )
-              else
+              if (kind == MessageKind.drawing)
                 Text(
                   l10n.drawingHint,
                   style: context.text.bodySm.copyWith(color: context.colors.textSecondary),
