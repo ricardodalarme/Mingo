@@ -183,7 +183,7 @@ void main() {
     await settle(tester);
     await tester.tap(find.text('Editar'));
     await settle(tester);
-    await tester.enterText(find.byType(BaseTextArea), 'rascunho');
+    await tester.enterText(find.byType(BaseSlipNoteField), 'rascunho');
     await tester.pump();
 
     final appCubit = buildAppCubit();
@@ -218,7 +218,7 @@ void main() {
     expect(router.stack.map((route) => route.name), isNot(contains(SignInRoute.name)));
     expect(router.stack.map((route) => route.name), contains(SlipDetailRoute.name));
     final field = tester.widget<EditableText>(
-      find.descendant(of: find.byType(BaseTextArea), matching: find.byType(EditableText)),
+      find.descendant(of: find.byType(BaseSlipNoteField), matching: find.byType(EditableText)),
     );
     expect(field.controller.text, 'rascunho');
 
@@ -228,9 +228,9 @@ void main() {
 
     await tester.tap(find.text('Continuar escrevendo'));
     await settle(tester);
-    expect(find.byType(BaseTextArea), findsOneWidget);
+    expect(find.byType(BaseSlipNoteField), findsOneWidget);
     final kept = tester.widget<EditableText>(
-      find.descendant(of: find.byType(BaseTextArea), matching: find.byType(EditableText)),
+      find.descendant(of: find.byType(BaseSlipNoteField), matching: find.byType(EditableText)),
     );
     expect(kept.controller.text, 'rascunho');
   });
